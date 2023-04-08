@@ -1,0 +1,32 @@
+{
+  "name": "mc-status-bot",
+  "version": "1.0.0",
+  "description": "A discord bot for reciving real time status of minecraft server.]",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/N000berpro/mc-status-bot.git"
+  },
+  "keywords": [
+    "mc",
+    "status",
+    "bot",
+    "minecraft",
+    "server",
+    "status"
+  ],
+  "author": "N00berpro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/N000berpro/mc-status-bot/issues"
+  },
+  "homepage": "https://github.com/N000berpro/mc-status-bot#readme",
+  "dependencies": {
+    "discord.js": "^14.8.0",
+    "dotenv": "^16.0.3",
+    "pingmc": "^3.1.0"
+  }
+}
