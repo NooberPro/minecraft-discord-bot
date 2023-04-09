@@ -1,6 +1,6 @@
 {
   "name": "mc-status-bot",
-  "version": "1.0.0",
+  "version": "0.5.0",
   "description": "A discord bot for reciving real time status of minecraft server.]",
   "main": "index.js",
   "scripts": {
