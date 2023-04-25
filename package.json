@@ -1,32 +1,30 @@
 {
-  "name": "mc-status-bot",
-  "version": "0.5.0",
-  "description": "A discord bot for reciving real time status of minecraft server.]",
-  "main": "index.js",
+  "name": "minecraft-discord-bot",
+  "version": "0.7.0",
+  "description": "A discord bot that shows info and status of your minecraft server including players, version, and many more features.",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/N000berpro/mc-status-bot.git"
+    "url": "git+https://github.com/NooberPro/minecraft-discord-bot.git"
   },
   "keywords": [
-    "mc",
-    "status",
-    "bot",
     "minecraft",
-    "server",
-    "status"
+    "discord",
+    "discord-bot",
+    "minecraft-discord-bot",
+    "minecraft-server-status-discord-bot"
   ],
-  "author": "N00berpro",
+  "author": "Nooberpro",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/N000berpro/mc-status-bot/issues"
+    "url": "https://github.com/NooberPro/minecraft-discord-bot/issues"
   },
-  "homepage": "https://github.com/N000berpro/mc-status-bot#readme",
+  "homepage": "https://github.com/NooberPro/minecraft-discord-bot#readme",
   "dependencies": {
-    "discord.js": "^14.8.0",
-    "dotenv": "^16.0.3",
-    "pingmc": "^3.1.0"
+    "discord.js": "^14.9.0",
+    "node-mcstatus": "^1.0.2"
   }
 }
