@@ -2,7 +2,6 @@
 module.exports = {
   bot: {
     token: "your-bot-token-here", // Paste Your Bot's Token here
-    name: "mc-status-bot", // Name of the discord bot
     updateInterval: 60, // Time Period between auto changing status in seconds like 60sec = 1min. Recommend is above 60.
   },
   mcserver: {
