@@ -1,6 +1,6 @@
 {
   "name": "minecraft-discord-bot",
-  "version": "0.7.0",
+  "version": "0.6.0",
   "description": "A discord bot that shows info and status of your minecraft server including players, version, and many more features.",
   "main": "src/index.js",
   "scripts": {
