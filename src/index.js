@@ -39,9 +39,7 @@ client.on("messageCreate", (message) => {
     const channel = client.channels.cache.get(message.channel.id);
     if (!channel) return console.error("Invalid channel ID.");
     channel
-      .send(
-        `:gear:Checking the status...\nWaiting for ${c.bot.name} to restart.`
-      )
+      .send(`:gear:Checking the status...\nWaiting for bot to restart.`)
       .then((msg) => {
         const json = {
           messageId: null,
