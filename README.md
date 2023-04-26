@@ -1,6 +1,6 @@
 # Discord Bot For Minecraft Server
 
-## [DOCUMENTATION HERE](https://nooberpro.gitbook.io/mc-status-bot/)
+## [DOCUMENTATION HERE](https://nooberpro.gitbook.io/minecraft-discord-bot/installation/setup)
 
 ## [LATEST DOWNLOAD HERE ](https://github.com/Nooberpro/minecraft-discord-bot/archive/refs/heads/main.zip)
 
