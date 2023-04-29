@@ -11,7 +11,6 @@ const client = new Client({
     IntentsBitField.Flags.MessageContent,
   ],
 });
-
 const data = JSON.parse(fs.readFileSync("data.json"));
 const timeInterval = c.bot.updateInterval * 1000;
 
@@ -60,44 +59,46 @@ function statusRetrival() {
   mcs
     .statusJava(c.mcserver.ip, c.mcserver.port)
     .then((data) => {
-      if (data.online === true) {
-        if (data.players.max === 0) {
-          statusEdit(offlineStatus, "❌ Offline");
-        } else {
-          const onlineStatus = new EmbedBuilder()
-            .setColor("DarkGreen")
-            .setTitle(":green_circle: ONLINE")
-            .setAuthor({ name: c.mcserver.name, iconURL: c.mcserver.icon })
-            .addFields(
-              {
-                name: "__**PLAYERS**__",
-                value: `**${data.players.online}**/**${data.players.max}\n**`,
-              },
-              {
-                name: "__**MOTD**__",
-                value: `**${data.motd.clean}**`,
-              },
-              {
-                name: "__**INFO**__",
-                value: `**${data.version.name_clean}**`,
-              },
-              {
-                name: "__**IP ADDRESS**__",
-                value: `**${data.host}:${data.port}**`,
-              }
-            )
-            .setTimestamp()
-            .setFooter({
-              text: "Updated at",
-            });
-          statusEdit(onlineStatus, "✔ Online");
-        }
+      if (data.online === true && data.players.max > 0) {
+        const playerList = data.players.list.reduce((acc, item) => {
+          return acc + item.name_clean + "\n";
+        }, "");
+        const onlineStatus = new EmbedBuilder()
+          .setColor("DarkGreen")
+          .setTitle(":green_circle: ONLINE")
+          .setAuthor({ name: c.mcserver.name, iconURL: c.mcserver.icon })
+          .addFields(
+            {
+              name: "__**PLAYERS**__",
+              value:
+                `**${data.players.online}**/**${data.players.max}**\n` +
+                `\`\`\`${playerList}\`\`\``,
+            },
+            {
+              name: "__**MOTD**__",
+              value: `**${data.motd.clean}**`,
+            },
+            {
+              name: "__**INFO**__",
+              value: `**${data.version.name_clean}**`,
+            },
+            {
+              name: "__**IP ADDRESS**__",
+              value: `**${data.host}:${data.port}**`,
+            }
+          )
+          .setTimestamp()
+          .setFooter({
+            text: "Updated at",
+          });
+        statusEdit(onlineStatus, "✔ Online");
       } else {
         statusEdit(offlineStatus, "❌Offline");
       }
     })
     .catch((error) => {
-      console.log(error);
+      statusEdit(offlineStatus, "❌Offline");
+      console.error(error);
     });
 }
 client.on("ready", (c) => {
