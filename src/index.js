@@ -1,7 +1,10 @@
+const fs = require("fs");
 const mcs = require("node-mcstatus");
 const { Client, IntentsBitField, EmbedBuilder } = require("discord.js");
 const c = require("../config.js");
-const fs = require("fs");
+const { CommandHandler } = require("djs-commander");
+const path = require("path");
+const data = JSON.parse(fs.readFileSync("data.json"));
 
 const client = new Client({
   intents: [
@@ -11,8 +14,11 @@ const client = new Client({
     IntentsBitField.Flags.MessageContent,
   ],
 });
-const data = JSON.parse(fs.readFileSync("data.json"));
-const timeInterval = c.bot.updateInterval * 1000;
+
+new CommandHandler({
+  client,
+  eventsPath: path.join(__dirname, "events"),
+});
 
 const offlineStatus = new EmbedBuilder()
   .setColor("DarkRed")
@@ -32,33 +38,13 @@ async function statusEdit(statusEmbed, status) {
   }
 }
 
-client.on("messageCreate", (message) => {
-  if (message.content === "!setstatus") {
-    console.log(message.channel.id);
-    const channel = client.channels.cache.get(message.channel.id);
-    if (!channel) return console.error("Invalid channel ID.");
-    channel
-      .send(`:gear:Checking the status...\nWaiting for bot to restart.`)
-      .then((msg) => {
-        const json = {
-          messageId: null,
-          channelId: null,
-        };
-        fs.writeFileSync("data.json", JSON.stringify(json));
-        const data = JSON.parse(fs.readFileSync("data.json"));
-        data.messageId = msg.id;
-        data.channelId = message.channel.id;
-        fs.writeFileSync("data.json", JSON.stringify(data));
-        console.log(`The status channel has been set to #${channel.name}.`);
-      })
-      .catch(console.error);
-  }
-});
-
 function statusRetrival() {
   mcs
     .statusJava(c.mcserver.ip, c.mcserver.port)
     .then((data) => {
+      module.exports = {
+        data,
+      };
       if (data.online === true && data.players.max > 0) {
         const playerList = data.players.list.reduce((acc, item) => {
           return acc + item.name_clean + "\n";
@@ -101,18 +87,10 @@ function statusRetrival() {
       console.error(error);
     });
 }
-client.on("ready", (c) => {
-  console.log(
-    `✅ ${c.user.tag} is online.\nInvite the bot with https://discord.com/oauth2/authorize?client_id=${client.user.id}&permissions=93184&scope=bot%20applications.commands`
-  );
-  if (data.channelId === null) {
-    console.log(
-      "To set server status, send a `!setstatus` message in the desired channel."
-    );
-  } else {
-    setInterval(statusRetrival, timeInterval);
-    statusRetrival();
-  }
-});
+
+module.exports = {
+  statusEdit,
+  statusRetrival,
+};
 
 client.login(c.bot.token);

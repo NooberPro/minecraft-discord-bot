@@ -17,25 +17,22 @@ This bot code uses **node-mcstatus npm package** for getting status of Minecraft
 
 ![OfflineEMbed](https://i.imgur.com/wODw8v1.png)
 
-
 ## TO DO
 
-- [ ] Better Documentation and Readme 
+- [ ] Better Documentation and Readme
 - [x] Auto changing statusCH message
-- [ ] Message Reply for (is server online?) like question
+- [x] Message Reply for (is server online?) like question
 - [ ] Status command
 - [ ] IP address command
 - [ ] Minecraft version command
 - [ ] Player list command
-- [ ] Vote link command
 - [ ] Web Map command
 - [ ] Slash commands
 - [ ] Bot status (activity) for players online number
 - [ ] Help command with all commands listing
-- [ ] Error detection of config 
+- [ ] Error detection of config
 - [ ] And many other things 😉
-- [ ] Bedrock Support 
-- [ ] Player List
-- [ ] Colorfull Console 
+- [ ] Bedrock Support
+- [x] Player List
+- [ ] Colorfull Console
 - [ ] Instruction for Bot hosting for free
-
