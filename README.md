@@ -2,7 +2,7 @@
 
 ## [DOCUMENTATION HERE](https://nooberpro.gitbook.io/minecraft-discord-bot/installation/setup)
 
-## [LATEST DOWNLOAD HERE ](https://github.com/Nooberpro/minecraft-discord-bot/archive/refs/heads/main.zip)
+## [LATEST DOWNLOAD HERE](https://github.com/Nooberpro/minecraft-discord-bot/archive/refs/heads/main.zip)
 
 ### **A discord bot that shows info and status of your minecraft server including players, version, and many more features**
 
@@ -32,7 +32,7 @@ This bot code uses **node-mcstatus npm package** for getting status of Minecraft
 - [ ] Help command with all commands listing
 - [ ] Error detection of config
 - [ ] And many other things 😉
-- [ ] Bedrock Support
+- [x] Bedrock Support
 - [x] Player List
 - [ ] Colorfull Console
 - [ ] Instruction for Bot hosting for free
