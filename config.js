@@ -12,7 +12,6 @@ module.exports = {
     name: 'Demo Server', //Name of your Minecraft Server like Hypixel
     icon: 'https://i.imgur.com/eBM2SXq.png', //Url of your server icon.
   },
-
   status_reply: {
     // If a message contains triggerWords and reply if server is online with players or offline.
     enabled: false,

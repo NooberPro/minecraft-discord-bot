@@ -30,9 +30,9 @@ This bot code uses **node-mcstatus npm package** for getting status of Minecraft
 - [ ] Slash commands
 - [ ] Bot status (activity) for players online number
 - [ ] Help command with all commands listing
-- [ ] Error detection of config
+- [x] Error detection of config
 - [ ] And many other things 😉
 - [x] Bedrock Support
 - [x] Player List
-- [ ] Colorfull Console
+- [x] Colorfull Console
 - [ ] Instruction for Bot hosting for free

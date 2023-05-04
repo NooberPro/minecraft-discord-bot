@@ -5,6 +5,7 @@ const { Client, IntentsBitField, EmbedBuilder } = require('discord.js');
 const c = require('../config.js');
 const { CommandHandler } = require('djs-commander');
 const data = JSON.parse(fs.readFileSync('data.json'));
+const chalk = require('chalk');
 
 const client = new Client({
   intents: [
@@ -15,6 +16,25 @@ const client = new Client({
   ],
 });
 
+const errors = [];
+
+if (c.bot.token.startsWith('your-bot-token-here'))
+  errors.push('Bot Token is Invalid.');
+if (c.mcserver.ip === '')
+  errors.push("The Minecraft server's IP address has not been specified.");
+if (c.mcserver.type !== 'java' && c.mcserver.type !== 'bedrock')
+  errors.push('Invalid Minecraft server type. Should be "java" or "bedrock".');
+
+if (c.mcserver.name === '')
+  errors.push("The Minecraft server's name has not been specified.");
+if (c.mcserver.icon === '')
+  errors.push("The Minecraft server's icon has not been specified.");
+
+if (errors.length > 0) {
+  console.error(chalk.red('Config file has the following errors:'));
+  errors.forEach((item) => console.log(chalk.keyword('orange')(item)));
+  process.exit(1);
+}
 new CommandHandler({
   client,
   eventsPath: path.join(__dirname, 'events'),
@@ -66,7 +86,7 @@ function statusRetrival() {
           )
           .setTimestamp()
           .setFooter({ text: 'Updated at' });
-        statusEdit(onlineEmbedBedrock, '✔ Online');
+        statusEdit(onlineEmbedBedrock, chalk.green`✔ Online`);
       })
       .catch((error) => {
         console.log(error);
@@ -113,13 +133,13 @@ function statusRetrival() {
             .setFooter({
               text: 'Updated at',
             });
-          statusEdit(onlineStatus, '✔ Online');
+          statusEdit(onlineStatus, chalk.green`✔ Online`);
         } else {
-          statusEdit(offlineStatus, '❌Offline');
+          statusEdit(offlineStatus, chalk.red`❌Offline`);
         }
       })
       .catch((error) => {
-        statusEdit(offlineStatus, '❌Offline');
+        statusEdit(offlineStatus, chalk.red`❌Offline`);
         console.error(error);
       });
   }

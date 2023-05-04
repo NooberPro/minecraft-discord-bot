@@ -1,5 +1,5 @@
-const config = require("../../../config.js");
-const { data } = require("../../index.js");
+const config = require('../../../config.js');
+const { data } = require('../../index.js');
 module.exports = (message) => {
   if (config.status_reply.enabled === false) return;
   if (
@@ -12,7 +12,7 @@ module.exports = (message) => {
         `**Yes, server is :green_circle:\`ONLINE\` with \`${data.players.online}\` players playing.**`
       );
     } else {
-      message.reply("**The Server is currently :red_circle:`Offline`.**");
+      message.reply('**The Server is currently :red_circle:`Offline`.**');
     }
   }
 };
