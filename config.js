@@ -26,6 +26,12 @@ module.exports = {
   status_reply: {
     // If a message contains triggerWords and reply if server is online with players or offline.
     enabled: false,
+    triggerWords2: [
+      // Add wordsd by '' and ,
+      'What is the IP?',
+      'server ip?',
+      'Whats the server ip?,
+     ],
     triggerWords: [
       // Add words by '' and ,
       'Is the server up ?',
