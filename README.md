@@ -26,9 +26,9 @@ This bot code uses **node-mcstatus npm package** for getting status of Minecraft
 - [ ] IP address command
 - [ ] Minecraft version command
 - [ ] Player list command
-- [ ] Web Map command
+- [ ] Site command
 - [ ] Slash commands
-- [ ] Bot status (activity) for players online number
+- [x] Bot status (activity) for players online number
 - [ ] Help command with all commands listing
 - [x] Error detection of config
 - [ ] And many other things 😉
