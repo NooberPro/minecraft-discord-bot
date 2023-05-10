@@ -31,7 +31,7 @@ module.exports = {
       // Add wordsd by '' and ,
       'What is the server version?',
       'server version?',
-      'Whats the server version?,
+      'Whats the server version?',
      ],
     triggerWords: [
       // Add words by '' and ,
