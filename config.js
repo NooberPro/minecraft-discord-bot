@@ -22,6 +22,7 @@ module.exports = {
     port: 25565, // Port of your minecraft server like 25565 for java and 19132 for bedrock.
     type: 'java', // Type of minecraft server, "java" or "bedrock". Default is Java.
     name: 'Demo Server', //Name of your Minecraft Server like Hypixel
+    version: '1.19.4', //Version of your Minecraft Server
   },
   status_reply: {
     // If a message contains triggerWords and reply if server is online with players or offline.
