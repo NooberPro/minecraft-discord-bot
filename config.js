@@ -29,9 +29,9 @@ module.exports = {
     enabled: false,
     triggerWords2: [
       // Add wordsd by '' and ,
-      'What is the IP?',
-      'server ip?',
-      'Whats the server ip?,
+      'What is the server version?',
+      'server version?',
+      'Whats the server version?,
      ],
     triggerWords: [
       // Add words by '' and ,
