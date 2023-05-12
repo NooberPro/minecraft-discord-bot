@@ -5,7 +5,7 @@ module.exports = (message) => {
   if (
     config.status_reply.triggerWords2.some((word) =>
       message.content.includes(word)))
-    message.reply(`**The server's version is ** `,config.mcserver.version);
+    message.reply(`**The server's version is \`${config.mcserver.version}\`**`);
   if (
     config.status_reply.triggerWords.some((word) =>
       message.content.includes(word)
