@@ -2,7 +2,7 @@
 module.exports = {
   bot: {
     token: 'your-bot-token-here', // Paste Your Bot's Token here
-    updateInterval: 60, // Time Period between auto changing status in seconds like 60 = 1min. Recommend is above 60.
+    // Auto changing status message and activity presence.
     presence: {
       text: {
         // Use {playeronline} for no. of players online and {playermax} for maximum players .
@@ -37,7 +37,10 @@ module.exports = {
   },
   // Setting for bot
   settings: {
-    autoChangeStatus: true, // Auto changing status message and activity presence.
+    autoChangeStatus: {
+      enabled: false,
+      updateInterval: 60, // Time Period between auto changing status in seconds like 60 = 1min. Recommend is above 60.
+    },
     // console-logging settings.
     logging: {
       inviteLink: true, // Logs invite link at bot's launch

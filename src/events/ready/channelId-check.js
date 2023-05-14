@@ -4,7 +4,7 @@ const data = JSON.parse(fs.readFileSync('data.json'));
 const { statusRetrieval } = require('../../index.js');
 const chalk = require('chalk');
 module.exports = (client) => {
-  if (config.settings.autoChangeStatus === false) return;
+  if (config.settings.autoChangeStatus.enabled === false) return;
   if (data.channelId === null) {
     console.log(
       `To set server status, send a ${chalk.cyan(
@@ -12,7 +12,10 @@ module.exports = (client) => {
       )} message in the desired channel.`
     );
   } else {
-    setInterval(statusRetrieval, config.bot.updateInterval * 1000);
+    setInterval(
+      statusRetrieval,
+      config.settings.autoChangeStatus.updateInterval * 1000
+    );
     statusRetrieval();
   }
 };
