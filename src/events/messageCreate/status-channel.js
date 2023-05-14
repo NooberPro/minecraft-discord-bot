@@ -1,6 +1,8 @@
 const chalk = require('chalk');
 const fs = require('fs');
+const config = require('../../../config');
 module.exports = (message, client) => {
+  if (config.settings.autoChangeStatus === false) return;
   if (message.content === '!setstatus') {
     const channel = client.channels.cache.get(message.channel.id);
     if (!channel) return console.error('Invalid channel ID.');

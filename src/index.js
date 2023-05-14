@@ -1,4 +1,3 @@
-const fs = require('fs');
 const { statusBedrock, statusJava } = require('node-mcstatus');
 const path = require('path');
 const {
@@ -9,7 +8,7 @@ const {
 } = require('discord.js');
 const config = require('../config.js');
 const { CommandHandler } = require('djs-commander');
-const data = JSON.parse(fs.readFileSync('data.json'));
+const data = require('../data.json');
 const chalk = require('chalk');
 
 const client = new Client({
@@ -20,25 +19,46 @@ const client = new Client({
     IntentsBitField.Flags.MessageContent,
   ],
 });
-
 const errors = [];
 
 console.log(
   chalk.red('Checking for Errors in the config.js file. Please Wait.')
 );
-
-if (config.bot.token.startsWith('your-bot-token-here'))
-  errors.push('Bot Token is Invalid.');
-
-if (!config.mcserver.ip)
-  errors.push("The Minecraft server's IP address has not been specified.");
-
-if (!['java', 'bedrock'].includes(config.mcserver.type))
-  errors.push('Invalid Minecraft server type. Should be "java" or "bedrock".');
-
-if (!config.mcserver.name)
-  errors.push("The Minecraft server's name has not been specified.");
-
+function checkError(condition, errorMessage) {
+  if (condition) errors.push(errorMessage);
+}
+checkError(
+  config.bot.token.startsWith('your-bot-token-here'),
+  'Bot Token is Invalid.'
+);
+checkError(
+  !['online', 'idle', 'dnd', 'invisible'].includes(
+    config.bot.presence.status.online && config.bot.presence.status.offline
+  ),
+  "Invalid bot status options. Should be 'online', 'idle', 'dnd' or 'invisible'."
+);
+checkError(
+  !['Playing', 'Listening', 'Watching', 'Competing'].includes(
+    config.bot.presence.activity
+  ),
+  "Invalid bot activity options. Should be 'Playing', 'Listening','Watching' or 'Competing'"
+);
+checkError(
+  !config.mcserver.ip,
+  "The Minecraft server's IP address has not been specified."
+);
+checkError(
+  !['java', 'bedrock'].includes(config.mcserver.type),
+  'Invalid Minecraft server type. Should be "java" or "bedrock".'
+);
+checkError(
+  !config.mcserver.name,
+  "The Minecraft server's name has not been specified."
+);
+checkError(
+  !config.mcserver.version,
+  "The Minecraft server's version has not been specified."
+);
 if (errors.length > 0) {
   console.error(chalk.red('Config file has the following errors:'));
   errors.forEach((item) => console.log(chalk.keyword('orange')(item)));
@@ -48,14 +68,17 @@ if (errors.length > 0) {
 new CommandHandler({
   client,
   eventsPath: path.join(__dirname, 'events'),
+  commandsPath: path.join(__dirname, 'commands'),
 });
 
+const icon = `https://api.mcstatus.io/v2/icon/${config.mcserver.ip}:${config.mcserver.port}`;
+
 const offlineStatus = new EmbedBuilder()
-  .setColor('DarkRed')
+  .setColor('Red')
   .setTitle(':red_circle: OFFLINE')
   .setAuthor({
     name: config.mcserver.name,
-    iconURL: `https://api.mcstatus.io/v2/icon/${config.mcserver.ip}:${config.mcserver.port}`,
+    iconURL: icon,
   })
   .setTimestamp()
   .setFooter({ text: 'Updated at' });
@@ -65,9 +88,14 @@ async function statusEdit(statusEmbed, status) {
     const channel = await client.channels.fetch(data.channelId);
     const message = await channel.messages.fetch(data.messageId);
     await message.edit({ content: '', embeds: [statusEmbed] });
+    if (config.settings.logging.statusMessageUpdate === false) return;
     console.log(`The status is updated to ${status}`);
   } catch (error) {
-    console.error(`Error with editing status message ${error.message}`);
+    if (config.settings.logging.errorLog === false) return;
+    console.error(
+      chalk.red(`Error with editing status message:`),
+      chalk.keyword('orange')(error.message)
+    );
   }
 }
 
@@ -82,181 +110,155 @@ function presenceText(data) {
   return offlineText;
 }
 
-function statusRetrival() {
+function offlineUpdate() {
+  client.user.setStatus(config.bot.presence.status.offline);
+  client.user.setActivity(config.bot.presence.text.offline, {
+    type: ActivityType[config.bot.presence.activity],
+  });
+  statusEdit(offlineStatus, chalk.red`❌ Offline`);
+  if (config.settings.logging.activityUpdate === false) return;
+  console.log(
+    `Status set to: ${chalk.green(
+      `${config.bot.presence.activity} ${config.bot.presence.text.offline}`
+    )}`
+  );
+}
+
+function onlineUpdate(embed, data) {
+  statusEdit(
+    embed,
+    `${chalk.green('✔ Online')} with ${chalk.green(
+      data.players.online
+    )} Players Playing.`
+  );
+  const statusText = presenceText(data);
+  client.user.setActivity(statusText, {
+    type: ActivityType[config.bot.presence.activity],
+  });
+  client.user.setStatus(config.bot.presence.status.online);
+  if (config.settings.logging.activityUpdate === false) return;
+  console.log(
+    `Status set to: ${chalk.green(
+      `${config.bot.presence.activity} ${statusText}`
+    )}`
+  );
+}
+
+function JavaEmbedCreate(data) {
+  playerList = data.players.list.reduce((acc, item) => {
+    return `${acc}• ${item.name_clean} \n`;
+  }, '');
+  const Embed = new EmbedBuilder()
+    .setColor('Green')
+    .setTitle(':green_circle: ONLINE')
+    .setAuthor({
+      name: config.mcserver.name,
+      iconURL: icon,
+    })
+    .addFields(
+      {
+        name: '__**PLAYERS**__',
+        value:
+          `**${data.players.online}**/**${data.players.max}**\n` +
+          `\`\`\`${playerList}\`\`\``,
+      },
+      {
+        name: '__**MOTD**__',
+        value: `**${data.motd.clean}**`,
+      },
+      {
+        name: '__**IP ADDRESS**__',
+        value: `**${config.mcserver.ip}:${config.mcserver.port}**`,
+      },
+      {
+        name: '__**VERSION**__',
+        value: `**${config.mcserver.version}**`,
+      }
+    )
+    .setTimestamp()
+    .setFooter({ text: `Updated at ` });
+  return { Embed, playerList };
+}
+
+function BedrockEmbedCreate(data) {
+  const onlineEmbedBedrock = new EmbedBuilder()
+    .setColor('Green')
+    .setTitle(':green_circle: ONLINE')
+    .setAuthor({
+      name: config.mcserver.name,
+      iconURL: icon,
+    })
+    .addFields(
+      {
+        name: '__**PLAYERS**__',
+        value: `**${data.players.online}**/**${data.players.max}**`,
+      },
+      {
+        name: '__**MOTD**__',
+        value: `**${data.motd.clean}**`,
+      },
+      {
+        name: '__**SERVER ADDRESS**__',
+        value: `**IP: \`${config.mcserver.ip}\`\nPort: \`${config.mcserver.port}\`**`,
+      },
+      {
+        name: '__**INFO**__',
+        value: `**Version: ${config.mcserver.version}`,
+      }
+    )
+    .setTimestamp()
+    .setFooter({ text: `Updated at ` });
+  return onlineEmbedBedrock;
+}
+
+async function statusRetrieval() {
   if (config.mcserver.type === 'bedrock') {
     statusBedrock(config.mcserver.ip, config.mcserver.port)
       .then((data) => {
         if (data.online === true && data.players.max > 0) {
-          const onlineEmbedBedrock = new EmbedBuilder()
-            .setColor('Green')
-            .setTitle(':green_circle: ONLINE')
-            .setAuthor({
-              name: config.mcserver.name,
-              iconURL: `https://api.mcstatus.io/v2/icon/${config.mcserver.ip}:${config.mcserver.port}`,
-            })
-            .addFields(
-              {
-                name: '__**PLAYERS**__',
-                value: `**${data.players.online}**/**${data.players.max}**\n`,
-              },
-              {
-                name: '__**MOTD**__',
-                value: `**${data.motd.clean}**`,
-              },
-              {
-                name: '__**SERVER ADDRESS**__',
-                value: `**IP: \`${data.host}\`\nPort: \`${data.port}\`**`,
-              },
-              {
-                name: '__**INFO**__',
-                value: `**Version: ${data.version.name}\nGameMode: ${data.gamemode}\n Edition: ${data.edition}**`,
-              }
-            )
-            .setTimestamp()
-            .setFooter({ text: `Updated at` });
-
-          statusEdit(
-            onlineEmbedBedrock,
-            `${chalk.green('✔ Online')} with ${chalk.green(
-              data.players.online
-            )} Players Playing.`
-          );
-          const statusText = presenceText(data);
-          client.user.setStatus(config.bot.presence.status.online);
-          client.user.setActivity(statusText, {
-            type: ActivityType[config.bot.presence.activity],
-          });
-          console.log(
-            `Status set to: ${chalk.green(
-              `${config.bot.presence.activity} ${statusText}`
-            )}`
-          );
+          const onlineBedrock = BedrockEmbedCreate(data);
+          onlineUpdate(onlineBedrock, data);
+          module.exports = {
+            data,
+          };
         } else {
-          statusEdit(offlineStatus, chalk.red`❌ Offline`);
-          client.user.setActivity(config.bot.presence.text.offline, {
-            type: ActivityType[config.bot.presence.activity],
-          });
-          client.user.setStatus(config.bot.presence.status.offline);
-          console.log(
-            `Status set to: ${chalk.green(
-              `${config.bot.presence.activity} ${config.bot.presence.text.offline}`
-            )}`
-          );
+          offlineUpdate();
         }
       })
       .catch((error) => {
-        statusEdit(
-          offlineStatus,
-          chalk.red`Setting Offline due to a problem with mcstatus.io API service or your Network.`
-        );
+        offlineUpdate();
+        if (config.settings.logging.errorLog === false) return;
         console.log(
-          `A Error with Bedrock auto-changing status: \n ${chalk.keyword(
+          `Setting status Offline due a Error with Bedrock auto-changing status: \n ${chalk.keyword(
             'orange'
           )(error)}`
-        );
-        client.user.setStatus(config.bot.presence.status.offline);
-        client.user.setActivity(config.bot.presence.text.offline, {
-          type: ActivityType[config.bot.presence.activity],
-        });
-        console.log(
-          `Status set to: ${chalk.green(
-            `${config.bot.presence.activity} ${config.bot.presence.text.offline}`
-          )}`
         );
       });
   } else {
     statusJava(config.mcserver.ip, config.mcserver.port)
       .then((data) => {
-        module.exports = {
-          data,
-        };
         if (data.online === true && data.players.max > 0) {
-          const playerList = data.players.list.reduce((acc, item) => {
-            return `${acc}• ${item.name_clean} \n`;
-          }, '');
-          const onlineStatus = new EmbedBuilder()
-            .setColor('DarkGreen')
-            .setTitle(':green_circle: ONLINE')
-            .setAuthor({
-              name: config.mcserver.name,
-              iconURL: `https://api.mcstatus.io/v2/icon/${config.mcserver.ip}:${config.mcserver.port}`,
-            })
-            .addFields(
-              {
-                name: '__**PLAYERS**__',
-                value:
-                  `**${data.players.online}**/**${data.players.max}**\n` +
-                  `\`\`\`${playerList}\`\`\``,
-              },
-              {
-                name: '__**MOTD**__',
-                value: `**${data.motd.clean}**`,
-              },
-              {
-                name: '__**IP ADDRESS**__',
-                value: `**${data.host}:${data.port}**`,
-              },
-              {
-                name: '__**VERSION**__',
-                value: `**${data.version.name_clean}**`,
-              }
-            )
-            .setTimestamp()
-            .setFooter({ text: `Updated at` });
-
-          statusEdit(
-            onlineStatus,
-            `${chalk.green('✔ Online')} with ${chalk.green(
-              data.players.online
-            )} Players Playing.`
-          );
-          const statusText = presenceText(data);
-          client.user.setActivity(statusText, {
-            type: ActivityType[config.bot.presence.activity],
-          });
-          client.user.setStatus(config.bot.presence.status.online);
-          console.log(
-            `Status set to: ${chalk.green(
-              `${config.bot.presence.activity} ${statusText}`
-            )}`
-          );
+          const onlineJava = JavaEmbedCreate(data);
+          onlineUpdate(onlineJava.Embed, data);
+          module.exports = {
+            data,
+          };
         } else {
-          statusEdit(offlineStatus, chalk.red`❌Offline`);
-          client.user.setActivity(config.bot.presence.text.offline, {
-            type: ActivityType[config.bot.presence.activity],
-          });
-          client.user.setStatus(config.bot.presence.status.offline);
-          console.log(
-            `Status set to: ${config.bot.presence.activity} ${config.bot.presence.text.offline}`
-          );
+          offlineUpdate();
         }
       })
       .catch((error) => {
-        statusEdit(
-          offlineStatus,
-          chalk.red`Setting due to a problem with mcstatus.io API service or your Network.`
-        );
+        offlineUpdate();
+        if (config.settings.logging.errorLog === false) return;
         console.log(
-          s`A Error with Java auto-changing status : \n ${chalk.keyword(
+          `Setting status Offline due a Error with Java auto-changing status : \n ${chalk.keyword(
             'orange'
           )(error)}`
-        );
-        client.user.setStatus(config.bot.presence.status.offline);
-        client.user.setActivity(config.bot.presence.text.offline, {
-          type: ActivityType[config.bot.presence.activity],
-        });
-        console.log(
-          `Status set to: ${chalk.green(
-            `${config.bot.presence.activity} ${config.bot.presence.text.offline}`
-          )}`
         );
       });
   }
 }
 
-module.exports = {
-  statusEdit,
-  statusRetrival,
-};
+module.exports = { statusRetrieval };
 
 client.login(config.bot.token);

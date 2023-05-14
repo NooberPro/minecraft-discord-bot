@@ -1,5 +1,7 @@
 const chalk = require('chalk');
+const config = require('../../../config');
 module.exports = (client) => {
+  if (config.settings.logging.inviteLink === false) return;
   console.log(
     `✅ ${chalk.cyan(
       client.user.tag
