@@ -37,7 +37,7 @@ This bot code uses **node-mcstatus npm package** for getting status of Minecraft
 - **Slash Commands for `ip`,`version`,`site`.**
 - **Auto Message replies about server's info. Fully customizable in config**
 
-<div style="display: flex; flex-direction: row; ">
+<div style="display: flex; flex-direction: row;">
  <img class="img" src="https://i.imgur.com/ovfP5rr.png" alt="Auto Message replies"/>
  <img class="img" src="https://i.imgur.com/G5hmc3G.png" alt="Auto Message replies."/>
 </div>
