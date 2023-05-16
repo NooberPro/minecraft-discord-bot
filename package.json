@@ -4,7 +4,9 @@
   "description": "A discord bot that shows info and status of your minecraft server including players, version, and many more features.",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "config": "node dev-config.js",
+    "config2": "node dev-data.js"
   },
   "repository": {
     "type": "git",

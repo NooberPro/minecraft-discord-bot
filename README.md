@@ -1,8 +1,10 @@
 # Discord Bot For Minecraft Server
 
-## [DOCUMENTATION HERE](https://nooberpro.gitbook.io/minecraft-discord-bot/installation/setup)
+## [🔗 DOCUMENTATION HERE](https://nooberpro.gitbook.io/minecraft-discord-bot/installation/setup)
 
-## [LATEST DOWNLOAD HERE](https://github.com/Nooberpro/minecraft-discord-bot/archive/refs/heads/main.zip)
+## [🔗 FULL FEATURES HERE](https://nooberpro.gitbook.io/minecraft-discord-bot/#what-can-this-bot-do)
+
+## [🔗 LATEST DOWNLOAD HERE](https://github.com/Nooberpro/minecraft-discord-bot/archive/refs/heads/main.zip)
 
 ### **A discord bot that shows info and status of your minecraft server including players, version, and many more features**
 
@@ -21,23 +23,24 @@ This bot code uses **node-mcstatus npm package** for getting status of Minecraft
 </div>
 
 - **Support for Both Java and Bedrock server.**
-- **Auto updating bot's status with player count. Fully customizable in config**
+- **Auto updating bot's status with player count. Fully customizable in config.**
 
-<div style="display: flex; flex-direction: row; ">
+<div style="display: flex; flex-direction: row;">
  <img class="img" src="https://i.imgur.com/W7upmSy.png" alt="Auto updating bot's status playerCount"/>
  <img class="img" src="https://i.imgur.com/QSxKXEn.png" alt="Auto updating bot's status Offline"/>
 </div>
 
 - **Discord bot activities: `playing`, `listening`, `watching`, and `competing`.**
+
 - **Discord bot statuses: `online`, `idle`, `dnd`, and `invisible`.**
 - **ColorFul Console Logging**
 
 ![Colorfull Console](https://i.imgur.com/G2a0l1z.png)
 
-- **Slash Commands for `ip`,`version`,`site`.**
+- **Slash Commands for `status`, `players`,`ip`,`version`,`site`.**
 - **Auto Message replies about server's info. Fully customizable in config**
 
-<div style="display: flex; flex-direction: row; ">
+<div style="display: flex; flex-direction: row;">
  <img class="img" src="https://i.imgur.com/ovfP5rr.png" alt="Auto Message replies"/>
  <img class="img" src="https://i.imgur.com/G5hmc3G.png" alt="Auto Message replies."/>
 </div>
@@ -47,10 +50,10 @@ This bot code uses **node-mcstatus npm package** for getting status of Minecraft
 - [ ] Better Documentation and Readme
 - [x] Auto changing statusCH message
 - [x] Message Reply for (is server online?) like question
-- [ ] Status command
+- [x] Status command
 - [x] IP address command
 - [x] Minecraft version command
-- [ ] Player list command
+- [x] Player list command
 - [x] Site command
 - [x] Slash commands
 - [x] Bot status (activity) for players online number

@@ -4,18 +4,30 @@ const data = JSON.parse(fs.readFileSync('data.json'));
 const { statusRetrieval } = require('../../index.js');
 const chalk = require('chalk');
 module.exports = (client) => {
-  if (config.settings.autoChangeStatus.enabled === false) return;
-  if (data.channelId === null) {
-    console.log(
-      `To set server status, send a ${chalk.cyan(
-        '"!setstatus"'
-      )} message in the desired channel.`
+  try {
+    if (!config.settings.autoChangeStatus.enabled) return;
+
+    if (
+      data.channelId === null &&
+      !config.settings.autoChangeStatus.channelId
+    ) {
+      console.log(
+        `To set server status, send a ${chalk.cyan(
+          '"!setstatus"'
+        )} message in the desired channel.`
+      );
+    } else {
+      setInterval(
+        statusRetrieval,
+        config.settings.autoChangeStatus.updateInterval * 1000
+      );
+      statusRetrieval();
+    }
+  } catch (error) {
+    if ((!config, settings.logging.errorLog)) return;
+    console.error(
+      chalk.red(`Error with !setstatus update: `),
+      chalk.keyword('orange')(error.message)
     );
-  } else {
-    setInterval(
-      statusRetrieval,
-      config.settings.autoChangeStatus.updateInterval * 1000
-    );
-    statusRetrieval();
   }
 };

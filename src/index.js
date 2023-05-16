@@ -8,7 +8,6 @@ const {
 } = require('discord.js');
 const config = require('../config.js');
 const { CommandHandler } = require('djs-commander');
-const data = require('../data.json');
 const chalk = require('chalk');
 
 const client = new Client({
@@ -65,12 +64,6 @@ if (errors.length > 0) {
   process.exit(1);
 }
 
-new CommandHandler({
-  client,
-  eventsPath: path.join(__dirname, 'events'),
-  commandsPath: path.join(__dirname, 'commands'),
-});
-
 const icon = `https://api.mcstatus.io/v2/icon/${config.mcserver.ip}:${config.mcserver.port}`;
 
 const offlineStatus = new EmbedBuilder()
@@ -85,13 +78,15 @@ const offlineStatus = new EmbedBuilder()
 
 async function statusEdit(statusEmbed, status) {
   try {
+    const fs = require('fs');
+    const data = JSON.parse(fs.readFileSync('data.json', 'utf8'));
     const channel = await client.channels.fetch(data.channelId);
     const message = await channel.messages.fetch(data.messageId);
     await message.edit({ content: '', embeds: [statusEmbed] });
-    if (config.settings.logging.statusMessageUpdate === false) return;
+    if (!config.settings.logging.statusMessageUpdate) return;
     console.log(`The status is updated to ${status}`);
   } catch (error) {
-    if (config.settings.logging.errorLog === false) return;
+    if (!config.settings.logging.errorLog) return;
     console.error(
       chalk.red(`Error with editing status message:`),
       chalk.keyword('orange')(error.message)
@@ -116,7 +111,7 @@ function offlineUpdate() {
     type: ActivityType[config.bot.presence.activity],
   });
   statusEdit(offlineStatus, chalk.red`❌ Offline`);
-  if (config.settings.logging.activityUpdate === false) return;
+  if (!config.settings.logging.activityUpdate) return;
   console.log(
     `Status set to: ${chalk.green(
       `${config.bot.presence.activity} ${config.bot.presence.text.offline}`
@@ -125,30 +120,35 @@ function offlineUpdate() {
 }
 
 function onlineUpdate(embed, data) {
-  statusEdit(
-    embed,
-    `${chalk.green('✔ Online')} with ${chalk.green(
-      data.players.online
-    )} Players Playing.`
-  );
-  const statusText = presenceText(data);
-  client.user.setActivity(statusText, {
-    type: ActivityType[config.bot.presence.activity],
-  });
-  client.user.setStatus(config.bot.presence.status.online);
-  if (config.settings.logging.activityUpdate === false) return;
-  console.log(
-    `Status set to: ${chalk.green(
-      `${config.bot.presence.activity} ${statusText}`
-    )}`
-  );
+  try {
+    statusEdit(
+      embed,
+      `${chalk.green('✔ Online')} with ${chalk.green(
+        data.players.online
+      )} Players Playing.`
+    );
+    const statusText = presenceText(data);
+    client.user.setActivity(statusText, {
+      type: ActivityType[config.bot.presence.activity],
+    });
+    client.user.setStatus(config.bot.presence.status.online);
+    if (!config.settings.logging.activityUpdate) return;
+    console.log(
+      `Status set to: ${chalk.green(
+        `${config.bot.presence.activity} ${statusText}`
+      )}`
+    );
+  } catch (error) {
+    if (!config.settings.logging.errorLog) return;
+    console.error(
+      chalk.red(`Error with online status update: `),
+      chalk.keyword('orange')(error.message)
+    );
+  }
 }
 
-function JavaEmbedCreate(data) {
-  playerList = data.players.list.reduce((acc, item) => {
-    return `${acc}• ${item.name_clean} \n`;
-  }, '');
-  const Embed = new EmbedBuilder()
+function OnlineEmbed(data, playerlist, ip) {
+  const OnlineEmbed = new EmbedBuilder()
     .setColor('Green')
     .setTitle(':green_circle: ONLINE')
     .setAuthor({
@@ -158,17 +158,15 @@ function JavaEmbedCreate(data) {
     .addFields(
       {
         name: '__**PLAYERS**__',
-        value:
-          `**${data.players.online}**/**${data.players.max}**\n` +
-          `\`\`\`${playerList}\`\`\``,
+        value: `**${data.players.online}**/**${data.players.max}**${playerlist}`,
       },
       {
         name: '__**MOTD**__',
         value: `**${data.motd.clean}**`,
       },
       {
-        name: '__**IP ADDRESS**__',
-        value: `**${config.mcserver.ip}:${config.mcserver.port}**`,
+        name: '__**SERVER ADDRESS**__',
+        value: `**${ip}**`,
       },
       {
         name: '__**VERSION**__',
@@ -177,49 +175,23 @@ function JavaEmbedCreate(data) {
     )
     .setTimestamp()
     .setFooter({ text: `Updated at ` });
-  return { Embed, playerList };
-}
 
-function BedrockEmbedCreate(data) {
-  const onlineEmbedBedrock = new EmbedBuilder()
-    .setColor('Green')
-    .setTitle(':green_circle: ONLINE')
-    .setAuthor({
-      name: config.mcserver.name,
-      iconURL: icon,
-    })
-    .addFields(
-      {
-        name: '__**PLAYERS**__',
-        value: `**${data.players.online}**/**${data.players.max}**`,
-      },
-      {
-        name: '__**MOTD**__',
-        value: `**${data.motd.clean}**`,
-      },
-      {
-        name: '__**SERVER ADDRESS**__',
-        value: `**IP: \`${config.mcserver.ip}\`\nPort: \`${config.mcserver.port}\`**`,
-      },
-      {
-        name: '__**INFO**__',
-        value: `**Version: ${config.mcserver.version}`,
-      }
-    )
-    .setTimestamp()
-    .setFooter({ text: `Updated at ` });
-  return onlineEmbedBedrock;
+  return OnlineEmbed;
 }
 
 async function statusRetrieval() {
   if (config.mcserver.type === 'bedrock') {
     statusBedrock(config.mcserver.ip, config.mcserver.port)
       .then((data) => {
-        if (data.online === true && data.players.max > 0) {
-          const onlineBedrock = BedrockEmbedCreate(data);
-          onlineUpdate(onlineBedrock, data);
+        const bedrockData = data;
+        const ipBedrock = `IP: \`${config.mcserver.ip}\`\nPort: \`${config.mcserver.port}\``;
+        if (data.online && data.players.max > 0) {
+          const onlineEmbedBedrock = OnlineEmbed(data, '', ipBedrock);
+          onlineUpdate(onlineEmbedBedrock, data);
           module.exports = {
-            data,
+            bedrockData,
+            onlineEmbedBedrock,
+            ipBedrock,
           };
         } else {
           offlineUpdate();
@@ -227,7 +199,7 @@ async function statusRetrieval() {
       })
       .catch((error) => {
         offlineUpdate();
-        if (config.settings.logging.errorLog === false) return;
+        if (!config.settings.logging.errorLog) return;
         console.log(
           `Setting status Offline due a Error with Bedrock auto-changing status: \n ${chalk.keyword(
             'orange'
@@ -237,11 +209,24 @@ async function statusRetrieval() {
   } else {
     statusJava(config.mcserver.ip, config.mcserver.port)
       .then((data) => {
-        if (data.online === true && data.players.max > 0) {
-          const onlineJava = JavaEmbedCreate(data);
-          onlineUpdate(onlineJava.Embed, data);
+        const javaData = data;
+        const port =
+          config.mcserver.port === 25565 ? '' : `:${config.mcserver.port}`;
+        const ipJava = `${config.mcserver.ip}${port}`;
+        if (data.online && data.players.max > 0) {
+          playerLists = data.players.list.reduce((acc, item) => {
+            return `${acc}• ${item.name_clean}\n`;
+          }, '');
+          playerList = data.players.list.length
+            ? `\`\`\`${playerLists}\`\`\``
+            : ``;
+          const onlineJava = OnlineEmbed(data, playerList, ipJava);
+          onlineUpdate(onlineJava, data);
           module.exports = {
-            data,
+            javaData,
+            playerList,
+            onlineJava,
+            ipJava,
           };
         } else {
           offlineUpdate();
@@ -249,7 +234,7 @@ async function statusRetrieval() {
       })
       .catch((error) => {
         offlineUpdate();
-        if (config.settings.logging.errorLog === false) return;
+        if (!config.settings.logging.errorLog) return;
         console.log(
           `Setting status Offline due a Error with Java auto-changing status : \n ${chalk.keyword(
             'orange'
@@ -260,5 +245,11 @@ async function statusRetrieval() {
 }
 
 module.exports = { statusRetrieval };
+
+new CommandHandler({
+  client,
+  eventsPath: path.join(__dirname, 'events'),
+  commandsPath: path.join(__dirname, 'commands'),
+});
 
 client.login(config.bot.token);
