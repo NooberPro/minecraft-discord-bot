@@ -1,7 +1,7 @@
 const fs = require('fs');
 const config = require('../../../config.js');
 const data = JSON.parse(fs.readFileSync('data.json'));
-const { statusRetrieval } = require('../../index.js');
+const { statusUpdate } = require('../../index.js');
 const chalk = require('chalk');
 module.exports = (client) => {
   try {
@@ -18,13 +18,13 @@ module.exports = (client) => {
       );
     } else {
       setInterval(
-        statusRetrieval,
+        statusUpdate,
         config.settings.autoChangeStatus.updateInterval * 1000
       );
-      statusRetrieval();
+      statusUpdate();
     }
   } catch (error) {
-    if ((!config, settings.logging.errorLog)) return;
+    if (!config.settings.logging.errorLog) return;
     console.error(
       chalk.red(`Error with !setstatus update: `),
       chalk.keyword('orange')(error.message)

@@ -1,16 +1,14 @@
-const config = require('../../../config.js');
-const { data } = require('../../index.js');
-module.exports = (message) => {
+const chalk = require('chalk');
+const { infoReply, mcserver, settings } = require('../../../config');
+const { getServerData } = require('../../index.js');
+const { ip } = require('../../embeds');
+module.exports = async (message) => {
   try {
-    if (!config.infoReply.enabled) return;
+    if (!infoReply.enabled) return;
     if (message.author.bot) return;
     const { content } = message;
-    const { infoReply, mcserver } = config;
-
     if (infoReply.triggerWords.ip.some((word) => content.includes(word))) {
-      message.reply(
-        `**The server's ip address: \`${mcserver.ip}\`: \`${mcserver.port}\` **`
-      );
+      message.reply(ip);
     } else if (
       infoReply.triggerWords.site.some((word) => content.includes(word))
     ) {
@@ -18,6 +16,8 @@ module.exports = (message) => {
     } else if (
       infoReply.triggerWords.status.some((word) => content.includes(word))
     ) {
+      await message.channel.sendTyping();
+      const { data } = await getServerData();
       message.reply(
         data.online && data.players.max > 0
           ? `**The Server is currently :green_circle:\`ONLINE\` with \`${data.players.online}\` players playing.**`
@@ -29,7 +29,7 @@ module.exports = (message) => {
       message.reply(`**The server's version: \`${mcserver.version}\`**`);
     }
   } catch (error) {
-    if (!config.settings.logging.errorLog) return;
+    if (!settings.logging.errorLog) return;
     console.error(
       chalk.red(`Error with info reply: `),
       chalk.keyword('orange')(error.message)

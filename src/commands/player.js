@@ -1,21 +1,16 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { mcserver, settings } = require('../../config');
+const { settings, commands } = require('../../config');
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('players')
     .setDescription('Sends the Player Online List.'),
-  run: ({ interaction }) => {
+  run: async ({ interaction }) => {
+    await interaction.channel.sendTyping();
+    const { playerList } = require('../embeds');
     try {
-      if (mcserver.type === 'bedrock') {
-        const { playerList } = require('../embeds');
-        const playerListsBeddrock = playerList('bedrock');
-        interaction.reply({ embeds: [playerListsBeddrock] });
-      } else {
-        const { playerList } = require('../embeds');
-        const playerListsJava = playerList('java');
-        interaction.reply({ embeds: [playerListsJava] });
-      }
+      const playerEmbed = await playerList();
+      interaction.reply({ embeds: [playerEmbed] });
     } catch (error) {
       if (!settings.logging.errorLog) return;
       console.error(
@@ -24,5 +19,5 @@ module.exports = {
       );
     }
   },
-  //   deleted: true, // Deletes the command from Discord
+  deleted: !commands.players.enableSlash || !commands.slashCommands, // Deletes the command from Discord
 };

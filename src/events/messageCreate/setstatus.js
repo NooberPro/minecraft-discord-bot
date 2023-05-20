@@ -33,7 +33,9 @@ module.exports = (message, client) => {
         };
         fs.writeFileSync('data.json', JSON.stringify(json));
         console.log(
-          `The status channel has been set to #${chalk.cyan(channel.name)}`
+          `The status channel has been set to #${chalk.cyan(
+            channel.name
+          )}. Please Restart the bot.`
         );
       })
       .catch((error) => {

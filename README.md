@@ -2,8 +2,6 @@
 
 ## [🔗 DOCUMENTATION HERE](https://nooberpro.gitbook.io/minecraft-discord-bot/installation/setup)
 
-## [🔗 FULL FEATURES HERE](https://nooberpro.gitbook.io/minecraft-discord-bot/#what-can-this-bot-do)
-
 ## [🔗 LATEST DOWNLOAD HERE](https://github.com/Nooberpro/minecraft-discord-bot/archive/refs/heads/main.zip)
 
 ### **A discord bot that shows info and status of your minecraft server including players, version, and many more features**
@@ -15,41 +13,24 @@ This bot code uses **node-mcstatus npm package** for getting status of Minecraft
 
 ## WHAT CAN THIS BOT DO?
 
+## [🔗 COMPLETE FEATURE WITH IMAGES HERE](https://nooberpro.gitbook.io/minecraft-discord-bot/#what-can-this-bot-do)
+
 - **Fully customizable [config](config.js).**
 - **Auto Changing Status Message with player list.**
-<div style="display: flex; flex-direction: row;">
- <img class="img" src="https://i.imgur.com/v0jd8Gf.png" alt="Auto Changing Status Online"/>
- <img class="img" src="https://i.imgur.com/9ituFMN.png" alt="Auto Changing Status Offline"/>
-</div>
-
 - **Support for Both Java and Bedrock server.**
 - **Auto updating bot's status with player count. Fully customizable in config.**
-
-<div style="display: flex; flex-direction: row;">
- <img class="img" src="https://i.imgur.com/W7upmSy.png" alt="Auto updating bot's status playerCount"/>
- <img class="img" src="https://i.imgur.com/QSxKXEn.png" alt="Auto updating bot's status Offline"/>
-</div>
-
 - **Discord bot activities: `playing`, `listening`, `watching`, and `competing`.**
-
 - **Discord bot statuses: `online`, `idle`, `dnd`, and `invisible`.**
 - **ColorFul Console Logging**
-
-![Colorfull Console](https://i.imgur.com/G2a0l1z.png)
-
 - **Slash Commands for `status`, `players`,`ip`,`version`,`site`.**
 - **Auto Message replies about server's info. Fully customizable in config**
-
-<div style="display: flex; flex-direction: row;">
- <img class="img" src="https://i.imgur.com/ovfP5rr.png" alt="Auto Message replies"/>
- <img class="img" src="https://i.imgur.com/G5hmc3G.png" alt="Auto Message replies."/>
-</div>
 
 ## TO DO
 
 - [ ] Better Documentation and Readme
 - [x] Auto changing statusCH message
 - [x] Message Reply for (is server online?) like question
+- [x] Add prefix commands
 - [x] Status command
 - [x] IP address command
 - [x] Minecraft version command
@@ -63,4 +44,8 @@ This bot code uses **node-mcstatus npm package** for getting status of Minecraft
 - [x] Bedrock Support
 - [x] Player List
 - [x] Colorfull Console
+- [ ] Player Avatar and Skin Command
+- [ ] Embed Customization for translating
+- [ ] Server and bot Uptime
+- [ ] Add support for various languages (customize in config).
 - [ ] Instruction for Bot hosting for free

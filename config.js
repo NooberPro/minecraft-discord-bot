@@ -23,6 +23,7 @@ module.exports = {
     type: 'java', // Type of minecraft server, "java" or "bedrock". Default is Java.
     name: 'Demo Server', //Name of your Minecraft Server like Hypixel
     version: 'Requires 1.8 - 1.20', // Version of your Minecraft server. You can put anything there. It will come in the embed
+    icon: 'https://i.imgur.com/f35CYQs.png', // Url of minecraft server icon. How? https://tinyurl.com/iconurl
     site: 'https://nooberpro.gitbook.io', // Url of your minecraft server website or vote website. NOT REQUIRED.
   },
   infoReply: {
@@ -49,6 +50,33 @@ module.exports = {
       statusMessageUpdate: false, // Logs every Status message update (pretty much like spam)
       activityUpdate: false, // Logs every bot activity update (pretty much like spam)
       errorLog: true, // Logs the errors if there any
+    },
+  },
+  commands: {
+    slashCommands: true, // Enable slash(/) commands.
+    prefixCommands: {
+      enabled: true, // Enable normal prefix commands.
+      prefix: '!', // Prefix for normal commands.
+    },
+    ip: {
+      enablePrefix: true, // Enable prefix commands for ip.
+      enableSlash: true, // Enable slash commands for ip.
+    },
+    players: {
+      enablePrefix: true, // Enable prefix commands for players.
+      enableSlash: true, // Enable slash commands for players.
+    },
+    site: {
+      enablePrefix: true, // Enable prefix commands for site.
+      enableSlash: true, // Enable slash commands for site.
+    },
+    status: {
+      enablePrefix: true, // Enable prefix commands for status.
+      enableSlash: true, // Enable slash commands for status.
+    },
+    version: {
+      enablePrefix: true, // Enable prefix commands for version.
+      enableSlash: true, // Enable slash commands for version.
     },
   },
 };

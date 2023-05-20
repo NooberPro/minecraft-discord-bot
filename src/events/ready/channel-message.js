@@ -2,7 +2,7 @@ const chalk = require('chalk');
 const { settings } = require('../../../config');
 const { channelId } = require('../../../data.json');
 const fs = require('fs');
-const { statusRetrieval } = require('../../index.js');
+const { statusUpdate } = require('../../index.js');
 module.exports = (client) => {
   try {
     if (!settings.autoChangeStatus.enabled) return;
@@ -23,12 +23,18 @@ module.exports = (client) => {
           `The status channel has been set to ${chalk.cyan('#' + channel.name)}`
         );
         setInterval(
-          statusRetrieval,
+          statusUpdate,
           settings.autoChangeStatus.updateInterval * 1000
         );
-        statusRetrieval();
+        statusUpdate();
       })
-      .catch(console.error);
+      .catch((error) => {
+        if (!settings.logging.errorLog) return;
+        console.error(
+          chalk.red(`Error with channelId status: `),
+          chalk.keyword('orange')(error.message)
+        );
+      });
   } catch (error) {
     if (!settings.logging.errorLog) return;
     console.error(

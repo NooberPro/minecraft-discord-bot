@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { siteEmbed } = require('../embeds');
-
+const { commands } = require('../../config');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('site')
@@ -9,5 +9,5 @@ module.exports = {
   run: ({ interaction }) => {
     interaction.reply({ embeds: [siteEmbed] });
   },
-  // deleted: true, // Deletes the command from Discord
+  deleted: !commands.site.enableSlash || !commands.slashCommands, // Deletes the command from Discord
 };

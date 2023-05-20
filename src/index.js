@@ -1,13 +1,9 @@
+const { Client, IntentsBitField, ActivityType } = require('discord.js');
 const { statusBedrock, statusJava } = require('node-mcstatus');
-const path = require('path');
-const {
-  Client,
-  IntentsBitField,
-  EmbedBuilder,
-  ActivityType,
-} = require('discord.js');
-const config = require('../config.js');
+const { OnlineEmbed, offlineStatus } = require('./embeds');
 const { CommandHandler } = require('djs-commander');
+const path = require('path');
+const config = require('../config');
 const chalk = require('chalk');
 
 const client = new Client({
@@ -64,17 +60,61 @@ if (errors.length > 0) {
   process.exit(1);
 }
 
-const icon = `https://api.mcstatus.io/v2/icon/${config.mcserver.ip}:${config.mcserver.port}`;
+const getServerData = async () => {
+  if (config.mcserver.type === 'java') {
+    try {
+      const data = await statusJava(config.mcserver.ip, config.mcserver.port);
 
-const offlineStatus = new EmbedBuilder()
-  .setColor('Red')
-  .setTitle(':red_circle: OFFLINE')
-  .setAuthor({
-    name: config.mcserver.name,
-    iconURL: icon,
-  })
-  .setTimestamp()
-  .setFooter({ text: 'Updated at' });
+      playerNameClean = data.players.list.reduce((acc, item) => {
+        return `${acc}• ${item.name_clean}\n`;
+      }, '');
+      const playerList = data.players.list.length
+        ? `\`\`\`${playerNameClean}\`\`\``
+        : ``;
+      return { data, playerList };
+    } catch (error) {
+      if (!config.settings.logging.errorLog) return;
+      console.error(
+        chalk.red(`Error with retrieving java data:`),
+        chalk.keyword('orange')(error.message)
+      );
+    }
+  } else {
+    try {
+      const data = await statusBedrock(
+        config.mcserver.ip,
+        config.mcserver.port
+      );
+      const playerList = ``;
+      return { data, playerList };
+    } catch (error) {
+      if (!config.settings.logging.errorLog) return;
+      console.error(
+        chalk.red(`Error with retrieving bedrock data:`),
+        chalk.keyword('orange')(error.message)
+      );
+    }
+  }
+};
+
+const statusUpdate = async () => {
+  try {
+    const { data, playerList } = await getServerData();
+    if (data.online && data.players.max > 0) {
+      const onlineEmbed = await OnlineEmbed(data, playerList);
+      onlineUpdate(onlineEmbed, data);
+    } else {
+      offlineUpdate();
+    }
+  } catch (error) {
+    offlineUpdate();
+    if (!config.settings.logging.errorLog) return;
+    console.error(
+      chalk.red(`Setting status due to an error with updating status message:`),
+      chalk.keyword('orange')(error.message)
+    );
+  }
+};
 
 async function statusEdit(statusEmbed, status) {
   try {
@@ -92,17 +132,6 @@ async function statusEdit(statusEmbed, status) {
       chalk.keyword('orange')(error.message)
     );
   }
-}
-
-function presenceText(data) {
-  let offlineText = config.bot.presence.text.online;
-  offlineText = offlineText.replace(
-    /{playeronline}/g,
-    `${data.players.online}`
-  );
-  offlineText = offlineText.replace(/{playermax}/g, `${data.players.max}`);
-
-  return offlineText;
 }
 
 function offlineUpdate() {
@@ -127,7 +156,12 @@ function onlineUpdate(embed, data) {
         data.players.online
       )} Players Playing.`
     );
-    const statusText = presenceText(data);
+    let statusText = config.bot.presence.text.online;
+    statusText = statusText.replace(
+      /{playeronline}/g,
+      `${data.players.online}`
+    );
+    statusText = statusText.replace(/{playermax}/g, `${data.players.max}`);
     client.user.setActivity(statusText, {
       type: ActivityType[config.bot.presence.activity],
     });
@@ -147,104 +181,10 @@ function onlineUpdate(embed, data) {
   }
 }
 
-function OnlineEmbed(data, playerlist, ip) {
-  const OnlineEmbed = new EmbedBuilder()
-    .setColor('Green')
-    .setTitle(':green_circle: ONLINE')
-    .setAuthor({
-      name: config.mcserver.name,
-      iconURL: icon,
-    })
-    .addFields(
-      {
-        name: '__**PLAYERS**__',
-        value: `**${data.players.online}**/**${data.players.max}**${playerlist}`,
-      },
-      {
-        name: '__**MOTD**__',
-        value: `**${data.motd.clean}**`,
-      },
-      {
-        name: '__**SERVER ADDRESS**__',
-        value: `**${ip}**`,
-      },
-      {
-        name: '__**VERSION**__',
-        value: `**${config.mcserver.version}**`,
-      }
-    )
-    .setTimestamp()
-    .setFooter({ text: `Updated at ` });
-
-  return OnlineEmbed;
-}
-
-async function statusRetrieval() {
-  if (config.mcserver.type === 'bedrock') {
-    statusBedrock(config.mcserver.ip, config.mcserver.port)
-      .then((data) => {
-        const bedrockData = data;
-        const ipBedrock = `IP: \`${config.mcserver.ip}\`\nPort: \`${config.mcserver.port}\``;
-        if (data.online && data.players.max > 0) {
-          const onlineEmbedBedrock = OnlineEmbed(data, '', ipBedrock);
-          onlineUpdate(onlineEmbedBedrock, data);
-          module.exports = {
-            bedrockData,
-            onlineEmbedBedrock,
-            ipBedrock,
-          };
-        } else {
-          offlineUpdate();
-        }
-      })
-      .catch((error) => {
-        offlineUpdate();
-        if (!config.settings.logging.errorLog) return;
-        console.log(
-          `Setting status Offline due a Error with Bedrock auto-changing status: \n ${chalk.keyword(
-            'orange'
-          )(error)}`
-        );
-      });
-  } else {
-    statusJava(config.mcserver.ip, config.mcserver.port)
-      .then((data) => {
-        const javaData = data;
-        const port =
-          config.mcserver.port === 25565 ? '' : `:${config.mcserver.port}`;
-        const ipJava = `${config.mcserver.ip}${port}`;
-        if (data.online && data.players.max > 0) {
-          playerLists = data.players.list.reduce((acc, item) => {
-            return `${acc}• ${item.name_clean}\n`;
-          }, '');
-          playerList = data.players.list.length
-            ? `\`\`\`${playerLists}\`\`\``
-            : ``;
-          const onlineJava = OnlineEmbed(data, playerList, ipJava);
-          onlineUpdate(onlineJava, data);
-          module.exports = {
-            javaData,
-            playerList,
-            onlineJava,
-            ipJava,
-          };
-        } else {
-          offlineUpdate();
-        }
-      })
-      .catch((error) => {
-        offlineUpdate();
-        if (!config.settings.logging.errorLog) return;
-        console.log(
-          `Setting status Offline due a Error with Java auto-changing status : \n ${chalk.keyword(
-            'orange'
-          )(error)}`
-        );
-      });
-  }
-}
-
-module.exports = { statusRetrieval };
+module.exports = {
+  statusUpdate,
+  getServerData,
+};
 
 new CommandHandler({
   client,

@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { versionEmbed } = require('../embeds');
+const { commands } = require('../../config');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -9,6 +10,5 @@ module.exports = {
   run: ({ interaction }) => {
     interaction.reply({ embeds: [versionEmbed] });
   },
-
-  // deleted: true, // Deletes the command from Discord
+  deleted: !commands.version.enableSlash || !commands.slashCommands, // Deletes the command from Discord
 };
