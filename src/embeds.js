@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require('discord.js');
-const { mcserver, settings } = require('../config');
+const { mcserver } = require('../config');
 const icon = mcserver.icon;
 const ipBedrock = `IP: \`${mcserver.ip}\`\nPort: \`${mcserver.port}\``;
 const port = mcserver.port === 25565 ? '' : `:\`${mcserver.port}\``;
@@ -9,9 +9,9 @@ const ip = mcserver.type === 'bedrock' ? ipBedrock : ipJava;
 // Embed Message for site commands
 const siteEmbed = new EmbedBuilder()
   .setColor('Aqua')
+  .setThumbnail(icon)
   .setAuthor({
     name: mcserver.name,
-    iconURL: icon,
   })
   .addFields({
     name: '__**WEBSITE**__',
@@ -21,66 +21,101 @@ const siteEmbed = new EmbedBuilder()
 // Embed Message for version commands
 const versionEmbed = new EmbedBuilder()
   .setColor('Aqua')
+  .setThumbnail(icon)
   .setAuthor({
     name: mcserver.name,
-    iconURL: icon,
   })
   .addFields({
     name: '__**VERSION**__',
-    value: `**${
-      mcserver.type.charAt(0).toUpperCase() + mcserver.type.slice(1)
-    }: ${mcserver.version}**`,
+    value: `**${mcserver.version}**`,
   });
 
 // Embed Message for ip commands
 const ipEmbed = new EmbedBuilder()
   .setColor('Aqua')
+  .setThumbnail(icon)
   .setAuthor({
     name: mcserver.name,
-    iconURL: icon,
   })
   .addFields({
     name: '__**SERVER ADDRESS**__',
     value: `**${ip}**`,
   });
+// Offline Embed Message status commands
+const offlineStatus = new EmbedBuilder()
+  .setColor('Red')
+  .setTitle(':red_circle: OFFLINE')
+  .setThumbnail(icon)
+  .setAuthor({
+    name: mcserver.name,
+  })
+  .setTimestamp()
+  .setFooter({ text: 'Checked at' });
 
-// Embed Message for players commands
-const playerList = async () => {
-  const { getServerData } = require('./index');
-  try {
-    const { data, playerList } = await getServerData();
+// MOTD Embed for motd commands
+const motdEmbed = async () => {
+  const { getServerDataOnly } = require('./index');
+  const { data, isOnline } = await getServerDataOnly();
+  if (!isOnline) {
+    return offlineStatus;
+  } else {
     return new EmbedBuilder()
       .setColor('Aqua')
+      .setThumbnail(icon)
       .setAuthor({
         name: mcserver.name,
-        iconURL: icon,
       })
       .addFields({
-        name: '__**PLAYERS**__',
-        value: `**${data.players.online}**/**${data.players.max}**${playerList}`,
+        name: '__**MOTD**__',
+        value: `**${data.motd.clean}**`,
       });
-  } catch (error) {
-    if (!settings.logging.errorLog) return;
-    console.error(
-      chalk.red(`An error with player command:`),
-      chalk.keyword('orange')(error.message)
-    );
   }
 };
+// Embed Message for players commands
+const playerList = async () => {
+  try {
+    const { getServerDataAndPlayerList } = require('./index');
+    const { playerListArray, isOnline } = await getServerDataAndPlayerList();
+    if (!isOnline) {
+      return offlineStatus;
+    } else {
+      return new EmbedBuilder()
+        .setColor('Aqua')
+        .setThumbnail(icon)
+        .setAuthor({
+          name: mcserver.name,
+        })
+        .addFields(playerListArray);
+    }
+  } catch (error) {
+    const { getError } = require('./index');
+    console.log(getError(error, 'Player command Embed'));
+  }
+};
+
+// Online Embed Message for status commands
+const statusEmbed = async () => {
+  const { getServerDataAndPlayerList } = require('./index');
+  const { data, playerListArray, isOnline } =
+    await getServerDataAndPlayerList();
+  if (isOnline) {
+    return await OnlineEmbed(data, playerListArray);
+  } else {
+    return offlineStatus;
+  }
+};
+
 // Online Embed Message for status commands
 const OnlineEmbed = async (data, playerlist) => {
   return new EmbedBuilder()
     .setColor('Green')
     .setTitle(':green_circle: ONLINE')
+    .setThumbnail(mcserver.icon)
     .setAuthor({
       name: mcserver.name,
-      iconURL: mcserver.icon,
     })
+    .addFields(playerlist)
     .addFields(
-      {
-        name: '__**PLAYERS**__',
-        value: `**${data.players.online}**/**${data.players.max}**${playerlist}`,
-      },
       {
         name: '__**MOTD**__',
         value: `**${data.motd.clean}**`,
@@ -97,17 +132,6 @@ const OnlineEmbed = async (data, playerlist) => {
     .setTimestamp()
     .setFooter({ text: `Updated at ` });
 };
-// Offline Embed Message status commands
-const offlineStatus = new EmbedBuilder()
-  .setColor('Red')
-  .setTitle(':red_circle: OFFLINE')
-  .setAuthor({
-    name: mcserver.name,
-    iconURL: mcserver.icon,
-  })
-  .setTimestamp()
-  .setFooter({ text: 'Updated at' });
-
 module.exports = {
   versionEmbed,
   siteEmbed,
@@ -115,5 +139,7 @@ module.exports = {
   ipEmbed,
   ip,
   playerList,
+  statusEmbed,
   OnlineEmbed,
+  motdEmbed,
 };

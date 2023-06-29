@@ -1,3 +1,4 @@
+const config = require('../../../config');
 const { commands } = require('../../../config');
 const {
   ipEmbed,
@@ -5,56 +6,61 @@ const {
   playerList,
   versionEmbed,
   offlineStatus,
-  OnlineEmbed,
+  statusEmbed,
+  motdEmbed,
 } = require('../../embeds');
-const { getServerData } = require('../../index');
+
 module.exports = async (message) => {
-  if (!commands.prefixCommands.prefix) return;
-  if (!commands.prefixCommands.enabled) return;
-  if (message.author.bot) return;
-  if (!message.content.startsWith(commands.prefixCommands.prefix)) return;
   if (
-    message.content === commands.prefixCommands.prefix + 'ip' &&
-    commands.ip.enablePrefix
-  ) {
-    message.reply({ embeds: [ipEmbed] });
-  } else if (
-    message.content === commands.prefixCommands.prefix + 'site' &&
-    commands.site.enablePrefix
-  ) {
-    message.reply({ embeds: [siteEmbed] });
-  } else if (
-    message.content === commands.prefixCommands.prefix + 'version' &&
-    commands.version.enablePrefix
-  ) {
-    message.reply({ embeds: [versionEmbed] });
-  } else if (
-    message.content === commands.prefixCommands.prefix + 'players' &&
-    commands.players.enablePrefix
-  ) {
-    await message.channel.sendTyping();
-    const playersEmbed = await playerList();
-    message.reply({ embeds: [playersEmbed] });
-  } else if (
-    message.content === commands.prefixCommands.prefix + 'status' &&
-    commands.status.enablePrefix
-  ) {
-    await message.channel.sendTyping();
-    try {
-      const { data, playerList } = await getServerData();
-      if (!data.online) {
-        message.reply({ embeds: [offlineStatus] });
-      } else {
-        const onlineEmbed = await OnlineEmbed(data, playerList);
-        message.reply({ embeds: [onlineEmbed] });
+    message.author.bot ||
+    !commands.prefixCommands.enabled ||
+    !commands.prefixCommands.prefix ||
+    !message.content.startsWith(commands.prefixCommands.prefix)
+  )
+    return;
+
+  const prefix = commands.prefixCommands.prefix;
+  const content = message.content.slice(prefix.length);
+
+  switch (content) {
+    case 'motd':
+      await message.channel.sendTyping();
+      if (commands.prefixCommands.motd) {
+        message.channel.send({ embeds: [await motdEmbed()] });
       }
-    } catch (error) {
-      message.reply({ embeds: [offlineStatus] });
-      if (!config.settings.logging.errorLog) return;
-      console.error(
-        chalk.red(`An error wiht prefix status command:`),
-        chalk.keyword('orange')(error.message)
-      );
-    }
+      break;
+    case 'ip':
+      if (commands.prefixCommands.ip) {
+        message.channel.send({ embeds: [ipEmbed] });
+      }
+      break;
+    case 'site':
+      if (commands.prefixCommands.ip && config.mcserver.site) {
+        message.channel.send({ embeds: [siteEmbed] });
+      }
+      break;
+    case 'version':
+      if (commands.prefixCommands.ip) {
+        message.channel.send({ embeds: [versionEmbed] });
+      }
+      break;
+    case 'players':
+      if (commands.prefixCommands.ip) {
+        await message.channel.sendTyping();
+        message.channel.send({ embeds: [await playerList()] });
+      }
+      break;
+    case 'status':
+      if (commands.prefixCommands.ip) {
+        await message.channel.sendTyping();
+        try {
+          message.channel.send({ embeds: [await statusEmbed()] });
+        } catch (error) {
+          message.channel.send({ embeds: [offlineStatus] });
+          const { getError } = require('../../index');
+          console.log(getError(error, 'Prefix status command'));
+        }
+      }
+      break;
   }
 };

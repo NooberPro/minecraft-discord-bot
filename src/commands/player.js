@@ -1,23 +1,20 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { settings, commands } = require('../../config');
+const { commands } = require('../../config');
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('players')
-    .setDescription('Sends the Player Online List.'),
+    .setDescription('Sends the online player details.'),
   run: async ({ interaction }) => {
-    await interaction.channel.sendTyping();
+    await interaction.deferReply();
     const { playerList } = require('../embeds');
     try {
-      const playerEmbed = await playerList();
-      interaction.reply({ embeds: [playerEmbed] });
+      interaction.editReply({ content: '', embeds: [await playerList()] });
     } catch (error) {
-      if (!settings.logging.errorLog) return;
-      console.error(
-        chalk.red(`Error with player command: `),
-        chalk.keyword('orange')(error.message)
-      );
+      interaction.editReply({ content: 'Error with getting Players' });
+      const { getError } = require('../index');
+      console.log(getError(error, 'Slash command - Player'));
     }
   },
-  deleted: !commands.players.enableSlash || !commands.slashCommands, // Deletes the command from Discord
+  deleted: !commands.slashCommands.players || !commands.slashCommands.enabled, // Deletes the command from Discord
 };

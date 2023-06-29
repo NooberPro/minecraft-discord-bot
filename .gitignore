@@ -2,3 +2,4 @@ node_modules/
 package-lock.json
 dev-config.js
 dev-data.js
+nodemon.json

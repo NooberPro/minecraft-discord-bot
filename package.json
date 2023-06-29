@@ -28,7 +28,7 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "discord.js": "^14.11.0",
-    "djs-commander": "^0.0.45",
-    "node-mcstatus": "^1.0.2"
+    "djs-commander": "^0.0.50",
+    "node-mcstatus": "^1.1.0"
   }
 }

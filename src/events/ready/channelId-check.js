@@ -1,33 +1,25 @@
-const fs = require('fs');
 const config = require('../../../config.js');
-const data = JSON.parse(fs.readFileSync('data.json'));
-const { statusUpdate } = require('../../index.js');
+const { statusMessageEdit } = require('../../index.js');
 const chalk = require('chalk');
 module.exports = (client) => {
   try {
-    if (!config.settings.autoChangeStatus.enabled) return;
-
-    if (
-      data.channelId === null &&
-      !config.settings.autoChangeStatus.channelId
-    ) {
+    if (!config.autoChangeStatus.enabled) return;
+    const data = require('../../data.json');
+    if (data.channelId === null) {
       console.log(
         `To set server status, send a ${chalk.cyan(
-          '"!setstatus"'
-        )} message in the desired channel.`
+          '"/setstatus"'
+        )} command in the desired channel.`
       );
     } else {
+      statusMessageEdit();
       setInterval(
-        statusUpdate,
-        config.settings.autoChangeStatus.updateInterval * 1000
+        statusMessageEdit,
+        config.autoChangeStatus.updateInterval * 1000
       );
-      statusUpdate();
     }
   } catch (error) {
-    if (!config.settings.logging.errorLog) return;
-    console.error(
-      chalk.red(`Error with !setstatus update: `),
-      chalk.keyword('orange')(error.message)
-    );
+    const { getError } = require('../../index');
+    console.log(getError(error, 'ChannelId check update'));
   }
 };

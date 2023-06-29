@@ -27,7 +27,7 @@ This bot code uses **node-mcstatus npm package** for getting status of Minecraft
 
 ## TO DO
 
-- [ ] Better Documentation and Readme
+- [x] Better Documentation and Readme
 - [x] Auto changing statusCH message
 - [x] Message Reply for (is server online?) like question
 - [x] Add prefix commands
@@ -46,6 +46,6 @@ This bot code uses **node-mcstatus npm package** for getting status of Minecraft
 - [x] Colorfull Console
 - [ ] Player Avatar and Skin Command
 - [ ] Embed Customization for translating
-- [ ] Server and bot Uptime
+- [x] Server and bot Uptime
 - [ ] Add support for various languages (customize in config).
 - [ ] Instruction for Bot hosting for free

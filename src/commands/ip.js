@@ -4,9 +4,9 @@ const { commands } = require('../../config');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('ip')
-    .setDescription('Sends the Server Addrees of a Minecraft Server'),
+    .setDescription('Sends the Server Address of the Minecraft Server.'),
   run: ({ interaction }) => {
     interaction.reply({ embeds: [ipEmbed] });
   },
-  deleted: !commands.ip.enableSlash || !commands.slashCommands, // Deletes the command from Discord
+  deleted: !commands.slashCommands.ip || !commands.slashCommands.enabled, // Deletes the command from Discord
 };

@@ -5,6 +5,8 @@ const { CommandHandler } = require('djs-commander');
 const path = require('path');
 const config = require('../config');
 const chalk = require('chalk');
+const fs = require('fs');
+const process = require('node:process');
 
 const client = new Client({
   intents: [
@@ -12,13 +14,49 @@ const client = new Client({
     IntentsBitField.Flags.GuildMembers,
     IntentsBitField.Flags.GuildMessages,
     IntentsBitField.Flags.MessageContent,
+    IntentsBitField.Flags.GuildEmojisAndStickers,
   ],
 });
+
+process.on('unhandledRejection', async (reason) => {
+  const error = reason instanceof Error ? reason : new Error(reason);
+  const stackTrace = error.stack;
+  const [, filePathLine] = stackTrace.match(/at .* \((.*):(\d+:\d+)\)/) || [
+    ,
+    '',
+  ];
+  const [, lineNumber] = filePathLine.split(':');
+  console.log(
+    getError(error, `Unhandled Rejection at ${chalk.gray(lineNumber)} `)
+  );
+});
+
+process.on('uncaughtException', async (error) => {
+  const [, filePathLine] = error.stack.match(/at .* \((.*):(\d+:\d+)\)/) || [
+    ,
+    '',
+  ];
+  const [, lineNumber] = filePathLine.split(':');
+  getError(error, `Uncaught Exception at ${chalk.gray(lineNumber)} `);
+});
+
+process.on('uncaughtExceptionMonitor', async (error) => {
+  const [, filePathLine] = error.stack.match(/at .* \((.*):(\d+:\d+)\)/) || [
+    ,
+    '',
+  ];
+  const [, lineNumber] = filePathLine.split(':');
+  console.log(
+    getError(error, `Uncaught Exception Monitor at ${chalk.gray(lineNumber)} `)
+  );
+});
+
 const errors = [];
 
 console.log(
-  chalk.red('Checking for Errors in the config.js file. Please Wait.')
+  chalk.blue('Checking for Errors in the config.js file. Please Wait.')
 );
+
 function checkError(condition, errorMessage) {
   if (condition) errors.push(errorMessage);
 }
@@ -54,136 +92,168 @@ checkError(
   !config.mcserver.version,
   "The Minecraft server's version has not been specified."
 );
+
 if (errors.length > 0) {
   console.error(chalk.red('Config file has the following errors:'));
-  errors.forEach((item) => console.log(chalk.keyword('orange')(item)));
+  errors.forEach((errors) => console.log(chalk.keyword('orange')(errors)));
   process.exit(1);
 }
 
-const getServerData = async () => {
-  if (config.mcserver.type === 'java') {
-    try {
-      const data = await statusJava(config.mcserver.ip, config.mcserver.port);
-
-      playerNameClean = data.players.list.reduce((acc, item) => {
-        return `${acc}• ${item.name_clean}\n`;
-      }, '');
-      const playerList = data.players.list.length
-        ? `\`\`\`${playerNameClean}\`\`\``
-        : ``;
-      return { data, playerList };
-    } catch (error) {
-      if (!config.settings.logging.errorLog) return;
-      console.error(
-        chalk.red(`Error with retrieving java data:`),
-        chalk.keyword('orange')(error.message)
-      );
-    }
-  } else {
-    try {
-      const data = await statusBedrock(
-        config.mcserver.ip,
-        config.mcserver.port
-      );
-      const playerList = ``;
-      return { data, playerList };
-    } catch (error) {
-      if (!config.settings.logging.errorLog) return;
-      console.error(
-        chalk.red(`Error with retrieving bedrock data:`),
-        chalk.keyword('orange')(error.message)
-      );
-    }
-  }
-};
-
-const statusUpdate = async () => {
-  try {
-    const { data, playerList } = await getServerData();
-    if (data.online && data.players.max > 0) {
-      const onlineEmbed = await OnlineEmbed(data, playerList);
-      onlineUpdate(onlineEmbed, data);
-    } else {
-      offlineUpdate();
-    }
-  } catch (error) {
-    offlineUpdate();
-    if (!config.settings.logging.errorLog) return;
-    console.error(
-      chalk.red(`Setting status due to an error with updating status message:`),
-      chalk.keyword('orange')(error.message)
-    );
-  }
-};
-
-async function statusEdit(statusEmbed, status) {
-  try {
-    const fs = require('fs');
-    const data = JSON.parse(fs.readFileSync('data.json', 'utf8'));
-    const channel = await client.channels.fetch(data.channelId);
-    const message = await channel.messages.fetch(data.messageId);
-    await message.edit({ content: '', embeds: [statusEmbed] });
-    if (!config.settings.logging.statusMessageUpdate) return;
-    console.log(`The status is updated to ${status}`);
-  } catch (error) {
-    if (!config.settings.logging.errorLog) return;
-    console.error(
-      chalk.red(`Error with editing status message:`),
-      chalk.keyword('orange')(error.message)
-    );
-  }
-}
-
-function offlineUpdate() {
-  client.user.setStatus(config.bot.presence.status.offline);
-  client.user.setActivity(config.bot.presence.text.offline, {
-    type: ActivityType[config.bot.presence.activity],
+const groupPlayerList = (playerListArrayRaw) => {
+  let playerListArray = [
+    {
+      name: '__**PLAYERS**__',
+      value: `**${playerListArrayRaw.online}/${playerListArrayRaw.max}**`,
+    },
+  ];
+  const groups = [[], [], []];
+  playerListArrayRaw.list.forEach((person, index) => {
+    groups[index % 3].push(person.name_clean ?? person);
   });
-  statusEdit(offlineStatus, chalk.red`❌ Offline`);
-  if (!config.settings.logging.activityUpdate) return;
-  console.log(
-    `Status set to: ${chalk.green(
-      `${config.bot.presence.activity} ${config.bot.presence.text.offline}`
-    )}`
-  );
-}
-
-function onlineUpdate(embed, data) {
-  try {
-    statusEdit(
-      embed,
-      `${chalk.green('✔ Online')} with ${chalk.green(
-        data.players.online
-      )} Players Playing.`
-    );
-    let statusText = config.bot.presence.text.online;
-    statusText = statusText.replace(
-      /{playeronline}/g,
-      `${data.players.online}`
-    );
-    statusText = statusText.replace(/{playermax}/g, `${data.players.max}`);
-    client.user.setActivity(statusText, {
-      type: ActivityType[config.bot.presence.activity],
-    });
-    client.user.setStatus(config.bot.presence.status.online);
-    if (!config.settings.logging.activityUpdate) return;
-    console.log(
-      `Status set to: ${chalk.green(
-        `${config.bot.presence.activity} ${statusText}`
-      )}`
-    );
-  } catch (error) {
-    if (!config.settings.logging.errorLog) return;
-    console.error(
-      chalk.red(`Error with online status update: `),
-      chalk.keyword('orange')(error.message)
-    );
+  for (let i = 0; i < 3; i++) {
+    if (groups[i][0] === undefined) continue;
+    if (groups[i][1] === undefined) {
+      playerListArray.push({
+        name: ` • ${groups[i][0]}`,
+        value: '‎ ',
+        inline: true,
+      });
+    } else {
+      playerListArray.push({
+        name: `• ${groups[i][0]}`,
+        value: `**• ${groups[i].slice(1).join('\n• ')}**`,
+        inline: true,
+      });
+    }
   }
-}
+  return playerListArray;
+};
+
+const getError = (error, errorOrign) => {
+  if (!config.settings.logging.error) return;
+  const errorLog = `${getDateNow()} | ${chalk.red('ERROR')} | ${chalk.bold(
+    errorOrign
+  )}: ${chalk.keyword('orange')(error.message)}`;
+
+  return errorLog;
+};
+
+const getDateNow = () => {
+  const formattedDateTime = new Date().toLocaleString('en-US', {
+    hour12: true,
+    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    dateStyle: 'short',
+    timeStyle: 'short',
+  });
+  return formattedDateTime;
+};
+
+const getPlayersList = async (playerListRaw) => {
+  try {
+    let playerListArray = [
+      {
+        name: '__**PLAYERS**__',
+        value: `**${playerListRaw.online}/${playerListRaw.max}**`,
+      },
+    ];
+    if (!playerListRaw.list?.length || config.mcserver.type === 'bedrock') {
+      return playerListArray;
+    } else {
+      playerListArray = groupPlayerList(playerListRaw);
+      return playerListArray;
+    }
+  } catch (error) {
+    console.log(getError(error, 'Player List Creation'));
+  }
+};
+
+const getServerDataAndPlayerList = async () => {
+  try {
+    const data =
+      config.mcserver.type === 'java'
+        ? await statusJava(config.mcserver.ip, config.mcserver.port)
+        : await statusBedrock(config.mcserver.ip, config.mcserver.port);
+    const isOnline = config.autoChangeStatus.isOnlineCheck
+      ? data.online && data.players.max > 0
+      : data.online;
+    if (isOnline) {
+      const playerListArray = await getPlayersList(data.players);
+      return { data, playerListArray, isOnline };
+    } else {
+      let playerListArray = [];
+      return { data, playerListArray, isOnline };
+    }
+  } catch (error) {
+    console.log(getError(error, 'Retrieving Mc Server data and PlayerList'));
+  }
+};
+
+const getServerDataOnly = async () => {
+  try {
+    const data =
+      config.mcserver.type === 'java'
+        ? await statusJava(config.mcserver.ip, config.mcserver.port)
+        : await statusBedrock(config.mcserver.ip, config.mcserver.port);
+    const isOnline = config.autoChangeStatus.isOnlineCheck
+      ? data.online && data.players.max > 0
+      : data.online;
+    return { data, isOnline };
+  } catch (error) {
+    console.log(getError(error, 'Retrieving Mc Server data'));
+  }
+};
+
+const statusMessageEdit = async () => {
+  try {
+    const dataPath = path.join(__dirname, 'data.json');
+    let dataRead = fs.readFileSync(dataPath, 'utf8');
+    dataRead = await JSON.parse(dataRead);
+    const channel = await client.channels.fetch(dataRead.channelId);
+    const message = await channel.messages.fetch(dataRead.messageId);
+    const { data, playerListArray, isOnline } =
+      await getServerDataAndPlayerList();
+    if (isOnline) {
+      await message.edit({
+        content: '',
+        embeds: [await OnlineEmbed(data, playerListArray)],
+      });
+      console.log(
+        getDebug(
+          'Status Message is updated to ',
+          chalk.green(
+            `${chalk.green('✔ Online')} with ${chalk.green(
+              data.players.online
+            )} Players Playing.`
+          )
+        )
+      );
+    } else {
+      await message.edit({
+        content: '',
+        embeds: [offlineStatus],
+      });
+      getDebug('Status Message is updated to ', chalk.green(`❌ Offline`));
+    }
+  } catch (error) {
+    getError(error, 'Status Message Editing');
+  }
+};
+
+const getDebug = (messageText, debugMessage) => {
+  if (!config.settings.logging.debug) return;
+  const debugOutput = `${chalk.gray(getDateNow())} | ${chalk.yellow(
+    'DEBUG'
+  )} | ${chalk.bold(messageText)} ${debugMessage}`;
+  return debugOutput;
+};
 
 module.exports = {
-  statusUpdate,
-  getServerData,
+  getServerDataAndPlayerList,
+  getError,
+  getDateNow,
+  getServerDataOnly,
+  getDebug,
+  statusMessageEdit,
 };
 
 new CommandHandler({
@@ -192,4 +262,6 @@ new CommandHandler({
   commandsPath: path.join(__dirname, 'commands'),
 });
 
-client.login(config.bot.token);
+client.login(config.bot.token).catch((error) => {
+  console.log(getError(error, 'Error with Bot Login'));
+});

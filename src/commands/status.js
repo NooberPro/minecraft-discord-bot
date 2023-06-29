@@ -1,30 +1,23 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { settings, commands } = require('../../config');
-const { OnlineEmbed, offlineStatus } = require('../embeds');
-const { getServerData } = require('../index');
-const chalk = require('chalk');
+const { commands } = require('../../config');
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('status')
-    .setDescription('Sends the Status of Minecraft Server.'),
+    .setDescription('Sends the Status of the Minecraft Server.'),
   run: async ({ interaction }) => {
-    await interaction.channel.sendTyping();
+    await interaction.deferReply();
     try {
-      const { data, playerList } = await getServerData();
-      if (!data.online) {
-        interaction.reply({ embeds: [offlineStatus] });
-      } else {
-        const onlineEmbed = await OnlineEmbed(data, playerList);
-        interaction.reply({ embeds: [onlineEmbed] });
-      }
+      const { statusEmbed } = require('../embeds');
+      interaction.editReply({ content: '', embeds: [await statusEmbed()] });
     } catch (error) {
-      if (!settings.logging.errorLog) return;
-      console.error(
-        chalk.red(`An error with status command:`),
-        chalk.keyword('orange')(error.message)
-      );
+      interaction.editReply({
+        content: 'Error getting the status of the server',
+      });
+
+      const { getError } = require('../index');
+      console.log(getError(error, 'Slash command - Status'));
     }
   },
-  deleted: !commands.status.enableSlash || !commands.slashCommands, // Deletes the command from Discord
+  deleted: !commands.slashCommands.status || !commands.slashCommands.enabled, // Deletes the command from Discord
 };
