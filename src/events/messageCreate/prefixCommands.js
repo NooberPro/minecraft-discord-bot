@@ -1,5 +1,5 @@
 const config = require('../../../config');
-const { commands } = require('../../../config');
+const { commands, settings } = require('../../../config');
 const {
   ipEmbed,
   siteEmbed,
@@ -57,8 +57,10 @@ module.exports = async (message) => {
           message.channel.send({ embeds: [await statusEmbed()] });
         } catch (error) {
           message.channel.send({ embeds: [offlineStatus] });
-          const { getError } = require('../../index');
-          console.log(getError(error, 'Prefix status command'));
+          if (settings.logging.error) {
+            const { getError } = require('../../index');
+            console.log(getError(error, 'Prefix status command'));
+          }
         }
       }
       break;

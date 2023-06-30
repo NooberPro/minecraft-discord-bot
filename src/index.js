@@ -26,9 +26,11 @@ process.on('unhandledRejection', async (reason) => {
     '',
   ];
   const [, lineNumber] = filePathLine.split(':');
-  console.log(
-    getError(error, `Unhandled Rejection at ${chalk.gray(lineNumber)} `)
-  );
+  if (config.settings.logging.error) {
+    console.log(
+      getError(error, `Unhandled Rejection at ${chalk.gray(lineNumber)} `)
+    );
+  }
 });
 
 process.on('uncaughtException', async (error) => {
@@ -37,7 +39,9 @@ process.on('uncaughtException', async (error) => {
     '',
   ];
   const [, lineNumber] = filePathLine.split(':');
-  getError(error, `Uncaught Exception at ${chalk.gray(lineNumber)} `);
+  if (config.settings.logging.error) {
+    getError(error, `Uncaught Exception at ${chalk.gray(lineNumber)} `);
+  }
 });
 
 process.on('uncaughtExceptionMonitor', async (error) => {
@@ -46,9 +50,14 @@ process.on('uncaughtExceptionMonitor', async (error) => {
     '',
   ];
   const [, lineNumber] = filePathLine.split(':');
-  console.log(
-    getError(error, `Uncaught Exception Monitor at ${chalk.gray(lineNumber)} `)
-  );
+  if (config.settings.logging.error) {
+    console.log(
+      getError(
+        error,
+        `Uncaught Exception Monitor at ${chalk.gray(lineNumber)} `
+      )
+    );
+  }
 });
 
 const errors = [];
@@ -93,6 +102,12 @@ checkError(
   "The Minecraft server's version has not been specified."
 );
 
+checkError(
+  config.playerCountCH.enabled &&
+    config.playerCountCH.guildID === 'your-guild-id-here',
+  'The Server/Guild ID has not been specified or Invaild.'
+);
+
 if (errors.length > 0) {
   console.error(chalk.red('Config file has the following errors:'));
   errors.forEach((errors) => console.log(chalk.keyword('orange')(errors)));
@@ -130,7 +145,6 @@ const groupPlayerList = (playerListArrayRaw) => {
 };
 
 const getError = (error, errorOrign) => {
-  if (!config.settings.logging.error) return;
   const errorLog = `${getDateNow()} | ${chalk.red('ERROR')} | ${chalk.bold(
     errorOrign
   )}: ${chalk.keyword('orange')(error.message)}`;
@@ -163,7 +177,9 @@ const getPlayersList = async (playerListRaw) => {
       return playerListArray;
     }
   } catch (error) {
-    console.log(getError(error, 'Player List Creation'));
+    if (config.settings.logging.error) {
+      console.log(getError(error, 'Player List Creation'));
+    }
   }
 };
 
@@ -184,7 +200,9 @@ const getServerDataAndPlayerList = async () => {
       return { data, playerListArray, isOnline };
     }
   } catch (error) {
-    console.log(getError(error, 'Retrieving Mc Server data and PlayerList'));
+    if (config.settings.logging.error) {
+      console.log(getError(error, 'Retrieving Mc Server data and PlayerList'));
+    }
   }
 };
 
@@ -199,7 +217,9 @@ const getServerDataOnly = async () => {
       : data.online;
     return { data, isOnline };
   } catch (error) {
-    console.log(getError(error, 'Retrieving Mc Server data'));
+    if (config.settings.logging.error) {
+      console.log(getError(error, 'Retrieving Mc Server data'));
+    }
   }
 };
 
@@ -217,30 +237,37 @@ const statusMessageEdit = async () => {
         content: '',
         embeds: [await OnlineEmbed(data, playerListArray)],
       });
-      console.log(
-        getDebug(
-          'Status Message is updated to ',
-          chalk.green(
-            `${chalk.green('✔ Online')} with ${chalk.green(
-              data.players.online
-            )} Players Playing.`
+      if (config.settings.logging.debug) {
+        console.log(
+          getDebug(
+            'Status Message is updated to ',
+            chalk.green(
+              `${chalk.green('✔ Online')} with ${chalk.green(
+                data.players.online
+              )} Players Playing.`
+            )
           )
-        )
-      );
+        );
+      }
     } else {
       await message.edit({
         content: '',
         embeds: [offlineStatus],
       });
-      getDebug('Status Message is updated to ', chalk.green(`❌ Offline`));
+      if (config.settings.logging.debug) {
+        console.log(
+          getDebug('Status Message is updated to ', chalk.green(`❌ Offline`))
+        );
+      }
     }
   } catch (error) {
-    getError(error, 'Status Message Editing');
+    if (config.settings.logging.error) {
+      console.log(getError(error, 'Status Message Editing'));
+    }
   }
 };
 
 const getDebug = (messageText, debugMessage) => {
-  if (!config.settings.logging.debug) return;
   const debugOutput = `${chalk.gray(getDateNow())} | ${chalk.yellow(
     'DEBUG'
   )} | ${chalk.bold(messageText)} ${debugMessage}`;
@@ -263,5 +290,7 @@ new CommandHandler({
 });
 
 client.login(config.bot.token).catch((error) => {
-  console.log(getError(error, 'Error with Bot Login'));
+  if (config.settings.logging.error) {
+    console.log(getError(error, 'Error with Bot Login'));
+  }
 });

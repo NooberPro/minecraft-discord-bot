@@ -3,7 +3,7 @@
 module.exports = {
   bot: {
     token: 'your-bot-token-here',
-    // Auto changing status and activity for bot.
+    // Auto changing status and activity of bot.
     presence: {
       enabled: true,
       activity: 'Playing', // Options: Playing, Listening, Watching, Competing.
@@ -50,11 +50,11 @@ module.exports = {
   },
   // Shows the Player Count of MC server in channel's name
   playerCountCH: {
-    enabled: true,
-    guildID: 'your-guild-id', // Server's ID for creating/editing channel stats.
+    enabled: false,
+    guildID: 'your-guild-id-here', // Server's ID for creating/editing channel stats.
     // {playeronline} and {playermax} show number of online and max players.
-    onlineText: '{playeronline}/{playermax} Players playing.',
-    offlineText: 'Server is currently Offline', // The name set when MC server is offline.
+    onlineText: '🟢 {playeronline}/{playermax} Players playing.',
+    offlineText: '🔴 Offline', // The name set when MC server is offline.
   },
   autoReply: {
     // If a message contains triggerWords, reply with appropriate server information.

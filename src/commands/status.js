@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { commands } = require('../../config');
+const { commands, settings } = require('../../config');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -14,9 +14,10 @@ module.exports = {
       interaction.editReply({
         content: 'Error getting the status of the server',
       });
-
-      const { getError } = require('../index');
-      console.log(getError(error, 'Slash command - Status'));
+      if (settings.logging.error) {
+        const { getError } = require('../index');
+        console.log(getError(error, 'Slash command - Status'));
+      }
     }
   },
   deleted: !commands.slashCommands.status || !commands.slashCommands.enabled, // Deletes the command from Discord

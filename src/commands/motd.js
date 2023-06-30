@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { motdEmbed } = require('../embeds');
-const { commands } = require('../../config');
+const { commands, settings } = require('../../config');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -15,8 +15,10 @@ module.exports = {
       interaction.editReply({
         content: 'Error with getting Message of the Day (MOTD)',
       });
-      const { getError } = require('../index');
-      console.log(getError(error, 'Slash command - Botinfo'));
+      if (settings.logging.error) {
+        const { getError } = require('../index');
+        console.log(getError(error, 'Slash command - Botinfo'));
+      }
     }
   },
   deleted: !commands.slashCommands.motd,

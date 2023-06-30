@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-const { playerCountCH } = require('../../../config');
+const { playerCountCH, settings } = require('../../../config');
 const { getServerDataOnly, getDebug, getError } = require('../../index');
 const fs = require('node:fs');
 
@@ -17,12 +17,14 @@ module.exports = async (client) => {
       await channel.edit({
         name: statusName,
       });
-      console.log(
-        getDebug(
-          'Player Count channel name is updated to',
-          isOnline ? chalk.green(statusName) : chalk.red(statusName)
-        )
-      );
+      if (settings.logging.debug) {
+        console.log(
+          getDebug(
+            'Player Count channel name is updated to',
+            isOnline ? chalk.green(statusName) : chalk.red(statusName)
+          )
+        );
+      }
     };
 
     const dataIDS = JSON.parse(fs.readFileSync('./src/data.json', 'utf-8'));
@@ -65,6 +67,8 @@ module.exports = async (client) => {
       }, 60000);
     }
   } catch (error) {
-    console.log(getError(error, 'Player Count Channel'));
+    if (settings.logging.error) {
+      console.log(getError(error, 'Player Count Channel'));
+    }
   }
 };

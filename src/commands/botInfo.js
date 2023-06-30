@@ -48,8 +48,12 @@ module.exports = {
         content: 'Error with getting Bot Info',
         ephemeral: true,
       });
-      const { getError } = require('../index');
-      console.log(getError(error, 'Slash command - Botinfo'));
+      const { settings } = require('../../config');
+      if (settings.logging.error) {
+        const { getError } = require('../index');
+
+        console.log(getError(error, 'Slash command - Botinfo'));
+      }
     }
   },
 };

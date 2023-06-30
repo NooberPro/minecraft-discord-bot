@@ -1,4 +1,4 @@
-const { bot } = require('../../../config');
+const { bot, settings } = require('../../../config');
 const chalk = require('chalk');
 module.exports = (client) => {
   const botStatusUpdate = async () => {
@@ -14,28 +14,36 @@ module.exports = (client) => {
           client.user.setActivity(statusText, {
             type: ActivityType[bot.presence.activity],
           });
-          client.user.setStatus(bot.presence.status.online);
-          console.log(
-            getDebug(
-              'Status of the bot has been set to',
-              chalk.green(`${bot.presence.activity} ${statusText}`)
-            )
-          );
+          await client.user.setStatus(bot.presence.status.online);
+          if (settings.logging.debug) {
+            console.log(
+              getDebug(
+                'Status of the bot has been set to',
+                chalk.green(`${bot.presence.activity} ${statusText}`)
+              )
+            );
+          }
         } else {
           client.user.setStatus(bot.presence.status.offline);
           client.user.setActivity(bot.presence.text.offline, {
             type: ActivityType[bot.presence.activity],
           });
-          console.log(
-            getDebug(
-              'Status of the bot has been set to',
-              chalk.red(`${bot.presence.activity} ${bot.presence.text.offline}`)
-            )
-          );
+          if (settings.logging.debug) {
+            console.log(
+              getDebug(
+                'Status of the bot has been set to',
+                chalk.red(
+                  `${bot.presence.activity} ${bot.presence.text.offline}`
+                )
+              )
+            );
+          }
         }
       } catch (error) {
-        const { getError } = require('../../index');
-        console.log(getError(error, 'Updating status of the bot'));
+        if (settings.logging.error) {
+          const { getError } = require('../../index');
+          console.log(getError(error, 'Updating status of the bot'));
+        }
       }
     }
   };

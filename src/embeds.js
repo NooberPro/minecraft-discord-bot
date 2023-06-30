@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require('discord.js');
-const { mcserver } = require('../config');
+const { mcserver, settings } = require('../config');
 const icon = mcserver.icon;
 const ipBedrock = `IP: \`${mcserver.ip}\`\nPort: \`${mcserver.port}\``;
 const port = mcserver.port === 25565 ? '' : `:\`${mcserver.port}\``;
@@ -88,8 +88,10 @@ const playerList = async () => {
         .addFields(playerListArray);
     }
   } catch (error) {
-    const { getError } = require('./index');
-    console.log(getError(error, 'Player command Embed'));
+    if (settings.logging.error) {
+      const { getError } = require('./index');
+      console.log(getError(error, 'Player command Embed'));
+    }
   }
 };
 

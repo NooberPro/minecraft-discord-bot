@@ -34,12 +34,14 @@ module.exports = {
           (err) => {
             if (err) {
               const { getError } = require('../index');
-              console.log(
-                getError(
-                  err,
-                  'Saving Message and Channel Id of status message '
-                )
-              );
+              if (config.settings.logging.error) {
+                console.log(
+                  getError(
+                    err,
+                    'Saving Message and Channel Id of status message '
+                  )
+                );
+              }
             }
           }
         );
@@ -67,7 +69,9 @@ module.exports = {
         ephemeral: true,
       });
       const { getError } = require('../index');
-      console.log(getError(error, 'Setting status message'));
+      if (settings.logging.error) {
+        console.log(getError(error, 'Setting status message'));
+      }
     }
   },
   deleted: !config.autoChangeStatus.enabled, // Deletes the command from Discord

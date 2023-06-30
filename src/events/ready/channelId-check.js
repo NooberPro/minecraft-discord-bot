@@ -19,7 +19,9 @@ module.exports = (client) => {
       );
     }
   } catch (error) {
-    const { getError } = require('../../index');
-    console.log(getError(error, 'ChannelId check update'));
+    if (config.settings.logging.error) {
+      const { getError } = require('../../index');
+      console.log(getError(error, 'ChannelId check update'));
+    }
   }
 };

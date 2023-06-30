@@ -1,4 +1,4 @@
-const { autoReply, mcserver, commands } = require('../../../config');
+const { autoReply, mcserver, commands, settings } = require('../../../config');
 module.exports = async (msg) => {
   try {
     if (
@@ -39,7 +39,9 @@ module.exports = async (msg) => {
       );
     }
   } catch (error) {
-    const { getError } = require('../../index');
-    console.log(getError(error, 'Auto Reply'));
+    if (settings.logging.error) {
+      const { getError } = require('../../index');
+      console.log(getError(error, 'Auto Reply'));
+    }
   }
 };

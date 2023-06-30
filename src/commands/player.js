@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { commands } = require('../../config');
+const { commands, settings } = require('../../config');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -12,8 +12,10 @@ module.exports = {
       interaction.editReply({ content: '', embeds: [await playerList()] });
     } catch (error) {
       interaction.editReply({ content: 'Error with getting Players' });
-      const { getError } = require('../index');
-      console.log(getError(error, 'Slash command - Player'));
+      if (settings.logging.error) {
+        const { getError } = require('../index');
+        console.log(getError(error, 'Slash command - Player'));
+      }
     }
   },
   deleted: !commands.slashCommands.players || !commands.slashCommands.enabled, // Deletes the command from Discord
