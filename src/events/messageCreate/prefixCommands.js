@@ -56,7 +56,7 @@ module.exports = async (message) => {
         try {
           message.channel.send({ embeds: [await statusEmbed()] });
         } catch (error) {
-          message.channel.send({ embeds: [offlineStatus] });
+          message.channel.send({ embeds: [offlineStatus()] });
           if (settings.logging.error) {
             const { getError } = require('../../index');
             console.log(getError(error, 'Prefix status command'));

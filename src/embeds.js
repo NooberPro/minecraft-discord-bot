@@ -41,23 +41,26 @@ const ipEmbed = new EmbedBuilder()
     name: '__**SERVER ADDRESS**__',
     value: `**${ip}**`,
   });
+
 // Offline Embed Message status commands
-const offlineStatus = new EmbedBuilder()
-  .setColor('Red')
-  .setTitle(':red_circle: OFFLINE')
-  .setThumbnail(icon)
-  .setAuthor({
-    name: mcserver.name,
-  })
-  .setTimestamp()
-  .setFooter({ text: 'Checked at' });
+const offlineStatus = () => {
+  return new EmbedBuilder()
+    .setColor('Red')
+    .setTitle(':red_circle: OFFLINE')
+    .setThumbnail(icon)
+    .setAuthor({
+      name: mcserver.name,
+    })
+    .setTimestamp()
+    .setFooter({ text: 'Checked at' });
+};
 
 // MOTD Embed for motd commands
 const motdEmbed = async () => {
   const { getServerDataOnly } = require('./index');
   const { data, isOnline } = await getServerDataOnly();
   if (!isOnline) {
-    return offlineStatus;
+    return offlineStatus();
   } else {
     return new EmbedBuilder()
       .setColor('Aqua')
@@ -77,7 +80,7 @@ const playerList = async () => {
     const { getServerDataAndPlayerList } = require('./index');
     const { playerListArray, isOnline } = await getServerDataAndPlayerList();
     if (!isOnline) {
-      return offlineStatus;
+      return offlineStatus();
     } else {
       return new EmbedBuilder()
         .setColor('Aqua')
@@ -85,7 +88,9 @@ const playerList = async () => {
         .setAuthor({
           name: mcserver.name,
         })
-        .addFields(playerListArray);
+        .addFields(playerListArray)
+        .setTimestamp()
+        .setFooter({ text: 'Checked at' });
     }
   } catch (error) {
     if (settings.logging.error) {
@@ -103,7 +108,7 @@ const statusEmbed = async () => {
   if (isOnline) {
     return await OnlineEmbed(data, playerListArray);
   } else {
-    return offlineStatus;
+    return offlineStatus();
   }
 };
 
@@ -132,7 +137,7 @@ const OnlineEmbed = async (data, playerlist) => {
       }
     )
     .setTimestamp()
-    .setFooter({ text: `Updated at ` });
+    .setFooter({ text: `Checked at` });
 };
 module.exports = {
   versionEmbed,

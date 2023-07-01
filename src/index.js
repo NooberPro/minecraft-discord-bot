@@ -252,7 +252,7 @@ const statusMessageEdit = async () => {
     } else {
       await message.edit({
         content: '',
-        embeds: [offlineStatus],
+        embeds: [offlineStatus()],
       });
       if (config.settings.logging.debug) {
         console.log(
