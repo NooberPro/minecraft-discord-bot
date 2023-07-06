@@ -8,5 +8,5 @@ module.exports = {
   run: ({ interaction }) => {
     interaction.reply({ embeds: [ipEmbed] });
   },
-  deleted: !commands.slashCommands.ip || !commands.slashCommands.enabled, // Deletes the command from Discord
+  deleted: !commands.ip.slashEnabled || !commands.slashCommands, // Deletes the command from Discord
 };

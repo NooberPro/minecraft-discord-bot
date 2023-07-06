@@ -6,6 +6,26 @@ const fs = require('node:fs');
 module.exports = async (client) => {
   try {
     if (!playerCountCH.enabled) return;
+    const guild = client.guilds.cache.get(playerCountCH.guildID);
+    if (guild) {
+      console.log(
+        `Guild: \`${chalk.cyan(
+          guild.name
+        )}\` was successfully found and set as the server Player Count Channel.`
+      );
+    } else {
+      const { getDateNow } = require('../../index.js');
+      console.error(
+        `${chalk.gray(getDateNow())} | ${chalk.keyword('orange')(
+          'Error'
+        )} | ${chalk.bold(
+          `The guild with ID: ${chalk.yellow(
+            `\`${playerCountCH.guildID}\``
+          )} was not found or the bot is not in the guild.`
+        )}`
+      );
+      process.exit(1);
+    }
     const playerCountUpdate = async (channelId) => {
       const channel = client.channels.cache.get(channelId);
       const { data, isOnline } = await getServerDataOnly();

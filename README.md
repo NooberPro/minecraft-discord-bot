@@ -18,12 +18,14 @@ This bot code uses **node-mcstatus npm package** for getting status of Minecraft
 - **Fully customizable [config](config.js).**
 - **Auto Changing Status Message with player list.**
 - **Support for Both Java and Bedrock server.**
-- **Auto updating bot's status with player count. Fully customizable in config.**
+- **Auto updating bot's status with player count.**
 - **Discord bot activities: `playing`, `listening`, `watching`, and `competing`.**
 - **Discord bot statuses: `online`, `idle`, `dnd`, and `invisible`.**
-- **ColorFul Console Logging**
-- **Slash Commands for `status`, `players`,`ip`,`version`,`site`.**
-- **Auto Message replies about server's info. Fully customizable in config**
+- **ColorFul Console Logging.**
+- **Slash and Prefix commands for `status`, `players`, `ip`, `version`, `site`, `motd`.**
+- **Auto Reponse for `ip`, `status`, `version`, `site`.**
+- **Support for free server hosting providers like Aternos, Falixnodes.**
+- **Auto name changing channel for Player Count.**
 
 ## TO DO
 
@@ -40,12 +42,11 @@ This bot code uses **node-mcstatus npm package** for getting status of Minecraft
 - [x] Bot status (activity) for players online number
 - [ ] Help command with all commands listing
 - [x] Error detection of config
-- [ ] And many other things 😉
+- [x] And many other things 😉
 - [x] Bedrock Support
 - [x] Player List
 - [x] Colorfull Console
 - [ ] Player Avatar and Skin Command
-- [ ] Embed Customization for translating
+- [x] Embed Customization for translating
 - [x] Server and bot Uptime
-- [ ] Add support for various languages (customize in config).
-- [ ] Instruction for Bot hosting for free
+- [x] Instruction for Bot hosting for free

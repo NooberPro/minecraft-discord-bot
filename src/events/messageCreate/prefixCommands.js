@@ -8,9 +8,10 @@ const {
   offlineStatus,
   statusEmbed,
   motdEmbed,
+  helpEmbed,
 } = require('../../embeds');
 
-module.exports = async (message) => {
+module.exports = async (message, client) => {
   if (
     message.author.bot ||
     !commands.prefixCommands.enabled ||
@@ -23,35 +24,40 @@ module.exports = async (message) => {
   const content = message.content.slice(prefix.length);
 
   switch (content) {
+    case 'help':
+      if (commands.help.prefixEnable) {
+        message.channel.send({ embeds: [helpEmbed(client)] });
+      }
+      break;
     case 'motd':
-      await message.channel.sendTyping();
-      if (commands.prefixCommands.motd) {
+      if (commands.motd.prefixEnable) {
+        await message.channel.sendTyping();
         message.channel.send({ embeds: [await motdEmbed()] });
       }
       break;
     case 'ip':
-      if (commands.prefixCommands.ip) {
+      if (commands.ip.prefixEnable) {
         message.channel.send({ embeds: [ipEmbed] });
       }
       break;
     case 'site':
-      if (commands.prefixCommands.ip && config.mcserver.site) {
+      if (commands.site.prefixEnable && config.mcserver.site) {
         message.channel.send({ embeds: [siteEmbed] });
       }
       break;
     case 'version':
-      if (commands.prefixCommands.ip) {
+      if (commands.version.prefixEnable) {
         message.channel.send({ embeds: [versionEmbed] });
       }
       break;
     case 'players':
-      if (commands.prefixCommands.ip) {
+      if (commands.players.prefixEnable) {
         await message.channel.sendTyping();
         message.channel.send({ embeds: [await playerList()] });
       }
       break;
     case 'status':
-      if (commands.prefixCommands.ip) {
+      if (commands.status.prefixEnable) {
         await message.channel.sendTyping();
         try {
           message.channel.send({ embeds: [await statusEmbed()] });

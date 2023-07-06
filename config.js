@@ -25,7 +25,8 @@ module.exports = {
     name: 'Demo Server', // Name of MC server.
     version: 'Requires 1.8 - 1.20', // Version of MC server.
     icon: 'https://i.imgur.com/6Msem8Q.png', // URL of MC server icon. How? https://tinyurl.com/iconurl
-    site: '', // URL of MC server/vote website like https://nooberpro.gitbook.io/ . To disable site it blank. NOT REQUIRED
+    site: 'https://nooberpro.gitbook.io/', // URL of MC server/vote website like https://nooberpro.gitbook.io/.
+    // To disable site commands leave site field blank. NOT REQUIRED
   },
 
   // Settings for bot.
@@ -46,7 +47,7 @@ module.exports = {
     enabled: false,
     updateInterval: 60, // Time period between auto changing status in seconds, e.g. 60 = 1min. Recommended: above 60.
     // These settings will be applied in (/) and prefix commands for status.
-    isOnlineCheck: true, // Useful for servers which uses free hosting providers like Aternos. Check if the server's max players is greater than 0.
+    isOnlineCheck: true, // Useful for servers which uses free hosting providers like Aternos. If the server's max players is 0 then status will set offline.
   },
   // Shows the Player Count of MC server in channel's name
   playerCountCH: {
@@ -58,7 +59,7 @@ module.exports = {
   },
   autoReply: {
     // If a message contains triggerWords, reply with appropriate server information.
-    enabled: false, // Disable the entire feature.
+    enabled: false, // Disable the entire autoReply feature.
     version: {
       enabled: true,
       triggerWords: ['version of the server?', 'version'],
@@ -91,26 +92,97 @@ module.exports = {
       offlineReply: "The server's current status is **🔴`OFFLINE`**.",
     },
   },
-
   commands: {
-    slashCommands: {
-      enabled: true, // Enable slash(/) commands.
-      ip: true, // Enable ip slash command.
-      players: true, // Enable players slash command.
-      site: true, // Enable site slash command.
-      status: true, // Enable status slash command.
-      version: true, // Enable version slash command.
-      motd: true, // Enable motd slash command.
-    },
+    slashCommands: true, // Enables all slash commands
     prefixCommands: {
-      enabled: true, // Enable normal prefix commands.
+      enabled: true,
       prefix: '!', // Prefix for normal command.
-      ip: true, // Enable ip prefix command.
-      players: true, // Enable players prefix command.
-      site: true, // Enable site prefix command.
-      status: true, // Enable status prefix command.
-      version: true, // Enable version prefix command.
-      motd: true, // Enable motd prefix command.
+    }, // Enables all prefix commands
+    ip: {
+      slashEnabled: true, // Enable ip slash command.
+      prefixEnable: true, // Enable ip prefix command.
+      // Embed message customization or translating
+      embed: {
+        title: '__**SERVER ADDRESS**__',
+        description: `**{ip}**`,
+      },
+    },
+    site: {
+      slashEnabled: true, // Enable site slash command.
+      prefixEnable: true, // Enable site prefix command.
+      embed: {
+        title: '__**WEBSITE**__',
+        description: `**Link: {site}**`,
+      },
+    },
+    version: {
+      slashEnabled: true, // Enable version slash command.
+      prefixEnable: true, // Enable version prefix command.
+      embed: {
+        title: '__**VERSION**__',
+        description: `**{version}**`,
+      },
+    },
+    // Embed for offline status.
+    offlineEmbed: {
+      title: ':red_circle: OFFLINE',
+    },
+    players: {
+      slashEnabled: true, // Enable players slash command.
+      prefixEnable: true, // Enable players prefix command.
+      embed: {
+        title: '__**PLAYERS**__',
+        description: '**{playeronline}/{playermax}**',
+        // After description will be the Player Name List.
+        // Shows offline Embed when MC server is offline.
+      },
+    },
+    status: {
+      slashEnabled: true, // Enable status slash command.
+      prefixEnable: true, // Enable status prefix command.
+      onlineEmbed: {
+        title: ':green_circle: ONLINE',
+        // Here the Player List Embed title and description from players embed above (line: 134)
+
+        // After player List Field will be description.
+        description: `
+        __**MOTD**__
+        **{motd}**
+
+        __**SERVER ADDRESS**__
+        **{ip}**
+
+        __**VERSION**__
+        **{version}**
+
+        __**WEBSITE**__
+        **Link: {site}**`,
+      },
+      // Shows offline Embed when MC server is offline
+    },
+    motd: {
+      slashEnabled: true, // Enable motd slash command.
+      prefixEnable: true, // Enable motd prefix command.
+      embed: {
+        title: '__**MOTD**__',
+        description: `**{motd}**`,
+      },
+      // Shows offline Embed when MC server is offline
+    },
+    help: {
+      slashEnabled: true, // Enable help slash command.
+      prefixEnable: true, // Enable help prefix command.
+      embed: {
+        title: '__**COMMAND LIST**__',
+        description: `
+       **{prefix}\`help\`**: Shows a list of available commands.
+       **{prefix}\`ip\`**: Sends the Server address of the Minecraft Server.
+       **{prefix}\`motd\`**: Sends the Minecraft Server's Message Of The Day (MOTD).
+       **{prefix}\`players\`**: Sends the list of online player in the Minecraft Server.
+       **{prefix}\`status\`**: Sends the current status of the Minecraft Server.
+       **{prefix}\`version\`**: Sends the version required for the Minecraft Server.
+       **{prefix}\`site\`**: Sends the Minecraft Server's website/vote link.`,
+      },
     },
   },
 };

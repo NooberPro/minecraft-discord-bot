@@ -4,7 +4,7 @@ const { commands, settings } = require('../../config');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('players')
-    .setDescription('Sends the online player details.'),
+    .setDescription('Sends the list of online player in the Minecraft Server.'),
   run: async ({ interaction }) => {
     await interaction.deferReply();
     const { playerList } = require('../embeds');
@@ -18,5 +18,5 @@ module.exports = {
       }
     }
   },
-  deleted: !commands.slashCommands.players || !commands.slashCommands.enabled, // Deletes the command from Discord
+  deleted: !commands.players.slashEnabled || !commands.slashCommands, // Deletes the command from Discord
 };

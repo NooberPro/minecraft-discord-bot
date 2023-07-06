@@ -5,10 +5,10 @@ const { commands } = require('../../config');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('version')
-    .setDescription('Sends the version of the Minecraft Server.'),
+    .setDescription('Sends the version required for the Minecraft Server.'),
 
   run: ({ interaction }) => {
     interaction.reply({ embeds: [versionEmbed] });
   },
-  deleted: !commands.slashCommands.version || !commands.slashCommands.enabled, // Deletes the command from Discord
+  deleted: !commands.version.slashEnabled || !commands.slashCommands, // Deletes the command from Discord
 };

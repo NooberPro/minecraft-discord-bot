@@ -21,5 +21,5 @@ module.exports = {
       }
     }
   },
-  deleted: !commands.slashCommands.motd,
+  deleted: !commands.motd.slashEnabled || !commands.slashCommands, // Deletes the command from Discord
 };
