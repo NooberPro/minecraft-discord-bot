@@ -49,14 +49,17 @@ module.exports = {
     // These settings will be applied in (/) and prefix commands for status.
     isOnlineCheck: true, // Useful for servers which uses free hosting providers like Aternos. If the server's max players is 0 then status will set offline.
   },
+
   // Shows the Player Count of MC server in channel's name
   playerCountCH: {
     enabled: false,
     guildID: 'your-guild-id-here', // Server's ID for creating/editing channel stats.
+    channelId: '', // The channel ID for editing the player count. If no ID is provided, the bot will create the channel itself. NOT REQUIRED
     // {playeronline} and {playermax} show number of online and max players.
-    onlineText: '🟢 {playeronline}/{playermax} Players playing.',
+    onlineText: '🟢 {playeronline}/{playermax} Players playing',
     offlineText: '🔴 Offline', // The name set when MC server is offline.
   },
+
   autoReply: {
     // If a message contains triggerWords, reply with appropriate server information.
     enabled: false, // Disable the entire autoReply feature.
@@ -126,6 +129,7 @@ module.exports = {
     // Embed for offline status.
     offlineEmbed: {
       title: ':red_circle: OFFLINE',
+      description: '', // Leave description blank to disable it.
     },
     players: {
       slashEnabled: true, // Enable players slash command.

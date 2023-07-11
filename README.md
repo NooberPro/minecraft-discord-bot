@@ -22,10 +22,10 @@ This bot code uses **node-mcstatus npm package** for getting status of Minecraft
 - **Discord bot activities: `playing`, `listening`, `watching`, and `competing`.**
 - **Discord bot statuses: `online`, `idle`, `dnd`, and `invisible`.**
 - **ColorFul Console Logging.**
-- **Slash and Prefix commands for `status`, `players`, `ip`, `version`, `site`, `motd`.**
-- **Auto Reponse for `ip`, `status`, `version`, `site`.**
+- **Slash and Prefix commands for `status`, `players`, `ip`, `version`, `site`, `motd`, `help`.**
+- **Auto Response for `ip`, `status`, `version`, `site`.**
 - **Support for free server hosting providers like Aternos, Falixnodes.**
-- **Auto name changing channel for Player Count.**
+- **Auto channel stats for Player Count.**
 
 ## TO DO
 
@@ -40,13 +40,12 @@ This bot code uses **node-mcstatus npm package** for getting status of Minecraft
 - [x] Site command
 - [x] Slash commands
 - [x] Bot status (activity) for players online number
-- [ ] Help command with all commands listing
+- [x] Help command with all commands listing
 - [x] Error detection of config
 - [x] And many other things 😉
 - [x] Bedrock Support
 - [x] Player List
 - [x] Colorfull Console
-- [ ] Player Avatar and Skin Command
 - [x] Embed Customization for translating
 - [x] Server and bot Uptime
 - [x] Instruction for Bot hosting for free

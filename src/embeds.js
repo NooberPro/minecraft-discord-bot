@@ -45,7 +45,7 @@ const ipEmbed = new EmbedBuilder()
 
 // Offline Embed Message status commands
 const offlineStatus = () => {
-  return new EmbedBuilder()
+  const offlineEmbed = new EmbedBuilder()
     .setColor('Red')
     .setTitle(commands.offlineEmbed.title)
     .setThumbnail(icon)
@@ -54,6 +54,10 @@ const offlineStatus = () => {
     })
     .setTimestamp()
     .setFooter({ text: 'Checked at' });
+  if (commands.offlineEmbed.description) {
+    offlineEmbed.setDescription(commands.offlineEmbed.description);
+  }
+  return offlineEmbed;
 };
 
 // MOTD Embed for motd commands

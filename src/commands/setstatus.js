@@ -17,6 +17,14 @@ module.exports = {
   run: async ({ interaction, client }) => {
     await interaction.deferReply({ ephemeral: true });
     try {
+      if (!config.autoChangeStatus.enabled) {
+        interaction.editReply({
+          content:
+            '**Please enable `auto Change Status` in the config to enable status message feature.**',
+          ephemeral: true,
+        });
+        return;
+      }
       const channel = client.channels.cache.get(interaction.channelId);
       channel.send(':gear: Checking the status...').then(async (msg) => {
         interaction.editReply({
@@ -62,7 +70,7 @@ module.exports = {
             statusMessageEdit();
           }, config.autoChangeStatus.updateInterval * 1000);
         });
-      }, 1000);
+      }, 500);
     } catch (error) {
       interaction.editReply({
         content: `:warning: Could not set status message because of an error: ${error.message}`,
@@ -74,5 +82,5 @@ module.exports = {
       }
     }
   },
-  deleted: !config.autoChangeStatus.enabled, // Deletes the command from Discord
+  deleted: false, // Deletes the command from Discord
 };
