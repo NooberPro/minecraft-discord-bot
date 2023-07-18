@@ -14,19 +14,22 @@ module.exports = async (msg) => {
     const isStatus = new RegExp(`\\b(${status.triggerWords.join('|')})\\b`);
     const isVersion = new RegExp(`\\b(${version.triggerWords.join('|')})\\b`);
 
-    if (isIp.test(content))
+    if (isIp.test(content) && autoReply.ip.enabled) {
       msg.channel.send(
         ip.replyText
           .replace(/{ip}/g, mcserver.ip)
           .replace(/{port}/g, mcserver.port)
       );
-    if (isSite.test(content))
+    }
+    if ((isSite.test(content) && autoReply.site.enabled) || !mcserver.site) {
       msg.channel.send(site.replyText.replace(/{site}/g, mcserver.site));
-    if (isVersion.test(content))
+    }
+    if (isVersion.test(content) && autoReply.version.enabled) {
       msg.channel.send(
         version.replyText.replace(/{version}/g, mcserver.version)
       );
-    if (isStatus.test(content)) {
+    }
+    if (isStatus.test(content) && autoReply.status.enabled) {
       await msg.channel.sendTyping();
       const { getServerDataOnly } = require('../../index');
       const { data, isOnline } = await getServerDataOnly();
