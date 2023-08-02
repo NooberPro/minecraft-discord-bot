@@ -21,5 +21,7 @@ module.exports = {
       }
     }
   },
-  deleted: !commands.motd.slashEnabled || !commands.slashCommands, // Deletes the command from Discord
+  options: {
+    deleted: !commands.motd.slashEnabled || !commands.slashCommands, // Deletes the command from Discord
+  },
 };

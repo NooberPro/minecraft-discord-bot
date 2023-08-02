@@ -5,9 +5,7 @@ const chalk = require('chalk');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('setstatus')
-    .setDescription(
-      'Sets the Minecraft server status message in the current channel.'
-    )
+    .setDescription('Sets the Minecraft server status message in the current channel.')
     .setDefaultMemberPermissions(
       PermissionFlagsBits.ManageChannels,
       PermissionFlagsBits.ManageThreads,
@@ -19,8 +17,7 @@ module.exports = {
     try {
       if (!config.autoChangeStatus.enabled) {
         interaction.editReply({
-          content:
-            '**Please enable `auto Change Status` in the config to enable status message feature.**',
+          content: '**Please enable `auto Change Status` in the config to enable status message feature.**',
           ephemeral: true,
         });
         return;
@@ -36,23 +33,14 @@ module.exports = {
         data = await JSON.parse(data);
         data.channelId = interaction.channelId;
         data.messageId = msg.id;
-        fs.writeFile(
-          './src/data.json',
-          JSON.stringify(data, null, 2),
-          (err) => {
-            if (err) {
-              const { getError } = require('../index');
-              if (config.settings.logging.error) {
-                console.log(
-                  getError(
-                    err,
-                    'Saving Message and Channel Id of status message '
-                  )
-                );
-              }
+        fs.writeFile('./src/data.json', JSON.stringify(data, null, 2), (err) => {
+          if (err) {
+            const { getError } = require('../index');
+            if (config.settings.logging.error) {
+              console.log(getError(err, 'Saving Message and Channel Id of status message '));
             }
           }
-        );
+        });
         setTimeout(async () => {
           const dataRead = await fs.readFile('./src/data.json', 'utf-8');
           let dataID = JSON.parse(dataRead);
@@ -61,11 +49,7 @@ module.exports = {
             content: `:white_check_mark: **Status message is set successfully in <#${dataID.channelId}>. Message:** https://discord.com/channels/${msg.guildId}/${dataID.channelId}/${dataID.messageId}`,
             ephemeral: true,
           });
-          console.log(
-            `Successfully set the status message in ${chalk.cyan(
-              `#${msg.channel.name}`
-            )}`
-          );
+          console.log(`Successfully set the status message in ${chalk.cyan(`#${msg.channel.name}`)}`);
           setInterval(() => {
             statusMessageEdit();
           }, config.autoChangeStatus.updateInterval * 1000);
@@ -82,5 +66,7 @@ module.exports = {
       }
     }
   },
-  deleted: false, // Deletes the command from Discord
+  options: {
+    deleted: false, // Deletes the command from Discord
+  },
 };

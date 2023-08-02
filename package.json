@@ -4,9 +4,7 @@
   "description": "A discord bot that shows info and status of your minecraft server including players, version, and many more features.",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "first": "node dev-config.js",
-    "last": "node dev-data.js"
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
@@ -27,8 +25,8 @@
   "homepage": "https://github.com/NooberPro/minecraft-discord-bot#readme",
   "dependencies": {
     "chalk": "^4.1.2",
-    "discord.js": "^14.11.0",
-    "djs-commander": "^0.0.50",
+    "commandkit": "^0.0.8",
+    "discord.js": "^14.12.1",
     "node-mcstatus": "^1.1.0"
   }
 }

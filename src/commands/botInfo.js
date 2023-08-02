@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
+const { botInfoEmbed } = require('../embeds');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('botinfo')
@@ -9,39 +10,9 @@ module.exports = {
       ephemeral: true,
     });
     try {
-      const reply = await interaction.fetchReply();
-      const ping = reply.createdTimestamp - interaction.createdTimestamp;
-      const os = require('os');
-      const process = require('node:process');
-      const cpuUsage = (os.loadavg()[0] / os.cpus().length).toFixed(2);
-      const memoryUsage = (
-        process.memoryUsage().heapUsed /
-        1024 /
-        1024
-      ).toFixed(2);
-      const nodeVersion = process.version;
-      const uptimeSeconds = process.uptime();
-      const uptimeMinutes = Math.floor(uptimeSeconds / 60);
-      const uptimeHours = Math.floor(uptimeMinutes / 60);
-      const uptimeDays = Math.floor(uptimeHours / 24);
       await interaction.editReply({
         ephemeral: true,
-        embeds: [
-          {
-            author: {
-              name: client.user.tag,
-              icon_url: client.user.avatarURL(),
-            },
-            title: '**Bot Info and Stats**',
-            description: `**CPU Usage: \`${cpuUsage}%\`\nMemory Usage: \`${memoryUsage}MB\`\nNode.js Version: \`${nodeVersion}\`\nBot uptime: \`${uptimeDays}\` days, \`${
-              uptimeHours % 24
-            }\` hours, \`${uptimeMinutes % 60}\`, minutes, \`${Math.floor(
-              uptimeSeconds
-            )}\` seconds \n Ping: Client \`${ping}ms\` | Websocket: \`${
-              client.ws.ping
-            }ms\` **`,
-          },
-        ],
+        embeds: [await botInfoEmbed(interaction, client)],
       });
     } catch (error) {
       interaction.editReply({
@@ -51,7 +22,6 @@ module.exports = {
       const { settings } = require('../../config');
       if (settings.logging.error) {
         const { getError } = require('../index');
-
         console.log(getError(error, 'Slash command - Botinfo'));
       }
     }

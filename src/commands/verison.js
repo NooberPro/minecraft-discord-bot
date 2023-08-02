@@ -10,5 +10,7 @@ module.exports = {
   run: ({ interaction }) => {
     interaction.reply({ embeds: [versionEmbed] });
   },
-  deleted: !commands.version.slashEnabled || !commands.slashCommands, // Deletes the command from Discord
+  options: {
+    deleted: !commands.version.slashEnabled || !commands.slashCommands, // Deletes the command from Discord
+  },
 };

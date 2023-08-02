@@ -2,9 +2,7 @@ const { SlashCommandBuilder } = require('discord.js');
 const { commands, settings } = require('../../config');
 
 module.exports = {
-  data: new SlashCommandBuilder()
-    .setName('status')
-    .setDescription('Sends the current status of the Minecraft Server.'),
+  data: new SlashCommandBuilder().setName('status').setDescription('Sends the current status of the Minecraft Server.'),
   run: async ({ interaction }) => {
     await interaction.deferReply();
     try {
@@ -20,5 +18,7 @@ module.exports = {
       }
     }
   },
-  deleted: !commands.status.slashEnabled || !commands.slashCommands, // Deletes the command from Discord
+  options: {
+    deleted: !commands.status.slashEnabled || !commands.slashCommands, // Deletes the command from Discord
+  },
 };

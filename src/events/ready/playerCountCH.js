@@ -1,11 +1,6 @@
 const chalk = require('chalk');
 const { playerCountCH, settings } = require('../../../config');
-const {
-  getServerDataOnly,
-  getDebug,
-  getError,
-  getDateNow,
-} = require('../../index');
+const { getServerDataOnly, getDebug, getError, getDateNow } = require('../../index');
 const fs = require('node:fs');
 
 module.exports = async (client) => {
@@ -40,9 +35,7 @@ module.exports = async (client) => {
     const guild = client.guilds.cache.get(playerCountCH.guildID);
     if (!guild) {
       console.error(
-        `${chalk.gray(getDateNow())} | ${chalk.keyword('orange')(
-          'WARN'
-        )} | ${chalk.bold(
+        `${chalk.gray(getDateNow())} | ${chalk.keyword('orange')('WARN')} | ${chalk.bold(
           `The guild with ID: ${chalk.yellow(
             `\`${playerCountCH.guildID}\``
           )} was not found or the bot is not in the guild.`
@@ -55,26 +48,16 @@ module.exports = async (client) => {
       if (playerCountCH.channelId) {
         const channel = client.channels.cache.get(playerCountCH.channelId);
         if (channel) {
-          console.log(
-            `Successfully founded channel: ${chalk.cyan(
-              channel.name
-            )} channel for Player Count.`
-          );
+          console.log(`Successfully founded channel: ${chalk.cyan(channel.name)} channel for Player Count.`);
           dataIDS.playerCountStats = channel.id;
-          fs.writeFile(
-            './src/data.json',
-            JSON.stringify(dataIDS, null, 2),
-            (err) => {
-              if (err) {
-                console.error(getError(err, 'Saving Player Count stats'));
-              }
+          fs.writeFile('./src/data.json', JSON.stringify(dataIDS, null, 2), (err) => {
+            if (err) {
+              console.error(getError(err, 'Saving Player Count stats'));
             }
-          );
+          });
         } else {
           console.error(
-            `${chalk.gray(getDateNow())} | ${chalk.keyword('orange')(
-              'WARN'
-            )} | ${chalk.bold(
+            `${chalk.gray(getDateNow())} | ${chalk.keyword('orange')('WARN')} | ${chalk.bold(
               `The channel for Player Count with ID: ${chalk.yellow(
                 `\`${playerCountCH.channelId}\``
               )} was not found or the bot has no access for channel.`
@@ -102,20 +85,12 @@ module.exports = async (client) => {
           ],
         });
         dataIDS.playerCountStats = channel.id;
-        fs.writeFile(
-          './src/data.json',
-          JSON.stringify(dataIDS, null, 2),
-          (err) => {
-            if (err) {
-              console.error(err);
-            }
+        fs.writeFile('./src/data.json', JSON.stringify(dataIDS, null, 2), (err) => {
+          if (err) {
+            console.error(err);
           }
-        );
-        console.log(
-          `Created a channel for Player Count and has updated its name to: ${chalk.cyan(
-            statusName
-          )}`
-        );
+        });
+        console.log(`Created a channel for Player Count and has updated its name to: ${chalk.cyan(statusName)}`);
         setInterval(() => {
           playerCountUpdate(dataIDS.playerCountStats);
         }, 60000);

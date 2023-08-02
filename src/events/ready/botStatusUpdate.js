@@ -17,10 +17,7 @@ module.exports = (client) => {
           await client.user.setStatus(bot.presence.status.online);
           if (settings.logging.debug) {
             console.log(
-              getDebug(
-                'Status of the bot has been set to',
-                chalk.green(`${bot.presence.activity} ${statusText}`)
-              )
+              getDebug('Status of the bot has been set to', chalk.green(`${bot.presence.activity} ${statusText}`))
             );
           }
         } else {
@@ -32,9 +29,7 @@ module.exports = (client) => {
             console.log(
               getDebug(
                 'Status of the bot has been set to',
-                chalk.red(
-                  `${bot.presence.activity} ${bot.presence.text.offline}`
-                )
+                chalk.red(`${bot.presence.activity} ${bot.presence.text.offline}`)
               )
             );
           }

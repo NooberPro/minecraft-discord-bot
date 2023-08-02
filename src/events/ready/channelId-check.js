@@ -6,17 +6,10 @@ module.exports = (client) => {
     if (!config.autoChangeStatus.enabled) return;
     const data = require('../../data.json');
     if (data.channelId === null) {
-      console.log(
-        `To set server status, send a ${chalk.cyan(
-          '"/setstatus"'
-        )} command in the desired channel.`
-      );
+      console.log(`To set server status, send a ${chalk.cyan('"/setstatus"')} command in the desired channel.`);
     } else {
       statusMessageEdit();
-      setInterval(
-        statusMessageEdit,
-        config.autoChangeStatus.updateInterval * 1000
-      );
+      setInterval(statusMessageEdit, config.autoChangeStatus.updateInterval * 1000);
     }
   } catch (error) {
     if (config.settings.logging.error) {

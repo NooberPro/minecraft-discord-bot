@@ -84,15 +84,10 @@ module.exports = {
 
     status: {
       enabled: true,
-      triggerWords: [
-        'is server online?',
-        'is server offline',
-        'status of the server',
-      ],
+      triggerWords: ['is server online?', 'is server offline', 'status of the server'],
       // Use {playerOnline} for players online no. and {playerMax} for players max no. Only work in onlineReply.
-      onlineReply:
-        "The server's current status is **🟢`ONLINE`** with **`{playerOnline}/{playerMax}`** players playing.",
-      offlineReply: "The server's current status is **🔴`OFFLINE`**.",
+      onlineReply: 'The server is **`🟢ONLINE`** with **`{playerOnline}/{playerMax}`** players playing.',
+      offlineReply: 'The server is **`🔴OFFLINE`**.',
     },
   },
   commands: {
@@ -104,6 +99,7 @@ module.exports = {
     ip: {
       slashEnabled: true, // Enable ip slash command.
       prefixEnable: true, // Enable ip prefix command.
+      alias: ['ip-address'], // Alias for ip prefix commands.
       // Embed message customization or translating
       embed: {
         title: '__**SERVER ADDRESS**__',
@@ -113,6 +109,7 @@ module.exports = {
     site: {
       slashEnabled: true, // Enable site slash command.
       prefixEnable: true, // Enable site prefix command.
+      alias: ['vote', 'link'], // Alias for site prefix commands.
       embed: {
         title: '__**WEBSITE**__',
         description: `**Link: {site}**`,
@@ -121,6 +118,7 @@ module.exports = {
     version: {
       slashEnabled: true, // Enable version slash command.
       prefixEnable: true, // Enable version prefix command.
+      alias: [], // Alias for version prefix commands.
       embed: {
         title: '__**VERSION**__',
         description: `**{version}**`,
@@ -134,6 +132,7 @@ module.exports = {
     players: {
       slashEnabled: true, // Enable players slash command.
       prefixEnable: true, // Enable players prefix command.
+      alias: ['plist'], // Alias for players prefix commands.
       embed: {
         title: '__**PLAYERS**__',
         description: '**{playeronline}/{playermax}**',
@@ -144,6 +143,7 @@ module.exports = {
     status: {
       slashEnabled: true, // Enable status slash command.
       prefixEnable: true, // Enable status prefix command.
+      alias: ['info'], // Alias for status prefix commands.
       onlineEmbed: {
         title: ':green_circle: ONLINE',
         // Here the Player List Embed title and description from players embed above (line: 134)
@@ -167,6 +167,7 @@ module.exports = {
     motd: {
       slashEnabled: true, // Enable motd slash command.
       prefixEnable: true, // Enable motd prefix command.
+      alias: [], // Alias for motd prefix commands.
       embed: {
         title: '__**MOTD**__',
         description: `**{motd}**`,
@@ -176,8 +177,9 @@ module.exports = {
     help: {
       slashEnabled: true, // Enable help slash command.
       prefixEnable: true, // Enable help prefix command.
+      alias: ['commands'], // Alias for help prefix commands.
       embed: {
-        title: '__**COMMAND LIST**__',
+        title: '__**COMMANDS LIST**__',
         description: `
        **{prefix}\`help\`**: Shows a list of available commands.
        **{prefix}\`ip\`**: Sends the Server address of the Minecraft Server.

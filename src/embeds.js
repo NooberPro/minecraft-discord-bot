@@ -14,9 +14,7 @@ const siteEmbed = new EmbedBuilder()
     name: mcserver.name,
   })
   .setTitle(commands.site.embed.title)
-  .setDescription(
-    commands.site.embed.description.replace(/\{site\}/gi, mcserver.site)
-  );
+  .setDescription(commands.site.embed.description.replace(/\{site\}/gi, mcserver.site));
 
 // Embed Message for version commands
 const versionEmbed = new EmbedBuilder()
@@ -26,12 +24,7 @@ const versionEmbed = new EmbedBuilder()
     name: mcserver.name,
   })
   .setTitle(commands.version.embed.title)
-  .setDescription(
-    commands.version.embed.description.replace(
-      /\{version\}/gi,
-      mcserver.version
-    )
-  );
+  .setDescription(commands.version.embed.description.replace(/\{version\}/gi, mcserver.version));
 
 // Embed Message for ip commands
 const ipEmbed = new EmbedBuilder()
@@ -74,9 +67,7 @@ const motdEmbed = async () => {
         name: mcserver.name,
       })
       .setTitle(commands.motd.embed.title)
-      .setDescription(
-        commands.motd.embed.description.replace(/\{motd\}/gi, data.motd.clean)
-      )
+      .setDescription(commands.motd.embed.description.replace(/\{motd\}/gi, data.motd.clean))
       .setFooter({ text: 'Checked at' })
       .setTimestamp();
   }
@@ -110,8 +101,7 @@ const playerList = async () => {
 // Online Embed Message for status commands
 const statusEmbed = async () => {
   const { getServerDataAndPlayerList } = require('./index');
-  const { data, playerListArray, isOnline } =
-    await getServerDataAndPlayerList();
+  const { data, playerListArray, isOnline } = await getServerDataAndPlayerList();
   if (isOnline) {
     return await OnlineEmbed(data, playerListArray);
   } else {
@@ -152,15 +142,40 @@ const OnlineEmbed = async (data, playerlist) => {
 const helpEmbed = (client) => {
   return new EmbedBuilder()
     .setTitle(commands.help.embed.title)
+    .setColor('Aqua')
     .setAuthor({
       name: client.user.username,
       iconURL: client.user.avatarURL(),
     })
+    .setDescription(commands.help.embed.description.replace(/\{prefix\}/gi, commands.prefixCommands.prefix));
+};
+
+const botInfoEmbed = async (interaction, client) => {
+  const process = require('node:process');
+  const reply = await interaction.fetchReply();
+  const ping = reply.createdTimestamp - interaction.createdTimestamp;
+  const os = require('os');
+  const cpuUsage = (os.loadavg()[0] / os.cpus().length).toFixed(2);
+  const memoryUsage = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2);
+  const nodeVersion = process.version;
+  const uptimeSeconds = Math.floor(process.uptime());
+  const uptimeMinutes = Math.floor(uptimeSeconds / 60) % 60;
+  const uptimeHours = Math.floor(uptimeMinutes / 60) % 24;
+  const uptimeDays = Math.floor(uptimeHours / 24);
+  return new EmbedBuilder()
+    .setAuthor({
+      name: client.user.tag,
+      iconURL: client.user.avatarURL(),
+    })
+    .setTitle('**Bot Info and Stats**')
+    .setColor('Yellow')
     .setDescription(
-      commands.help.embed.description.replace(
-        /\{prefix\}/gi,
-        commands.prefixCommands.prefix
-      )
+      `**CPU Usage: \`${cpuUsage}%\`
+      Memory Usage: \`${memoryUsage}MB\`
+      Node.js Version: \`${nodeVersion}\`
+      Bot uptime: \`${uptimeDays}\` days, \`${uptimeHours}\` hours, \`${uptimeMinutes}\`, minutes, \`${uptimeSeconds}\` seconds
+      Ping: Client \`${ping}ms\` | Websocket: \`${client.ws.ping}ms\` **
+      `
     );
 };
 module.exports = {
@@ -174,4 +189,5 @@ module.exports = {
   OnlineEmbed,
   motdEmbed,
   helpEmbed,
+  botInfoEmbed,
 };
