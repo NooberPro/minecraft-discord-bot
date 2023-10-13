@@ -23,32 +23,28 @@ module.exports = async (message, client) => {
   const prefix = commands.prefixCommands.prefix;
   const content = message.content.slice(prefix.length);
 
-  if (content === 'help' || (commands.help.alias.includes(content) && commands.help.prefixEnable)) {
-    message.channel.send({ embeds: [helpEmbed(client)] });
+  if (commands.help.enabled && (content === 'help' || commands.help.alias.includes(content))) {
+    message.channel.send({ embeds: [await helpEmbed(client)] });
   }
-  if (content === 'motd' || (commands.motd.alias.includes(content) && commands.motd.prefixEnable)) {
+  if (commands.motd.enabled && (content === 'motd' || commands.motd.alias.includes(content))) {
     await message.channel.sendTyping();
     message.channel.send({ embeds: [await motdEmbed()] });
   }
-  if (content === 'ip' || (commands.ip.alias.includes(content) && commands.ip.prefixEnable)) {
+  if (commands.ip.enabled && (content === 'ip' || commands.ip.alias.includes(content))) {
     message.channel.send({ embeds: [ipEmbed] });
   }
-  if (
-    (content === 'site' || commands.site.alias.includes(content)) &&
-    commands.site.prefixEnable &&
-    config.mcserver.site
-  ) {
+  if (commands.site.enabled && config.mcserver.site && (content === 'site' || commands.site.alias.includes(content))) {
     message.channel.send({ embeds: [siteEmbed] });
   }
-  if (content === 'version' || (commands.version.alias.includes(content) && commands.version.prefixEnable)) {
+  if (commands.version.enabled && (content === 'version' || commands.version.alias.includes(content))) {
     message.channel.send({ embeds: [versionEmbed] });
   }
 
-  if (content === 'players' || (commands.players.alias.includes(content) && commands.players.prefixEnable)) {
+  if (commands.players.enabled && (content === 'players' || commands.players.alias.includes(content))) {
     await message.channel.sendTyping();
     message.channel.send({ embeds: [await playerList()] });
   }
-  if (content === 'status' || (commands.status.alias.includes(content) && commands.status.prefixEnable)) {
+  if (commands.status.enabled && (content === 'status' || commands.status.alias.includes(content))) {
     await message.channel.sendTyping();
     try {
       message.channel.send({ embeds: [await statusEmbed()] });

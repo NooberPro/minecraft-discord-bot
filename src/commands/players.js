@@ -19,6 +19,6 @@ module.exports = {
     }
   },
   options: {
-    deleted: !commands.players.slashEnabled || !commands.slashCommands, // Deletes the command from Discord
+    deleted: !commands.players.enabled || !commands.slashCommands, // Deletes the command from Discord
   },
 };

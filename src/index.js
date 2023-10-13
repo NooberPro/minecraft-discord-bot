@@ -7,6 +7,10 @@ const chalk = require('chalk');
 const fs = require('fs');
 const { CommandKit } = require('commandkit');
 const process = require('node:process');
+const json5 = require('json5');
+
+const fileContents = fs.readFileSync(`./translation/${config.commands.language}.json5`, 'utf8');
+embedReadData = json5.parse(fileContents);
 
 const client = new Client({
   intents: [
@@ -70,8 +74,8 @@ process.on('unhandledRejection', (reason) => {
 const groupPlayerList = (playerListArrayRaw) => {
   let playerListArray = [
     {
-      name: config.commands.players.embed.title,
-      value: config.commands.players.embed.description
+      name: embedReadData.players.title,
+      value: embedReadData.players.description
         .replace(/\{playeronline\}/gi, playerListArrayRaw.online)
         .replace(/\{playermax\}/gi, playerListArrayRaw.max),
     },
@@ -118,8 +122,8 @@ const getPlayersList = async (playerListRaw) => {
   try {
     let playerListArray = [
       {
-        name: config.commands.players.embed.title,
-        value: config.commands.players.embed.description
+        name: embedReadData.players.title,
+        value: embedReadData.players.description
           .replace(/\{playeronline\}/gi, playerListRaw.online)
           .replace(/\{playermax\}/gi, playerListRaw.max),
       },

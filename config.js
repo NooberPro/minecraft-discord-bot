@@ -81,7 +81,6 @@ module.exports = {
       // Use {site} for site
       replyText: "The server's website link: **<{site}>**",
     },
-
     status: {
       enabled: true,
       triggerWords: ['is server online?', 'is server offline', 'status of the server'],
@@ -90,105 +89,43 @@ module.exports = {
       offlineReply: 'The server is **`🔴OFFLINE`**.',
     },
   },
+
   commands: {
     slashCommands: true, // Enables all slash commands
     prefixCommands: {
       enabled: true,
       prefix: '!', // Prefix for normal command.
     }, // Enables all prefix commands
+
+    // en(English), es(Spanish), de(German), fr(French), pt(Portuguese), ru(Russian)
+    language: 'en', // Works only for embeds. (files in ./translation/)
     ip: {
-      slashEnabled: true, // Enable ip slash command.
-      prefixEnable: true, // Enable ip prefix command.
+      enabled: true, // Enables ip command.
       alias: ['ip-address'], // Alias for ip prefix commands.
-      // Embed message customization or translating
-      embed: {
-        title: '__**SERVER ADDRESS**__',
-        description: `**{ip}**`,
-      },
     },
     site: {
-      slashEnabled: true, // Enable site slash command.
-      prefixEnable: true, // Enable site prefix command.
+      enabled: true, // Enables ip command.
       alias: ['vote', 'link'], // Alias for site prefix commands.
-      embed: {
-        title: '__**WEBSITE**__',
-        description: `**Link: {site}**`,
-      },
     },
     version: {
-      slashEnabled: true, // Enable version slash command.
-      prefixEnable: true, // Enable version prefix command.
+      enabled: true, // Enables ip command.
       alias: [], // Alias for version prefix commands.
-      embed: {
-        title: '__**VERSION**__',
-        description: `**{version}**`,
-      },
-    },
-    // Embed for offline status.
-    offlineEmbed: {
-      title: ':red_circle: OFFLINE',
-      description: '', // Leave description blank to disable it.
     },
     players: {
-      slashEnabled: true, // Enable players slash command.
-      prefixEnable: true, // Enable players prefix command.
+      enabled: true, // Enables ip command.
       alias: ['plist'], // Alias for players prefix commands.
-      embed: {
-        title: '__**PLAYERS**__',
-        description: '**{playeronline}/{playermax}**',
-        // After description will be the Player Name List.
-        // Shows offline Embed when MC server is offline.
-      },
     },
     status: {
-      slashEnabled: true, // Enable status slash command.
-      prefixEnable: true, // Enable status prefix command.
+      enabled: true, // Enables ip command.
       alias: ['info'], // Alias for status prefix commands.
-      onlineEmbed: {
-        title: ':green_circle: ONLINE',
-        // Here the Player List Embed title and description from players embed above (line: 134)
-
-        // After player List Field will be description.
-        description: `
-        __**MOTD**__
-        **{motd}**
-
-        __**SERVER ADDRESS**__
-        **{ip}**
-
-        __**VERSION**__
-        **{version}**
-
-        __**WEBSITE**__
-        **Link: {site}**`,
-      },
-      // Shows offline Embed when MC server is offline
     },
     motd: {
-      slashEnabled: true, // Enable motd slash command.
-      prefixEnable: true, // Enable motd prefix command.
+      enabled: true, // Enables ip command.
       alias: [], // Alias for motd prefix commands.
-      embed: {
-        title: '__**MOTD**__',
-        description: `**{motd}**`,
-      },
-      // Shows offline Embed when MC server is offline
     },
     help: {
-      slashEnabled: true, // Enable help slash command.
-      prefixEnable: true, // Enable help prefix command.
+      enabled: true, // Enables ip command.
       alias: ['commands'], // Alias for help prefix commands.
-      embed: {
-        title: '__**COMMANDS LIST**__',
-        description: `
-       **{prefix}\`help\`**: Shows a list of available commands.
-       **{prefix}\`ip\`**: Sends the Server address of the Minecraft Server.
-       **{prefix}\`motd\`**: Sends the Minecraft Server's Message Of The Day (MOTD).
-       **{prefix}\`players\`**: Sends the list of online player in the Minecraft Server.
-       **{prefix}\`status\`**: Sends the current status of the Minecraft Server.
-       **{prefix}\`version\`**: Sends the version required for the Minecraft Server.
-       **{prefix}\`site\`**: Sends the Minecraft Server's website/vote link.`,
-      },
     },
   },
 };

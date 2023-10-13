@@ -7,6 +7,6 @@ module.exports = {
     interaction.reply({ embeds: [ipEmbed] });
   },
   options: {
-    deleted: !commands.ip.slashEnabled || !commands.slashCommands, // Deletes the command from Discord
+    deleted: !commands.ip.enabled || !commands.slashCommands, // Deletes the command from Discord
   },
 };

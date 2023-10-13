@@ -2,8 +2,8 @@ const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const { botInfoEmbed } = require('../embeds');
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('botinfo')
-    .setDescription('Sends the CPU, Memory Stats of the Bot.')
+    .setName('info')
+    .setDescription('Sends the current info about the bot.')
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   run: async ({ interaction, client }) => {
     interaction.deferReply({
@@ -16,13 +16,13 @@ module.exports = {
       });
     } catch (error) {
       interaction.editReply({
-        content: 'Error with getting Bot Info',
+        content: 'Error with getting Info',
         ephemeral: true,
       });
       const { settings } = require('../../config');
       if (settings.logging.error) {
         const { getError } = require('../index');
-        console.log(getError(error, 'Slash command - Botinfo'));
+        console.log(getError(error, 'Slash command - info'));
       }
     }
   },

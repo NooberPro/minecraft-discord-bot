@@ -1,0 +1,53 @@
+// https://github.com/NooberPro/minecraft-discord-bot
+// Английский перевод (ru) от AI
+
+{
+  ip: {
+    // Переменные: {ip}
+    title: '__**АДРЕС СЕРВЕРА**__',
+    description: '**{ip}**',
+  },
+  site: {
+    // Переменные: {site}
+    title: '__**САЙТ**__',
+    description: '**Ссылка: {site}**',
+  },
+  version: {
+    // Переменные: {version}
+    title: '__**ВЕРСИЯ**__',
+    description: '**{version}**',
+  },
+  offlineEmbed: {
+    // Переменные: {ip}, {version}, {site}
+    title: ':red_circle: ОФФЛАЙН',
+    description: '', // Оставьте описание пустым, чтобы отключить его.
+  },
+  players: {
+    // Переменные: {playeronline}, {playermax}
+    title: '__**ИГРОКИ**__',
+    description: '**{playeronline}/{playermax}**',
+    // После описания будет список имен игроков.
+    // Показывает оффлайн-встраивание при отключении MC-сервера.
+  },
+  motd: {
+    // Переменные: {motd}
+    title: '__**MOTD**__',
+    description: '**{motd}**',
+  },
+  onlineEmbed: {
+    // Переменные: {ip}, {motd}, {version}, {site}
+    title: ':green_circle: ОНЛАЙН',
+    // Здесь заголовок и описание встраивания списка игроков из встраивания players выше (строка: 26).
+
+    // После поля списка игроков будет описание.
+    description_field_one: '__**MOTD**__\n**{motd}**\n\n__**АДРЕС СЕРВЕРА**__\n**{ip}**',
+    description_field_two: '__**ВЕРСИЯ**__\n**{version}**\n\n__**САЙТ**__\n**Ссылка: {site}**',
+  },
+  help: {
+    // Переменные: {prefix}, {botName}
+    title: '__**СПИСОК КОМАНД**__',
+    description: '**Префикс: `{prefix}`**',
+    // Переменные только для listFormat: {cmdDescription}, {cmdSlashMention}
+    listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
+  },
+}

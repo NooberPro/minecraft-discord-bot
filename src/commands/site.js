@@ -9,6 +9,6 @@ module.exports = {
   },
   options: {
     // Deletes the command from Discord
-    deleted: !commands.site.slashEnabled || !commands.slashCommands || !mcserver.site,
+    deleted: !commands.site.enabled || !commands.slashCommands || !mcserver.site,
   },
 };
