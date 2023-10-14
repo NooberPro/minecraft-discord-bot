@@ -1,0 +1,53 @@
+// https://github.com/NooberPro/minecraft-discord-bot
+// Tradução para o português (pt) por AI
+
+{
+  ip: {
+    // Variáveis: {ip}
+    title: '__**ENDEREÇO DO SERVIDOR**__',
+    description: '**{ip}**',
+  },
+  site: {
+    // Variáveis: {site}
+    title: '__**WEBSITE**__',
+    description: '**Link: {site}**',
+  },
+  version: {
+    // Variáveis: {version}
+    title: '__**VERSÃO**__',
+    description: '**{version}**',
+  },
+  offlineEmbed: {
+    // Variáveis: {ip}, {version}, {site}
+    title: ':red_circle: OFFLINE',
+    description: '', // Deixe a descrição em branco para desativá-la.
+  },
+  players: {
+    // Variáveis: {playeronline}, {playermax}
+    title: '__**JOGADORES**__',
+    description: '**{playeronline}/{playermax}**',
+    // Após a descrição, será exibida a lista de nomes de jogadores.
+    // Mostra o Embed de Offline quando o servidor MC está offline.
+  },
+  motd: {
+    // Variáveis: {motd}
+    title: '__**MOTD**__',
+    description: '**{motd}**',
+  },
+  onlineEmbed: {
+    // Variáveis: {ip}, {motd}, {version}, {site}
+    title: ':green_circle: ONLINE',
+    // Aqui, o título e a descrição do Embed da Lista de Jogadores são provenientes do Embed de Jogadores acima (linha: 26)
+
+    // Após o campo da lista de jogadores, haverá a descrição.
+    description_field_one: '__**MOTD**__\n**{motd}**\n\n__**ENDEREÇO DO SERVIDOR**__\n**{ip}**',
+    description_field_two: '__**VERSÃO**__\n**{version}**\n\n__**WEBSITE**__\n**Link: {site}**',
+  },
+  help: {
+    // Variáveis: {prefix}, {botName}
+    title: '__**LISTA DE COMANDOS**__',
+    description: '**Prefixo: `{prefix}`**',
+    // Variáveis apenas para listFormat: {cmdDescription}, {cmdSlashMention}
+    listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
+  },
+}

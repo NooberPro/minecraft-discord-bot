@@ -1,12 +1,14 @@
-const { SlashCommandBuilder } = require('discord.js');
-const { helpEmbed } = require('../embeds');
-const { commands } = require('../../config');
+const { SlashCommandBuilder } = require('discord.js')
+const { helpEmbed } = require('../embeds')
+const { commands } = require('../../config')
 module.exports = {
-  data: new SlashCommandBuilder().setName('help').setDescription('Sends the the List of availabe commands.'),
-  run: ({ interaction, client }) => {
-    interaction.reply({ embeds: [helpEmbed(client)] });
+  data: new SlashCommandBuilder().setName('help').setDescription('Sends the the list of availabe commands.'),
+  run: async ({ interaction, client }) => {
+    await interaction.deferReply()
+    await interaction.editReply({ embeds: [await helpEmbed(client)] })
   },
   options: {
-    deleted: !commands.help.slashEnabled || !commands.slashCommands, // Deletes the command from Discord
+    guildOnly: true,
+    deleted: !commands.help.enabled || !commands.slashCommands, // Deletes the command from Discord
   },
-};
+}

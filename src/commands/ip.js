@@ -1,12 +1,13 @@
-const { SlashCommandBuilder } = require('discord.js');
-const { ipEmbed } = require('../embeds');
-const { commands } = require('../../config');
+const { SlashCommandBuilder } = require('discord.js')
+const { ipEmbed } = require('../embeds')
+const { commands } = require('../../config')
 module.exports = {
   data: new SlashCommandBuilder().setName('ip').setDescription('Sends the Server Address of the Minecraft Server.'),
   run: ({ interaction }) => {
-    interaction.reply({ embeds: [ipEmbed] });
+    interaction.reply({ embeds: [ipEmbed] })
   },
   options: {
-    deleted: !commands.ip.slashEnabled || !commands.slashCommands, // Deletes the command from Discord
+    deleted: !commands.ip.enabled || !commands.slashCommands, // Deletes the command from Discord
+    guildOnly: true,
   },
-};
+}

@@ -1,0 +1,54 @@
+// https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin : https://crowdin.com/project/minecraft-discord-bot
+// Français traduction par l'IA
+
+{
+  ip: {
+    // Variables : {ip}
+    title: '__**ADRESSE DU SERVEUR**__',
+    description: '**{ip}**',
+  },
+  site: {
+    // Variables : {site}
+    title: '__**SITE WEB**__',
+    description: '**Lien : {site}**',
+  },
+  version: {
+    // Variables : {version}
+    title: '__**VERSION**__',
+    description: '**{version}**',
+  },
+  offlineEmbed: {
+    // Variables : {ip},{version}, {site}
+    title: ':red_circle: HORS LIGNE',
+    description: '', // Laissez la description vide pour la désactiver.
+  },
+  players: {
+    // Variables : {playeronline}, {playermax}
+    title: '__**JOUEURS**__',
+    description: '**{playeronline}/{playermax}**',
+    // Après la description, la liste des noms de joueurs sera affichée.
+    // Affiche l'incorporation "Hors ligne" lorsque le serveur MC est hors ligne.
+  },
+  motd: {
+    // Variables : {motd}
+    title: '__**MOTD**__',
+    description: '**{motd}**',
+  },
+  onlineEmbed: {
+    // Variables : {ip}, {motd}, {version}, {site}
+    title: ':green_circle: EN LIGNE',
+    // Ici, le titre et la description de l'incorporation de la liste des joueurs à partir de l'incorporation des joueurs ci-dessus (ligne : 26)
+
+    // Après le champ de liste des joueurs, la description suivra.
+    description_field_one: '__**MOTD**__\n**{motd}**\n\n__**ADRESSE DU SERVEUR**__\n**{ip}**',
+    description_field_two: '__**VERSION**__\n**{version}**\n\n__**SITE WEB**__\n**Lien : {site}**',
+  },
+  help: {
+    // Variables : {prefix}, {botName}
+    title: '__**LISTE DES COMMANDES**__',
+    description: '**Préfixe : `{prefix}`**',
+    // Variables pour le format de liste uniquement : {cmdDescription}, {cmdSlashMention}
+    listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
+  },
+}
