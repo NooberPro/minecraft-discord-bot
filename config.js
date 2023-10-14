@@ -128,4 +128,4 @@ module.exports = {
       alias: ['commands'], // Alias for help prefix commands.
     },
   },
-};
+}

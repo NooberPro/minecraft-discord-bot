@@ -16,6 +16,7 @@ This bot code uses **node-mcstatus npm package** for getting status of Minecraft
 ## [🔗 COMPLETE FEATURE WITH IMAGES HERE](https://nooberpro.gitbook.io/minecraft-discord-bot/#what-can-this-bot-do)
 
 - **Fully customizable [config](config.js).**
+- **Full translation for `English`, `Spanish`, `German`, `French`, `Portuguese`, `Russian`.**
 - **Auto Changing Status Message with player list.**
 - **Support for Both Java and Bedrock server.**
 - **Auto updating bot's status with player count.**
