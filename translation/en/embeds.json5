@@ -1,7 +1,9 @@
 // Github: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
 // English translation (en) by NooberPro
 
 {
+  // Translation for commands embeds.
   ip: {
     // Variables: {ip}
     title: '__**SERVER ADDRESS**__',

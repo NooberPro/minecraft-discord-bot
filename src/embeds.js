@@ -8,8 +8,8 @@ const ip = mcserver.type === 'bedrock' ? ipBedrock : ipJava
 const fs = require('fs')
 const json5 = require('json5')
 
-const fileContents = fs.readFileSync(`./translation/${commands.language}.json5`, 'utf8')
-embedReadData = json5.parse(fileContents)
+const fileContents = fs.readFileSync(`./translation/${commands.language}/embeds.json5`, 'utf8')
+const embedReadData = json5.parse(fileContents)
 
 // Embed Message for site commands
 const siteEmbed = new EmbedBuilder()
@@ -161,7 +161,10 @@ const OnlineEmbed = async (data, playerlist) => {
       .setTimestamp()
       .setFooter({ text: `Checked at` })
   } catch (error) {
-    console.log(error)
+    if (settings.logging.error) {
+      const { getError } = require('./index')
+      console.log(getError(error, 'Status command Embed'))
+    }
   }
 }
 

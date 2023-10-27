@@ -20,12 +20,12 @@ module.exports = {
   },
   mcserver: {
     ip: 'demo.mcstatus.io', // IP of  MC server.
-    port: 25565, // Port number of MC server. Default Port - Java: 25565, Bedrock: 19132.
-    type: 'java', // Type of MC server: "java" or "bedrock". Use Query Port in Java for full Player List.
+    port: 25565, // Port number of MC server. Use Query Port in Java for full Player List.
+    type: 'java', // Type of MC server: "java" or "bedrock".
     name: 'Demo Server', // Name of MC server.
     version: 'Requires 1.8 - 1.20', // Version of MC server.
     icon: 'https://i.imgur.com/6Msem8Q.png', // URL of MC server icon. How? https://tinyurl.com/iconurl
-    site: 'https://nooberpro.gitbook.io/', // URL of MC server/vote website like https://nooberpro.gitbook.io/.
+    site: 'https://nooberpro.gitbook.io/', // URL of MC server or vote website.
     // To disable site commands leave site field blank. NOT REQUIRED
   },
 
@@ -66,27 +66,18 @@ module.exports = {
     version: {
       enabled: true,
       triggerWords: ['version of the server?', 'version'],
-      // Use {version} to get the version in the config
-      replyText: "The server's version: **`{version}`**",
     },
     ip: {
       enabled: true,
       triggerWords: ['ip of the server', 'ip'],
-      // Use {ip} for ip and {port} for port.
-      replyText: '**IP: `{ip}`\nPort: `{port}`**',
     },
     site: {
       enabled: true,
-      triggerWords: ['website link', 'website', 'url', 'site', 'vote url'],
-      // Use {site} for site
-      replyText: "The server's website link: **<{site}>**",
+      triggerWords: ['website link', 'website', 'url', 'site', 'vote url', 'link'],
     },
     status: {
       enabled: true,
       triggerWords: ['is server online?', 'is server offline', 'status of the server'],
-      // Use {playerOnline} for players online no. and {playerMax} for players max no. Only work in onlineReply.
-      onlineReply: 'The server is **`🟢ONLINE`** with **`{playerOnline}/{playerMax}`** players playing.',
-      offlineReply: 'The server is **`🔴OFFLINE`**.',
     },
   },
 
@@ -99,6 +90,7 @@ module.exports = {
 
     // en(English), es(Spanish), de(German), fr(French), pt(Portuguese), ru(Russian)
     language: 'en', // Works only for embeds. (files in ./translation/)
+
     ip: {
       enabled: true, // Enables ip command.
       alias: ['ip-address'], // Alias for ip prefix commands.

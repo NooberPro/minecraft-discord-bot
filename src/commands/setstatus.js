@@ -59,7 +59,6 @@ module.exports = {
   },
   options: {
     guildOnly: true,
-    userPermissions: ['ManageChannels', 'ModerateMembers', 'ManageThreads'],
     deleted: false,
   },
 }

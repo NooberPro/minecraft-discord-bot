@@ -30,11 +30,12 @@ module.exports = async (client) => {
     const ip = config.mcserver.type === 'bedrock' ? config.mcserver.ip : ipJava
     console.log(
       chalk.keyword('orange')(
-        `Currently could not locate the Minecraft with:\n----------------------------------------------\nIP   | ${chalk.red.bold(
-          ip
-        )}\nPORT | ${chalk.red(config.mcserver.port)}\nTYPE | ${chalk.red.bold(
-          config.mcserver.type.charAt(0).toUpperCase() + config.mcserver.type.slice(1)
-        )}\n----------------------------------------------`
+        'Currently could not locate the Minecraft with:' +
+          '\n----------------------------------------------\n' +
+          `IP   | ${chalk.red.bold(ip)}\n` +
+          `PORT | ${chalk.red(config.mcserver.port)}\n` +
+          `TYPE | ${chalk.red.bold(config.mcserver.type.charAt(0).toUpperCase() + config.mcserver.type.slice(1))}\n` +
+          `----------------------------------------------`
       )
     )
   }

@@ -9,8 +9,8 @@ const { CommandKit } = require('commandkit')
 const process = require('node:process')
 const json5 = require('json5')
 
-const fileContents = fs.readFileSync(`./translation/${config.commands.language}.json5`, 'utf8')
-embedReadData = json5.parse(fileContents)
+const fileContents = fs.readFileSync(`./translation/${config.commands.language}/embeds.json5`, 'utf8')
+const embedReadData = json5.parse(fileContents)
 
 const client = new Client({
   intents: [
@@ -157,7 +157,7 @@ const getServerDataAndPlayerList = async () => {
     }
   } catch (error) {
     if (config.settings.logging.error) {
-      console.log(getError(error, 'Retrieving Mc Server data and PlayerList'))
+      console.log(getError(error, 'Retrieving MC Server data and PlayerList'))
     }
   }
 }
@@ -172,7 +172,7 @@ const getServerDataOnly = async () => {
     return { data, isOnline }
   } catch (error) {
     if (config.settings.logging.error) {
-      console.log(getError(error, 'Retrieving Mc Server data'))
+      console.log(getError(error, 'Retrieving MC Server data'))
     }
   }
 }

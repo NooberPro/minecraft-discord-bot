@@ -28,6 +28,6 @@ module.exports = {
   },
   options: {
     guildOnly: true,
-    deleted: !commands.slashCommands, // Deletes the command from Discord
+    deleted: false, // Deletes the command from Discord
   },
 }

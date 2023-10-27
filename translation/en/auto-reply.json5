@@ -1,0 +1,24 @@
+// Github: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
+// English translation (en) by NooberPro
+
+{
+  // Translation for auto-reply feature
+  version: {
+    // Use {version} to get the version in the config
+    replyText: "The server's version: **`{version}`**",
+  },
+  ip: {
+    // Use {ip} for ip and {port} for port.
+    replyText: '**IP: `{ip}`\nPort: `{port}`**',
+  },
+  site: {
+    // Use {site} for site
+    replyText: "The server's website link: **<{site}>**",
+  },
+  status: {
+    // Use {playerOnline} for players online no. and {playerMax} for players max no. Only work in onlineReply.
+    onlineReply: 'The server is **`🟢ONLINE`** with **`{playerOnline}/{playerMax}`** players playing.',
+    offlineReply: 'The server is **`🔴OFFLINE`**',
+  },
+}
