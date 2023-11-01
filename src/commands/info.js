@@ -19,11 +19,8 @@ module.exports = {
         content: 'Error with getting Info',
         ephemeral: true,
       })
-      const { settings } = require('../../config')
-      if (settings.logging.error) {
-        const { getError } = require('../index')
-        console.log(getError(error, 'Slash command - info'))
-      }
+      const { getError } = require('../index')
+      getError(error, 'infoCmd')
     }
   },
   options: {

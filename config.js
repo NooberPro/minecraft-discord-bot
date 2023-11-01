@@ -46,7 +46,7 @@ module.exports = {
   autoChangeStatus: {
     enabled: false,
     updateInterval: 60, // Time period between auto changing status in seconds, e.g. 60 = 1min. Recommended: above 60.
-    // These settings will be applied in (/) and prefix commands for status.
+    // These settings will be applied in slash (/) and prefix commands for status.
     isOnlineCheck: true, // Useful for servers which uses free hosting providers like Aternos. If the server's max players is 0 then status will set offline.
   },
 

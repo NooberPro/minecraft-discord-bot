@@ -12,9 +12,7 @@ module.exports = (client) => {
       setInterval(statusMessageEdit, config.autoChangeStatus.updateInterval * 1000)
     }
   } catch (error) {
-    if (config.settings.logging.error) {
-      const { getError } = require('../../index')
-      console.log(getError(error, 'ChannelId check update'))
-    }
+    const { getError } = require('../../index.js')
+    getError(error, 'channelIdCheck')
   }
 }

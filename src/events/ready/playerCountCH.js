@@ -1,7 +1,10 @@
 const chalk = require('chalk')
-const { playerCountCH, settings } = require('../../../config')
-const { getServerDataOnly, getDebug, getError, getDateNow } = require('../../index')
+const { playerCountCH, commands } = require('../../../config')
+const { getServerDataOnly, getDebug, getError } = require('../../index')
 const fs = require('node:fs')
+const json5 = require('json5')
+const consoleLogData = fs.readFileSync(`./translation/${commands.language}/console-log.json5`, 'utf8')
+const consoleLog = json5.parse(consoleLogData)
 
 module.exports = async (client) => {
   const playerCountUpdate = async (channelId) => {
@@ -16,31 +19,24 @@ module.exports = async (client) => {
       await channel.edit({
         name: statusName,
       })
-      if (settings.logging.debug) {
-        console.log(
-          getDebug(
-            'Player Count channel name is updated to',
-            isOnline ? chalk.green(statusName) : chalk.red(statusName)
-          )
+      getDebug(
+        consoleLog.debug.playerCountChUpdate.replace(
+          /\{updatedName\}/gi,
+          isOnline ? chalk.green(statusName) : chalk.red(statusName)
         )
-      }
+      )
     } catch (error) {
-      if (settings.logging.error) {
-        console.log(getError(error, 'Player Count Channel name update'))
-      }
+      getError(error, 'playerCountChNameUpdate')
     }
   }
   try {
     if (!playerCountCH.enabled) return
     const guild = client.guilds.cache.get(playerCountCH.guildID)
     if (!guild) {
-      console.error(
-        `${chalk.gray(getDateNow())} | ${chalk.keyword('orange')('WARN')} | ${chalk.bold(
-          `The guild with ID: ${chalk.yellow(
-            `\`${playerCountCH.guildID}\``
-          )} was not found or the bot is not in the guild.`
-        )}`
-      )
+      let error = {
+        message: consoleLog.playerCountCh.playerCountChGuildIncorrect.replace(/\{guildID\}/gi, playerCountCH.guildID),
+      }
+      getError(error, '')
       process.exit(1)
     }
     const dataIDS = JSON.parse(fs.readFileSync('./src/data.json', 'utf-8'))
@@ -48,7 +44,9 @@ module.exports = async (client) => {
       if (playerCountCH.channelId) {
         const channel = client.channels.cache.get(playerCountCH.channelId)
         if (channel) {
-          console.log(`Successfully founded channel: ${chalk.cyan(channel.name)} channel for Player Count.`)
+          console.log(
+            consoleLog.playerCountCh.playerCountChannelFound.replace(/\{channelName\}/gi, chalk.cyan(channel.name))
+          )
           dataIDS.playerCountStats = channel.id
           fs.writeFile('./src/data.json', JSON.stringify(dataIDS, null, 2), (err) => {
             if (err) {
@@ -56,13 +54,13 @@ module.exports = async (client) => {
             }
           })
         } else {
-          console.error(
-            `${chalk.gray(getDateNow())} | ${chalk.keyword('orange')('WARN')} | ${chalk.bold(
-              `The channel for Player Count with ID: ${chalk.yellow(
-                `\`${playerCountCH.channelId}\``
-              )} was not found or the bot has no access for channel.`
-            )}`
-          )
+          let error = {
+            message: consoleLog.playerCountCh.playerCountChannelFound.replace(
+              /\{channelId\}/gi,
+              chalk.cyan(playerCountCH.channelId)
+            ),
+          }
+          getError(error, '')
           process.exit(1)
         }
       } else {
@@ -85,12 +83,14 @@ module.exports = async (client) => {
           ],
         })
         dataIDS.playerCountStats = channel.id
-        fs.writeFile('./src/data.json', JSON.stringify(dataIDS, null, 2), (err) => {
-          if (err) {
-            console.error(err)
+        fs.writeFile('./src/data.json', JSON.stringify(dataIDS, null, 2), (error) => {
+          if (error) {
+            getError(error, 'playerCountChDateWrite')
           }
         })
-        console.log(`Created a channel for Player Count and has updated its name to: ${chalk.cyan(statusName)}`)
+        console.log(
+          consoleLog.playerCountCh.playerCountChannelCreated.replace(/\{updatedStatus\}/gi, chalk.cyan(statusName))
+        )
         setInterval(() => {
           playerCountUpdate(dataIDS.playerCountStats)
         }, 60000)
@@ -102,8 +102,6 @@ module.exports = async (client) => {
       }, 60000)
     }
   } catch (error) {
-    if (settings.logging.error) {
-      console.log(getError(error, 'Player Count Channel'))
-    }
+    getError(error, 'playerCountCh')
   }
 }

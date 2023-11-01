@@ -37,9 +37,7 @@ module.exports = async (msg) => {
       )
     }
   } catch (error) {
-    if (settings.logging.error) {
-      const { getError } = require('../../index')
-      console.log(getError(error, 'Auto Reply'))
-    }
+    const { getError } = require('../../index')
+    getError(error, 'autoReply')
   }
 }

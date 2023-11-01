@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require('discord.js')
-const { mcserver, settings, commands } = require('../config')
+const { mcserver, commands } = require('../config')
 const icon = mcserver.icon
 const ipBedrock = `IP: \`${mcserver.ip}\`\nPort: \`${mcserver.port}\``
 const port = mcserver.port === 25565 ? '' : `:\`${mcserver.port}\``
@@ -56,7 +56,7 @@ const offlineStatus = () => {
       name: mcserver.name,
     })
     .setTimestamp()
-    .setFooter({ text: 'Checked at' })
+    .setFooter({ text: embedReadData.offlineEmbed.footer })
   if (embedReadData.offlineEmbed.description) {
     offlineEmbed.setDescription(
       embedReadData.offlineEmbed.description
@@ -103,13 +103,11 @@ const playerList = async () => {
         })
         .addFields(playerListArray)
         .setTimestamp()
-        .setFooter({ text: 'Checked at' })
+        .setFooter({ text: embedReadData.offlineEmbed.footer })
     }
   } catch (error) {
-    if (settings.logging.error) {
-      const { getError } = require('./index')
-      console.log(getError(error, 'Player command Embed'))
-    }
+    const { getError } = require('./index')
+    getError(error, 'playerEmbed')
   }
 }
 
@@ -159,12 +157,10 @@ const OnlineEmbed = async (data, playerlist) => {
         value: description_field_two,
       })
       .setTimestamp()
-      .setFooter({ text: `Checked at` })
+      .setFooter({ text: embedReadData.onlineEmbed.footer })
   } catch (error) {
-    if (settings.logging.error) {
-      const { getError } = require('./index')
-      console.log(getError(error, 'Status command Embed'))
-    }
+    const { getError } = require('./index')
+    getError(error, 'statusEmbed')
   }
 }
 
@@ -221,17 +217,22 @@ const botInfoEmbed = async (interaction, client) => {
       name: client.user.tag,
       iconURL: client.user.avatarURL(),
     })
-    .setTitle('**Bot Info and Stats**')
+    .setTitle(embedReadData.info.title)
     .setColor('Yellow')
     .setDescription(
-      `**CPU Usage: \`${cpuUsage}%\`
-      Memory Usage: \`${memoryUsage}MB\`
-      Node.js Version: \`${nodeVersion}\`
-      Bot uptime: \`${uptimeDays}\` days, \`${uptimeHours}\` hours, \`${uptimeMinutes}\`, minutes, \`${uptimeSeconds}\` seconds
-      Ping: Client \`${ping}ms\` | Websocket: \`${client.ws.ping}ms\` **
-      `
+      embedReadData.info.description
+        .replace(/\{cpuUsage\}/gi, cpuUsage)
+        .replace(/\{memoryUsage\}/gi, memoryUsage)
+        .replace(/\{nodeVersion\}/gi, nodeVersion)
+        .replace(/\{uptimeDays\}/gi, uptimeDays)
+        .replace(/\{uptimeHours\}/gi, uptimeHours)
+        .replace(/\{uptimeMinutes\}/gi, uptimeMinutes)
+        .replace(/\{uptimeSeconds\}/gi, uptimeSeconds)
+        .replace(/\{ping\}/gi, ping)
+        .replace(/\{websocket\}/gi, client.ws.ping)
     )
 }
+
 module.exports = {
   versionEmbed,
   siteEmbed,

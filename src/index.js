@@ -9,9 +9,6 @@ const { CommandKit } = require('commandkit')
 const process = require('node:process')
 const json5 = require('json5')
 
-const fileContents = fs.readFileSync(`./translation/${config.commands.language}/embeds.json5`, 'utf8')
-const embedReadData = json5.parse(fileContents)
-
 const client = new Client({
   intents: [
     IntentsBitField.Flags.Guilds,
@@ -30,42 +27,45 @@ process.on('unhandledRejection', (reason) => {
   console.log(`${getDateNow()} | ${chalk.redBright('ERROR')} | ${chalk.bold('Unhandled Rejection')}:`, reason)
 })
 
+const embedsData = fs.readFileSync(`./translation/${config.commands.language}/embeds.json5`, 'utf8')
+const embedRead = json5.parse(embedsData)
+
+const consoleLogData = fs.readFileSync(`./translation/${config.commands.language}/console-log.json5`, 'utf8')
+const consoleLog = json5.parse(consoleLogData)
+
 // Runs the checkError Function immediately.
 ;(() => {
   const errors = []
 
-  console.log(chalk.blue('Checking for Errors in the config.js file. Please Wait.'))
+  console.log(chalk.blue(consoleLog.checkErrorConfig.checkConfigWait))
 
   function checkError(condition, errorMessage) {
     if (condition) errors.push(errorMessage)
   }
 
-  checkError(config.bot.token.startsWith('your-bot-token-here'), 'Bot Token is Invalid.')
+  checkError(config.bot.token.startsWith('your-bot-token-here'), consoleLog.checkErrorConfig.botToken)
   checkError(
     !['online', 'idle', 'dnd', 'invisible'].includes(
       config.bot.presence.status.online && config.bot.presence.status.offline
     ),
-    "Invalid bot status options. Should be 'online', 'idle', 'dnd' or 'invisible'."
+    consoleLog.checkErrorConfig.botPresenceStatus
   )
   checkError(
     !['Playing', 'Listening', 'Watching', 'Competing'].includes(config.bot.presence.activity),
-    "Invalid bot activity options. Should be 'Playing', 'Listening','Watching' or 'Competing'"
+    consoleLog.checkErrorConfig.botStatusActivity
   )
 
-  checkError(
-    !['java', 'bedrock'].includes(config.mcserver.type),
-    'Invalid Minecraft server type. Should be "java" or "bedrock".'
-  )
-  checkError(!config.mcserver.name, "The Minecraft server's name has not been specified.")
-  checkError(!config.mcserver.version, "The Minecraft server's version has not been specified.")
+  checkError(!['java', 'bedrock'].includes(config.mcserver.type), consoleLog.checkErrorConfig.mcType)
+  checkError(!config.mcserver.name, consoleLog.checkErrorConfig.mcName)
+  checkError(!config.mcserver.version, consoleLog.checkErrorConfig.mcVersion)
 
   checkError(
     config.playerCountCH.enabled && config.playerCountCH.guildID === 'your-guild-id-here',
-    'The Server/Guild ID has not been specified or Invaild.'
+    consoleLog.checkErrorConfig.guildID
   )
 
   if (errors.length > 0) {
-    console.error(chalk.red('Config file has the following errors:'))
+    console.error(chalk.red(consoleLog.checkErrorConfig.followingErrors))
     errors.forEach((errors) => console.log(chalk.keyword('orange')(errors)))
     process.exit(1)
   }
@@ -74,8 +74,8 @@ process.on('unhandledRejection', (reason) => {
 const groupPlayerList = (playerListArrayRaw) => {
   let playerListArray = [
     {
-      name: embedReadData.players.title,
-      value: embedReadData.players.description
+      name: embedRead.players.title,
+      value: embedRead.players.description
         .replace(/\{playeronline\}/gi, playerListArrayRaw.online)
         .replace(/\{playermax\}/gi, playerListArrayRaw.max),
     },
@@ -103,12 +103,6 @@ const groupPlayerList = (playerListArrayRaw) => {
   return playerListArray
 }
 
-const getError = (error, errorOrign) => {
-  return `${getDateNow()} | ${chalk.red('ERROR')} | ${chalk.bold(errorOrign)}: ${chalk.keyword('orange')(
-    error.message
-  )}`
-}
-
 const getDateNow = () => {
   return new Date().toLocaleString('en-US', {
     hour12: true,
@@ -118,12 +112,28 @@ const getDateNow = () => {
   })
 }
 
+const getError = (error, errorMsg) => {
+  if (config.settings.logging.error) {
+    console.log(
+      `${getDateNow()} | ${chalk.red('ERROR')} | ${chalk.bold(consoleLog.error[errorMsg])}: ${chalk.keyword('orange')(
+        error.message
+      )}`
+    )
+  }
+}
+
+const getDebug = (debugMessage) => {
+  if (config.settings.logging.debug) {
+    console.log(`${chalk.gray(getDateNow())} | ${chalk.yellow('DEBUG')} | ${chalk.bold(debugMessage)}`)
+  }
+}
+
 const getPlayersList = async (playerListRaw) => {
   try {
     let playerListArray = [
       {
-        name: embedReadData.players.title,
-        value: embedReadData.players.description
+        name: embedRead.players.title,
+        value: embedRead.players.description
           .replace(/\{playeronline\}/gi, playerListRaw.online)
           .replace(/\{playermax\}/gi, playerListRaw.max),
       },
@@ -135,9 +145,7 @@ const getPlayersList = async (playerListRaw) => {
       return playerListArray
     }
   } catch (error) {
-    if (config.settings.logging.error) {
-      console.log(getError(error, 'Player List Creation'))
-    }
+    getError(error, 'playerList')
   }
 }
 
@@ -156,9 +164,7 @@ const getServerDataAndPlayerList = async () => {
       return { data, playerListArray, isOnline }
     }
   } catch (error) {
-    if (config.settings.logging.error) {
-      console.log(getError(error, 'Retrieving MC Server data and PlayerList'))
-    }
+    getError(error, 'fetchServerDataAndPlayerList')
   }
 }
 
@@ -171,9 +177,7 @@ const getServerDataOnly = async () => {
     const isOnline = config.autoChangeStatus.isOnlineCheck ? data.online && data.players.max > 0 : data.online
     return { data, isOnline }
   } catch (error) {
-    if (config.settings.logging.error) {
-      console.log(getError(error, 'Retrieving MC Server data'))
-    }
+    getError(error, 'fetchServerData')
   }
 }
 
@@ -190,32 +194,27 @@ const statusMessageEdit = async () => {
         content: '',
         embeds: [await OnlineEmbed(data, playerListArray)],
       })
-      if (config.settings.logging.debug) {
-        console.log(
-          getDebug(
-            'Status Message is updated to ',
-            chalk.green(`${chalk.green('✔ Online')} with ${chalk.green(data.players.online)} Players Playing.`)
-          )
+      getDebug(
+        consoleLog.debug.autoChangeStatus.format.replace(
+          /\{statusText\}/gi,
+          chalk.green(consoleLog.debug.autoChangeStatus.onlineText.replace(/\{playerOnline\}/gi, data.players.online))
         )
-      }
+      )
     } else {
       await message.edit({
         content: '',
         embeds: [offlineStatus()],
       })
-      if (config.settings.logging.debug) {
-        console.log(getDebug('Status Message is updated to ', chalk.red(`❌ Offline`)))
-      }
+      getDebug(
+        consoleLog.debug.autoChangeStatus.format.replace(
+          /\{statusText\}/gi,
+          chalk.red(consoleLog.debug.autoChangeStatus.offlineText)
+        )
+      )
     }
   } catch (error) {
-    if (config.settings.logging.error) {
-      console.log(getError(error, 'Status Message Editing'))
-    }
+    getError(error, 'messageEdit')
   }
-}
-
-const getDebug = (messageText, debugMessage) => {
-  return `${chalk.gray(getDateNow())} | ${chalk.yellow('DEBUG')} | ${chalk.bold(messageText)} ${debugMessage}`
 }
 
 module.exports = {
@@ -234,7 +233,5 @@ new CommandKit({
 })
 
 client.login(config.bot.token).catch((error) => {
-  if (config.settings.logging.error) {
-    console.log(getError(error, 'Error with Bot Login'))
-  }
+  getError(error, 'botLogin')
 })

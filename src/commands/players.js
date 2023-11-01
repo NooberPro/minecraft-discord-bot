@@ -12,10 +12,8 @@ module.exports = {
       interaction.editReply({ content: '', embeds: [await playerList()] })
     } catch (error) {
       interaction.editReply({ content: 'Error with getting Players' })
-      if (settings.logging.error) {
-        const { getError } = require('../index')
-        console.log(getError(error, 'Slash command - Player'))
-      }
+      const { getError } = require('../index')
+      getError(error, 'playerCmd')
     }
   },
   options: {

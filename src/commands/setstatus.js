@@ -3,6 +3,10 @@ const { statusMessageEdit } = require('../index')
 const config = require('../../config')
 const chalk = require('chalk')
 const fs = require('fs')
+const json5 = require('json5')
+
+const consoleLogData = fs.readFileSync(`./translation/${config.commands.language}/console-log.json5`, 'utf8')
+const consoleLog = json5.parse(consoleLogData)
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -42,7 +46,9 @@ module.exports = {
         content: `:white_check_mark: **Status message is set successfully in <#${dataID.channelId}>. Message:** https://discord.com/channels/${msg.guildId}/${dataID.channelId}/${dataID.messageId}`,
         ephemeral: true,
       })
-      console.log(`Successfully set the status message in ${chalk.cyan(`#${msg.channel.name}`)}`)
+      console.log(
+        consoleLog.debug.autoChangeStatus.successLog.replace(/\{channelName\}/gi, chalk.cyan(`#${msg.channel.name}`))
+      )
       setInterval(() => {
         statusMessageEdit()
       }, config.autoChangeStatus.updateInterval * 1000)
@@ -52,9 +58,7 @@ module.exports = {
         ephemeral: true,
       })
       const { getError } = require('../index')
-      if (settings.logging.error) {
-        console.log(getError(error, 'Setting status message'))
-      }
+      getError(error, 'setStatus')
     }
   },
   options: {

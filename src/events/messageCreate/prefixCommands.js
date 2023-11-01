@@ -49,11 +49,9 @@ module.exports = async (message, client) => {
     try {
       message.channel.send({ embeds: [await statusEmbed()] })
     } catch (error) {
-      message.channel.send({ embeds: [offlineStatus()] })
-      if (settings.logging.error) {
-        const { getError } = require('../../index')
-        console.log(getError(error, 'Prefix status command'))
-      }
+      message.channel.send('Unable to find the status the server due to an error.')
+      const { getError } = require('../../index')
+      getError(error, 'statusPrefix')
     }
   }
 }

@@ -1,6 +1,12 @@
-const { bot, settings } = require('../../../config')
+const { bot, commands } = require('../../../config')
 const chalk = require('chalk')
+const fs = require('fs')
+const json5 = require('json5')
+
 module.exports = (client) => {
+  const consoleLogData = fs.readFileSync(`./translation/${commands.language}/console-log.json5`, 'utf8')
+  const consoleLog = json5.parse(consoleLogData)
+
   const botStatusUpdate = async () => {
     const { getDebug, getServerDataOnly } = require('../../index')
     const { ActivityType } = require('discord.js')
@@ -15,30 +21,27 @@ module.exports = (client) => {
             type: ActivityType[bot.presence.activity],
           })
           await client.user.setStatus(bot.presence.status.online)
-          if (settings.logging.debug) {
-            console.log(
-              getDebug('Status of the bot has been set to', chalk.green(`${bot.presence.activity} ${statusText}`))
+          getDebug(
+            consoleLog.debug.botStatusFormat.replace(
+              /\{botStatusText\}/gi,
+              chalk.green(`${bot.presence.activity} ${statusText}`)
             )
-          }
+          )
         } else {
           client.user.setStatus(bot.presence.status.offline)
           client.user.setActivity(bot.presence.text.offline, {
             type: ActivityType[bot.presence.activity],
           })
-          if (settings.logging.debug) {
-            console.log(
-              getDebug(
-                'Status of the bot has been set to',
-                chalk.red(`${bot.presence.activity} ${bot.presence.text.offline}`)
-              )
+          getDebug(
+            consoleLog.debug.botStatusFormat.replace(
+              /\{botStatusText\}/gi,
+              chalk.red(`${bot.presence.activity} ${bot.presence.text.offline}`)
             )
-          }
+          )
         }
       } catch (error) {
-        if (settings.logging.error) {
-          const { getError } = require('../../index')
-          console.log(getError(error, 'Updating status of the bot'))
-        }
+        const { getError } = require('../../index')
+        getError(error, 'botStatusUpdate')
       }
     }
   }

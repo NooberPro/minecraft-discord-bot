@@ -23,6 +23,7 @@
     // Variables : {ip},{version}, {site}
     title: ':red_circle: OFFLINE',
     description: '', // Leave description blank to disable it.
+    footer: 'Checked at',
   },
   players: {
     // Variables: {playeronline}, {playermax}
@@ -39,11 +40,12 @@
   onlineEmbed: {
     // Variables: {ip}, {motd}, {version}, {site}
     title: ':green_circle: ONLINE',
-    // Here, the Player List Embed title and description from players embed above (line: 26)
+    // Here, the Player List Embed title and description from players embed above (line: 27)
 
     // After the player List Field will be the description.
     description_field_one: '__**MOTD**__\n**{motd}**\n\n__**SERVER ADDRESS**__\n**{ip}**',
     description_field_two: '__**VERSION**__\n**{version}**\n\n__**WEBSITE**__\n**Link: {site}**',
+    footer: 'Checked at',
   },
   help: {
     //Variables: {prefix}, {botName}
@@ -51,5 +53,10 @@
     description: '**Prefix: `{prefix}`**',
     // Variables for listFormat Only: {cmdDescription}, {cmdSlashMention}
     listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
+  },
+  info: {
+    title: '**Bot Info and Stats**',
+    //Variables: {cpuUsage}, {memoryUsage}, {nodeVersion}, {uptimeDays}, {uptimeHours}, {uptimeMinutes}, {uptimeSeconds}, {ping}, {websocket}
+    description: '**CPU Usage: `{cpuUsage}%`\nMemory Usage: `{memoryUsage}MB`\nNode.js Version: `{nodeVersion}`\nBot uptime: `{uptimeDays}` days, `{uptimeHours}` hours, `{uptimeMinutes}`, minutes, `{uptimeSeconds}` seconds\nPing: Client `{ping}ms` | Websocket: `{websocket}ms` **',
   },
 }

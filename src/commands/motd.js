@@ -15,10 +15,8 @@ module.exports = {
       interaction.editReply({
         content: 'Error with getting Message of the Day (MOTD)',
       })
-      if (settings.logging.error) {
-        const { getError } = require('../index')
-        console.log(getError(error, 'Slash command - Botinfo'))
-      }
+      const { getError } = require('../index')
+      getError(error, 'motdCmd')
     }
   },
   options: {
