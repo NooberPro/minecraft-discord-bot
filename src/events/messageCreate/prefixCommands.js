@@ -1,5 +1,5 @@
 const config = require('../../../config')
-const { commands, settings } = require('../../../config')
+const { commands } = require('../../../config')
 const {
   ipEmbed,
   siteEmbed,

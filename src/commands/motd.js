@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js')
 const { motdEmbed } = require('../embeds')
-const { commands, settings } = require('../../config')
+const { commands } = require('../../config')
 
 module.exports = {
   data: new SlashCommandBuilder()

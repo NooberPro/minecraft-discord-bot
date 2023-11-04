@@ -1,4 +1,4 @@
-const { autoReply, mcserver, commands, settings } = require('../../../config')
+const { autoReply, mcserver, commands } = require('../../../config')
 const fs = require('fs')
 const json5 = require('json5')
 
@@ -16,24 +16,24 @@ module.exports = async (msg) => {
     const isVersion = new RegExp(`\\b(${version.triggerWords.join('|')})\\b`)
 
     if (isIp.test(content) && autoReply.ip.enabled) {
-      msg.channel.send(
-        autoReplyReplyText.autoReply.ip.replyText.replace(/{ip}/g, mcserver.ip).replace(/{port}/g, mcserver.port)
-      )
+      msg.reply(autoReplyReplyText.ip.replyText.replace(/{ip}/g, mcserver.ip).replace(/{port}/g, mcserver.port))
     }
     if (isSite.test(content) && autoReply.site.enabled && mcserver.site) {
-      msg.channel.send(autoReplyReplyText.autoReply.site.replyText.replace(/{site}/g, mcserver.site))
+      msg.reply(autoReplyReplyText.site.replyText.replace(/{site}/g, mcserver.site))
     }
     if (isVersion.test(content) && autoReply.version.enabled) {
-      msg.channel.send(autoReplyReplyText.autoReply.version.replyText.replace(/{version}/g, mcserver.version))
+      msg.reply(autoReplyReplyText.version.replyText.replace(/{version}/g, mcserver.version))
     }
     if (isStatus.test(content) && autoReply.status.enabled) {
       await msg.channel.sendTyping()
       const { getServerDataOnly } = require('../../index')
       const { data, isOnline } = await getServerDataOnly()
-      msg.channel.send(
-        autoReplyReplyText.autoReply.isOnline
-          ? status.onlineReply.replace(/{playerOnline}/g, data.players.online).replace(/{playerMax}/g, data.players.max)
-          : status.offlineReply
+      msg.reply(
+        isOnline
+          ? autoReplyReplyText.status.onlineReply
+              .replace(/{playerOnline}/g, data.players.online)
+              .replace(/{playerMax}/g, data.players.max)
+          : autoReplyReplyText.status.offlineReply
       )
     }
   } catch (error) {
