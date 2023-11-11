@@ -3,6 +3,7 @@
 // Deutsche Übersetzung (de) von AI
 
 {
+  // Übersetzung für Befehls-Einbettungsnachrichten.
   ip: {
     // Variablen: {ip}
     title: '__**SERVER-ADRESSE**__',
@@ -10,7 +11,7 @@
   },
   site: {
     // Variablen: {site}
-    title: '__**WEBSEITE**__',
+    title: '__**WEBSITE**__',
     description: '**Link: {site}**',
   },
   version: {
@@ -21,14 +22,15 @@
   offlineEmbed: {
     // Variablen: {ip}, {version}, {site}
     title: ':red_circle: OFFLINE',
-    description: '', // Die Beschreibung leer lassen, um sie zu deaktivieren.
+    description: '', // Um dies zu deaktivieren, lassen Sie die Beschreibung leer.
+    footer: 'Geprüft am',
   },
   players: {
     // Variablen: {playeronline}, {playermax}
     title: '__**SPIELER**__',
     description: '**{playeronline}/{playermax}**',
-    // Nach der Beschreibung wird die Liste der Spielernamen angezeigt.
-    // Zeigt Offline-Einbettung an, wenn der MC-Server offline ist.
+    // Die Liste der Spielernamen wird nach der Beschreibung angezeigt.
+    // Zeigt Offline-Einbettungen an, wenn der MC-Server offline ist.
   },
   motd: {
     // Variablen: {motd}
@@ -38,17 +40,23 @@
   onlineEmbed: {
     // Variablen: {ip}, {motd}, {version}, {site}
     title: ':green_circle: ONLINE',
-    // Hier werden Titel und Beschreibung der Spielerliste-Einbettung von oben (Zeile: 26) verwendet.
+    // Hier werden der Einbettungstitel und die Beschreibung der Spielerliste von oben (Zeile: 28) platziert.
 
-    // Nach dem Spielerlistenfeld wird die Beschreibung sein.
+    // Die Beschreibung wird nach dem Feld der Spielerliste platziert.
     description_field_one: '__**MOTD**__\n**{motd}**\n\n__**SERVER-ADRESSE**__\n**{ip}**',
-    description_field_two: '__**VERSION**__\n**{version}**\n\n__**WEBSEITE**__\n**Link: {site}**',
+    description_field_two: '__**VERSION**__\n**{version}**\n\n__**WEBSITE**__\n**Link: {site}**',
+    footer: 'Geprüft am',
   },
   help: {
-    //Variablen: {prefix}, {botName}
+    // Variablen: {prefix}, {botName}
     title: '__**BEFEHLSLISTE**__',
     description: '**Präfix: `{prefix}`**',
-    // Variablen nur für listFormat: {cmdDescription}, {cmdSlashMention}
+    // Nur listFormat-Variablen: {cmdDescription}, {cmdSlashMention}.
     listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
+  },
+  info: {
+    title: '**Bot-Info und -Statistiken**',
+    // Variablen: {cpuUsage}, {memoryUsage}, {nodeVersion}, {uptimeDays}, {uptimeHours}, {uptimeMinutes}, {uptimeSeconds}, {ping}, {websocket}
+    description: '**CPU-Auslastung: `{cpuUsage}%`\nSpeicherauslastung: `{memoryUsage}MB`\nNode.js Version: `{nodeVersion}`\nBot-Aktivitätszeit: `{uptimeDays}` Tage, `{uptimeHours}` Stunden, `{uptimeMinutes}` Minuten, `{uptimeSeconds}` Sekunden\nPing: Client `{ping}ms` | Websocket: `{websocket}ms`**',
   },
 }

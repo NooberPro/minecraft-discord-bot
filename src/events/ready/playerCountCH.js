@@ -1,9 +1,11 @@
 const chalk = require('chalk')
-const { playerCountCH, commands } = require('../../../config')
+const { playerCountCH, settings } = require('../../../config')
 const { getServerDataOnly, getDebug, getError } = require('../../index')
 const fs = require('node:fs')
 const json5 = require('json5')
-const consoleLogData = fs.readFileSync(`./translation/${commands.language}/console-log.json5`, 'utf8')
+
+languageConsoleOuput = settings.language.consoleLog ? settings.language.consoleLog : settings.language.main
+const consoleLogData = fs.readFileSync(`./translation/${languageConsoleOuput}/console-log.json5`, 'utf8')
 const consoleLog = json5.parse(consoleLogData)
 
 module.exports = async (client) => {

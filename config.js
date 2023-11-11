@@ -31,6 +31,20 @@ module.exports = {
 
   // Settings for bot.
   settings: {
+    language: {
+      // Availables languages: en(English), es(Spanish), de(German), fr(French), pt(Portuguese), ru(Russian)
+      main: 'en',
+      // These are optional settings for language.
+      // You can set certain language for certain features. Leave then blank if you want main language to be applied.
+      embeds: '', // All the embeds. Slash and Prefix Commands, Auto Changing Status.
+      autoReply: '', // Replies given by the bot in Auto Reply feature.
+      consoleLog: '', // All console log output.
+    },
+    embedsColors: {
+      basicCmds: 'Aqua', // It is the commands like version, site, ip.
+      online: 'Green', // It is the commands when it is online like status, players, motd.
+      offline: 'Red', // It is the color of offline embed.
+    },
     // console-logging settings.
     logging: {
       inviteLink: true, // Log invite link at bot's launch.

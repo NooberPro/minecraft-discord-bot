@@ -1,0 +1,90 @@
+// Github: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
+// Deutsche Übersetzung (de) von AI
+
+{
+  // Übersetzung für die Konsolenausgabe
+  error: {
+    playerEmbed: 'Fehler beim Erstellen der Spielerliste-Embed-Nachricht',
+    statusEmbed: 'Fehler beim Erstellen der Status-Embed-Nachricht',
+    playerList: 'Fehler beim Erstellen der Spielerliste',
+    fetchServerDataAndPlayerList: 'Konnte Minecraft-Serverdaten und Spielerliste nicht abrufen',
+    fetchServerData: 'Konnte Minecraft-Serverdaten nicht abrufen',
+    messageEdit: 'Fehler beim Bearbeiten der Statusnachricht',
+    botLogin: 'Fehler beim Bot-Login',
+    infoCmd: 'Fehler im Slash-Befehl - Info',
+    motdCmd: 'Fehler im Slash-Befehl - MOTD',
+    playerCmd: 'Fehler im Slash-Befehl - Spieler',
+    statusCmd: 'Fehler im Slash-Befehl - Status',
+    statusPrefix: 'Fehler im Präfix-Befehl - Status',
+    setStatus: 'Fehler beim Setzen der Statusnachricht',
+    autoReply: 'Fehler in der Auto-Antwort-Funktion',
+    botStatusUpdate: 'Fehler beim Aktualisieren des Bot-Status',
+    channelIdCheck: 'Fehler bei der Überprüfung und Aktualisierung der Kanal-ID',
+    playerCountCh: 'Fehler bei der Spielerzählkanal-Funktion',
+    playerCountChNameUpdate: 'Fehler beim Aktualisieren des Spielerzählkanal-Namens',
+    playerCountChDateWrite: 'Fehler beim Speichern der Spielerzählkanal-ID in data.json',
+  },
+  debug: {
+    autoChangeStatus: {
+      onlineText: 'Online mit {playerOnline} Spielern.',
+      offlineText: '❌ Offline.',
+      format: 'Die Status-Embed-Nachricht wurde zu {statusText} aktualisiert',
+      // {channelName} für den Namen des Statusnachrichtenkanals
+      successLog: 'Die Statusnachricht wurde erfolgreich in {channelName} festgelegt',
+      // {cmd} für den Befehl setstatus
+      enableAutoChangeStatus: 'Um den Serverstatus zu setzen, senden Sie einen {cmd}-Befehl im gewünschten Kanal.',
+    },
+    botStatusFormat: 'Die Status-Embed-Nachricht wurde zu {botStatusText} aktualisiert',
+    playerCountChUpdate: 'Der Spielerzählkanalname wurde zu {updatedName} aktualisiert',
+  },
+  checkErrorConfig: {
+    checkConfigWait: 'Überprüfe Fehler in der config.js-Datei. Bitte warten Sie.',
+    followingErrors: 'Die Konfigurationsdatei enthält folgende Fehler:',
+    botToken: 'Bot-Token ist ungültig.',
+    botPresenceStatus: 'Ungültige Bot-Statusoptionen. Sollte "online", "idle", "dnd" oder "invisible" sein.',
+    botStatusActivity: 'Ungültige Bot-Aktivitätsoptionen. Sollte "Playing", "Listening", "Watching" oder "Competing" sein.',
+    mcType: 'Ungültiger Minecraft-Servertyp. Sollte "java" oder "bedrock" sein.',
+    mcName: 'Der Name des Minecraft-Servers wurde nicht angegeben.',
+    mcVersion: 'Die Version des Minecraft-Servers wurde nicht angegeben.',
+    guildID: 'Die Server-/Gilden-ID wurde nicht angegeben oder ist ungültig.',
+  },
+  playerCountCh: {
+    // {guildID} für die in der Konfigurationsdatei angegebene Gilden-ID
+    playerCountChGuildIncorrect: 'Die Gilde mit der ID: "{guildID}" wurde nicht gefunden oder der Bot ist nicht in der Gilde.',
+    // {channelName} für den erstellten Kanal
+    playerCountChannelFound: 'Erfolgreich gefunden: {channelName} Kanal für Spielerzählung.',
+    // {channelId} für die ID des in der Konfigurationsdatei angegebenen Kanals
+    playerCountChannelNotFound: 'Der Kanal für die Spielerzählung mit der ID: "{channelId}" wurde nicht gefunden oder der Bot hat keinen Zugriff auf den Kanal.',
+    // {updatedStatus} für den Namen des aktualisierten Status des Kanals
+    playerCountChannelCreated: 'Ein Kanal für die Spielerzählung wurde erstellt und sein Name wurde aktualisiert auf: {updatedStatus}.',
+  },
+
+  // Verwende {botUserTag} für das Benutzer-Tag des Bots, z.B. Bot#0001
+  // Verwende {inviteLink} für den Einladungslink des Bots.
+  inviteLink: '✅ {botUserTag} ist online.\nLade den Bot mit {inviteLink} ein',
+
+  serverInfoStart: {
+    // Variablen: {ip}, {version}, {playersOnline}, {playersMax}, {motd_line1}, {motd_line2}
+    // {motd_line1} für die erste Zeile der MOTD.
+    // {motd_line2} für die zweite Zeile der MOTD.
+    online: [
+      '--------------------------------------------------------',
+      'IP       | {ip}',
+      'VERSION  | {version}',
+      'SPIELER  | {playersOnline} / {playersMax}',
+      'MOTD     | {motd_line1}',
+      '         | {motd_line2}',
+      '--------------------------------------------------------',
+    ],
+    // Variablen: {ip}, {port}, {mcServerType}
+    offline: [
+      'Konnte derzeit den Minecraft-Server nicht finden mit:',
+      '----------------------------------------------',
+      'IP   | {ip}',
+      'PORT | {port}',
+      'TYP  | {mcServerType}',
+      '----------------------------------------------',
+    ],
+  },
+}

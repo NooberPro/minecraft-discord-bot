@@ -27,10 +27,14 @@ process.on('unhandledRejection', (reason) => {
   console.log(`${getDateNow()} | ${chalk.redBright('ERROR')} | ${chalk.bold('Unhandled Rejection')}:`, reason)
 })
 
-const embedsData = fs.readFileSync(`./translation/${config.commands.language}/embeds.json5`, 'utf8')
-const embedRead = json5.parse(embedsData)
+languageEmbed = config.settings.language.embeds ? config.settings.language.embeds : config.settings.language.main
+const fileContents = fs.readFileSync(`./translation/${languageEmbed}/embeds.json5`, 'utf8')
+const embedRead = json5.parse(fileContents)
 
-const consoleLogData = fs.readFileSync(`./translation/${config.commands.language}/console-log.json5`, 'utf8')
+languageConsoleOuput = config.settings.language.consoleLog
+  ? config.settings.language.consoleLog
+  : config.settings.language.main
+const consoleLogData = fs.readFileSync(`./translation/${languageConsoleOuput}/console-log.json5`, 'utf8')
 const consoleLog = json5.parse(consoleLogData)
 
 // Runs the checkError Function immediately.

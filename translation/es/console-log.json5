@@ -1,0 +1,90 @@
+// Github: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
+// Traducción al español (es) por AI
+
+{
+  // Traducción para la salida de la consola
+  error: {
+    playerEmbed: 'Error al crear el mensaje de lista de jugadores en embed',
+    statusEmbed: 'Error al crear el mensaje de estado en embed',
+    playerList: 'Error al crear la lista de jugadores',
+    fetchServerDataAndPlayerList: 'Error al obtener datos del servidor de Minecraft y lista de jugadores',
+    fetchServerData: 'Error al obtener datos del servidor de Minecraft',
+    messageEdit: 'Error al editar el mensaje de estado',
+    botLogin: 'Error en el inicio de sesión del bot',
+    infoCmd: 'Error en el comando Slash - Información',
+    motdCmd: 'Error en el comando Slash - MOTD',
+    playerCmd: 'Error en el comando Slash - Jugador',
+    statusCmd: 'Error en el comando Slash - Estado',
+    statusPrefix: 'Error en el comando de prefijo - Estado',
+    setStatus: 'Error al establecer el mensaje de estado',
+    autoReply: 'Error en la función de respuesta automática',
+    botStatusUpdate: 'Error al actualizar el estado del bot',
+    channelIdCheck: 'Error en la verificación y actualización de la ID del canal',
+    playerCountCh: 'Error en la función de canal de recuento de jugadores',
+    playerCountChNameUpdate: 'Error al actualizar el nombre del canal de recuento de jugadores',
+    playerCountChDateWrite: 'Error al guardar la ID del canal de recuento de jugadores en data.json',
+  },
+  debug: {
+    autoChangeStatus: {
+      onlineText: 'En línea con {playerOnline} jugadores jugando.',
+      offlineText: '❌ Fuera de línea.',
+      format: 'El mensaje de estado en embed se ha actualizado a {statusText}',
+      // {channelName} para obtener el nombre del canal del mensaje de estado
+      successLog: 'Se estableció correctamente el mensaje de estado en {channelName}',
+      // {cmd} para obtener el comando setstatus
+      enableAutoChangeStatus: 'Para establecer el estado del servidor, envía un comando {cmd} en el canal deseado.',
+    },
+    botStatusFormat: 'El mensaje de estado en embed se ha actualizado a {botStatusText}',
+    playerCountChUpdate: 'Se actualizó el nombre del canal de recuento de jugadores a {updatedName}',
+  },
+  checkErrorConfig: {
+    checkConfigWait: 'Comprobando errores en el archivo config.js. Por favor, espera.',
+    followingErrors: 'El archivo de configuración tiene los siguientes errores:',
+    botToken: 'El token del bot no es válido.',
+    botPresenceStatus: 'Opciones de estado del bot no válidas. Debe ser "online", "idle", "dnd" o "invisible".',
+    botStatusActivity: 'Opciones de actividad del bot no válidas. Debe ser "Playing", "Listening", "Watching" o "Competing".',
+    mcType: 'Tipo de servidor de Minecraft no válido. Debe ser "java" o "bedrock".',
+    mcName: 'No se ha especificado el nombre del servidor de Minecraft.',
+    mcVersion: 'No se ha especificado la versión del servidor de Minecraft.',
+    guildID: 'No se ha especificado la ID del servidor/gremio o es inválida.',
+  },
+  playerCountCh: {
+    // {guildID} para la ID del gremio dada en el archivo de configuración
+    playerCountChGuildIncorrect: 'No se encontró el gremio con la ID: "{guildID}" o el bot no está en el gremio.',
+    // {channelName} para el canal creado
+    playerCountChannelFound: 'Canal encontrado con éxito: Canal {channelName} para el recuento de jugadores.',
+    // {channelId} para la ID del canal dada en el archivo de configuración
+    playerCountChannelNotFound: 'No se encontró el canal para el recuento de jugadores con la ID: "{channelId}" o el bot no tiene acceso al canal.',
+    // {updatedStatus} para el nombre del estado actualizado del canal
+    playerCountChannelCreated: 'Se creó un canal para el recuento de jugadores y se actualizó su nombre a: {updatedStatus}.',
+  },
+
+  // Usa {botUserTag} para la etiqueta de usuario del bot, como Bot#0001
+  // Usa {inviteLink} para el enlace de invitación del bot.
+  inviteLink: '✅ {botUserTag} está en línea.\nInvita al bot con {inviteLink}',
+
+  serverInfoStart: {
+    // Variables: {ip}, {version}, {playersOnline}, {playersMax}, {motd_line1}, {motd_line2}
+    // {motd_line1} para obtener la primera línea del motd.
+    // {motd_line2} para obtener la segunda línea del motd.
+    online: [
+      '--------------------------------------------------------',
+      'IP       | {ip}',
+      'VERSIÓN  | {version}',
+      'JUGADORES | {playersOnline} / {playersMax}',
+      'MOTD     | {motd_line1}',
+      '         | {motd_line2}',
+      '--------------------------------------------------------',
+    ],
+    // Variables: {ip}, {port}, {mcServerType}
+    offline: [
+      'Actualmente no se pudo localizar el servidor de Minecraft con:',
+      '----------------------------------------------',
+      'IP   | {ip}',
+      'PUERTO | {port}',
+      'TIPO | {mcServerType}',
+      '----------------------------------------------',
+    ],
+  },
+}

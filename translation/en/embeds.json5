@@ -3,7 +3,7 @@
 // English translation (en) by NooberPro
 
 {
-  // Translation for commands embeds.
+  // Translation for command embeds message.
   ip: {
     // Variables: {ip}
     title: '__**SERVER ADDRESS**__',
@@ -22,15 +22,15 @@
   offlineEmbed: {
     // Variables : {ip},{version}, {site}
     title: ':red_circle: OFFLINE',
-    description: '', // Leave description blank to disable it.
+    description: '', // To disable this, leave description blank.
     footer: 'Checked at',
   },
   players: {
     // Variables: {playeronline}, {playermax}
     title: '__**PLAYERS**__',
     description: '**{playeronline}/{playermax}**',
-    // After description will be the Player Name List.
-    // Shows offline Embed when MC server is offline.
+    // The player name list will be shown after description.
+    // Displays offline embeds when the MC server is offline.
   },
   motd: {
     // Variables: {motd}
@@ -40,23 +40,23 @@
   onlineEmbed: {
     // Variables: {ip}, {motd}, {version}, {site}
     title: ':green_circle: ONLINE',
-    // Here, the Player List Embed title and description from players embed above (line: 27)
+    // Here, the playerlist embed title and description from above (line: 28)
 
-    // After the player List Field will be the description.
+    // The description is placed after the player list field.
     description_field_one: '__**MOTD**__\n**{motd}**\n\n__**SERVER ADDRESS**__\n**{ip}**',
     description_field_two: '__**VERSION**__\n**{version}**\n\n__**WEBSITE**__\n**Link: {site}**',
     footer: 'Checked at',
   },
   help: {
-    //Variables: {prefix}, {botName}
+    // Variables: {prefix}, {botName}
     title: '__**COMMANDS LIST**__',
     description: '**Prefix: `{prefix}`**',
-    // Variables for listFormat Only: {cmdDescription}, {cmdSlashMention}
+    // Only listFormat variables: {cmdDescription}, {cmdSlashMention}.
     listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
   },
   info: {
     title: '**Bot Info and Stats**',
-    //Variables: {cpuUsage}, {memoryUsage}, {nodeVersion}, {uptimeDays}, {uptimeHours}, {uptimeMinutes}, {uptimeSeconds}, {ping}, {websocket}
+    // Variables: {cpuUsage}, {memoryUsage}, {nodeVersion}, {uptimeDays}, {uptimeHours}, {uptimeMinutes}, {uptimeSeconds}, {ping}, {websocket}
     description: '**CPU Usage: `{cpuUsage}%`\nMemory Usage: `{memoryUsage}MB`\nNode.js Version: `{nodeVersion}`\nBot uptime: `{uptimeDays}` days, `{uptimeHours}` hours, `{uptimeMinutes}`, minutes, `{uptimeSeconds}` seconds\nPing: Client `{ping}ms` | Websocket: `{websocket}ms` **',
   },
 }

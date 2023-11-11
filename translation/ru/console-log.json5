@@ -1,0 +1,90 @@
+// Github: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
+// Русский перевод (ru) от ИИ
+
+{
+  // Перевод для вывода в консоль
+  error: {
+    playerEmbed: 'Ошибка при создании вложенного списка сообщений о списках игроков',
+    statusEmbed: 'Ошибка при создании вложенного списка сообщений о статусах',
+    playerList: 'Ошибка при создании списка игроков',
+    fetchServerDataAndPlayerList: 'Не удалось получить данные сервера Minecraft и список игроков',
+    fetchServerData: 'Не удалось получить данные сервера Minecraft',
+    messageEdit: 'Ошибка при редактировании сообщения о статусе',
+    botLogin: 'Ошибка входа бота',
+    infoCmd: 'Ошибка в Slash-команде - Инфо',
+    motdCmd: 'Ошибка в Slash-команде - MOTD',
+    playerCmd: 'Ошибка в Slash-команде - Игрок',
+    statusCmd: 'Ошибка в Slash-команде - Статус',
+    statusPrefix: 'Ошибка в команде префикса - Статус',
+    setStatus: 'Не удалось установить сообщение о статусе',
+    autoReply: 'Ошибка в функции автоответа',
+    botStatusUpdate: 'Ошибка при обновлении статуса бота',
+    channelIdCheck: 'Ошибка при проверке и обновлении идентификатора канала',
+    playerCountCh: 'Ошибка в функции канала подсчета игроков',
+    playerCountChNameUpdate: 'Ошибка при обновлении названия канала с подсчетом игроков',
+    playerCountChDateWrite: 'Ошибка при сохранении идентификатора канала с подсчетом игроков в data.json',
+  },
+  debug: {
+    autoChangeStatus: {
+      onlineText: 'В сети с {playerOnline} игроками.',
+      offlineText: '❌ Оффлайн.',
+      format: 'Сообщение о статусе было обновлено на {statusText}',
+      // {channelName} для получения имени канала сообщения о статусе
+      successLog: 'Успешно установлено сообщение о статусе в {channelName}',
+      // {cmd} для получения команды setstatus
+      enableAutoChangeStatus: 'Чтобы установить статус сервера, отправьте команду {cmd} в нужном канале.',
+    },
+    botStatusFormat: 'Сообщение о статусе было обновлено на {botStatusText}',
+    playerCountChUpdate: 'Название канала с подсчетом игроков обновлено на {updatedName}',
+  },
+  checkErrorConfig: {
+    checkConfigWait: 'Проверка ошибок в файле config.js. Пожалуйста, подождите.',
+    followingErrors: 'Файл конфигурации содержит следующие ошибки:',
+    botToken: 'Неверный токен бота.',
+    botPresenceStatus: 'Неверные параметры статуса бота. Должны быть "online", "idle", "dnd" или "invisible".',
+    botStatusActivity: 'Неверные параметры активности бота. Должны быть "Playing", "Listening", "Watching" или "Competing"',
+    mcType: 'Неверный тип сервера Minecraft. Должен быть "java" или "bedrock".',
+    mcName: 'Имя сервера Minecraft не указано.',
+    mcVersion: 'Версия сервера Minecraft не указана.',
+    guildID: 'Идентификатор сервера/гильдии не указан или неверен.',
+  },
+  playerCountCh: {
+    // {guildID} для идентификатора гильдии, указанного в файле конфигурации
+    playerCountChGuildIncorrect: 'Гильдия с идентификатором: "{guildID}" не найдена или бот не находится в гильдии.',
+    // {channelName} для созданного канала
+    playerCountChannelFound: 'Успешно найден канал: {channelName} для подсчета игроков.',
+    // {channelId} для идентификатора канала, указанного в файле конфигурации
+    playerCountChannelNotFound: 'Канал для подсчета игроков с идентификатором: "{channelId}" не найден или у бота нет доступа к каналу.',
+    // {updatedStatus} для имени обновленного статуса канала
+    playerCountChannelCreated: 'Создан канал для подсчета игроков и обновлено его имя на: {updatedStatus}.',
+  },
+
+  // Используйте {botUserTag} для тега пользователя бота, например Bot#0001
+  // Используйте {inviteLink} для ссылки на приглашение бота.
+  inviteLink: '✅ {botUserTag} в сети.\nПригласите бота с помощью {inviteLink}',
+
+  serverInfoStart: {
+    // Переменные: {ip}, {version}, {playersOnline}, {playersMax}, {motd_line1}, {motd_line2}
+    // {motd_line1} для получения первой строки motd
+    // {motd_line2} для получения второй строки motd
+    online: [
+      '--------------------------------------------------------',
+      'IP       | {ip}',
+      'ВЕРСИЯ   | {version}',
+      'ИГРОКИ   | {playersOnline} / {playersMax}',
+      'MOTD     | {motd_line1}',
+      '         | {motd_line2}',
+      '--------------------------------------------------------',
+    ],
+    // Переменные: {ip}, {port}, {mcServerType}
+    offline: [
+      'На данный момент не удалось найти сервер Minecraft:',
+      '----------------------------------------------',
+      'IP   | {ip}',
+      'ПОРТ | {port}',
+      'ТИП | {mcServerType}',
+      '----------------------------------------------',
+    ],
+  },
+}

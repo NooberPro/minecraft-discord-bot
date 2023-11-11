@@ -3,7 +3,7 @@
 // English translation (en) by NooberPro
 
 {
-  // Translation for console log output feature
+  // Translation for the console output
   error: {
     playerEmbed: 'Error in Creating Player List Embeds Message',
     statusEmbed: 'Error in Creating Status Embeds Message',
@@ -30,9 +30,9 @@
       onlineText: 'Online with {playerOnline} Players Playing.',
       offlineText: '❌ Offline.',
       format: 'Status Embed Message has been updated to {statusText}',
-      // {channelName} for getting status message channel name
+      // {channelName} to get the name of the status message channel
       successLog: 'Successfully set the status message in {channelName}',
-      // {cmd} for getting setstatus command
+      // {cmd} to get setstatus command
       enableAutoChangeStatus: 'To set server status, send a {cmd} command in the desired channel.',
     },
     botStatusFormat: 'Status Embed Message has been updated to {botStatusText}',
@@ -50,24 +50,24 @@
     guildID: 'The Server/Guild ID has not been specified or Invaild.',
   },
   playerCountCh: {
-    // {guildID} for guild id given in config
+    // {guildID} for the guild id given in the config file
     playerCountChGuildIncorrect: 'The guild with ID: "{guildID}" was not found or the bot is not in the guild.',
-    // {channelName} for the founded channel
+    // {channelName} for the created channel
     playerCountChannelFound: 'Successfully founded channel: {channelName} channel for Player Count.',
-    // {channelId} for the channel id given in the config
+    // {channelId} for the id of the channel given in the config file
     playerCountChannelNotFound: 'The channel for Player Count with ID: "{channelId}" was not found or the bot has no access for channel.',
-    // {updatedStatus} for the updated status name of channel
+    // {updatedStatus} for the name of the updated status of the channel
     playerCountChannelCreated: 'Created a channel for Player Count and has updated its name to: {updatedStatus}.',
   },
 
-  // Use {botUserTag} for bot's user tag like Bot#0001
-  // Use {inviteLink} for bot's invite link
+  // Use {botUserTag} for the user tag of the bot such as Bot#0001
+  // Use {inviteLink} for the invite link of the bot.
   inviteLink: '✅ {botUserTag} is online.\nInvite the bot with {inviteLink}',
 
   serverInfoStart: {
     // Variables: {ip}, {version}, {playersOnline}, {playersMax}, {motd_line1}, {motd_line2}
-    // {motd_line1} for getting first line of motd
-    // {motd_line2} for getting second line of motd
+    // {motd_line1} to get the first line of the motd.
+    // {motd_line2} to get the second line of the motd.
     online: [
       '--------------------------------------------------------',
       'IP       | {ip}',

@@ -1,8 +1,9 @@
-// https://github.com/NooberPro/minecraft-discord-bot
+// Github: https://github.com/NooberPro/minecraft-discord-bot
 // Crowdin: https://crowdin.com/project/minecraft-discord-bot
-// Traducción (es) al español por AI
+// Traducción al español (es) por IA
 
 {
+  // Traducción para mensajes integrados de comandos.
   ip: {
     // Variables: {ip}
     title: '__**DIRECCIÓN DEL SERVIDOR**__',
@@ -19,16 +20,17 @@
     description: '**{version}**',
   },
   offlineEmbed: {
-    // Variables : {ip}, {version}, {site}
-    title: ':red_circle: DESCONEXIONADO',
-    description: '', // Deje en blanco la descripción para deshabilitarla.
+    // Variables: {ip},{version}, {site}
+    title: ':red_circle: DESCONECTADO',
+    description: '', // Para desactivar esto, deje en blanco la descripción.
+    footer: 'Comprobado en',
   },
   players: {
     // Variables: {playeronline}, {playermax}
     title: '__**JUGADORES**__',
     description: '**{playeronline}/{playermax}**',
-    // Después de la descripción estará la lista de nombres de jugadores.
-    // Muestra el mensaje de desconexión cuando el servidor de Minecraft está desconectado.
+    // La lista de nombres de jugadores se mostrará después de la descripción.
+    // Muestra integrados fuera de línea cuando el servidor de MC está fuera de línea.
   },
   motd: {
     // Variables: {motd}
@@ -38,17 +40,23 @@
   onlineEmbed: {
     // Variables: {ip}, {motd}, {version}, {site}
     title: ':green_circle: EN LÍNEA',
-    // Aquí, el título y la descripción del Embed de la lista de jugadores desde el embed de jugadores arriba (línea: 26)
+    // Aquí, el título y la descripción de la lista de jugadores del incrustado de arriba (línea: 28)
 
-    // Después del campo de la lista de jugadores estará la descripción.
+    // La descripción se coloca después del campo de la lista de jugadores.
     description_field_one: '__**MOTD**__\n**{motd}**\n\n__**DIRECCIÓN DEL SERVIDOR**__\n**{ip}**',
     description_field_two: '__**VERSIÓN**__\n**{version}**\n\n__**SITIO WEB**__\n**Enlace: {site}**',
+    footer: 'Comprobado en',
   },
   help: {
-    //Variables: {prefix}, {botName}
+    // Variables: {prefix}, {botName}
     title: '__**LISTA DE COMANDOS**__',
     description: '**Prefijo: `{prefix}`**',
-    // Variables para el formato de lista solamente: {cmdDescription}, {cmdSlashMention}
+    // Solo variables de formato de lista: {cmdDescription}, {cmdSlashMention}.
     listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
+  },
+  info: {
+    title: '**Información y estadísticas del bot**',
+    // Variables: {cpuUsage}, {memoryUsage}, {nodeVersion}, {uptimeDays}, {uptimeHours}, {uptimeMinutes}, {uptimeSeconds}, {ping}, {websocket}
+    description: '**Uso de CPU: `{cpuUsage}%`\nUso de memoria: `{memoryUsage}MB`\nVersión de Node.js: `{nodeVersion}`\nTiempo activo del bot: `{uptimeDays}` días, `{uptimeHours}` horas, `{uptimeMinutes}` minutos, `{uptimeSeconds}` segundos\nPing: Cliente `{ping}ms` | Websocket: `{websocket}ms`**',
   },
 }

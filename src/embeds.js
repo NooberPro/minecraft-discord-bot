@@ -1,20 +1,21 @@
 const { EmbedBuilder } = require('discord.js')
-const { mcserver, commands } = require('../config')
-const icon = mcserver.icon
+const { mcserver, commands, settings } = require('../config')
+const fs = require('fs')
+const json5 = require('json5')
+
+language = settings.language.embeds ? settings.language.embeds : settings.language.main
+const fileContents = fs.readFileSync(`./translation/${language}/embeds.json5`, 'utf8')
+const embedReadData = json5.parse(fileContents)
+
 const ipBedrock = `IP: \`${mcserver.ip}\`\nPort: \`${mcserver.port}\``
 const port = mcserver.port === 25565 ? '' : `:\`${mcserver.port}\``
 const ipJava = `**IP: \`${mcserver.ip}\`${port}**`
 const ip = mcserver.type === 'bedrock' ? ipBedrock : ipJava
-const fs = require('fs')
-const json5 = require('json5')
-
-const fileContents = fs.readFileSync(`./translation/${commands.language}/embeds.json5`, 'utf8')
-const embedReadData = json5.parse(fileContents)
 
 // Embed Message for site commands
 const siteEmbed = new EmbedBuilder()
-  .setColor('Aqua')
-  .setThumbnail(icon)
+  .setColor(settings.embedsColors.basicCmds)
+  .setThumbnail(mcserver.icon)
   .setAuthor({
     name: mcserver.name,
   })
@@ -23,8 +24,8 @@ const siteEmbed = new EmbedBuilder()
 
 // Embed Message for version commands
 const versionEmbed = new EmbedBuilder()
-  .setColor('Aqua')
-  .setThumbnail(icon)
+  .setColor(settings.embedsColors.basicCmds)
+  .setThumbnail(mcserver.icon)
   .setAuthor({
     name: mcserver.name,
   })
@@ -33,8 +34,8 @@ const versionEmbed = new EmbedBuilder()
 
 // Embed Message for ip commands
 const ipEmbed = new EmbedBuilder()
-  .setColor('Aqua')
-  .setThumbnail(icon)
+  .setColor(settings.embedsColors.basicCmds)
+  .setThumbnail(mcserver.icon)
   .setAuthor({
     name: mcserver.name,
   })
@@ -44,14 +45,14 @@ const ipEmbed = new EmbedBuilder()
 // Offline Embed Message status commands
 const offlineStatus = () => {
   const offlineEmbed = new EmbedBuilder()
-    .setColor('Red')
+    .setColor(settings.embedsColors.offline)
     .setTitle(
       embedReadData.offlineEmbed.title
         .replace(/\{ip\}/gi, ip)
         .replace(/\{version\}/gi, mcserver.version)
         .replace(/\{site\}/gi, mcserver.site)
     )
-    .setThumbnail(icon)
+    .setThumbnail(mcserver.icon)
     .setAuthor({
       name: mcserver.name,
     })
@@ -76,8 +77,8 @@ const motdEmbed = async () => {
     return offlineStatus()
   } else {
     return new EmbedBuilder()
-      .setColor('Aqua')
-      .setThumbnail(icon)
+      .setColor(settings.embedsColors.online)
+      .setThumbnail(mcserver.icon)
       .setAuthor({
         name: mcserver.name,
       })
@@ -96,8 +97,8 @@ const playerList = async () => {
       return offlineStatus()
     } else {
       return new EmbedBuilder()
-        .setColor('Aqua')
-        .setThumbnail(icon)
+        .setColor(settings.embedsColors.online)
+        .setThumbnail(mcserver.icon)
         .setAuthor({
           name: mcserver.name,
         })
@@ -139,8 +140,8 @@ const OnlineEmbed = async (data, playerlist) => {
       .replace(/\{site\}/gi, mcserver.site)
 
     return new EmbedBuilder()
-      .setColor('Green')
-      .setThumbnail(icon)
+      .setColor(settings.embedsColors.online)
+      .setThumbnail(mcserver.icon)
       .setAuthor({
         name: mcserver.name,
       })

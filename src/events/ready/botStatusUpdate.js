@@ -1,10 +1,11 @@
-const { bot, commands } = require('../../../config')
+const { bot, settings } = require('../../../config')
 const chalk = require('chalk')
 const fs = require('fs')
 const json5 = require('json5')
 
 module.exports = (client) => {
-  const consoleLogData = fs.readFileSync(`./translation/${commands.language}/console-log.json5`, 'utf8')
+  languageConsoleOuput = settings.language.consoleLog ? settings.language.consoleLog : settings.language.main
+  const consoleLogData = fs.readFileSync(`./translation/${languageConsoleOuput}/console-log.json5`, 'utf8')
   const consoleLog = json5.parse(consoleLogData)
 
   const botStatusUpdate = async () => {

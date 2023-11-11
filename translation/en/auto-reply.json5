@@ -3,13 +3,13 @@
 // English translation (en) by NooberPro
 
 {
-  // Translation for auto-reply feature
+  // Translation for the auto-reply function
   version: {
-    // Use {version} to get the version in the config
+    // Use {version} to get the version from the config.
     replyText: "The server's version: **`{version}`**",
   },
   ip: {
-    // Use {ip} for ip and {port} for port.
+    // Use {ip} for the ip and {port} for the port.
     replyText: '**IP: `{ip}`\nPort: `{port}`**',
   },
   site: {
@@ -17,7 +17,7 @@
     replyText: "The server's website link: **<{site}>**",
   },
   status: {
-    // Use {playerOnline} for players online no. and {playerMax} for players max no. Only work in onlineReply.
+    // Use {playerOnline} for the number of players online and {playerMax} for the maximum number of players. Only works in onlineReply.
     onlineReply: 'The server is **`🟢ONLINE`** with **`{playerOnline}/{playerMax}`** players playing.',
     offlineReply: 'The server is **`🔴OFFLINE`**',
   },

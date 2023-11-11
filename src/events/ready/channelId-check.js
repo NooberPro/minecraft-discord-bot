@@ -3,7 +3,11 @@ const { statusMessageEdit } = require('../../index.js')
 const chalk = require('chalk')
 const fs = require('fs')
 const json5 = require('json5')
-const consoleLogData = fs.readFileSync(`./translation/${config.commands.language}/console-log.json5`, 'utf8')
+
+languageConsoleOuput = config.settings.language.consoleLog
+  ? config.settings.language.consoleLog
+  : config.settings.language.main
+const consoleLogData = fs.readFileSync(`./translation/${languageConsoleOuput}/console-log.json5`, 'utf8')
 const consoleLog = json5.parse(consoleLogData)
 
 module.exports = (client) => {

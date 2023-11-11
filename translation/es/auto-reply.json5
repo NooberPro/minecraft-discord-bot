@@ -1,23 +1,24 @@
 // Github: https://github.com/NooberPro/minecraft-discord-bot
 // Crowdin: https://crowdin.com/project/minecraft-discord-bot
-// Traducción (es) al español por AI
+// Traducción al español (es) por AI
+
 {
   // Traducción para la función de respuesta automática
   version: {
-    // Utiliza {version} para obtener la versión en la configuración
+    // Utiliza {version} para obtener la versión de la configuración.
     replyText: 'La versión del servidor: **`{version}`**',
   },
   ip: {
-    // Utiliza {ip} para la dirección IP y {port} para el puerto.
+    // Utiliza {ip} para la IP y {port} para el puerto.
     replyText: '**IP: `{ip}`\nPuerto: `{port}`**',
   },
   site: {
-    // Utiliza {site} para el sitio web
+    // Utiliza {site} para el sitio
     replyText: 'Enlace al sitio web del servidor: **<{site}>**',
   },
   status: {
     // Utiliza {playerOnline} para el número de jugadores en línea y {playerMax} para el número máximo de jugadores. Solo funciona en onlineReply.
-    onlineReply: 'El servidor está **`🟢EN LÍNEA`** con **`{playerOnline}/{playerMax}`** jugadores jugando.',
-    offlineReply: 'El servidor está **`🔴DESCONECTADO`**',
+    onlineReply: 'El servidor está **`🟢EN LÍNEA`** con **`{playerOnline}/{playerMax}`** jugadores.',
+    offlineReply: 'El servidor está **`🔴FUERA DE LÍNEA`**',
   },
 }

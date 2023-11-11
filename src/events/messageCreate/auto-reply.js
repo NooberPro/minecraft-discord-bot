@@ -1,8 +1,9 @@
-const { autoReply, mcserver, commands } = require('../../../config')
+const { autoReply, mcserver, commands, settings } = require('../../../config')
 const fs = require('fs')
 const json5 = require('json5')
 
-const fileContents = fs.readFileSync(`./translation/${commands.language}/auto-reply.json5`, 'utf8')
+const languageAutoReply = settings.language.autoReply ? settings.language.autoReply : settings.language.main
+const fileContents = fs.readFileSync(`./translation/${languageAutoReply}/console-log.json5`, 'utf8')
 const autoReplyReplyText = json5.parse(fileContents)
 
 module.exports = async (msg) => {

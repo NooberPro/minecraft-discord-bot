@@ -1,8 +1,9 @@
-// https://github.com/NooberPro/minecraft-discord-bot
+// Github: https://github.com/NooberPro/minecraft-discord-bot
 // Crowdin: https://crowdin.com/project/minecraft-discord-bot
-// Английский перевод (ru) от AI
+// Русский перевод (ru) от ИИ
 
 {
+  // Перевод для встроенных командных сообщений.
   ip: {
     // Переменные: {ip}
     title: '__**АДРЕС СЕРВЕРА**__',
@@ -10,7 +11,7 @@
   },
   site: {
     // Переменные: {site}
-    title: '__**САЙТ**__',
+    title: '__**ВЕБ-САЙТ**__',
     description: '**Ссылка: {site}**',
   },
   version: {
@@ -20,15 +21,16 @@
   },
   offlineEmbed: {
     // Переменные: {ip}, {version}, {site}
-    title: ':red_circle: ОФФЛАЙН',
-    description: '', // Оставьте описание пустым, чтобы отключить его.
+    title: ':red_circle: НЕДОСТУПЕН',
+    description: '', // Чтобы отключить это, оставьте описание пустым.
+    footer: 'Проверено',
   },
   players: {
     // Переменные: {playeronline}, {playermax}
     title: '__**ИГРОКИ**__',
     description: '**{playeronline}/{playermax}**',
-    // После описания будет список имен игроков.
-    // Показывает оффлайн-встраивание при отключении MC-сервера.
+    // Список имен игроков будет показан после описания.
+    // Отображает встраиваемые сообщения оффлайн, когда сервер MC недоступен.
   },
   motd: {
     // Переменные: {motd}
@@ -37,18 +39,24 @@
   },
   onlineEmbed: {
     // Переменные: {ip}, {motd}, {version}, {site}
-    title: ':green_circle: ОНЛАЙН',
-    // Здесь заголовок и описание встраивания списка игроков из встраивания players выше (строка: 26).
+    title: ':green_circle: В СЕТИ',
+    // Здесь заголовок и описание списка игроков выше (строка: 28)
 
-    // После поля списка игроков будет описание.
+    // Описание размещается после поля списка игроков.
     description_field_one: '__**MOTD**__\n**{motd}**\n\n__**АДРЕС СЕРВЕРА**__\n**{ip}**',
-    description_field_two: '__**ВЕРСИЯ**__\n**{version}**\n\n__**САЙТ**__\n**Ссылка: {site}**',
+    description_field_two: '__**ВЕРСИЯ**__\n**{version}**\n\n__**ВЕБ-САЙТ**__\n**Ссылка: {site}**',
+    footer: 'Проверено',
   },
   help: {
     // Переменные: {prefix}, {botName}
     title: '__**СПИСОК КОМАНД**__',
     description: '**Префикс: `{prefix}`**',
-    // Переменные только для listFormat: {cmdDescription}, {cmdSlashMention}
+    // Только переменные формата списка: {cmdDescription}, {cmdSlashMention}.
     listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
+  },
+  info: {
+    title: '**Информация и статистика бота**',
+    // Переменные: {cpuUsage}, {memoryUsage}, {nodeVersion}, {uptimeDays}, {uptimeHours}, {uptimeMinutes}, {uptimeSeconds}, {ping}, {websocket}
+    description: '**Использование CPU: `{cpuUsage}%`\nИспользование памяти: `{memoryUsage}MB`\nВерсия Node.js: `{nodeVersion}`\nАптайм бота: `{uptimeDays}` дней, `{uptimeHours}` часов, `{uptimeMinutes}` минут, `{uptimeSeconds}` секунд\nПинг: Клиент `{ping}ms` | Веб-сокет: `{websocket}ms` **',
   },
 }
