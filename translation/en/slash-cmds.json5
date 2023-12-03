@@ -1,0 +1,59 @@
+// Github: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
+// English translation (en) by NooberPro
+
+{
+  // Translation for the slash commands
+
+  // The name field is the name of the command. You can rename the command name, but it CANNOT BE TRANSLATED.
+  // The description field is description of command.
+  help: {
+    name: 'help',
+    description: 'Sends the list of available commands.',
+  },
+  ip: {
+    name: 'ip',
+    description: 'Sends the Server Address of the Minecraft Server.',
+  },
+  site: {
+    name: 'site',
+    description: "Sends the Minecraft Server's website/vote link.",
+  },
+  version: {
+    name: 'version',
+    description: 'Sends the version of the Minecraft Server.',
+  },
+
+  //errorReply field is if command have error while executing and reply errorReply text.
+  motd: {
+    name: 'motd',
+    description: "Sends the Minecraft Server's Message Of The Day (MOTD).",
+    errorReply: 'Error with getting Message of the Day (MOTD)',
+  },
+  players: {
+    name: 'players',
+    description: 'Sends the list of online player in the Minecraft Server.',
+    errorReply: 'Error with getting online players list',
+  },
+  status: {
+    name: 'status',
+    description: 'Sends the current status of the Minecraft Server.',
+    errorReply: 'Unable to find the status the server due to an error.',
+  },
+  info: {
+    name: 'info',
+    description: 'Sends the current info about the bot.',
+    errorReply: 'Error with getting Info',
+  },
+  setstatus: {
+    name: 'setstatus',
+    description: 'Sets the Minecraft server status message in the current channel.',
+    // {error} for receiving error message
+    errorReply: ':warning: Could not set status message because of an error: {error}',
+    enableFeature: '**Please enable `auto Change Status` in the config to enable status message feature.**',
+    checkingStatusMsg: ':gear: Checking the status ...',
+    checkingStatusCmdMsg: ':arrows_clockwise: Checking status and necessary info.',
+    // {channel} for channel link and {messageLink} for message link icon
+    statusMsgSuccess: ':white_check_mark: **Status message is set successfully in {channel}. Message:** {messageLink}',
+  },
+}

@@ -1,15 +1,12 @@
 const config = require('../../../config')
-const { commands } = require('../../../config')
-const {
-  ipEmbed,
-  siteEmbed,
-  playerList,
-  versionEmbed,
-  offlineStatus,
-  statusEmbed,
-  motdEmbed,
-  helpEmbed,
-} = require('../../embeds')
+const { commands, settings } = require('../../../config')
+const { ipEmbed, siteEmbed, playerList, versionEmbed, statusEmbed, motdEmbed, helpEmbed } = require('../../embeds')
+const json5 = require('json5')
+const fs = require('fs')
+
+const cmdSlashLanguage = settings.language.slashCmds ? settings.language.slashCmds : settings.language.main
+const fileContents = fs.readFileSync(`./translation/${cmdSlashLanguage}/slash-cmds.json5`, 'utf8')
+const cmdSlashRead = json5.parse(fileContents)
 
 module.exports = async (message, client) => {
   if (
@@ -49,7 +46,7 @@ module.exports = async (message, client) => {
     try {
       message.channel.send({ embeds: [await statusEmbed()] })
     } catch (error) {
-      message.channel.send('Unable to find the status the server due to an error.')
+      message.channel.send(cmdSlashRead.status.errorReply)
       const { getError } = require('../../index')
       getError(error, 'statusPrefix')
     }

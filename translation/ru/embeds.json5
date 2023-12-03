@@ -1,62 +1,61 @@
-// Github: https://github.com/NooberPro/minecraft-discord-bot
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
 // Crowdin: https://crowdin.com/project/minecraft-discord-bot
-// Русский перевод (ru) от ИИ
+// Русский перевод (ru) от Zahar1loshara
 
 {
-  // Перевод для встроенных командных сообщений.
+  // Перевод для команды вставки сообщения.
   ip: {
-    // Переменные: {ip}
+    // Переменная: {ip}
     title: '__**АДРЕС СЕРВЕРА**__',
     description: '**{ip}**',
   },
   site: {
-    // Переменные: {site}
-    title: '__**ВЕБ-САЙТ**__',
+    // Переменная: {site}
+    title: '__**САЙТ**__',
     description: '**Ссылка: {site}**',
   },
   version: {
-    // Переменные: {version}
+    // Переменная: {version}
     title: '__**ВЕРСИЯ**__',
     description: '**{version}**',
   },
   offlineEmbed: {
-    // Переменные: {ip}, {version}, {site}
-    title: ':red_circle: НЕДОСТУПЕН',
-    description: '', // Чтобы отключить это, оставьте описание пустым.
-    footer: 'Проверено',
+    // Переменная: {ip}, {version}, {site}
+    title: ':red_circle: ОФЛАЙН',
+    description: '', // Для отключения оставьте описание пустым.
+    footer: 'Проверено в',
   },
   players: {
-    // Переменные: {playeronline}, {playermax}
+    // Переменные: {playeronline}, {playermax}.
     title: '__**ИГРОКИ**__',
     description: '**{playeronline}/{playermax}**',
-    // Список имен игроков будет показан после описания.
-    // Отображает встраиваемые сообщения оффлайн, когда сервер MC недоступен.
+    // Список ников игроков будет показан под описанием.
+    // Отображать офлайн эмбед когда Майнкрафт сервер офлайн.
   },
   motd: {
-    // Переменные: {motd}
+    // Переменная: {motd}
     title: '__**MOTD**__',
     description: '**{motd}**',
   },
   onlineEmbed: {
     // Переменные: {ip}, {motd}, {version}, {site}
-    title: ':green_circle: В СЕТИ',
-    // Здесь заголовок и описание списка игроков выше (строка: 28)
-
-    // Описание размещается после поля списка игроков.
+    title: ':green_circle: ОНЛАЙН',
+    // Здесь название и описание списка игроков встраиваются сверху (строка: 27)
+    // Описание помещается в поле списка игроков.
     description_field_one: '__**MOTD**__\n**{motd}**\n\n__**АДРЕС СЕРВЕРА**__\n**{ip}**',
-    description_field_two: '__**ВЕРСИЯ**__\n**{version}**\n\n__**ВЕБ-САЙТ**__\n**Ссылка: {site}**',
-    footer: 'Проверено',
+    description_field_two: '__**ВЕРСИЯ**__\n**{version}**\n\n__**САЙТ**__\n**Ссылка: {site}**',
+    footer: 'Проверено в',
   },
   help: {
-    // Переменные: {prefix}, {botName}
     title: '__**СПИСОК КОМАНД**__',
+    // Переменные: {prefix}, {botName}
     description: '**Префикс: `{prefix}`**',
-    // Только переменные формата списка: {cmdDescription}, {cmdSlashMention}.
+    // Только listFormat переменные: {cmdDescription}, {cmdSlashMention}.
     listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
   },
   info: {
-    title: '**Информация и статистика бота**',
-    // Переменные: {cpuUsage}, {memoryUsage}, {nodeVersion}, {uptimeDays}, {uptimeHours}, {uptimeMinutes}, {uptimeSeconds}, {ping}, {websocket}
-    description: '**Использование CPU: `{cpuUsage}%`\nИспользование памяти: `{memoryUsage}MB`\nВерсия Node.js: `{nodeVersion}`\nАптайм бота: `{uptimeDays}` дней, `{uptimeHours}` часов, `{uptimeMinutes}` минут, `{uptimeSeconds}` секунд\nПинг: Клиент `{ping}ms` | Веб-сокет: `{websocket}ms` **',
+    title: '**Информация о боте и статистика**',
+    // Переменные: {cpuUsage}, {memoryUsage}, {nodeVersion}, {uptimeDays}, {uptimeHours}, {uptimeMinutes}, {uptimeSeconds}, {ping}, {websocket}.
+    description: '**Использование ЦПУ: `{cpuUsage}%`\nИспользование памяти: `{memoryUsage}MB`\nNode.js Версия: `{nodeVersion}`\nСрок бота: `{uptimeDays}` дней, `{uptimeHours}` часы, `{uptimeMinutes}`, минуты, `{uptimeSeconds}` секунд\nПинг: Клиент `{ping}ms` | Websocket: `{websocket}ms` **',
   },
 }

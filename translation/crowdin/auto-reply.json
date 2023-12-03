@@ -1,0 +1,9 @@
+{
+  "version": { "replyText": "The server's version: **`{version}`**" },
+  "ip": { "replyText": "**IP: `{ip}`\nPort: `{port}`**" },
+  "site": { "replyText": "The server's website link: **<{site}>**" },
+  "status": {
+    "onlineReply": "The server is **`🟢ONLINE`** with **`{playerOnline}/{playerMax}`** players playing.",
+    "offlineReply": "The server is **`🔴OFFLINE`**"
+  }
+}

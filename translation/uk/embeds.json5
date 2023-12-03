@@ -1,0 +1,62 @@
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
+// Український переклад (uk) від Zahar1loshara
+
+{
+  // Переклад повідомлень з командними налаштуваннями.
+  ip: {
+    // Змінні: {ip}
+    title: '__**АДРЕСА СЕРВЕРА**__',
+    description: '**{ip}**',
+  },
+  site: {
+    // Змінні: {site}
+    title: '__**САЙТ**__',
+    description: '**Посилання: {site}**',
+  },
+  version: {
+    // Змінні: {version}
+    title: '__**ВЕРСІЯ**__',
+    description: '**{version}**',
+  },
+  offlineEmbed: {
+    // Змінні: {ip}, {version}, {site}
+    title: ':red_circle: ОФЛАЙН',
+    description: '', // Щоб вимкнути це, залиште опис пустим.
+    footer: 'Перевірено в',
+  },
+  players: {
+    // Змінні: {playeronline}, {playermax}.
+    title: '__**ГРАВЦІ**__',
+    description: '**{playeronline}/{playermax}**',
+    // Лист гравців буде показано після опису.
+    // Виводити офлайн повідомлення коли сервер вимкнутий.
+  },
+  motd: {
+    // Змінні: {motd}
+    title: '__**MOTD**__',
+    description: '**{motd}**',
+  },
+  onlineEmbed: {
+    // Змінні: {ip}, {motd}, {version}, {site}
+    title: ':green_circle: ОНЛАЙН',
+    // Тут, назва та опис списку гравців зверху (рядок: 27)
+
+    // Опис буде після поля списку гравців.
+    description_field_one: '__**MOTD**__\n**{motd}**\n\n__**АДРЕСА СЕРВЕРА**__\n**{ip}**',
+    description_field_two: '__**ВЕРСІЯ**__\n**{version}**\n\n__**САЙТ**__\n**Посилання: {site}**',
+    footer: 'Перевірено в',
+  },
+  help: {
+    // Змінні: {prefix}, {botName}
+    title: '__**ЛИСТ КОМАНД**__',
+    description: '**Префікс: `{prefix}`**',
+    // Тільки listFormat зміни: {cmdDescription}, {cmdSlashMention}.
+    listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
+  },
+  info: {
+    title: '**Інфа бота та стати**',
+    // Змінні: {cpuUsage}, {memoryUsage}, {nodeVersion}, {uptimeDays}, {uptimeHours}, {uptimeMinutes}, {uptimeSeconds}, {ping}, {websocket}.
+    description: "**Використовується ЦП: `{cpuUsage}%`\nвикористовується пам'яті: `{memoryUsage}MB`\nNode.js Version: `{nodeVersion}`\nЧас роботи бота: `{uptimeDays}`днів, `{uptimeHours}`годин, `{uptimeMinutes}` хвилин, `{uptimeSeconds}` секунд\nПинг: Клієнт `{ping}мс` | Вебсокет: `{websocket}мс**",
+  },
+}

@@ -11,10 +11,16 @@ languageConsoleOuput = config.settings.language.consoleLog
 const consoleLogData = fs.readFileSync(`./translation/${languageConsoleOuput}/console-log.json5`, 'utf8')
 const consoleLog = json5.parse(consoleLogData)
 
+const cmdSlashLanguage = config.settings.language.slashCmds
+  ? config.settings.language.slashCmds
+  : config.settings.language.main
+const fileContents = fs.readFileSync(`./translation/${cmdSlashLanguage}/slash-cmds.json5`, 'utf8')
+const cmdSlashRead = json5.parse(fileContents)
+
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('setstatus')
-    .setDescription('Sets the Minecraft server status message in the current channel.')
+    .setName(cmdSlashRead.setstatus.name)
+    .setDescription(cmdSlashRead.setstatus.description)
     .setDefaultMemberPermissions(
       PermissionFlagsBits.ManageChannels,
       PermissionFlagsBits.ManageThreads,
@@ -25,18 +31,14 @@ module.exports = {
     await interaction.deferReply({ ephemeral: true })
     try {
       if (!config.autoChangeStatus.enabled) {
-        interaction.editReply({
-          content: '**Please enable `auto Change Status` in the config to enable status message feature.**',
+        interaction.followUp({
+          content: cmdSlashRead.setstatus.enableFeature,
           ephemeral: true,
         })
         return
       }
       const channel = client.channels.cache.get(interaction.channelId)
-      const msg = await channel.send(':gear: Checking the status ...')
-      interaction.editReply({
-        content: `:arrows_clockwise: Checking status and necessary info.`,
-        ephemeral: true,
-      })
+      const msg = await channel.send(cmdSlashRead.setstatus.checkingStatusCmdMsg)
       const readData = fs.readFileSync('./src/data.json', 'utf8')
       data = await JSON.parse(readData)
       data.channelId = interaction.channelId
@@ -45,8 +47,13 @@ module.exports = {
       const dataRead = fs.readFileSync('./src/data.json', 'utf8')
       let dataID = JSON.parse(dataRead)
       await statusMessageEdit()
-      interaction.editReply({
-        content: `:white_check_mark: **Status message is set successfully in <#${dataID.channelId}>. Message:** https://discord.com/channels/${msg.guildId}/${dataID.channelId}/${dataID.messageId}`,
+      interaction.followUp({
+        content: cmdSlashRead.setstatus.statusMsgSuccess
+          .replace(/\{channel\}/gi, `<#${dataID.channelId}>`)
+          .replace(
+            /\{messageLink\}/gi,
+            `https://discord.com/channels/${msg.guildId}/${dataID.channelId}/${dataID.messageId}`
+          ),
         ephemeral: true,
       })
       console.log(
@@ -56,8 +63,8 @@ module.exports = {
         statusMessageEdit()
       }, config.autoChangeStatus.updateInterval * 1000)
     } catch (error) {
-      interaction.editReply({
-        content: `:warning: Could not set status message because of an error: ${error.message}`,
+      interaction.followUp({
+        content: errorReply.replace(/\{error\}/gi, error.message),
         ephemeral: true,
       })
       const { getError } = require('../index')

@@ -1,0 +1,42 @@
+{
+  "ip": {
+    "title": "__**SERVER ADDRESS**__",
+    "description": "**{ip}**"
+  },
+  "site": {
+    "title": "__**WEBSITE**__",
+    "description": "**Link: {site}**"
+  },
+  "version": {
+    "title": "__**VERSION**__",
+    "description": "**{version}**"
+  },
+  "offlineEmbed": {
+    "title": ":red_circle: OFFLINE",
+    "description": "",
+    "footer": "Checked at"
+  },
+  "players": {
+    "title": "__**PLAYERS**__",
+    "description": "**{playeronline}/{playermax}**"
+  },
+  "motd": {
+    "title": "__**MOTD**__",
+    "description": "**{motd}**"
+  },
+  "onlineEmbed": {
+    "title": ":green_circle: ONLINE",
+    "description_field_one": "__**MOTD**__\n**{motd}**\n\n__**SERVER ADDRESS**__\n**{ip}**",
+    "description_field_two": "__**VERSION**__\n**{version}**\n\n__**WEBSITE**__\n**Link: {site}**",
+    "footer": "Checked at"
+  },
+  "help": {
+    "title": "__**COMMANDS LIST**__",
+    "description": "**Prefix: `{prefix}`**",
+    "listFormat": "{slashCmdMention} **`-` {cmdDescription}**"
+  },
+  "info": {
+    "title": "**Bot Info and Stats**",
+    "description": "**CPU Usage: `{cpuUsage}%`\nMemory Usage: `{memoryUsage}MB`\nNode.js Version: `{nodeVersion}`\nBot uptime: `{uptimeDays}` days, `{uptimeHours}` hours, `{uptimeMinutes}`, minutes, `{uptimeSeconds}` seconds\nPing: Client `{ping}ms` | Websocket: `{websocket}ms` **"
+  }
+}
