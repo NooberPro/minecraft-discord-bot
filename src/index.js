@@ -1,7 +1,5 @@
 const { Client, IntentsBitField } = require('discord.js')
 const { statusBedrock, statusJava } = require('node-mcstatus')
-const { OnlineEmbed, offlineStatus } = require('./embeds')
-const path = require('path')
 const config = require('../config')
 const chalk = require('chalk')
 const fs = require('fs')
@@ -19,6 +17,20 @@ const client = new Client({
   ],
 })
 
+const getDateNow = () => {
+  return new Date().toLocaleString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    timeZone: !config.settings.logging.timezone
+      ? Intl.DateTimeFormat().resolvedOptions().timezone
+      : config.settings.logging.timezone,
+    timeZoneName: 'shortGeneric',
+  })
+}
+
 process.on('uncaughtException', (error) => {
   console.log(`${getDateNow()} | ${chalk.redBright('ERROR')} | ${chalk.bold('Uncaught Exception')}:`, error)
 })
@@ -27,49 +39,68 @@ process.on('unhandledRejection', (reason) => {
   console.log(`${getDateNow()} | ${chalk.redBright('ERROR')} | ${chalk.bold('Unhandled Rejection')}:`, reason)
 })
 
-languageEmbed = config.settings.language.embeds ? config.settings.language.embeds : config.settings.language.main
-const fileContents = fs.readFileSync(`./translation/${languageEmbed}/embeds.json5`, 'utf8')
-const embedRead = json5.parse(fileContents)
+const languageEmbedOuput = config.settings.language.embeds
+  ? config.settings.language.embeds
+  : config.settings.language.main
+const embedFileContent = fs.readFileSync(`./translation/${languageEmbedOuput}/embeds.json5`, 'utf8')
+const embedTranslation = json5.parse(embedFileContent)
 
-languageConsoleOuput = config.settings.language.consoleLog
+const languageConsoleOuput = config.settings.language.consoleLog
   ? config.settings.language.consoleLog
   : config.settings.language.main
-const consoleLogData = fs.readFileSync(`./translation/${languageConsoleOuput}/console-log.json5`, 'utf8')
-const consoleLog = json5.parse(consoleLogData)
+const consoleLogFileContent = fs.readFileSync(`./translation/${languageConsoleOuput}/console-log.json5`, 'utf8')
+const consoleLogTranslation = json5.parse(consoleLogFileContent)
+
+const cmdSlashLanguageOutput = config.settings.language.slashCmds
+  ? config.settings.language.slashCmds
+  : config.settings.language.main
+const cmdSlashContents = fs.readFileSync(`./translation/${cmdSlashLanguageOutput}/slash-cmds.json5`, 'utf8')
+const cmdSlashTranslation = json5.parse(cmdSlashContents)
 
 // Runs the checkError Function immediately.
 ;(() => {
+  function isTimeZoneSupported() {
+    if (!config.settings.logging.timezone) return true
+    try {
+      Intl.DateTimeFormat(undefined, { timeZone: config.settings.logging.timezone })
+      return true
+    } catch (e) {
+      return false
+    }
+  }
+
   const errors = []
 
-  console.log(chalk.blue(consoleLog.checkErrorConfig.checkConfigWait))
+  console.log(chalk.blue(consoleLogTranslation.checkErrorConfig.checkConfigWait))
 
   function checkError(condition, errorMessage) {
     if (condition) errors.push(errorMessage)
   }
 
-  checkError(config.bot.token.startsWith('your-bot-token-here'), consoleLog.checkErrorConfig.botToken)
+  checkError(!isTimeZoneSupported(), consoleLogTranslation.checkErrorConfig.timezone)
+  checkError(config.bot.token.startsWith('your-bot-token-here'), consoleLogTranslation.checkErrorConfig.botToken)
   checkError(
     !['online', 'idle', 'dnd', 'invisible'].includes(
       config.bot.presence.status.online && config.bot.presence.status.offline
     ),
-    consoleLog.checkErrorConfig.botPresenceStatus
+    consoleLogTranslation.checkErrorConfig.botPresenceStatus
   )
   checkError(
     !['Playing', 'Listening', 'Watching', 'Competing'].includes(config.bot.presence.activity),
-    consoleLog.checkErrorConfig.botStatusActivity
+    consoleLogTranslation.checkErrorConfig.botStatusActivity
   )
 
-  checkError(!['java', 'bedrock'].includes(config.mcserver.type), consoleLog.checkErrorConfig.mcType)
-  checkError(!config.mcserver.name, consoleLog.checkErrorConfig.mcName)
-  checkError(!config.mcserver.version, consoleLog.checkErrorConfig.mcVersion)
+  checkError(!['java', 'bedrock'].includes(config.mcserver.type), consoleLogTranslation.checkErrorConfig.mcType)
+  checkError(!config.mcserver.name, consoleLogTranslation.checkErrorConfig.mcName)
+  checkError(!config.mcserver.version, consoleLogTranslation.checkErrorConfig.mcVersion)
 
   checkError(
     config.playerCountCH.enabled && config.playerCountCH.guildID === 'your-guild-id-here',
-    consoleLog.checkErrorConfig.guildID
+    consoleLogTranslation.checkErrorConfig.guildID
   )
 
   if (errors.length > 0) {
-    console.error(chalk.red(consoleLog.checkErrorConfig.followingErrors))
+    console.error(chalk.red(consoleLogTranslation.checkErrorConfig.followingErrors))
     errors.forEach((errors) => console.log(chalk.keyword('orange')(errors)))
     process.exit(1)
   }
@@ -78,8 +109,8 @@ const consoleLog = json5.parse(consoleLogData)
 const groupPlayerList = (playerListArrayRaw) => {
   let playerListArray = [
     {
-      name: embedRead.players.title,
-      value: embedRead.players.description
+      name: embedTranslation.players.title,
+      value: embedTranslation.players.description
         .replace(/\{playeronline\}/gi, playerListArrayRaw.online)
         .replace(/\{playermax\}/gi, playerListArrayRaw.max),
     },
@@ -107,21 +138,12 @@ const groupPlayerList = (playerListArrayRaw) => {
   return playerListArray
 }
 
-const getDateNow = () => {
-  return new Date().toLocaleString('en-US', {
-    hour12: true,
-    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-    dateStyle: 'short',
-    timeStyle: 'short',
-  })
-}
-
 const getError = (error, errorMsg) => {
   if (config.settings.logging.error) {
     console.log(
-      `${getDateNow()} | ${chalk.red('ERROR')} | ${chalk.bold(consoleLog.error[errorMsg])}: ${chalk.keyword('orange')(
-        error.message
-      )}`
+      `${getDateNow()} | ${chalk.red('ERROR')} | ${chalk.bold(consoleLogTranslation.error[errorMsg])}: ${chalk.keyword(
+        'orange'
+      )(error.message)}`
     )
   }
 }
@@ -136,8 +158,8 @@ const getPlayersList = async (playerListRaw) => {
   try {
     let playerListArray = [
       {
-        name: embedRead.players.title,
-        value: embedRead.players.description
+        name: embedTranslation.players.title,
+        value: embedTranslation.players.description
           .replace(/\{playeronline\}/gi, playerListRaw.online)
           .replace(/\{playermax\}/gi, playerListRaw.max),
       },
@@ -159,7 +181,7 @@ const getServerDataAndPlayerList = async () => {
       config.mcserver.type === 'java'
         ? await statusJava(config.mcserver.ip, config.mcserver.port)
         : await statusBedrock(config.mcserver.ip, config.mcserver.port)
-    const isOnline = config.autoChangeStatus.isOnlineCheck ? data.online && data.players.max > 0 : data.online
+    const isOnline = config.autoChangeStatus.isOnlineCheck ? data.online && data.players.max >= 0 : data.online
     if (isOnline) {
       const playerListArray = await getPlayersList(data.players)
       return { data, playerListArray, isOnline }
@@ -178,7 +200,7 @@ const getServerDataOnly = async () => {
       config.mcserver.type === 'java'
         ? await statusJava(config.mcserver.ip, config.mcserver.port)
         : await statusBedrock(config.mcserver.ip, config.mcserver.port)
-    const isOnline = config.autoChangeStatus.isOnlineCheck ? data.online && data.players.max > 0 : data.online
+    const isOnline = config.autoChangeStatus.isOnlineCheck ? data.online && data.players.max >= 0 : data.online
     return { data, isOnline }
   } catch (error) {
     getError(error, 'fetchServerData')
@@ -187,8 +209,8 @@ const getServerDataOnly = async () => {
 
 const statusMessageEdit = async () => {
   try {
-    const dataPath = path.join(__dirname, 'data.json')
-    let dataRead = fs.readFileSync(dataPath, 'utf8')
+    const { OnlineEmbed, offlineStatus } = require('./embeds')
+    let dataRead = fs.readFileSync(`${__dirname}/data.json`, 'utf8')
     dataRead = await JSON.parse(dataRead)
     const channel = await client.channels.fetch(dataRead.channelId)
     const message = await channel.messages.fetch(dataRead.messageId)
@@ -199,9 +221,11 @@ const statusMessageEdit = async () => {
         embeds: [await OnlineEmbed(data, playerListArray)],
       })
       getDebug(
-        consoleLog.debug.autoChangeStatus.format.replace(
+        consoleLogTranslation.debug.autoChangeStatus.format.replace(
           /\{statusText\}/gi,
-          chalk.green(consoleLog.debug.autoChangeStatus.onlineText.replace(/\{playerOnline\}/gi, data.players.online))
+          chalk.green(
+            consoleLogTranslation.debug.autoChangeStatus.onlineText.replace(/\{playerOnline\}/gi, data.players.online)
+          )
         )
       )
     } else {
@@ -210,9 +234,9 @@ const statusMessageEdit = async () => {
         embeds: [offlineStatus()],
       })
       getDebug(
-        consoleLog.debug.autoChangeStatus.format.replace(
+        consoleLogTranslation.debug.autoChangeStatus.format.replace(
           /\{statusText\}/gi,
-          chalk.red(consoleLog.debug.autoChangeStatus.offlineText)
+          chalk.red(consoleLogTranslation.debug.autoChangeStatus.offlineText)
         )
       )
     }
@@ -228,12 +252,15 @@ module.exports = {
   getServerDataOnly,
   getDebug,
   statusMessageEdit,
+  embedTranslation,
+  consoleLogTranslation,
+  cmdSlashTranslation,
 }
 
 new CommandKit({
   client,
-  eventsPath: path.join(__dirname, 'events'),
-  commandsPath: path.join(__dirname, 'commands'),
+  eventsPath: `${__dirname}/events`,
+  commandsPath: `${__dirname}/commands`,
   bulkRegister: true,
 })
 

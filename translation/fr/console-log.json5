@@ -5,37 +5,37 @@
 {
   // Traduction pour la sortie console
   error: {
-    playerEmbed: 'Erreur lors de la création du message d'intégration de la liste des joueurs',
-    statusEmbed: 'Erreur lors de la création du message d'intégration de l'état',
+    playerEmbed: "Erreur lors de la création du message d'intégration de la liste des joueurs",
+    statusEmbed: "Erreur lors de la création du message d'intégration de l'état",
     playerList: 'Erreur lors de la création de la liste des joueurs',
     fetchServerDataAndPlayerList: 'Impossible de récupérer les données du serveur Minecraft et la liste des joueurs',
     fetchServerData: 'Impossible de récupérer les données du serveur Minecraft',
-    messageEdit: 'Erreur lors de l'édition du message d'état',
+    messageEdit: "Erreur lors de l'édition du message d'état",
     botLogin: 'Erreur de connexion du bot',
     infoCmd: 'Erreur dans la commande Slash - Info',
     motdCmd: 'Erreur dans la commande Slash - MOTD',
     playerCmd: 'Erreur dans la commande Slash - Joueur',
     statusCmd: 'Erreur dans la commande Slash - État',
     statusPrefix: 'Erreur dans la commande de préfixe - État',
-    setStatus: 'Échec de la définition du message d'état',
+    setStatus: "Échec de la définition du message d'état",
     autoReply: 'Erreur dans la fonction de réponse automatique',
     botStatusUpdate: "Erreur lors de la mise à jour de l'état du bot",
-    channelIdCheck: 'Erreur dans la vérification de l\'ID du canal et dans la mise à jour',
+    channelIdCheck: "Erreur dans la vérification de l'ID du canal et dans la mise à jour",
     playerCountCh: 'Erreur dans la fonction du canal de décompte des joueurs',
     playerCountChNameUpdate: 'Erreur lors de la mise à jour du nom du canal de décompte des joueurs',
-    playerCountChDateWrite: 'Erreur lors de l\'enregistrement de l\'ID du canal de décompte des joueurs dans data.json',
+    playerCountChDateWrite: "Erreur lors de l'enregistrement de l'ID du canal de décompte des joueurs dans data.json",
   },
   debug: {
     autoChangeStatus: {
       onlineText: 'En ligne avec {playerOnline} joueurs en cours de jeu.',
       offlineText: '❌ Hors ligne.',
-      format: 'Le message d\'intégration d\'état a été mis à jour avec {statusText}',
+      format: "Le message d'intégration d'état a été mis à jour avec {statusText}",
       // {channelName} pour obtenir le nom du canal du message d'état
-      successLog: 'Le message d\'état a été défini avec succès dans {channelName}',
+      successLog: "Le message d'état a été défini avec succès dans {channelName}",
       // {cmd} pour obtenir la commande setstatus
-      enableAutoChangeStatus: 'Pour définir l\'état du serveur, envoyez une commande {cmd} dans le canal souhaité.',
+      enableAutoChangeStatus: "Pour définir l'état du serveur, envoyez une commande {cmd} dans le canal souhaité.",
     },
-    botStatusFormat: 'Le message d\'intégration d\'état a été mis à jour avec {botStatusText}',
+    botStatusFormat: "Le message d'intégration d'état a été mis à jour avec {botStatusText}",
     playerCountChUpdate: 'Le nom du canal de décompte des joueurs a été mis à jour avec {updatedName}',
   },
   checkErrorConfig: {
@@ -47,17 +47,18 @@
     mcType: 'Type de serveur Minecraft non valide. Doit être "java" ou "bedrock".',
     mcName: "Le nom du serveur Minecraft n'a pas été spécifié.",
     mcVersion: "La version du serveur Minecraft n'a pas été spécifiée.",
-    guildID: 'L\'ID du serveur/Guilde n\'a pas été spécifiée ou est invalide.',
+    guildID: "L'ID du serveur/Guilde n'a pas été spécifiée ou est invalide.",
+    timeZone: "Le fuseau horaire spécifié dans le fichier de configuration n'est pas valide.",
   },
   playerCountCh: {
     // {guildID} pour l'ID de guilde donnée dans le fichier de configuration
-    playerCountChGuildIncorrect: 'La guilde avec l\'ID : "{guildID}" n\'a pas été trouvée ou le bot n\'est pas dans la guilde.',
+    playerCountChGuildIncorrect: "La guilde avec l'ID : \"{guildID}\" n'a pas été trouvée ou le bot n'est pas dans la guilde.",
     // {channelName} pour le canal créé
     playerCountChannelFound: 'Canal trouvé avec succès : Canal {channelName} pour le décompte des joueurs.',
     // {channelId} pour l'ID du canal donnée dans le fichier de configuration
-    playerCountChannelNotFound: 'Le canal pour le décompte des joueurs avec l\'ID : "{channelId}" n\'a pas été trouvé ou le bot n\'a pas accès au canal.',
+    playerCountChannelNotFound: "Le canal pour le décompte des joueurs avec l'ID : \"{channelId}\" n'a pas été trouvé ou le bot n'a pas accès au canal.",
     // {updatedStatus} pour le nom de l'état mis à jour du canal
-    playerCountChannelCreated: 'Création d\'un canal pour le décompte des joueurs et mise à jour de son nom à : {updatedStatus}.',
+    playerCountChannelCreated: "Création d'un canal pour le décompte des joueurs et mise à jour de son nom à : {updatedStatus}.",
   },
 
   // Utilisez {botUserTag} pour l'étiquette d'utilisateur du bot, telle que Bot#0001

@@ -40,7 +40,8 @@
     "mcType": "Invalid Minecraft server type. Should be \"java\" or \"bedrock\".",
     "mcName": "The Minecraft server's name has not been specified.",
     "mcVersion": "The Minecraft server's version has not been specified.",
-    "guildID": "The Server/Guild ID has not been specified or Invaild."
+    "guildID": "The Server/Guild ID has not been specified or Invaild.",
+    "timeZone": "The time zone specified in the config file is not valid."
   },
   "playerCountCh": {
     "playerCountChGuildIncorrect": "The guild with ID: \"{guildID}\" was not found or the bot is not in the guild.",

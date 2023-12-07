@@ -3,7 +3,7 @@ const fs = require('fs')
 const json5 = require('json5')
 
 const languageAutoReply = settings.language.autoReply ? settings.language.autoReply : settings.language.main
-const fileContents = fs.readFileSync(`./translation/${languageAutoReply}/console-log.json5`, 'utf8')
+const fileContents = fs.readFileSync(`./translation/${languageAutoReply}/auto-reply.json5`, 'utf8')
 const autoReplyReplyText = json5.parse(fileContents)
 
 module.exports = async (msg) => {

@@ -1,13 +1,8 @@
 const { bot, settings } = require('../../../config')
+const { consoleLogTranslation } = require('../../index')
 const chalk = require('chalk')
-const fs = require('fs')
-const json5 = require('json5')
 
 module.exports = (client) => {
-  languageConsoleOuput = settings.language.consoleLog ? settings.language.consoleLog : settings.language.main
-  const consoleLogData = fs.readFileSync(`./translation/${languageConsoleOuput}/console-log.json5`, 'utf8')
-  const consoleLog = json5.parse(consoleLogData)
-
   const botStatusUpdate = async () => {
     const { getDebug, getServerDataOnly } = require('../../index')
     const { ActivityType } = require('discord.js')
@@ -23,7 +18,7 @@ module.exports = (client) => {
           })
           await client.user.setStatus(bot.presence.status.online)
           getDebug(
-            consoleLog.debug.botStatusFormat.replace(
+            consoleLogTranslation.debug.botStatusFormat.replace(
               /\{botStatusText\}/gi,
               chalk.green(`${bot.presence.activity} ${statusText}`)
             )
@@ -34,7 +29,7 @@ module.exports = (client) => {
             type: ActivityType[bot.presence.activity],
           })
           getDebug(
-            consoleLog.debug.botStatusFormat.replace(
+            consoleLogTranslation.debug.botStatusFormat.replace(
               /\{botStatusText\}/gi,
               chalk.red(`${bot.presence.activity} ${bot.presence.text.offline}`)
             )

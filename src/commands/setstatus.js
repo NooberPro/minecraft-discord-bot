@@ -1,26 +1,13 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js')
-const { statusMessageEdit } = require('../index')
+const { statusMessageEdit, consoleLogTranslation, cmdSlashTranslation } = require('../index')
 const config = require('../../config')
 const chalk = require('chalk')
 const fs = require('fs')
-const json5 = require('json5')
-
-languageConsoleOuput = config.settings.language.consoleLog
-  ? config.settings.language.consoleLog
-  : config.settings.language.main
-const consoleLogData = fs.readFileSync(`./translation/${languageConsoleOuput}/console-log.json5`, 'utf8')
-const consoleLog = json5.parse(consoleLogData)
-
-const cmdSlashLanguage = config.settings.language.slashCmds
-  ? config.settings.language.slashCmds
-  : config.settings.language.main
-const fileContents = fs.readFileSync(`./translation/${cmdSlashLanguage}/slash-cmds.json5`, 'utf8')
-const cmdSlashRead = json5.parse(fileContents)
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName(cmdSlashRead.setstatus.name)
-    .setDescription(cmdSlashRead.setstatus.description)
+    .setName(cmdSlashTranslation.setstatus.name)
+    .setDescription(cmdSlashTranslation.setstatus.description)
     .setDefaultMemberPermissions(
       PermissionFlagsBits.ManageChannels,
       PermissionFlagsBits.ManageThreads,
@@ -32,13 +19,13 @@ module.exports = {
     try {
       if (!config.autoChangeStatus.enabled) {
         interaction.followUp({
-          content: cmdSlashRead.setstatus.enableFeature,
+          content: cmdSlashTranslation.setstatus.enableFeature,
           ephemeral: true,
         })
         return
       }
       const channel = client.channels.cache.get(interaction.channelId)
-      const msg = await channel.send(cmdSlashRead.setstatus.checkingStatusCmdMsg)
+      const msg = await channel.send(cmdSlashTranslation.setstatus.checkingStatusCmdMsg)
       const readData = fs.readFileSync('./src/data.json', 'utf8')
       data = await JSON.parse(readData)
       data.channelId = interaction.channelId
@@ -48,7 +35,7 @@ module.exports = {
       let dataID = JSON.parse(dataRead)
       await statusMessageEdit()
       interaction.followUp({
-        content: cmdSlashRead.setstatus.statusMsgSuccess
+        content: cmdSlashTranslation.setstatus.statusMsgSuccess
           .replace(/\{channel\}/gi, `<#${dataID.channelId}>`)
           .replace(
             /\{messageLink\}/gi,
@@ -57,7 +44,10 @@ module.exports = {
         ephemeral: true,
       })
       console.log(
-        consoleLog.debug.autoChangeStatus.successLog.replace(/\{channelName\}/gi, chalk.cyan(`#${msg.channel.name}`))
+        consoleLogTranslation.debug.autoChangeStatus.successLog.replace(
+          /\{channelName\}/gi,
+          chalk.cyan(`#${msg.channel.name}`)
+        )
       )
       setInterval(() => {
         statusMessageEdit()

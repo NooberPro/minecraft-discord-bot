@@ -48,6 +48,7 @@
     mcName: 'Der Name des Minecraft-Servers wurde nicht angegeben.',
     mcVersion: 'Die Version des Minecraft-Servers wurde nicht angegeben.',
     guildID: 'Die Server-/Gilden-ID wurde nicht angegeben oder ist ungültig.',
+    timeZone: 'Die im Konfigurationsfile angegebene Zeitzone ist ungültig.',
   },
   playerCountCh: {
     // {guildID} für die in der Konfigurationsdatei angegebene Gilden-ID

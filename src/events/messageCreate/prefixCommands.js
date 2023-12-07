@@ -1,12 +1,6 @@
-const config = require('../../../config')
-const { commands, settings } = require('../../../config')
+const { commands, mcserver } = require('../../../config')
+const { cmdSlashTranslation } = require('./../../index')
 const { ipEmbed, siteEmbed, playerList, versionEmbed, statusEmbed, motdEmbed, helpEmbed } = require('../../embeds')
-const json5 = require('json5')
-const fs = require('fs')
-
-const cmdSlashLanguage = settings.language.slashCmds ? settings.language.slashCmds : settings.language.main
-const fileContents = fs.readFileSync(`./translation/${cmdSlashLanguage}/slash-cmds.json5`, 'utf8')
-const cmdSlashRead = json5.parse(fileContents)
 
 module.exports = async (message, client) => {
   if (
@@ -30,7 +24,7 @@ module.exports = async (message, client) => {
   if (commands.ip.enabled && (content === 'ip' || commands.ip.alias.includes(content))) {
     message.channel.send({ embeds: [ipEmbed] })
   }
-  if (commands.site.enabled && config.mcserver.site && (content === 'site' || commands.site.alias.includes(content))) {
+  if (commands.site.enabled && mcserver.site && (content === 'site' || commands.site.alias.includes(content))) {
     message.channel.send({ embeds: [siteEmbed] })
   }
   if (commands.version.enabled && (content === 'version' || commands.version.alias.includes(content))) {
@@ -46,7 +40,7 @@ module.exports = async (message, client) => {
     try {
       message.channel.send({ embeds: [await statusEmbed()] })
     } catch (error) {
-      message.channel.send(cmdSlashRead.status.errorReply)
+      message.channel.send(cmdSlashTranslation.status.errorReply)
       const { getError } = require('../../index')
       getError(error, 'statusPrefix')
     }

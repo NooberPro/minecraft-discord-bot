@@ -1,21 +1,18 @@
 const { SlashCommandBuilder } = require('discord.js')
-const { commands, settings } = require('../../config')
-const json5 = require('json5')
-const fs = require('fs')
-
-const cmdSlashLanguage = settings.language.slashCmds ? settings.language.slashCmds : settings.language.main
-const fileContents = fs.readFileSync(`./translation/${cmdSlashLanguage}/slash-cmds.json5`, 'utf8')
-const cmdSlashRead = json5.parse(fileContents)
+const { commands } = require('../../config')
+const { cmdSlashTranslation } = require('../index')
 
 module.exports = {
-  data: new SlashCommandBuilder().setName(cmdSlashRead.players.name).setDescription(cmdSlashRead.players.description),
+  data: new SlashCommandBuilder()
+    .setName(cmdSlashTranslation.players.name)
+    .setDescription(cmdSlashTranslation.players.description),
   run: async ({ interaction }) => {
     await interaction.deferReply()
     const { playerList } = require('../embeds')
     try {
       interaction.followUp({ content: '', embeds: [await playerList()] })
     } catch (error) {
-      interaction.followUp({ content: cmdSlashRead.players.errorReply })
+      interaction.followUp({ content: cmdSlashTranslation.players.errorReply })
       const { getError } = require('../index')
       getError(error, 'playerCmd')
     }

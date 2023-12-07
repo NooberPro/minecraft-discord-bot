@@ -1,14 +1,6 @@
 const config = require('../../../config.js')
-const { statusMessageEdit } = require('../../index.js')
+const { statusMessageEdit, consoleLogTranslation } = require('../../index.js')
 const chalk = require('chalk')
-const fs = require('fs')
-const json5 = require('json5')
-
-languageConsoleOuput = config.settings.language.consoleLog
-  ? config.settings.language.consoleLog
-  : config.settings.language.main
-const consoleLogData = fs.readFileSync(`./translation/${languageConsoleOuput}/console-log.json5`, 'utf8')
-const consoleLog = json5.parse(consoleLogData)
 
 module.exports = (client) => {
   try {
@@ -16,7 +8,10 @@ module.exports = (client) => {
     const data = require('../../data.json')
     if (data.channelId === null) {
       console.log(
-        consoleLog.debug.autoChangeStatus.enableAutoChangeStatus.replace(/\{cmd\}/gi, chalk.cyan('"/setstatus"'))
+        consoleLogTranslation.debug.autoChangeStatus.enableAutoChangeStatus.replace(
+          /\{cmd\}/gi,
+          chalk.cyan('"/setstatus"')
+        )
       )
     } else {
       statusMessageEdit()

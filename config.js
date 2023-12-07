@@ -2,7 +2,8 @@
 // "MC" is referring to Minecraft in the comments for convenience.
 module.exports = {
   bot: {
-    token: 'your-bot-token-here',
+    // token: 'your-bot-token-here',
+    token: 'MTEwMDgzNTE4ODA5NjkwNTMxNg.GKAYLl.ruEFFdsy2H5ZscgZAxTtzpUBNG6_dxuhi1Pmzo',
     // Auto changing status and activity of bot.
     presence: {
       enabled: true,
@@ -25,8 +26,8 @@ module.exports = {
     name: 'Demo Server', // Name of MC server.
     version: 'Requires 1.8 - 1.20', // Version of MC server.
     icon: 'https://i.imgur.com/6Msem8Q.png', // URL of MC server icon. How? https://tinyurl.com/iconurl
-    site: 'https://nooberpro.gitbook.io/', // URL of MC server or vote website.
-    // To disable site commands leave site field blank. NOT REQUIRED
+    site: 'https://nooberpro.gitbook.io/', // URL of MC server or vote website. NOT REQUIRED
+    // To disable site commands leave site field blank.
   },
 
   // Settings for bot.
@@ -48,6 +49,7 @@ module.exports = {
     },
     // console-logging settings.
     logging: {
+      timezone: '', // Time zone of bot. Use formats like America/New_York or Europe/London. Leave blank to match the bot's location time zone.
       inviteLink: true, // Log invite link at bot's launch.
       debug: false, // Log status message and  bot activity update. (pretty much like spam)
       error: true, // Log any errors that occur.

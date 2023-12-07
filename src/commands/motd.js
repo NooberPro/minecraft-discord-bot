@@ -1,16 +1,12 @@
 const { SlashCommandBuilder } = require('discord.js')
 const { motdEmbed } = require('../embeds')
-const { commands, settings } = require('../../config')
-
-const json5 = require('json5')
-const fs = require('fs')
-
-const cmdSlashLanguage = settings.language.slashCmds ? settings.language.slashCmds : settings.language.main
-const fileContents = fs.readFileSync(`./translation/${cmdSlashLanguage}/slash-cmds.json5`, 'utf8')
-const cmdSlashRead = json5.parse(fileContents)
+const { commands } = require('../../config')
+const { cmdSlashTranslation } = require('../index')
 
 module.exports = {
-  data: new SlashCommandBuilder().setName(cmdSlashRead.motd.name).setDescription(cmdSlashRead.motd.description),
+  data: new SlashCommandBuilder()
+    .setName(cmdSlashTranslation.motd.name)
+    .setDescription(cmdSlashTranslation.motd.description),
 
   run: async ({ interaction }) => {
     interaction.deferReply()
@@ -18,7 +14,7 @@ module.exports = {
       interaction.followUp({ embeds: [await motdEmbed()] })
     } catch (error) {
       interaction.followUp({
-        content: cmdSlashRead.motd.errorReply,
+        content: cmdSlashTranslation.motd.errorReply,
       })
       const { getError } = require('../index')
       getError(error, 'motdCmd')

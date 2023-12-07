@@ -1,11 +1,6 @@
 const { EmbedBuilder } = require('discord.js')
 const { mcserver, commands, settings } = require('../config')
-const fs = require('fs')
-const json5 = require('json5')
-
-language = settings.language.embeds ? settings.language.embeds : settings.language.main
-const fileContents = fs.readFileSync(`./translation/${language}/embeds.json5`, 'utf8')
-const embedReadData = json5.parse(fileContents)
+const { embedTranslation } = require('./index')
 
 const ipBedrock = `IP: \`${mcserver.ip}\`\nPort: \`${mcserver.port}\``
 const port = mcserver.port === 25565 ? '' : `:\`${mcserver.port}\``
@@ -19,8 +14,8 @@ const siteEmbed = new EmbedBuilder()
   .setAuthor({
     name: mcserver.name,
   })
-  .setTitle(embedReadData.site.title.replace(/\{site\}/gi, mcserver.site))
-  .setDescription(embedReadData.site.description.replace(/\{site\}/gi, mcserver.site))
+  .setTitle(embedTranslation.site.title.replace(/\{site\}/gi, mcserver.site))
+  .setDescription(embedTranslation.site.description.replace(/\{site\}/gi, mcserver.site))
 
 // Embed Message for version commands
 const versionEmbed = new EmbedBuilder()
@@ -29,8 +24,8 @@ const versionEmbed = new EmbedBuilder()
   .setAuthor({
     name: mcserver.name,
   })
-  .setTitle(embedReadData.version.title.replace(/\{version\}/gi, mcserver.version))
-  .setDescription(embedReadData.version.description.replace(/\{version\}/gi, mcserver.version))
+  .setTitle(embedTranslation.version.title.replace(/\{version\}/gi, mcserver.version))
+  .setDescription(embedTranslation.version.description.replace(/\{version\}/gi, mcserver.version))
 
 // Embed Message for ip commands
 const ipEmbed = new EmbedBuilder()
@@ -39,15 +34,15 @@ const ipEmbed = new EmbedBuilder()
   .setAuthor({
     name: mcserver.name,
   })
-  .setTitle(embedReadData.ip.title.replace(/\{ip\}/gi, ip))
-  .setDescription(embedReadData.ip.description.replace(/\{ip\}/gi, ip))
+  .setTitle(embedTranslation.ip.title.replace(/\{ip\}/gi, ip))
+  .setDescription(embedTranslation.ip.description.replace(/\{ip\}/gi, ip))
 
 // Offline Embed Message status commands
 const offlineStatus = () => {
   const offlineEmbed = new EmbedBuilder()
     .setColor(settings.embedsColors.offline)
     .setTitle(
-      embedReadData.offlineEmbed.title
+      embedTranslation.offlineEmbed.title
         .replace(/\{ip\}/gi, ip)
         .replace(/\{version\}/gi, mcserver.version)
         .replace(/\{site\}/gi, mcserver.site)
@@ -57,10 +52,10 @@ const offlineStatus = () => {
       name: mcserver.name,
     })
     .setTimestamp()
-    .setFooter({ text: embedReadData.offlineEmbed.footer })
-  if (embedReadData.offlineEmbed.description) {
+    .setFooter({ text: embedTranslation.offlineEmbed.footer })
+  if (embedTranslation.offlineEmbed.description) {
     offlineEmbed.setDescription(
-      embedReadData.offlineEmbed.description
+      embedTranslation.offlineEmbed.description
         .replace(/\{ip\}/gi, ip)
         .replace(/\{version\}/gi, mcserver.version)
         .replace(/\{site\}/gi, mcserver.site)
@@ -82,8 +77,8 @@ const motdEmbed = async () => {
       .setAuthor({
         name: mcserver.name,
       })
-      .setTitle(embedReadData.motd.title.replace(/\{motd\}/gi, data.motd.clean))
-      .setDescription(embedReadData.motd.description.replace(/\{motd\}/gi, data.motd.clean))
+      .setTitle(embedTranslation.motd.title.replace(/\{motd\}/gi, data.motd.clean))
+      .setDescription(embedTranslation.motd.description.replace(/\{motd\}/gi, data.motd.clean))
       .setFooter({ text: 'Checked at' })
       .setTimestamp()
   }
@@ -104,7 +99,7 @@ const playerList = async () => {
         })
         .addFields(playerListArray)
         .setTimestamp()
-        .setFooter({ text: embedReadData.offlineEmbed.footer })
+        .setFooter({ text: embedTranslation.offlineEmbed.footer })
     }
   } catch (error) {
     const { getError } = require('./index')
@@ -126,13 +121,13 @@ const statusEmbed = async () => {
 // Online Embed Message for status commands
 const OnlineEmbed = async (data, playerlist) => {
   try {
-    let description_field_one = embedReadData.onlineEmbed.description_field_one
+    let description_field_one = embedTranslation.onlineEmbed.description_field_one
       .trim()
       .replace(/\{ip\}/gi, ip)
       .replace(/\{motd\}/gi, data.motd.clean)
       .replace(/\{version\}/gi, mcserver.version)
       .replace(/\{site\}/gi, mcserver.site)
-    let description_field_two = embedReadData.onlineEmbed.description_field_two
+    let description_field_two = embedTranslation.onlineEmbed.description_field_two
       .trim()
       .replace(/\{ip\}/gi, ip)
       .replace(/\{motd\}/gi, data.motd.clean)
@@ -146,7 +141,7 @@ const OnlineEmbed = async (data, playerlist) => {
         name: mcserver.name,
       })
       .setTitle(
-        embedReadData.onlineEmbed.title
+        embedTranslation.onlineEmbed.title
           .replace(/\{ip\}/gi, ip)
           .replace(/\{motd\}/gi, data.motd.clean)
           .replace(/\{version\}/gi, mcserver.version)
@@ -158,7 +153,7 @@ const OnlineEmbed = async (data, playerlist) => {
         value: description_field_two,
       })
       .setTimestamp()
-      .setFooter({ text: embedReadData.onlineEmbed.footer })
+      .setFooter({ text: embedTranslation.onlineEmbed.footer })
   } catch (error) {
     const { getError } = require('./index')
     getError(error, 'statusEmbed')
@@ -180,7 +175,7 @@ const helpEmbed = async (client) => {
   commandsFetch.forEach((command) => {
     if (visibleCmdsNames.includes(command.name)) {
       cmdsList.push(
-        embedReadData.help.listFormat
+        embedTranslation.help.listFormat
           .replace(/\{slashCmdMention\}/gi, `</${command.name}:${command.id}>`)
           .replace(/\{cmdDescription\}/gi, command.description)
       )
@@ -188,14 +183,14 @@ const helpEmbed = async (client) => {
   })
 
   return new EmbedBuilder()
-    .setTitle(embedReadData.help.title.replace(/\{prefix\}/gi).replace(/\{botName\}/gi, client.user.username))
+    .setTitle(embedTranslation.help.title.replace(/\{prefix\}/gi).replace(/\{botName\}/gi, client.user.username))
     .setColor('Yellow')
     .setAuthor({
       name: client.user.username,
       iconURL: client.user.avatarURL(),
     })
     .setDescription(
-      `${embedReadData.help.description
+      `${embedTranslation.help.description
         .replace(/\{prefix\}/gi, commands.prefixCommands.prefix)
         .replace(/\{botName\}/gi, client.user.username)}\n${cmdsList.join('\n')}`
     )
@@ -218,10 +213,10 @@ const botInfoEmbed = async (interaction, client) => {
       name: client.user.tag,
       iconURL: client.user.avatarURL(),
     })
-    .setTitle(embedReadData.info.title)
+    .setTitle(embedTranslation.info.title)
     .setColor('Yellow')
     .setDescription(
-      embedReadData.info.description
+      embedTranslation.info.description
         .replace(/\{cpuUsage\}/gi, cpuUsage)
         .replace(/\{memoryUsage\}/gi, memoryUsage)
         .replace(/\{nodeVersion\}/gi, nodeVersion)

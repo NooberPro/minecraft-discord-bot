@@ -1,18 +1,11 @@
 const chalk = require('chalk')
 const config = require('../../../config')
-const fs = require('fs')
-const json5 = require('json5')
-
-languageConsoleOuput = config.settings.language.consoleLog
-  ? config.settings.language.consoleLog
-  : config.settings.language.main
-const consoleLogData = fs.readFileSync(`./translation/${languageConsoleOuput}/console-log.json5`, 'utf8')
-const consoleLog = json5.parse(consoleLogData)
+const { consoleLogTranslation } = require('../../index')
 
 module.exports = async (client) => {
   if (config.settings.logging.inviteLink) {
     console.log(
-      consoleLog.inviteLink
+      consoleLogTranslation.inviteLink
         .replace(/\{botUserTag\}/gi, chalk.cyan(client.user.tag))
         .replace(
           /\{inviteLink\}/gi,
@@ -28,7 +21,7 @@ module.exports = async (client) => {
   const ipJava = `${config.mcserver.ip} ${port}`
   const ip = config.mcserver.type === 'bedrock' ? ipBedrock : ipJava
   if (isOnline) {
-    const serverInfoStartOnline = consoleLog.serverInfoStart.online.join('\n')
+    const serverInfoStartOnline = consoleLogTranslation.serverInfoStart.online.join('\n')
     console.log(
       serverInfoStartOnline
         .replace(/\{ip\}/gi, chalk.cyan.bold(ip))
@@ -40,7 +33,7 @@ module.exports = async (client) => {
     )
   } else {
     const ip = config.mcserver.type === 'bedrock' ? config.mcserver.ip : ipJava
-    const serverInfoStartOffline = consoleLog.serverInfoStart.offline.join('\n')
+    const serverInfoStartOffline = consoleLogTranslation.serverInfoStart.offline.join('\n')
     console.log(
       serverInfoStartOffline
         .replace(/\{ip\}/gi, chalk.red.bold(ip))

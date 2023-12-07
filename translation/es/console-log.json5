@@ -48,6 +48,7 @@
     mcName: 'No se ha especificado el nombre del servidor de Minecraft.',
     mcVersion: 'No se ha especificado la versión del servidor de Minecraft.',
     guildID: 'No se ha especificado la ID del servidor/gremio o es inválida.',
+    timeZone: 'La zona horaria especificada en el archivo de configuración no es válida.',
   },
   playerCountCh: {
     // {guildID} para la ID del gremio dada en el archivo de configuración
