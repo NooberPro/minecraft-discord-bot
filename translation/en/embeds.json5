@@ -53,6 +53,13 @@
     description: '**Prefix: `{prefix}`**',
     // Only listFormat variables: {cmdDescription}, {cmdSlashMention}.
     listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
+
+    commandInfoFormat: {
+      // Variables: {cmdName}
+      title: '__**{cmdName} Command**__',
+      // Variables: {cmdSlashMention}, {cmdDescription}, {prefixCmd}, {prefixCmdAlias}
+      description: '**Slash command: {cmdSlashMention}\nDescription: `{cmdDescription}`\nPrefix Commands: `{prefixCmd}`\nPrefix Alias: {prefixCmdAlias}**',
+    },
   },
   info: {
     title: '**Bot Info and Stats**',

@@ -160,8 +160,39 @@ const OnlineEmbed = async (data, playerlist) => {
   }
 }
 
-const helpEmbed = async (client) => {
+const helpEmbed = async (client, commandName) => {
   const commandsFetch = await client.application.commands.fetch()
+  if (commandName) {
+    let slashCmdData
+    await commandsFetch.forEach((slashCmd) => {
+      if (slashCmd.name === commandName) {
+        slashCmdData = slashCmd
+      }
+    })
+    return new EmbedBuilder()
+      .setAuthor({
+        name: client.user.username,
+        iconURL: client.user.avatarURL(),
+      })
+      .setColor('Yellow')
+      .setTitle(
+        embedTranslation.help.commandInfoFormat.title.replace(
+          /\{cmdName\}/gi,
+          slashCmdData.name.charAt(0).toUpperCase() + slashCmdData.name.slice(1)
+        )
+      )
+      .setDescription(
+        embedTranslation.help.commandInfoFormat.description
+          .replace(/\{cmdSlashMention\}/gi, `</${slashCmdData.name}:${slashCmdData.id}>`)
+          .replace(/\{cmdDescription\}/gi, slashCmdData.description)
+          .replace(/\{prefixCmd\}/gi, commands.prefixCommands.prefix + slashCmdData.name)
+          .replace(
+            /\{prefixCmdAlias\}/gi,
+            commands[slashCmdData.name].alias.length ? `\`${commands[slashCmdData.name].alias.join('`, `')}\`` : ''
+          )
+      )
+  }
+
   visibleCmdsNames = []
   // Get the commands enabled from config and add to visibleCmdsNames
   for (const cmds in commands) {
