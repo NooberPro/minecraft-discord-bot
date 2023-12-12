@@ -53,6 +53,13 @@
     description: '**Префікс: `{prefix}`**',
     // Тільки listFormat зміни: {cmdDescription}, {cmdSlashMention}.
     listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
+
+    commandInfoFormat: {
+      // Variables: {cmdName}
+      title: '__**Команда {cmdName}**__',
+      // Variables: {cmdSlashMention}, {cmdDescription}, {prefixCmd}, {prefixCmdAlias}
+      description: '**Slash-команда: {cmdSlashMention}\nОпис: `{cmdDescription}`\nПрефікс команд: `{prefixCmd}`\nПрефікс-алиас: {prefixCmdAlias}**',
+    },
   },
   info: {
     title: '**Інфа бота та стати**',

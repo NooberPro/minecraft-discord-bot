@@ -1,17 +1,17 @@
-// Github: https://github.com/NooberPro/minecraft-discord-bot
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
 // Crowdin: https://crowdin.com/project/minecraft-discord-bot
 // Deutsche Übersetzung (de) von AI
 
 {
-  // Übersetzung für Befehls-Einbettungsnachrichten.
+  // Übersetzung für die Befehleinbettungsnachricht.
   ip: {
     // Variablen: {ip}
-    title: '__**SERVER-ADRESSE**__',
+    title: '__**SERVER ADRESSE**__',
     description: '**{ip}**',
   },
   site: {
     // Variablen: {site}
-    title: '__**WEBSITE**__',
+    title: '__**WEBSEITE**__',
     description: '**Link: {site}**',
   },
   version: {
@@ -20,17 +20,17 @@
     description: '**{version}**',
   },
   offlineEmbed: {
-    // Variablen: {ip}, {version}, {site}
+    // Variablen: {ip},{version}, {site}
     title: ':red_circle: OFFLINE',
     description: '', // Um dies zu deaktivieren, lassen Sie die Beschreibung leer.
-    footer: 'Geprüft am',
+    footer: 'Überprüft am',
   },
   players: {
     // Variablen: {playeronline}, {playermax}
     title: '__**SPIELER**__',
     description: '**{playeronline}/{playermax}**',
-    // Die Liste der Spielernamen wird nach der Beschreibung angezeigt.
-    // Zeigt Offline-Einbettungen an, wenn der MC-Server offline ist.
+    // Die Spielerlisten werden nach der Beschreibung angezeigt.
+    // Zeigt Offline-Einbettungen an, wenn der Minecraft-Server offline ist.
   },
   motd: {
     // Variablen: {motd}
@@ -40,12 +40,12 @@
   onlineEmbed: {
     // Variablen: {ip}, {motd}, {version}, {site}
     title: ':green_circle: ONLINE',
-    // Hier werden der Einbettungstitel und die Beschreibung der Spielerliste von oben (Zeile: 28) platziert.
+    // Hier werden der Titel und die Beschreibung des Spielerlisten-Einbettungsfelds oben (Zeile: 28) angezeigt.
 
-    // Die Beschreibung wird nach dem Feld der Spielerliste platziert.
-    description_field_one: '__**MOTD**__\n**{motd}**\n\n__**SERVER-ADRESSE**__\n**{ip}**',
-    description_field_two: '__**VERSION**__\n**{version}**\n\n__**WEBSITE**__\n**Link: {site}**',
-    footer: 'Geprüft am',
+    // Die Beschreibung wird nach dem Spielerlistenfeld platziert.
+    description_field_one: '__**MOTD**__\n**{motd}**\n\n__**SERVER ADRESSE**__\n**{ip}**',
+    description_field_two: '__**VERSION**__\n**{version}**\n\n__**WEBSEITE**__\n**Link: {site}**',
+    footer: 'Überprüft am',
   },
   help: {
     // Variablen: {prefix}, {botName}
@@ -53,10 +53,18 @@
     description: '**Präfix: `{prefix}`**',
     // Nur listFormat-Variablen: {cmdDescription}, {cmdSlashMention}.
     listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
+
+    commandInfoFormat: {
+      // Variablen: {cmdName}
+      title: '__**{cmdName} Befehl**__',
+      // Variablen: {cmdSlashMention}, {cmdDescription}, {prefixCmd}, {prefixCmdAlias}
+      description: '**Slash-Befehl: {cmdSlashMention}\nBeschreibung: `{cmdDescription}`\nPräfix-Befehle: `{prefixCmd}`\nPräfix-Alias: {prefixCmdAlias}**',
+    },
   },
   info: {
-    title: '**Bot-Info und -Statistiken**',
+    title: '**Bot-Info und Statistiken**',
     // Variablen: {cpuUsage}, {memoryUsage}, {nodeVersion}, {uptimeDays}, {uptimeHours}, {uptimeMinutes}, {uptimeSeconds}, {ping}, {websocket}
-    description: '**CPU-Auslastung: `{cpuUsage}%`\nSpeicherauslastung: `{memoryUsage}MB`\nNode.js Version: `{nodeVersion}`\nBot-Aktivitätszeit: `{uptimeDays}` Tage, `{uptimeHours}` Stunden, `{uptimeMinutes}` Minuten, `{uptimeSeconds}` Sekunden\nPing: Client `{ping}ms` | Websocket: `{websocket}ms`**',
+    description: '**CPU-Auslastung: `{cpuUsage}%`\nSpeicherauslastung: `{memoryUsage}MB`\nNode.js-Version: `{nodeVersion}`\nBot-Aktivitätszeit: `{uptimeDays}` Tage, `{uptimeHours}` Stunden, `{uptimeMinutes}` Minuten, `{uptimeSeconds}` Sekunden\nPing: Client `{ping}ms` | Websocket: `{websocket}ms` **',
   },
 }
+

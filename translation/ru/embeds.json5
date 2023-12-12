@@ -52,6 +52,13 @@
     description: '**Префикс: `{prefix}`**',
     // Только listFormat переменные: {cmdDescription}, {cmdSlashMention}.
     listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
+
+    commandInfoFormat: {
+      // Variables: {cmdName}
+      title: '__**Команда {cmdName}**__',
+      // Variables: {cmdSlashMention}, {cmdDescription}, {prefixCmd}, {prefixCmdAlias}
+      description: '**Slash-команда: {cmdSlashMention}\nОписание: `{cmdDescription}`\nПрефикс команд: `{prefixCmd}`\nПрефикс-алиас: {prefixCmdAlias}**',
+    },
   },
   info: {
     title: '**Информация о боте и статистика**',

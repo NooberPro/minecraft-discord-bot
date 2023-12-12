@@ -1,0 +1,59 @@
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
+// Український переклад (uk) А.І
+
+{
+  // Переклад для команд slash.
+
+  // Поле name - це ім'я команди. Ви можете перейменувати ім'я команди, але ЦЕ НЕ МОЖЕ БУТИ ПЕРЕКЛАДЕНО.
+  // Поле description надає опис команди.
+  help: {
+    name: 'help',
+    description: 'Надсилає список доступних команд.',
+  },
+  ip: {
+    name: 'ip',
+    description: 'Надсилає адресу сервера Minecraft.',
+  },
+  site: {
+    name: 'site',
+    description: 'Надсилає веб-сайт/посилання для голосування сервера Minecraft.',
+  },
+  version: {
+    name: 'version',
+    description: 'Надсилає версію сервера Minecraft.',
+  },
+
+  // Поле errorReply використовується у випадку помилки під час виконання команди, і воно відповідає повідомленням errorReply.
+  motd: {
+    name: 'motd',
+    description: 'Надсилає повідомлення дня (MOTD) сервера Minecraft.',
+    errorReply: 'Сталася помилка під час отримання повідомлення дня (MOTD).',
+  },
+  players: {
+    name: 'players',
+    description: 'Надсилає список гравців, які в даний момент онлайн на сервері Minecraft.',
+    errorReply: 'Сталася помилка під час отримання списку онлайн-гравців.',
+  },
+  status: {
+    name: 'status',
+    description: 'Надсилає поточний статус сервера Minecraft.',
+    errorReply: 'Не вдається знайти статус сервера через помилку.',
+  },
+  info: {
+    name: 'info',
+    description: 'Надсилає поточну інформацію про бота.',
+    errorReply: 'Сталася помилка під час отримання інформації.',
+  },
+  setstatus: {
+    name: 'setstatus',
+    description: 'Встановлює повідомлення статусу сервера Minecraft у поточному каналі.',
+    // Використовуйте {error}, щоб отримати повідомлення про помилку.
+    errorReply: ':warning: Не вдалося встановити повідомлення статусу через помилку: {error}.',
+    enableFeature: '**Будь ласка, увімкніть `Автоматичне змінення статусу` в конфігурації, щоб увімкнути функцію повідомлення статусу.**',
+    checkingStatusMsg: ':gear: Перевірка статусу...',
+    checkingStatusCmdMsg: ':arrows_clockwise: Перевірка статусу та необхідної інформації.',
+    // Використовуйте {channel} для надання посилання на канал, а {messageLink} надає значок посилання на повідомлення.
+    statusMsgSuccess: ':white_check_mark: **Повідомлення статусу успішно встановлено в {channel}. Повідомлення:** {messageLink}.',
+  },
+}

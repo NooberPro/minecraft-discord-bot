@@ -33,7 +33,7 @@ module.exports = {
   settings: {
     language: {
       // Availables languages: en(English), es(Spanish), de(German), fr(French), pt(Portuguese), ru(Russian), uk(Ukrainian)
-      main: 'en',
+      main: 'en', // (files in ./translation/)
       // These are optional settings for language.
       // You can set certain language for certain features. Leave then blank if you want main language to be applied.
       embeds: '', // All the embeds. Slash and Prefix Commands, Auto Changing Status.
@@ -103,9 +103,6 @@ module.exports = {
       enabled: true,
       prefix: '!', // Prefix for normal command.
     }, // Enables all prefix commands
-
-    // en(English), es(Spanish), de(German), fr(French), pt(Portuguese), ru(Russian)
-    language: 'en', // Works only for embeds. (files in ./translation/)
 
     ip: {
       enabled: true, // Enables ip command.

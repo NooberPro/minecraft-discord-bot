@@ -1,0 +1,9 @@
+GitHub: https://github.com/NooberPro/minecraft-discord-bot
+Crowdin: https://crowdin.com/project/minecraft-discord-bot
+English Translation (en) by NooberPro
+Translation for the slash commands..
+The name field is the command name. You can rename the command name, but it CANNOT BE TRANSLATED.
+The description field provides the description of the command.
+The errorReply field is used if there is an error while executing the command, and it replies with an errorReply message.
+Use {error} to receive the error message.
+Use {channel} to provide the channel link, and {messageLink} provides the message link icon.

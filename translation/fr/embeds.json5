@@ -1,9 +1,9 @@
-// Github: https://github.com/NooberPro/minecraft-discord-bot
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
 // Crowdin: https://crowdin.com/project/minecraft-discord-bot
 // Traduction française (fr) par IA
 
 {
-  // Traduction pour les messages intégrés de commandes.
+  // Traduction pour le message d'intégration des commandes.
   ip: {
     // Variables : {ip}
     title: '__**ADRESSE DU SERVEUR**__',
@@ -20,17 +20,17 @@
     description: '**{version}**',
   },
   offlineEmbed: {
-    // Variables : {ip}, {version}, {site}
+    // Variables : {ip},{version}, {site}
     title: ':red_circle: HORS LIGNE',
     description: '', // Pour désactiver cela, laissez la description vide.
-    footer: 'Vérifié le',
+    footer: 'Vérifié à',
   },
   players: {
     // Variables : {playeronline}, {playermax}
     title: '__**JOUEURS**__',
     description: '**{playeronline}/{playermax}**',
     // La liste des noms de joueurs sera affichée après la description.
-    // Affiche des intégrations hors ligne lorsque le serveur MC est hors ligne.
+    // Affiche les intégrations hors ligne lorsque le serveur Minecraft est hors ligne.
   },
   motd: {
     // Variables : {motd}
@@ -40,23 +40,31 @@
   onlineEmbed: {
     // Variables : {ip}, {motd}, {version}, {site}
     title: ':green_circle: EN LIGNE',
-    // Ici, le titre et la description de la liste des joueurs de ci-dessus (ligne : 28)
+    // Ici, le titre et la description de la liste de joueurs intégrée ci-dessus (ligne : 28).
 
-    // La description est placée après le champ de la liste des joueurs.
+    // La description est placée après le champ de liste de joueurs.
     description_field_one: '__**MOTD**__\n**{motd}**\n\n__**ADRESSE DU SERVEUR**__\n**{ip}**',
     description_field_two: '__**VERSION**__\n**{version}**\n\n__**SITE WEB**__\n**Lien : {site}**',
-    footer: 'Vérifié le',
+    footer: 'Vérifié à',
   },
   help: {
     // Variables : {prefix}, {botName}
     title: '__**LISTE DES COMMANDES**__',
     description: '**Préfixe : `{prefix}`**',
-    // Seules les variables de format de liste : {cmdDescription}, {cmdSlashMention}.
+    // Seulement des variables de listFormat : {cmdDescription}, {cmdSlashMention}.
     listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
+
+    commandInfoFormat: {
+      // Variables : {cmdName}
+      title: '__**Commande {cmdName}**__',
+      // Variables : {cmdSlashMention}, {cmdDescription}, {prefixCmd}, {prefixCmdAlias}
+      description: '**Commande slash : {cmdSlashMention}\nDescription : `{cmdDescription}`\nCommandes de préfixe : `{prefixCmd}`\nAlias de préfixe : {prefixCmdAlias}**',
+    },
   },
   info: {
     title: '**Informations et statistiques du bot**',
     // Variables : {cpuUsage}, {memoryUsage}, {nodeVersion}, {uptimeDays}, {uptimeHours}, {uptimeMinutes}, {uptimeSeconds}, {ping}, {websocket}
-    description: "**Utilisation du CPU : `{cpuUsage}%`\nUtilisation de la mémoire : `{memoryUsage}MB`\nVersion de Node.js : `{nodeVersion}`\nDurée d'activité du bot : `{uptimeDays}` jours, `{uptimeHours}` heures, `{uptimeMinutes}` minutes, `{uptimeSeconds}` secondes\nPing : Client `{ping}ms` | Websocket : `{websocket}ms`**",
+    description: '**Utilisation du CPU : `{cpuUsage}%`\nUtilisation de la mémoire : `{memoryUsage}MB`\nVersion de Node.js : `{nodeVersion}`\nUptime du bot : `{uptimeDays}` jours, `{uptimeHours}` heures, `{uptimeMinutes}` minutes, `{uptimeSeconds}` secondes\nPing : Client `{ping}ms` | Websocket : `{websocket}ms` **',
   },
 }
+

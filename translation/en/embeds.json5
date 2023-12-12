@@ -1,6 +1,6 @@
-// Github: https://github.com/NooberPro/minecraft-discord-bot
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
 // Crowdin: https://crowdin.com/project/minecraft-discord-bot
-// English translation (en) by NooberPro
+// English Translation (en) by NooberPro
 
 {
   // Translation for command embeds message.
@@ -20,17 +20,17 @@
     description: '**{version}**',
   },
   offlineEmbed: {
-    // Variables : {ip},{version}, {site}
+    // Variables: {ip},{version}, {site}
     title: ':red_circle: OFFLINE',
-    description: '', // To disable this, leave description blank.
+    description: '', // To disable this, leave the description blank.
     footer: 'Checked at',
   },
   players: {
     // Variables: {playeronline}, {playermax}
     title: '__**PLAYERS**__',
     description: '**{playeronline}/{playermax}**',
-    // The player name list will be shown after description.
-    // Displays offline embeds when the MC server is offline.
+    // The player name list will be displayed after the description.
+    // Displays offline embeds when the Minecraft server is offline.
   },
   motd: {
     // Variables: {motd}
@@ -40,7 +40,7 @@
   onlineEmbed: {
     // Variables: {ip}, {motd}, {version}, {site}
     title: ':green_circle: ONLINE',
-    // Here, the playerlist embed title and description from above (line: 28)
+    // Here, the player list embed title and description from above (line: 28).
 
     // The description is placed after the player list field.
     description_field_one: '__**MOTD**__\n**{motd}**\n\n__**SERVER ADDRESS**__\n**{ip}**',

@@ -1,24 +1,25 @@
-// Github: https://github.com/NooberPro/minecraft-discord-bot
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
 // Crowdin: https://crowdin.com/project/minecraft-discord-bot
 // Deutsche Übersetzung (de) von AI
 
 {
-  // Übersetzung für die Auto-Antwort-Funktion
+  // Übersetzung für die Auto-Antwort-Funktion.
   version: {
-    // Verwende {version}, um die Version aus der Konfiguration zu erhalten.
-    replyText: 'Die Serverversion: **`{version}`**',
+    // Verwende {version}, um die Version aus der Konfiguration abzurufen.
+    replyText: "Die Version des Servers: **`{version}`**.",
   },
   ip: {
     // Verwende {ip} für die IP und {port} für den Port.
     replyText: '**IP: `{ip}`\nPort: `{port}`**',
   },
   site: {
-    // Verwende {site} für die Website
-    replyText: 'Der Link zur Website des Servers: **<{site}>**',
+    // Verwende {site} für den Website-Link aus der Konfiguration.
+    replyText: "Der Website-Link des Servers: **<{site}>**.",
   },
   status: {
-    // Verwende {playerOnline} für die Anzahl der Spieler online und {playerMax} für die maximale Anzahl der Spieler. Funktioniert nur in onlineReply.
-    onlineReply: 'Der Server ist **`🟢ONLINE`** mit **`{playerOnline}/{playerMax}`** Spielern.',
-    offlineReply: 'Der Server ist **`🔴OFFLINE`**',
+    // Verwende {playerOnline} für die Anzahl der online-Spieler und {playerMax} für die maximale Anzahl der Spieler. Dies funktioniert nur in onlineReply.
+    onlineReply: 'Der Server ist derzeit **`🟢ONLINE`** mit **`{playerOnline}/{playerMax}`** aktiven Spielern.',
+    offlineReply: 'Der Server ist derzeit **`🔴OFFLINE`**.',
   },
 }
+

@@ -1,74 +1,74 @@
-// Github: https://github.com/NooberPro/minecraft-discord-bot
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
 // Crowdin: https://crowdin.com/project/minecraft-discord-bot
 // Deutsche Übersetzung (de) von AI
 
 {
   // Übersetzung für die Konsolenausgabe
   error: {
-    playerEmbed: 'Fehler beim Erstellen der Spielerliste-Embed-Nachricht',
-    statusEmbed: 'Fehler beim Erstellen der Status-Embed-Nachricht',
-    playerList: 'Fehler beim Erstellen der Spielerliste',
-    fetchServerDataAndPlayerList: 'Konnte Minecraft-Serverdaten und Spielerliste nicht abrufen',
-    fetchServerData: 'Konnte Minecraft-Serverdaten nicht abrufen',
-    messageEdit: 'Fehler beim Bearbeiten der Statusnachricht',
-    botLogin: 'Fehler beim Bot-Login',
-    infoCmd: 'Fehler im Slash-Befehl - Info',
-    motdCmd: 'Fehler im Slash-Befehl - MOTD',
-    playerCmd: 'Fehler im Slash-Befehl - Spieler',
-    statusCmd: 'Fehler im Slash-Befehl - Status',
-    statusPrefix: 'Fehler im Präfix-Befehl - Status',
-    setStatus: 'Fehler beim Setzen der Statusnachricht',
-    autoReply: 'Fehler in der Auto-Antwort-Funktion',
-    botStatusUpdate: 'Fehler beim Aktualisieren des Bot-Status',
-    channelIdCheck: 'Fehler bei der Überprüfung und Aktualisierung der Kanal-ID',
-    playerCountCh: 'Fehler bei der Spielerzählkanal-Funktion',
-    playerCountChNameUpdate: 'Fehler beim Aktualisieren des Spielerzählkanal-Namens',
-    playerCountChDateWrite: 'Fehler beim Speichern der Spielerzählkanal-ID in data.json',
+    playerEmbed: 'Beim Erstellen der Player List Embeds-Nachricht ist ein Fehler aufgetreten.',
+    statusEmbed: 'Beim Erstellen der Status-Embeds-Nachricht ist ein Fehler aufgetreten.',
+    playerList: 'Beim Erstellen der Spielerliste ist ein Fehler aufgetreten.',
+    fetchServerDataAndPlayerList: 'Abrufen von Minecraft Serverdaten und Spielerliste fehlgeschlagen.',
+    fetchServerData: 'Abrufen von Minecraft Serverdaten fehlgeschlagen.',
+    messageEdit: 'Fehler beim Bearbeiten der Statusnachricht.',
+    botLogin: 'Bot-Anmeldefehler.',
+    infoCmd: 'Fehler im Slash-Befehl - Info.',
+    motdCmd: 'Fehler im Slash-Befehl - MOTD.',
+    playerCmd: 'Fehler im Slash-Befehl - Spieler.',
+    statusCmd: 'Fehler im Slash-Befehl - Status.',
+    statusPrefix: 'Fehler im Präfix-Befehl - Status.',
+    setStatus: 'Fehler beim Festlegen der Statusnachricht.',
+    autoReply: 'Fehler im Auto-Reply-Feature.',
+    botStatusUpdate: 'Fehler beim Aktualisieren des Bot-Status.',
+    channelIdCheck: 'Fehler beim Überprüfen der Kanal-ID und Aktualisieren.',
+    playerCountCh: 'Fehler im Feature für die Spieleranzahl im Kanal.',
+    playerCountChNameUpdate: 'Fehler beim Aktualisieren des Namens des Spieleranzahl-Kanals.',
+    playerCountChDateWrite: 'Fehler beim Speichern der Spieleranzahl-Kanal-ID in data.json.',
   },
   debug: {
     autoChangeStatus: {
       onlineText: 'Online mit {playerOnline} Spielern.',
       offlineText: '❌ Offline.',
-      format: 'Die Status-Embed-Nachricht wurde zu {statusText} aktualisiert',
-      // {channelName} für den Namen des Statusnachrichtenkanals
-      successLog: 'Die Statusnachricht wurde erfolgreich in {channelName} festgelegt',
-      // {cmd} für den Befehl setstatus
+      format: 'Status-Embed-Nachricht wurde aktualisiert auf {statusText}.',
+      // Mit {channelName} wird der Name des Statusnachrichtenkanals abgerufen.
+      successLog: 'Statusnachricht erfolgreich in {channelName} festgelegt.',
+      // Mit {cmd} wird der gesetzte Befehl abgerufen.
       enableAutoChangeStatus: 'Um den Serverstatus zu setzen, senden Sie einen {cmd}-Befehl im gewünschten Kanal.',
     },
-    botStatusFormat: 'Die Status-Embed-Nachricht wurde zu {botStatusText} aktualisiert',
-    playerCountChUpdate: 'Der Spielerzählkanalname wurde zu {updatedName} aktualisiert',
+    botStatusFormat: 'Status-Embed-Nachricht wurde aktualisiert auf {botStatusText}.',
+    playerCountChUpdate: 'Der Name des Spieleranzahl-Kanals wurde aktualisiert auf {updatedName}.',
   },
   checkErrorConfig: {
-    checkConfigWait: 'Überprüfe Fehler in der config.js-Datei. Bitte warten Sie.',
+    checkConfigWait: 'Überprüfen auf Fehler in der config.js-Datei. Bitte warten.',
     followingErrors: 'Die Konfigurationsdatei enthält folgende Fehler:',
-    botToken: 'Bot-Token ist ungültig.',
+    botToken: 'Ungültiges Bot-Token.',
     botPresenceStatus: 'Ungültige Bot-Statusoptionen. Sollte "online", "idle", "dnd" oder "invisible" sein.',
     botStatusActivity: 'Ungültige Bot-Aktivitätsoptionen. Sollte "Playing", "Listening", "Watching" oder "Competing" sein.',
     mcType: 'Ungültiger Minecraft-Servertyp. Sollte "java" oder "bedrock" sein.',
     mcName: 'Der Name des Minecraft-Servers wurde nicht angegeben.',
     mcVersion: 'Die Version des Minecraft-Servers wurde nicht angegeben.',
-    guildID: 'Die Server-/Gilden-ID wurde nicht angegeben oder ist ungültig.',
-    timeZone: 'Die im Konfigurationsfile angegebene Zeitzone ist ungültig.',
+    guildID: 'Die Server-/Guild-ID wurde nicht angegeben oder ist ungültig.',
+    timeZone: 'Die in der Konfigurationsdatei angegebene Zeitzone ist ungültig.',
   },
   playerCountCh: {
-    // {guildID} für die in der Konfigurationsdatei angegebene Gilden-ID
-    playerCountChGuildIncorrect: 'Die Gilde mit der ID: "{guildID}" wurde nicht gefunden oder der Bot ist nicht in der Gilde.',
-    // {channelName} für den erstellten Kanal
-    playerCountChannelFound: 'Erfolgreich gefunden: {channelName} Kanal für Spielerzählung.',
-    // {channelId} für die ID des in der Konfigurationsdatei angegebenen Kanals
-    playerCountChannelNotFound: 'Der Kanal für die Spielerzählung mit der ID: "{channelId}" wurde nicht gefunden oder der Bot hat keinen Zugriff auf den Kanal.',
-    // {updatedStatus} für den Namen des aktualisierten Status des Kanals
-    playerCountChannelCreated: 'Ein Kanal für die Spielerzählung wurde erstellt und sein Name wurde aktualisiert auf: {updatedStatus}.',
+    // Mit {guildID} wird die in der Konfigurationsdatei angegebene Guild-ID repräsentiert.
+    playerCountChGuildIncorrect: 'Die Guild mit ID: "{guildID}" wurde nicht gefunden oder der Bot ist nicht in der Guild.',
+    // Mit {channelName} wird der erstellte Kanalname abgerufen.
+    playerCountChannelFound: 'Kanal erfolgreich gefunden: {channelName} für die Spieleranzahl.',
+    // Mit {channelId} wird die ID des in der Konfigurationsdatei angegebenen Kanals abgerufen.
+    playerCountChannelNotFound: 'Der Kanal für die Spieleranzahl mit ID: "{channelId}" wurde nicht gefunden oder der Bot hat keinen Zugriff auf den Kanal.',
+    // Mit {updatedStatus} wird der aktualisierte Statusname des Kanals abgerufen.
+    playerCountChannelCreated: 'Kanal für die Spieleranzahl erstellt und der Name wurde aktualisiert auf: {updatedStatus}.',
   },
 
-  // Verwende {botUserTag} für das Benutzer-Tag des Bots, z.B. Bot#0001
-  // Verwende {inviteLink} für den Einladungslink des Bots.
-  inviteLink: '✅ {botUserTag} ist online.\nLade den Bot mit {inviteLink} ein',
+  // Mit {botUserTag} für den Benutzertag des Bots, z.B. Bot#0001.
+  // Mit {inviteLink} für den Einladungslink des Bots.
+  inviteLink: '✅ {botUserTag} ist online.\nLade den Bot mit {inviteLink} ein.',
 
   serverInfoStart: {
     // Variablen: {ip}, {version}, {playersOnline}, {playersMax}, {motd_line1}, {motd_line2}
-    // {motd_line1} für die erste Zeile der MOTD.
-    // {motd_line2} für die zweite Zeile der MOTD.
+    // Mit {motd_line1} wird die erste Zeile des MOTD abgerufen.
+    // Mit {motd_line2} wird die zweite Zeile des MOTD abgerufen.
     online: [
       '--------------------------------------------------------',
       'IP       | {ip}',
@@ -80,7 +80,7 @@
     ],
     // Variablen: {ip}, {port}, {mcServerType}
     offline: [
-      'Konnte derzeit den Minecraft-Server nicht finden mit:',
+      'Der Minecraft-Server konnte derzeit nicht gefunden werden mit:',
       '----------------------------------------------',
       'IP   | {ip}',
       'PORT | {port}',

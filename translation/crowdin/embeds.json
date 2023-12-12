@@ -33,7 +33,11 @@
   "help": {
     "title": "__**COMMANDS LIST**__",
     "description": "**Prefix: `{prefix}`**",
-    "listFormat": "{slashCmdMention} **`-` {cmdDescription}**"
+    "listFormat": "{slashCmdMention} **`-` {cmdDescription}**",
+    "commandInfoFormat": {
+      "title": "__**{cmdName} Command**__",
+      "description": "**Slash command: {cmdSlashMention}\nDescription: `{cmdDescription}`\nPrefix Commands: `{prefixCmd}`\nPrefix Alias: {prefixCmdAlias}**"
+    }
   },
   "info": {
     "title": "**Bot Info and Stats**",

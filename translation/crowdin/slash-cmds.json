@@ -1,0 +1,47 @@
+{
+  "help": {
+    "name": "help",
+    "description": "Sends the list of available commands."
+  },
+  "ip": {
+    "name": "ip",
+    "description": "Sends the server address of the Minecraft server."
+  },
+  "site": {
+    "name": "site",
+    "description": "Sends the website/vote link of the Minecraft server."
+  },
+  "version": {
+    "name": "version",
+    "description": "Sends the version of the Minecraft server."
+  },
+  "motd": {
+    "name": "motd",
+    "description": "Sends the Minecraft Server's Message of the Day (MOTD).",
+    "errorReply": "An error occurred while retrieving the Message of the Day (MOTD)."
+  },
+  "players": {
+    "name": "players",
+    "description": "Sends the list of players who are currently online on the Minecraft server.",
+    "errorReply": "An error occurred while retrieving the online players list."
+  },
+  "status": {
+    "name": "status",
+    "description": "Sends the current status of the Minecraft server.",
+    "errorReply": "Unable to find the status of the server due to an error."
+  },
+  "info": {
+    "name": "info",
+    "description": "Sends the current information about the bot.",
+    "errorReply": "An error occurred while retrieving Info."
+  },
+  "setstatus": {
+    "name": "setstatus",
+    "description": "Sets the status message of the Minecraft server in the current channel.",
+    "errorReply": ":warning: Could not set the status message due to an error: {error}.",
+    "enableFeature": "**Please enable `auto Change Status` in the config to enable the status message feature.**",
+    "checkingStatusMsg": ":gear: Checking the status...",
+    "checkingStatusCmdMsg": ":arrows_clockwise: Checking the status and necessary info.",
+    "statusMsgSuccess": ":white_check_mark: **Status message is set successfully in {channel}. Message:** {messageLink}."
+  }
+}

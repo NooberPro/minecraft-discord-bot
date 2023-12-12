@@ -1,9 +1,9 @@
 {
-  "version": { "replyText": "The server's version: **`{version}`**" },
+  "version": { "replyText": "The server's version: **`{version}`**." },
   "ip": { "replyText": "**IP: `{ip}`\nPort: `{port}`**" },
-  "site": { "replyText": "The server's website link: **<{site}>**" },
+  "site": { "replyText": "The server's website link: **<{site}>**." },
   "status": {
-    "onlineReply": "The server is **`🟢ONLINE`** with **`{playerOnline}/{playerMax}`** players playing.",
-    "offlineReply": "The server is **`🔴OFFLINE`**"
+    "onlineReply": "The server is currently **`🟢ONLINE`** with **`{playerOnline}/{playerMax}`** active players.",
+    "offlineReply": "The server is currently **`🔴OFFLINE`**."
   }
 }

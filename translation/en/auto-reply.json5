@@ -1,24 +1,24 @@
-// Github: https://github.com/NooberPro/minecraft-discord-bot
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
 // Crowdin: https://crowdin.com/project/minecraft-discord-bot
-// English translation (en) by NooberPro
+// English Translation (en) by NooberPro
 
 {
-  // Translation for the auto-reply function
+  // Translation for the auto-reply function..
   version: {
-    // Use {version} to get the version from the config.
-    replyText: "The server's version: **`{version}`**",
+    // Use {version} to retrieve the version from the config.
+    replyText: "The server's version: **`{version}`**.",
   },
   ip: {
-    // Use {ip} for the ip and {port} for the port.
+    // Use {ip} for the IP and {port} for the port.
     replyText: '**IP: `{ip}`\nPort: `{port}`**',
   },
   site: {
-    // Use {site} for site
-    replyText: "The server's website link: **<{site}>**",
+    // Use {site} for website link from the config.
+    replyText: "The server's website link: **<{site}>**.",
   },
   status: {
-    // Use {playerOnline} for the number of players online and {playerMax} for the maximum number of players. Only works in onlineReply.
-    onlineReply: 'The server is **`🟢ONLINE`** with **`{playerOnline}/{playerMax}`** players playing.',
-    offlineReply: 'The server is **`🔴OFFLINE`**',
+    // Use {playerOnline} for the number of online players and {playerMax} for the maximum number of players. This only works in onlineReply.
+    onlineReply: 'The server is currently **`🟢ONLINE`** with **`{playerOnline}/{playerMax}`** active players.',
+    offlineReply: 'The server is currently **`🔴OFFLINE`**.',
   },
 }
