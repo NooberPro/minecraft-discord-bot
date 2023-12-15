@@ -18,7 +18,7 @@ module.exports = {
     await interaction.deferReply({ ephemeral: true })
     try {
       if (!config.autoChangeStatus.enabled) {
-        interaction.followUp({
+        interaction.editReply({
           content: cmdSlashTranslation.setstatus.enableFeature,
           ephemeral: true,
         })
@@ -34,7 +34,7 @@ module.exports = {
       const dataRead = fs.readFileSync('./src/data.json', 'utf8')
       let dataID = JSON.parse(dataRead)
       await statusMessageEdit()
-      interaction.followUp({
+      interaction.editReply({
         content: cmdSlashTranslation.setstatus.statusMsgSuccess
           .replace(/\{channel\}/gi, `<#${dataID.channelId}>`)
           .replace(
@@ -53,8 +53,8 @@ module.exports = {
         statusMessageEdit()
       }, config.autoChangeStatus.updateInterval * 1000)
     } catch (error) {
-      interaction.followUp({
-        content: errorReply.replace(/\{error\}/gi, error.message),
+      interaction.editReply({
+        content: cmdSlashTranslation.setstatus.errorReply.replace(/\{error\}/gi, error.message),
         ephemeral: true,
       })
       const { getError } = require('../index')

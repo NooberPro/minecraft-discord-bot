@@ -11,9 +11,9 @@ module.exports = {
   run: async ({ interaction }) => {
     interaction.deferReply()
     try {
-      interaction.followUp({ embeds: [await motdEmbed()] })
+      interaction.editReply({ embeds: [await motdEmbed()] })
     } catch (error) {
-      interaction.followUp({
+      interaction.editReply({
         content: cmdSlashTranslation.motd.errorReply,
       })
       const { getError } = require('../index')

@@ -10,7 +10,7 @@ module.exports = {
   run: async ({ interaction }) => {
     await interaction.deferReply()
     try {
-      interaction.followUp({ content: '', embeds: [await statusEmbed()] })
+      interaction.editReply({ content: '', embeds: [await statusEmbed()] })
     } catch (error) {
       interaction.followUp({
         content: cmdSlashTranslation.status.errorReply,

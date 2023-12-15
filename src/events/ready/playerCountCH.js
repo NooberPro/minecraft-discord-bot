@@ -1,5 +1,5 @@
 const chalk = require('chalk')
-const { playerCountCH, settings } = require('../../../config')
+const { playerCountCH } = require('../../../config')
 const { getServerDataOnly, getDebug, getError, consoleLogTranslation } = require('../../index')
 const fs = require('node:fs')
 

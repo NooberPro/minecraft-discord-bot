@@ -28,28 +28,28 @@
   motd: {
     name: 'motd',
     description: 'Sendet die Tagesnachricht (MOTD) des Minecraft-Servers.',
-    errorReply: 'Ein Fehler ist aufgetreten beim Abrufen der Tagesnachricht (MOTD).',
+    errorReply: ':warning:  **`Ein Fehler ist aufgetreten beim Abrufen der Tagesnachricht (MOTD).`**',
   },
   players: {
     name: 'players',
     description: 'Sendet die Liste der Spieler, die derzeit auf dem Minecraft-Server online sind.',
-    errorReply: 'Ein Fehler ist aufgetreten beim Abrufen der Liste der Online-Spieler.',
+    errorReply: ':warning:  **`Ein Fehler ist aufgetreten beim Abrufen der Liste der Online-Spieler.`**',
   },
   status: {
     name: 'status',
     description: 'Sendet den aktuellen Status des Minecraft-Servers.',
-    errorReply: 'Der Status des Servers konnte aufgrund eines Fehlers nicht gefunden werden.',
+    errorReply: ':warning:  **`Der Status des Servers konnte aufgrund eines Fehlers nicht gefunden werden.`**',
   },
   info: {
     name: 'info',
     description: 'Sendet die aktuellen Informationen zum Bot.',
-    errorReply: 'Ein Fehler ist aufgetreten beim Abrufen der Informationen.',
+    errorReply: ':warning:  **`Ein Fehler ist aufgetreten beim Abrufen der Informationen.`**',
   },
   setstatus: {
     name: 'setstatus',
     description: 'Setzt die Statusmeldung des Minecraft-Servers im aktuellen Kanal.',
     // Verwenden Sie {error}, um die Fehlermeldung zu erhalten.
-    errorReply: ':warning: Die Statusmeldung konnte aufgrund eines Fehlers nicht festgelegt werden: {error}.',
+    errorReply: ':warning:  **`:warning: Die Statusmeldung konnte aufgrund eines Fehlers nicht festgelegt werden: {error}.`**',
     enableFeature: '**Bitte aktivieren Sie `Automatischer Statuswechsel` in der Konfiguration, um die Funktion der Statusmeldungen zu aktivieren.**',
     checkingStatusMsg: ':gear: Überprüfe den Status...',
     checkingStatusCmdMsg: ':arrows_clockwise: Überprüfe den Status und die notwendigen Informationen.',

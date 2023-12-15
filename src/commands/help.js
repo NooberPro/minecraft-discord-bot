@@ -23,7 +23,7 @@ module.exports = {
   run: async ({ interaction, client }) => {
     await interaction.deferReply()
     const commandsChoice = interaction.options.getString('commands')
-    await interaction.followUp({ embeds: [await helpEmbed(client, commandsChoice)] })
+    await interaction.editReply({ embeds: [await helpEmbed(client, commandsChoice)] })
   },
   options: {
     guildOnly: true,

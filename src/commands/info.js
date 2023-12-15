@@ -8,21 +8,20 @@ module.exports = {
     .setDescription(cmdSlashTranslation.info.description)
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   run: async ({ interaction, client }) => {
-    interaction.deferReply({
-      ephemeral: true,
-    })
+    await interaction.deferReply({ ephemeral: true })
     try {
-      await interaction.followUp({
+      await interaction.editReply({
         ephemeral: true,
         embeds: [await botInfoEmbed(interaction, client)],
       })
     } catch (error) {
-      interaction.followUp({
+      await interaction.followUp({
         content: cmdSlashTranslation.info.errorReply,
         ephemeral: true,
       })
       const { getError } = require('../index')
       getError(error, 'infoCmd')
+      console.log(error)
     }
   },
   options: {

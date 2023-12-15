@@ -27,28 +27,28 @@
   motd: {
     name: 'motd',
     description: 'Envoie le Message du Jour (MOTD) du serveur Minecraft.',
-    errorReply: "Une erreur s'est produite lors de la récupération du Message du Jour (MOTD).",
+    errorReply: ":warning:  **`Une erreur s'est produite lors de la récupération du Message du Jour (MOTD).`**",
   },
   players: {
     name: 'players',
     description: 'Envoie la liste des joueurs actuellement en ligne sur le serveur Minecraft.',
-    errorReply: "Une erreur s'est produite lors de la récupération de la liste des joueurs en ligne.",
+    errorReply: ":warning:  **`Une erreur s'est produite lors de la récupération de la liste des joueurs en ligne.`**",
   },
   status: {
     name: 'status',
     description: 'Envoie le statut actuel du serveur Minecraft.',
-    errorReply: "Impossible de trouver le statut du serveur en raison d'une erreur.",
+    errorReply: ":warning:  **`Impossible de trouver le statut du serveur en raison d'une erreur.`**",
   },
   info: {
     name: 'info',
     description: 'Envoie les informations actuelles sur le bot.',
-    errorReply: "Une erreur s'est produite lors de la récupération des informations.",
+    errorReply: ":warning:  **`Une erreur s'est produite lors de la récupération des informations.`**",
   },
   setstatus: {
     name: 'setstatus',
     description: "Définit le message d'état du serveur Minecraft dans le canal actuel.",
     // Utilisez {error} pour recevoir le message d'erreur.
-    errorReply: ":warning: Impossible de définir le message d'état en raison d'une erreur : {error}.",
+    errorReply: ":warning:  **`:warning: Impossible de définir le message d'état en raison d'une erreur : {error}.`**",
     enableFeature: '**Veuillez activer "Changer automatiquement de statut" dans la configuration pour activer la fonction de message d\'état.**',
     checkingStatusMsg: ':gear: Vérification du statut en cours...',
     checkingStatusCmdMsg: ':arrows_clockwise: Vérification du statut et des informations nécessaires.',

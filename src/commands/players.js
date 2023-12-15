@@ -10,7 +10,7 @@ module.exports = {
     await interaction.deferReply()
     const { playerList } = require('../embeds')
     try {
-      interaction.followUp({ content: '', embeds: [await playerList()] })
+      interaction.editReply({ content: '', embeds: [await playerList()] })
     } catch (error) {
       interaction.followUp({ content: cmdSlashTranslation.players.errorReply })
       const { getError } = require('../index')

@@ -1,4 +1,4 @@
-//Config Explaination: https://nooberpro.gitbook.io/minecraft-discord-bot/installation/config
+// Config Explaination: https://nooberpro.gitbook.io/minecraft-discord-bot/installation/config
 // "MC" is referring to Minecraft in the comments for convenience.
 module.exports = {
   bot: {
@@ -72,7 +72,7 @@ module.exports = {
     guildID: 'your-guild-id-here', // Server's ID for creating/editing channel stats.
     channelId: '', // The channel ID for editing the player count. If no ID is provided, the bot will create the channel itself. NOT REQUIRED
     // {playeronline} and {playermax} show number of online and max players.
-    onlineText: '🟢 {playeronline}/{playermax} Players playing',
+    onlineText: '🟢 {playeronline}/{playermax} active players',
     offlineText: '🔴 Offline', // The name set when MC server is offline.
   },
 
