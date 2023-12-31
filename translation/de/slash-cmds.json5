@@ -1,0 +1,63 @@
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
+// Übersetzung ins Deutsche (de) durch KI
+
+{
+  // Übersetzung für die Schrägstrichbefehle ("slash commands").
+
+  // Das Name-Feld ist der Befehlsname. Sie können den Befehlsnamen umbenennen, aber ER DARF NICHT ÜBERSETZT WERDEN.
+  // Das Beschreibungsfeld enthält die Beschreibung des Befehls.
+  help: {
+    name: 'help',
+    description: 'Sendet die Liste der verfügbaren Befehle.',
+    options: {
+      name: 'command',
+      description: 'Sendet die Details zu einem Befehl.',
+    },
+  },
+  ip: {
+    name: 'ip',
+    description: 'Sendet die Serveradresse des Minecraft-Servers.',
+  },
+  site: {
+    name: 'site',
+    description: 'Sendet den Website-/Abstimmungslink des Minecraft-Servers.',
+  },
+  version: {
+    name: 'version',
+    description: 'Sendet die Version des Minecraft-Servers.',
+  },
+
+  // Das errorReply-Feld wird verwendet, wenn ein Fehler beim Ausführen des Befehls auftritt und es mit einer Fehlerantwort antwortet.
+  motd: {
+    name: 'motd',
+    description: 'Sendet die Tagesnachricht (MOTD) des Minecraft-Servers.',
+    errorReply: ':warning:  **`Ein Fehler ist aufgetreten beim Abrufen der Tagesnachricht (MOTD).`**',
+  },
+  players: {
+    name: 'players',
+    description: 'Sendet die Liste der Spieler, die derzeit auf dem Minecraft-Server online sind.',
+    errorReply: ':warning:  **`Ein Fehler ist aufgetreten beim Abrufen der Liste der Online-Spieler.`**',
+  },
+  status: {
+    name: 'status',
+    description: 'Sendet den aktuellen Status des Minecraft-Servers.',
+    errorReply: ':warning:  **`Der Status des Servers konnte aufgrund eines Fehlers nicht gefunden werden.`**',
+  },
+  info: {
+    name: 'info',
+    description: 'Sendet die aktuellen Informationen zum Bot.',
+    errorReply: ':warning:  **`Ein Fehler ist aufgetreten beim Abrufen der Informationen.`**',
+  },
+  setstatus: {
+    name: 'setstatus',
+    description: 'Setzt die Statusmeldung des Minecraft-Servers im aktuellen Kanal.',
+    // Verwenden Sie {error}, um die Fehlermeldung zu erhalten.
+    errorReply: ':warning:  **`Die Statusmeldung konnte aufgrund eines Fehlers nicht festgelegt werden: {error}.`**',
+    enableFeature: '**Bitte aktivieren Sie `Automatischer Statuswechsel` in der Konfiguration, um die Funktion der Statusmeldungen zu aktivieren.**',
+    checkingStatusMsg: ':gear: Überprüfe den Status...',
+    checkingStatusCmdMsg: ':arrows_clockwise: Überprüfe den Status und die notwendigen Informationen.',
+    // Verwenden Sie {channel}, um den Kanallink bereitzustellen, und {messageLink} bietet das Nachrichtenlink-Symbol.
+    statusMsgSuccess: ':white_check_mark: **Die Statusmeldung wurde erfolgreich in {channel} festgelegt. Nachricht:** {messageLink}.',
+  },
+}

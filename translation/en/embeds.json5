@@ -1,0 +1,69 @@
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
+// English Translation (en) by NooberPro
+
+{
+  // Translation for command embeds message.
+  ip: {
+    // Variables: {ip}
+    title: '__**SERVER ADDRESS**__',
+    description: '**{ip}**',
+  },
+  site: {
+    // Variables: {site}
+    title: '__**WEBSITE**__',
+    description: '**Link: {site}**',
+  },
+  version: {
+    // Variables: {version}
+    title: '__**VERSION**__',
+    description: '**{version}**',
+  },
+  offlineEmbed: {
+    // Variables: {ip},{version}, {site}
+    title: ':red_circle: OFFLINE',
+    description: '', // To disable this, leave the description blank.
+    footer: 'Checked at',
+  },
+  players: {
+    // Variables: {playeronline}, {playermax}
+    title: '__**PLAYERS**__',
+    description: '**{playeronline}/{playermax}**',
+    // The player name list will be displayed after the description.
+    // Displays offline embeds when the Minecraft server is offline.
+  },
+  motd: {
+    // Variables: {motd}
+    title: '__**MOTD**__',
+    description: '**{motd}**',
+  },
+  onlineEmbed: {
+    // Variables: {ip}, {motd}, {version}, {site}
+    title: ':green_circle: ONLINE',
+    // Here, the player list embed title and description from above (line: 28).
+
+    // The description is placed after the player list field.
+    description_field_one: '__**MOTD**__\n**{motd}**\n\n__**SERVER ADDRESS**__\n**{ip}**',
+    description_field_two: '__**VERSION**__\n**{version}**\n\n__**WEBSITE**__\n**Link: {site}**',
+    footer: 'Checked at',
+  },
+  help: {
+    // Variables: {prefix}, {botName}
+    title: '__**COMMANDS LIST**__',
+    description: '**Prefix: `{prefix}`**',
+    // Only listFormat variables: {cmdDescription}, {cmdSlashMention}.
+    listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
+
+    commandInfoFormat: {
+      // Variables: {cmdName}
+      title: '__**{cmdName} Command**__',
+      // Variables: {cmdSlashMention}, {cmdDescription}, {prefixCmd}, {prefixCmdAlias}
+      description: '**Slash command: {cmdSlashMention}\nDescription: `{cmdDescription}`\nPrefix Commands: `{prefixCmd}`\nPrefix Alias: {prefixCmdAlias}**',
+    },
+  },
+  info: {
+    title: '**Bot Info and Stats**',
+    // Variables: {cpuUsage}, {memoryUsage}, {nodeVersion}, {uptimeDays}, {uptimeHours}, {uptimeMinutes}, {uptimeSeconds}, {ping}, {websocket}
+    description: '**CPU Usage: `{cpuUsage}%`\nMemory Usage: `{memoryUsage}MB`\nNode.js Version: `{nodeVersion}`\nBot uptime: `{uptimeDays}` days, `{uptimeHours}` hours, `{uptimeMinutes}`, minutes, `{uptimeSeconds}` seconds\nPing: Client `{ping}ms` | Websocket: `{websocket}ms` **',
+  },
+}

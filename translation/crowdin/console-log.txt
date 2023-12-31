@@ -1,0 +1,18 @@
+GitHub: https://github.com/NooberPro/minecraft-discord-bot
+Crowdin: https://crowdin.com/project/minecraft-discord-bot
+English Translation (en) by NooberPro
+Translation for the console output.
+Use {channelName} fetches the name of the status message channel.
+Use {cmd} retrieves the setstatus command.
+Use {givenCmdName} retrieves the name given in the language file.
+Use {cmdName} retrieves the name of commands.
+Use {guildID} represents the guild ID given in the config file.
+Use {channelName} retrieves the created channel's name.
+Use {channelId} retrieves the ID of the channel given in the config file.
+Use {updatedStatus} to retrieve the updated status name of the channel.
+Use {botUserTag} for the bot's user tag, such as Bot#0001.
+Use {inviteLink} for the bot's invite link.
+Variables: {ip}, {version}, {playersOnline}, {playersMax}, {motd_line1}, {motd_line2}
+Use {motd_line1} to get the first line of the MOTD.
+Use {motd_line2} to get the second line of the MOTD.
+Variables: {ip}, {port}, {mcServerType}

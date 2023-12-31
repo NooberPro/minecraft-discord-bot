@@ -1,0 +1,93 @@
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
+// Русский перевод (ru) от Zahar1loshara
+
+{
+  // Перевод вывода консоли
+  error: {
+    playerEmbed: 'Произошла ошибка во время создания embed сообщения лист игроков.',
+    statusEmbed: 'Произошла ошибка во время создания embed сообщения статуса.',
+    playerList: 'Произошла ошибка во время создания листа игроков.',
+    fetchServerDataAndPlayerList: 'Не удалось получить данные Майнкрафт сервера и список игроков.',
+    fetchServerData: 'Не удалось получить данные Майнкрафт сервера.',
+    messageEdit: 'Ошибка во время изменения сообщения статуса.',
+    botLogin: 'Ошибка логина бота.',
+    infoCmd: 'Ошибка в слэш команде - Инфа.',
+    motdCmd: 'Ошибка в слэш команде - MOTD.',
+    playerCmd: 'Ошибка в слэш команде - Игрок.',
+    statusCmd: 'Ошибка в слэш команде - Статус.',
+    statusPrefix: 'Ошибка в префикс команде - Статус.',
+    setStatus: 'Не удалось установить статус сообщения.',
+    autoReply: 'Ошибка в функции автоответчика.',
+    botStatusUpdate: 'Ошибка в обновлении статуса бота.',
+    channelIdCheck: 'Ошибка в проверки и обновлении ID канала.',
+    playerCountCh: 'Ошибка в функции счётчика игроков в канале.',
+    playerCountChNameUpdate: 'Ошибка в обновлении имя канал счётчика игроков.',
+    playerCountChDateWrite: 'Ошибка в сохранении ID канал счётчика игроков в data.json.',
+  },
+  debug: {
+    autoChangeStatus: {
+      onlineText: 'Онлайн с {playerOnline} игроками.',
+      offlineText: '❌ Офлайн.',
+      format: 'Статус embed сообщения был обновлен и теперь {statusText}.',
+      // Используйте {channelName} для получения имени статус сообщения канала.
+      successLog: 'Успешно установлено сообщения статуса в {channelName}.',
+      // Использование {cmd} для получения команду setstatus команды.
+      enableAutoChangeStatus: 'Для установки статуса сервера отправьте команду {cmd} в нужный канал.',
+    },
+    botStatusFormat: 'Embed сообщения статуса был обновлен и теперь {botStatusText}.',
+    playerCountChUpdate: 'Имя канала счётчика игроков был обновлен и теперь {updatedName}.',
+  },
+  checkErrorConfig: {
+    checkConfigWait: 'Проверка на ошибки в config.js файле.\nПодожди.',
+    followingErrors: 'У конфиг файла есть следующие ошибки:',
+    botToken: 'Неверный токен бота.',
+    botPresenceStatus: "Неправильный статус бота. Должен быть 'online'(онлайн), 'idle'(не активен), 'dnd(не беспокоить)' или 'invisible(невидимый)'.",
+    botStatusActivity: "Неправильные настройки активности бота. Должно быть 'Playing', 'Listening','Watching' или 'Competing'",
+    mcType: 'Неправильный тип сервера Minecraft. Должно быть "java" или "bedrock".',
+    mcName: 'Имя сервера не указано.',
+    mcVersion: 'Версия сервера Minecraft не указана.',
+    guildID: 'ID Сервера/Гильдии не был указан или неправильный.',
+    timeZone: 'Часовой пояс введённый в файле конфига неверный.',
+    // Изпользуйте {givenCmdName} для получения имени дано в файле языка.
+    // Изпользуйте {cmdName} для получения названий команд.
+    slashCmdName: 'Введенное имя "{givenCmdName}" для "{cmdName}" команды неверное.\nИзпользуйте пожалуйста только строчные, прописные, заглавные буквы, цифры, подчеркивания и дефисы.',
+  },
+  playerCountCh: {
+    // Использование {guildID} представляет собой идентификатор гильдии, указанный в файле конфигурации.
+    playerCountChGuildIncorrect: 'Гильдия с ID: "{guildID}" не был найден, или бот не в гильдии.',
+    // Изпользуйте {channelName} для получения имя созданного канала.
+    playerCountChannelFound: 'Успешно найден канал: {channelName} для счётчика игроков.',
+    // Изпользуйте {channelId} для получения ID канала введённый в конфиг файле.
+    playerCountChannelNotFound: 'Канал для счётчика игроков с ID: "{channelId}" не был найден, или бот не имеет прав для канала.',
+    // Изпользуйте {updatedStatus} для получения обновленного названия канал статуса.
+    playerCountChannelCreated: 'Создан канал для счётчика игроков и обновлен его имя на: {updatedStatus}.',
+  },
+  // Изпользуйте {botUserTag} для тега бота, пример Бот#0001.
+  // Изпользуйте {inviteLink} для ссылки приглашения бота.
+  inviteLink: '✅ {botUserTag} онлайн.\nПригласите бота с помощью {inviteLink}.',
+
+  serverInfoStart: {
+    // Переменные: {ip}, {version}, {playersOnline}, {playersMax}, {motd_line1}, {motd_line2}
+    // Изпользуйте {motd_line1} что бы получить первую линию MOTD.
+    // Изпользуйте {motd_line2} что бы получить вторую линию MOTD.
+    online: [
+      '--------------------------------------------------------',
+      'IP       | {ip}',
+      'ВЕРСИЯ   | {version}',
+      'ИГРОКОВ  | {playersOnline} / {playersMax}',
+      'MOTD     | {motd_line1}',
+      '         | {motd_line2}',
+      '--------------------------------------------------------',
+    ],
+    // Переменные: {ip}, {port}, {mcServerType}
+    offline: [
+      'В настоящее время не удается найти сервер Minecraft с помощью:',
+      '----------------------------------------------',
+      'IP   | {ip}',
+      'ПОРТ | {port}',
+      'ТИП  | {mcServerType}',
+      '----------------------------------------------',
+    ],
+  },
+}

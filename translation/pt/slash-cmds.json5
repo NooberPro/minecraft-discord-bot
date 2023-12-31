@@ -1,0 +1,63 @@
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
+// Tradução para o Português (pt) por AI
+
+{
+  // Tradução para os comandos de barra.
+
+  // O campo name é o nome do comando. Você pode renomear o nome do comando, mas NÃO PODE SER TRADUZIDO.
+  // O campo description fornece a descrição do comando.
+  help: {
+    name: 'help',
+    description: 'Envia a lista de comandos disponíveis.',
+    options: {
+      name: 'command',
+      description: 'Envia os detalhes sobre um comando.',
+    },
+  },
+  ip: {
+    name: 'ip',
+    description: 'Envia o endereço do servidor do Minecraft.',
+  },
+  site: {
+    name: 'site',
+    description: 'Envia o link do site/voto do servidor do Minecraft.',
+  },
+  version: {
+    name: 'version',
+    description: 'Envia a versão do servidor do Minecraft.',
+  },
+
+  // O campo errorReply é usado se houver um erro ao executar o comando, e ele responde com uma mensagem de errorReply.
+  motd: {
+    name: 'motd',
+    description: 'Envia a Mensagem do Dia (MOTD) do servidor Minecraft.',
+    errorReply: ':warning: **`Ocorreu um erro ao recuperar a Mensagem do Dia (MOTD).`**',
+  },
+  players: {
+    name: 'players',
+    description: 'Envia a lista de jogadores que estão atualmente online no servidor Minecraft.',
+    errorReply: ':warning: **`Ocorreu um erro ao recuperar a lista de jogadores online.`**',
+  },
+  status: {
+    name: 'status',
+    description: 'Envia o status atual do servidor Minecraft.',
+    errorReply: ':warning: **`Não foi possível encontrar o status do servidor devido a um erro.`**',
+  },
+  info: {
+    name: 'info',
+    description: 'Envia as informações atuais sobre o bot.',
+    errorReply: ':warning: **`Ocorreu um erro ao recuperar as informações.`**',
+  },
+  setstatus: {
+    name: 'setstatus',
+    description: 'Define a mensagem de status do servidor Minecraft no canal atual.',
+    // Use {error} para receber a mensagem de erro.
+    errorReply: ':warning: **`Não foi possível definir a mensagem de status devido a um erro: {error}.`**',
+    enableFeature: '**Por favor, habilite `Auto Change Status` na configuração para ativar a funcionalidade de mensagem de status.**',
+    checkingStatusMsg: ':gear: Verificando o status...',
+    checkingStatusCmdMsg: ':arrows_clockwise: Verificando o status e informações necessárias.',
+    // Use {channel} para fornecer o link do canal, e {messageLink} fornece o ícone do link da mensagem.
+    statusMsgSuccess: ':white_check_mark: **Mensagem de status definida com sucesso em {channel}. Mensagem:** {messageLink}.',
+  },
+}

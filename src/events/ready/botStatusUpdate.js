@@ -1,5 +1,7 @@
 const { bot, settings } = require('../../../config')
+const { consoleLogTranslation } = require('../../index')
 const chalk = require('chalk')
+
 module.exports = (client) => {
   const botStatusUpdate = async () => {
     const { getDebug, getServerDataOnly } = require('../../index')
@@ -15,30 +17,27 @@ module.exports = (client) => {
             type: ActivityType[bot.presence.activity],
           })
           await client.user.setStatus(bot.presence.status.online)
-          if (settings.logging.debug) {
-            console.log(
-              getDebug('Status of the bot has been set to', chalk.green(`${bot.presence.activity} ${statusText}`))
+          getDebug(
+            consoleLogTranslation.debug.botStatusFormat.replace(
+              /\{botStatusText\}/gi,
+              chalk.green(`${bot.presence.activity} ${statusText}`)
             )
-          }
+          )
         } else {
           client.user.setStatus(bot.presence.status.offline)
           client.user.setActivity(bot.presence.text.offline, {
             type: ActivityType[bot.presence.activity],
           })
-          if (settings.logging.debug) {
-            console.log(
-              getDebug(
-                'Status of the bot has been set to',
-                chalk.red(`${bot.presence.activity} ${bot.presence.text.offline}`)
-              )
+          getDebug(
+            consoleLogTranslation.debug.botStatusFormat.replace(
+              /\{botStatusText\}/gi,
+              chalk.red(`${bot.presence.activity} ${bot.presence.text.offline}`)
             )
-          }
+          )
         }
       } catch (error) {
-        if (settings.logging.error) {
-          const { getError } = require('../../index')
-          console.log(getError(error, 'Updating status of the bot'))
-        }
+        const { getError } = require('../../index')
+        getError(error, 'botStatusUpdate')
       }
     }
   }

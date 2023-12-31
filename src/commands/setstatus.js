@@ -1,13 +1,13 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js')
-const { statusMessageEdit } = require('../index')
+const { statusMessageEdit, consoleLogTranslation, cmdSlashTranslation } = require('../index')
 const config = require('../../config')
 const chalk = require('chalk')
 const fs = require('fs')
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('setstatus')
-    .setDescription('Sets the Minecraft server status message in the current channel.')
+    .setName(cmdSlashTranslation.setstatus.name)
+    .setDescription(cmdSlashTranslation.setstatus.description)
     .setDefaultMemberPermissions(
       PermissionFlagsBits.ManageChannels,
       PermissionFlagsBits.ManageThreads,
@@ -19,17 +19,13 @@ module.exports = {
     try {
       if (!config.autoChangeStatus.enabled) {
         interaction.editReply({
-          content: '**Please enable `auto Change Status` in the config to enable status message feature.**',
+          content: cmdSlashTranslation.setstatus.enableFeature,
           ephemeral: true,
         })
         return
       }
       const channel = client.channels.cache.get(interaction.channelId)
-      const msg = await channel.send(':gear: Checking the status ...')
-      interaction.editReply({
-        content: `:arrows_clockwise: Checking status and necessary info.`,
-        ephemeral: true,
-      })
+      const msg = await channel.send(cmdSlashTranslation.setstatus.checkingStatusCmdMsg)
       const readData = fs.readFileSync('./src/data.json', 'utf8')
       data = await JSON.parse(readData)
       data.channelId = interaction.channelId
@@ -39,27 +35,33 @@ module.exports = {
       let dataID = JSON.parse(dataRead)
       await statusMessageEdit()
       interaction.editReply({
-        content: `:white_check_mark: **Status message is set successfully in <#${dataID.channelId}>. Message:** https://discord.com/channels/${msg.guildId}/${dataID.channelId}/${dataID.messageId}`,
+        content: cmdSlashTranslation.setstatus.statusMsgSuccess
+          .replace(/\{channel\}/gi, `<#${dataID.channelId}>`)
+          .replace(
+            /\{messageLink\}/gi,
+            `https://discord.com/channels/${msg.guildId}/${dataID.channelId}/${dataID.messageId}`
+          ),
         ephemeral: true,
       })
-      console.log(`Successfully set the status message in ${chalk.cyan(`#${msg.channel.name}`)}`)
+      console.log(
+        consoleLogTranslation.debug.autoChangeStatus.successLog.replace(
+          /\{channelName\}/gi,
+          chalk.cyan(`#${msg.channel.name}`)
+        )
+      )
       setInterval(() => {
         statusMessageEdit()
       }, config.autoChangeStatus.updateInterval * 1000)
     } catch (error) {
       interaction.editReply({
-        content: `:warning: Could not set status message because of an error: ${error.message}`,
+        content: cmdSlashTranslation.setstatus.errorReply.replace(/\{error\}/gi, error.message),
         ephemeral: true,
       })
       const { getError } = require('../index')
-      if (settings.logging.error) {
-        console.log(getError(error, 'Setting status message'))
-      }
+      getError(error, 'setStatus')
     }
   },
   options: {
-    guildOnly: true,
-    userPermissions: ['ManageChannels', 'ModerateMembers', 'ManageThreads'],
     deleted: false,
   },
 }

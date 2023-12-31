@@ -1,0 +1,21 @@
+GitHub: https://github.com/NooberPro/minecraft-discord-bot
+Crowdin: https://crowdin.com/project/minecraft-discord-bot
+English translated (en) by NooberPro
+Translation for command embeds message.
+Variables: {ip}
+Variables: {site}
+Variables: {version}
+Variables: {ip},{version}, {site}
+To disable this, leave the description blank.
+Variables: {playeronline}, {playermax}.
+The player name list will be displayed after the description.
+Displays offline embeds when the Minecraft server is offline.
+Variables: {motd}
+Variables: {ip}, {motd}, {version}, {site}
+Here, the playerlist embed title and description from above (line: 27)
+The description is placed after the player list field.
+Variables: {prefix}, {botName}
+Only listFormat variables: {cmdDescription}, {cmdSlashMention}.
+Variables: {cmdName}
+Variables: {cmdSlashMention}, {cmdDescription}, {prefixCmd}, {prefixCmdAlias}
+Variables: {cpuUsage}, {memoryUsage}, {nodeVersion}, {uptimeDays}, {uptimeHours}, {uptimeMinutes}, {uptimeSeconds}, {ping}, {websocket}.

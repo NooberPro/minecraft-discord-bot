@@ -1,25 +1,23 @@
 const { SlashCommandBuilder } = require('discord.js')
-const { commands, settings } = require('../../config')
+const { commands } = require('../../config')
+const { cmdSlashTranslation } = require('../index')
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('players')
-    .setDescription('Sends the list of online player in the Minecraft Server.'),
+    .setName(cmdSlashTranslation.players.name)
+    .setDescription(cmdSlashTranslation.players.description),
   run: async ({ interaction }) => {
     await interaction.deferReply()
     const { playerList } = require('../embeds')
     try {
       interaction.editReply({ content: '', embeds: [await playerList()] })
     } catch (error) {
-      interaction.editReply({ content: 'Error with getting Players' })
-      if (settings.logging.error) {
-        const { getError } = require('../index')
-        console.log(getError(error, 'Slash command - Player'))
-      }
+      interaction.followUp({ content: cmdSlashTranslation.players.errorReply })
+      const { getError } = require('../index')
+      getError(error, 'playerCmd')
     }
   },
   options: {
-    guildOnly: true,
     deleted: !commands.players.enabled || !commands.slashCommands, // Deletes the command from Discord
   },
 }

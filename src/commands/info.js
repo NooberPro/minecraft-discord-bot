@@ -1,33 +1,30 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js')
 const { botInfoEmbed } = require('../embeds')
+const { cmdSlashTranslation } = require('../index')
+
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('info')
-    .setDescription('Sends the current info about the bot.')
+    .setName(cmdSlashTranslation.info.name)
+    .setDescription(cmdSlashTranslation.info.description)
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   run: async ({ interaction, client }) => {
-    interaction.deferReply({
-      ephemeral: true,
-    })
+    await interaction.deferReply({ ephemeral: true })
     try {
       await interaction.editReply({
         ephemeral: true,
         embeds: [await botInfoEmbed(interaction, client)],
       })
     } catch (error) {
-      interaction.editReply({
-        content: 'Error with getting Info',
+      await interaction.followUp({
+        content: cmdSlashTranslation.info.errorReply,
         ephemeral: true,
       })
-      const { settings } = require('../../config')
-      if (settings.logging.error) {
-        const { getError } = require('../index')
-        console.log(getError(error, 'Slash command - info'))
-      }
+      const { getError } = require('../index')
+      getError(error, 'infoCmd')
+      console.log(error)
     }
   },
   options: {
-    guildOnly: true,
-    deleted: !commands.slashCommands, // Deletes the command from Discord
+    deleted: false, // Deletes the command from Discord
   },
 }

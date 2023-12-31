@@ -1,0 +1,73 @@
+{
+  "error": {
+    "playerEmbed": "An error occurred while creating Player List Embeds Message.",
+    "statusEmbed": "An error occurred while creating Status Embeds Message.",
+    "playerList": "An error occurred while creating the Player List.",
+    "fetchServerDataAndPlayerList": "Failed to fetch Minecraft Server Data and Player List.",
+    "fetchServerData": "Failed to fetch Minecraft Server Data.",
+    "messageEdit": "Error while editing the Status Message.",
+    "botLogin": "Bot Login Error.",
+    "infoCmd": "Error in Slash Command - Info.",
+    "motdCmd": "Error in Slash Command - MOTD.",
+    "playerCmd": "Error in Slash Command - Player.",
+    "statusCmd": "Error in Slash Command - Status.",
+    "statusPrefix": "Error in Prefix Command - Status.",
+    "setStatus": "Failed to set Status Message.",
+    "autoReply": "Error in Auto-Reply Feature.",
+    "botStatusUpdate": "Error in Updating the Bot's Status.",
+    "channelIdCheck": "Error in Channel ID Check and Updating.",
+    "playerCountCh": "Error in Player Count Channel Feature.",
+    "playerCountChNameUpdate": "Error in Updating Player Count Channel Name.",
+    "playerCountChDateWrite": "Error in Saving Player Count Channel ID in data.json."
+  },
+  "debug": {
+    "autoChangeStatus": {
+      "onlineText": "Online with {playerOnline} Players Playing.",
+      "offlineText": "❌ Offline.",
+      "format": "Status Embed Message has been updated to {statusText}.",
+      "successLog": "Successfully set the status message in {channelName}.",
+      "enableAutoChangeStatus": "To set the server status, send a {cmd} command in the desired channel."
+    },
+    "botStatusFormat": "Status Embed Message has been updated to {botStatusText}.",
+    "playerCountChUpdate": "Player Count channel name is updated to {updatedName}."
+  },
+  "checkErrorConfig": {
+    "checkConfigWait": "Checking for Errors in the config.js file. Please wait.",
+    "followingErrors": "Config file has the following errors:",
+    "botToken": "Invalid Bot Token.",
+    "botPresenceStatus": "Invalid bot status options. Should be 'online', 'idle', 'dnd' or 'invisible'.",
+    "botStatusActivity": "Invalid bot activity options. Should be 'Playing', 'Listening','Watching' or 'Competing'",
+    "mcType": "Invalid Minecraft server type. Should be \"java\" or \"bedrock\".",
+    "mcName": "The Minecraft server's name has not been specified.",
+    "mcVersion": "The Minecraft server's version has not been specified.",
+    "guildID": "The Server/Guild ID has not been specified or is invalid.",
+    "timeZone": "The time zone specified in the config file is not valid.",
+    "slashCmdName": "The provided name \"{givenCmdName}\" for the \"{cmdName}\" command is invalid.\nPlease use only lowercase, uppercase, title case letters, numbers, underscores, and hyphens."
+  },
+  "playerCountCh": {
+    "playerCountChGuildIncorrect": "The guild with ID: \"{guildID}\" was not found, or the bot is not in the guild.",
+    "playerCountChannelFound": "Successfully found channel: {channelName} for Player Count.",
+    "playerCountChannelNotFound": "The channel for Player Count with ID: \"{channelId}\" was not found, or the bot has no access to the channel.",
+    "playerCountChannelCreated": "Created a channel for Player Count and updated its name to: {updatedStatus}."
+  },
+  "inviteLink": "✅ {botUserTag} is online.\nInvite the bot with {inviteLink}.",
+  "serverInfoStart": {
+    "online": [
+      "--------------------------------------------------------",
+      "IP       | {ip}",
+      "VERSION  | {version}",
+      "PLAYERS  | {playersOnline} / {playersMax}",
+      "MOTD     | {motd_line1}",
+      "         | {motd_line2}",
+      "--------------------------------------------------------"
+    ],
+    "offline": [
+      "Currently unable to locate the Minecraft server with:",
+      "----------------------------------------------",
+      "IP   | {ip}",
+      "PORT | {port}",
+      "TYPE | {mcServerType}",
+      "----------------------------------------------"
+    ]
+  }
+}

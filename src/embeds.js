@@ -1,65 +1,61 @@
 const { EmbedBuilder } = require('discord.js')
-const { mcserver, settings, commands } = require('../config')
-const icon = mcserver.icon
+const { mcserver, commands, settings } = require('../config')
+const { embedTranslation } = require('./index')
+
 const ipBedrock = `IP: \`${mcserver.ip}\`\nPort: \`${mcserver.port}\``
 const port = mcserver.port === 25565 ? '' : `:\`${mcserver.port}\``
 const ipJava = `**IP: \`${mcserver.ip}\`${port}**`
 const ip = mcserver.type === 'bedrock' ? ipBedrock : ipJava
-const fs = require('fs')
-const json5 = require('json5')
-
-const fileContents = fs.readFileSync(`./translation/${commands.language}.json5`, 'utf8')
-embedReadData = json5.parse(fileContents)
 
 // Embed Message for site commands
 const siteEmbed = new EmbedBuilder()
-  .setColor('Aqua')
-  .setThumbnail(icon)
+  .setColor(settings.embedsColors.basicCmds)
+  .setThumbnail(mcserver.icon)
   .setAuthor({
     name: mcserver.name,
   })
-  .setTitle(embedReadData.site.title.replace(/\{site\}/gi, mcserver.site))
-  .setDescription(embedReadData.site.description.replace(/\{site\}/gi, mcserver.site))
+  .setTitle(embedTranslation.site.title.replace(/\{site\}/gi, mcserver.site))
+  .setDescription(embedTranslation.site.description.replace(/\{site\}/gi, mcserver.site))
 
 // Embed Message for version commands
 const versionEmbed = new EmbedBuilder()
-  .setColor('Aqua')
-  .setThumbnail(icon)
+  .setColor(settings.embedsColors.basicCmds)
+  .setThumbnail(mcserver.icon)
   .setAuthor({
     name: mcserver.name,
   })
-  .setTitle(embedReadData.version.title.replace(/\{version\}/gi, mcserver.version))
-  .setDescription(embedReadData.version.description.replace(/\{version\}/gi, mcserver.version))
+  .setTitle(embedTranslation.version.title.replace(/\{version\}/gi, mcserver.version))
+  .setDescription(embedTranslation.version.description.replace(/\{version\}/gi, mcserver.version))
 
 // Embed Message for ip commands
 const ipEmbed = new EmbedBuilder()
-  .setColor('Aqua')
-  .setThumbnail(icon)
+  .setColor(settings.embedsColors.basicCmds)
+  .setThumbnail(mcserver.icon)
   .setAuthor({
     name: mcserver.name,
   })
-  .setTitle(embedReadData.ip.title.replace(/\{ip\}/gi, ip))
-  .setDescription(embedReadData.ip.description.replace(/\{ip\}/gi, ip))
+  .setTitle(embedTranslation.ip.title.replace(/\{ip\}/gi, ip))
+  .setDescription(embedTranslation.ip.description.replace(/\{ip\}/gi, ip))
 
 // Offline Embed Message status commands
 const offlineStatus = () => {
   const offlineEmbed = new EmbedBuilder()
-    .setColor('Red')
+    .setColor(settings.embedsColors.offline)
     .setTitle(
-      embedReadData.offlineEmbed.title
+      embedTranslation.offlineEmbed.title
         .replace(/\{ip\}/gi, ip)
         .replace(/\{version\}/gi, mcserver.version)
         .replace(/\{site\}/gi, mcserver.site)
     )
-    .setThumbnail(icon)
+    .setThumbnail(mcserver.icon)
     .setAuthor({
       name: mcserver.name,
     })
     .setTimestamp()
-    .setFooter({ text: 'Checked at' })
-  if (embedReadData.offlineEmbed.description) {
+    .setFooter({ text: embedTranslation.offlineEmbed.footer })
+  if (embedTranslation.offlineEmbed.description) {
     offlineEmbed.setDescription(
-      embedReadData.offlineEmbed.description
+      embedTranslation.offlineEmbed.description
         .replace(/\{ip\}/gi, ip)
         .replace(/\{version\}/gi, mcserver.version)
         .replace(/\{site\}/gi, mcserver.site)
@@ -76,13 +72,13 @@ const motdEmbed = async () => {
     return offlineStatus()
   } else {
     return new EmbedBuilder()
-      .setColor('Aqua')
-      .setThumbnail(icon)
+      .setColor(settings.embedsColors.online)
+      .setThumbnail(mcserver.icon)
       .setAuthor({
         name: mcserver.name,
       })
-      .setTitle(embedReadData.motd.title.replace(/\{motd\}/gi, data.motd.clean))
-      .setDescription(embedReadData.motd.description.replace(/\{motd\}/gi, data.motd.clean))
+      .setTitle(embedTranslation.motd.title.replace(/\{motd\}/gi, data.motd.clean))
+      .setDescription(embedTranslation.motd.description.replace(/\{motd\}/gi, data.motd.clean))
       .setFooter({ text: 'Checked at' })
       .setTimestamp()
   }
@@ -96,20 +92,18 @@ const playerList = async () => {
       return offlineStatus()
     } else {
       return new EmbedBuilder()
-        .setColor('Aqua')
-        .setThumbnail(icon)
+        .setColor(settings.embedsColors.online)
+        .setThumbnail(mcserver.icon)
         .setAuthor({
           name: mcserver.name,
         })
         .addFields(playerListArray)
         .setTimestamp()
-        .setFooter({ text: 'Checked at' })
+        .setFooter({ text: embedTranslation.offlineEmbed.footer })
     }
   } catch (error) {
-    if (settings.logging.error) {
-      const { getError } = require('./index')
-      console.log(getError(error, 'Player command Embed'))
-    }
+    const { getError } = require('./index')
+    getError(error, 'playerEmbed')
   }
 }
 
@@ -127,13 +121,13 @@ const statusEmbed = async () => {
 // Online Embed Message for status commands
 const OnlineEmbed = async (data, playerlist) => {
   try {
-    let description_field_one = embedReadData.onlineEmbed.description_field_one
+    let description_field_one = embedTranslation.onlineEmbed.description_field_one
       .trim()
       .replace(/\{ip\}/gi, ip)
       .replace(/\{motd\}/gi, data.motd.clean)
       .replace(/\{version\}/gi, mcserver.version)
       .replace(/\{site\}/gi, mcserver.site)
-    let description_field_two = embedReadData.onlineEmbed.description_field_two
+    let description_field_two = embedTranslation.onlineEmbed.description_field_two
       .trim()
       .replace(/\{ip\}/gi, ip)
       .replace(/\{motd\}/gi, data.motd.clean)
@@ -141,13 +135,13 @@ const OnlineEmbed = async (data, playerlist) => {
       .replace(/\{site\}/gi, mcserver.site)
 
     return new EmbedBuilder()
-      .setColor('Green')
-      .setThumbnail(icon)
+      .setColor(settings.embedsColors.online)
+      .setThumbnail(mcserver.icon)
       .setAuthor({
         name: mcserver.name,
       })
       .setTitle(
-        embedReadData.onlineEmbed.title
+        embedTranslation.onlineEmbed.title
           .replace(/\{ip\}/gi, ip)
           .replace(/\{motd\}/gi, data.motd.clean)
           .replace(/\{version\}/gi, mcserver.version)
@@ -159,14 +153,46 @@ const OnlineEmbed = async (data, playerlist) => {
         value: description_field_two,
       })
       .setTimestamp()
-      .setFooter({ text: `Checked at` })
+      .setFooter({ text: embedTranslation.onlineEmbed.footer })
   } catch (error) {
-    console.log(error)
+    const { getError } = require('./index')
+    getError(error, 'statusEmbed')
   }
 }
 
-const helpEmbed = async (client) => {
+const helpEmbed = async (client, commandName) => {
   const commandsFetch = await client.application.commands.fetch()
+  if (commandName) {
+    let slashCmdData
+    await commandsFetch.forEach((slashCmd) => {
+      if (slashCmd.name === commandName) {
+        slashCmdData = slashCmd
+      }
+    })
+    return new EmbedBuilder()
+      .setAuthor({
+        name: client.user.username,
+        iconURL: client.user.avatarURL(),
+      })
+      .setColor('Yellow')
+      .setTitle(
+        embedTranslation.help.commandInfoFormat.title.replace(
+          /\{cmdName\}/gi,
+          slashCmdData.name.charAt(0).toUpperCase() + slashCmdData.name.slice(1)
+        )
+      )
+      .setDescription(
+        embedTranslation.help.commandInfoFormat.description
+          .replace(/\{cmdSlashMention\}/gi, `</${slashCmdData.name}:${slashCmdData.id}>`)
+          .replace(/\{cmdDescription\}/gi, slashCmdData.description)
+          .replace(/\{prefixCmd\}/gi, commands.prefixCommands.prefix + slashCmdData.name)
+          .replace(
+            /\{prefixCmdAlias\}/gi,
+            commands[slashCmdData.name].alias.length ? `\`${commands[slashCmdData.name].alias.join('`, `')}\`` : ''
+          )
+      )
+  }
+
   visibleCmdsNames = []
   // Get the commands enabled from config and add to visibleCmdsNames
   for (const cmds in commands) {
@@ -180,7 +206,7 @@ const helpEmbed = async (client) => {
   commandsFetch.forEach((command) => {
     if (visibleCmdsNames.includes(command.name)) {
       cmdsList.push(
-        embedReadData.help.listFormat
+        embedTranslation.help.listFormat
           .replace(/\{slashCmdMention\}/gi, `</${command.name}:${command.id}>`)
           .replace(/\{cmdDescription\}/gi, command.description)
       )
@@ -188,14 +214,14 @@ const helpEmbed = async (client) => {
   })
 
   return new EmbedBuilder()
-    .setTitle(embedReadData.help.title.replace(/\{prefix\}/gi).replace(/\{botName\}/gi, client.user.username))
+    .setTitle(embedTranslation.help.title.replace(/\{prefix\}/gi).replace(/\{botName\}/gi, client.user.username))
     .setColor('Yellow')
     .setAuthor({
       name: client.user.username,
       iconURL: client.user.avatarURL(),
     })
     .setDescription(
-      `${embedReadData.help.description
+      `${embedTranslation.help.description
         .replace(/\{prefix\}/gi, commands.prefixCommands.prefix)
         .replace(/\{botName\}/gi, client.user.username)}\n${cmdsList.join('\n')}`
     )
@@ -218,17 +244,22 @@ const botInfoEmbed = async (interaction, client) => {
       name: client.user.tag,
       iconURL: client.user.avatarURL(),
     })
-    .setTitle('**Bot Info and Stats**')
+    .setTitle(embedTranslation.info.title)
     .setColor('Yellow')
     .setDescription(
-      `**CPU Usage: \`${cpuUsage}%\`
-      Memory Usage: \`${memoryUsage}MB\`
-      Node.js Version: \`${nodeVersion}\`
-      Bot uptime: \`${uptimeDays}\` days, \`${uptimeHours}\` hours, \`${uptimeMinutes}\`, minutes, \`${uptimeSeconds}\` seconds
-      Ping: Client \`${ping}ms\` | Websocket: \`${client.ws.ping}ms\` **
-      `
+      embedTranslation.info.description
+        .replace(/\{cpuUsage\}/gi, cpuUsage)
+        .replace(/\{memoryUsage\}/gi, memoryUsage)
+        .replace(/\{nodeVersion\}/gi, nodeVersion)
+        .replace(/\{uptimeDays\}/gi, uptimeDays)
+        .replace(/\{uptimeHours\}/gi, uptimeHours)
+        .replace(/\{uptimeMinutes\}/gi, uptimeMinutes)
+        .replace(/\{uptimeSeconds\}/gi, uptimeSeconds)
+        .replace(/\{ping\}/gi, ping)
+        .replace(/\{websocket\}/gi, client.ws.ping)
     )
 }
+
 module.exports = {
   versionEmbed,
   siteEmbed,

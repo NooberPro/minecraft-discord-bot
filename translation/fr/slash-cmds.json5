@@ -1,0 +1,62 @@
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
+// Traduction en français (fr) par l'IA
+{
+  // Traduction pour les commandes slash ("slash commands").
+
+  // Le champ du nom ("name") est le nom de la commande. Vous pouvez renommer la commande, mais ELLE NE PEUT PAS ÊTRE TRADUITE.
+  // Le champ de description fournit la description de la commande.
+  help: {
+    name: 'help',
+    description: 'Envoie la liste des commandes disponibles.',
+    options: {
+      name: 'command',
+      description: 'Envoie les détails concernant une commande.',
+    },
+  },
+  ip: {
+    name: 'ip',
+    description: "Envoie l'adresse du serveur Minecraft.",
+  },
+  site: {
+    name: 'site',
+    description: 'Envoie le lien du site web/vote du serveur Minecraft.',
+  },
+  version: {
+    name: 'version',
+    description: 'Envoie la version du serveur Minecraft.',
+  },
+
+  // Le champ errorReply est utilisé s'il y a une erreur lors de l'exécution de la commande, et il répond avec un message d'erreur.
+  motd: {
+    name: 'motd',
+    description: 'Envoie le Message du Jour (MOTD) du serveur Minecraft.',
+    errorReply: ":warning:  **`Une erreur s'est produite lors de la récupération du Message du Jour (MOTD).`**",
+  },
+  players: {
+    name: 'players',
+    description: 'Envoie la liste des joueurs actuellement en ligne sur le serveur Minecraft.',
+    errorReply: ":warning:  **`Une erreur s'est produite lors de la récupération de la liste des joueurs en ligne.`**",
+  },
+  status: {
+    name: 'status',
+    description: 'Envoie le statut actuel du serveur Minecraft.',
+    errorReply: ":warning:  **`Impossible de trouver le statut du serveur en raison d'une erreur.`**",
+  },
+  info: {
+    name: 'info',
+    description: 'Envoie les informations actuelles sur le bot.',
+    errorReply: ":warning:  **`Une erreur s'est produite lors de la récupération des informations.`**",
+  },
+  setstatus: {
+    name: 'setstatus',
+    description: "Définit le message d'état du serveur Minecraft dans le canal actuel.",
+    // Utilisez {error} pour recevoir le message d'erreur.
+    errorReply: ":warning:  **`Impossible de définir le message d'état en raison d'une erreur : {error}.`**",
+    enableFeature: '**Veuillez activer "Changer automatiquement de statut" dans la configuration pour activer la fonction de message d\'état.**',
+    checkingStatusMsg: ':gear: Vérification du statut en cours...',
+    checkingStatusCmdMsg: ':arrows_clockwise: Vérification du statut et des informations nécessaires.',
+    // Utilisez {channel} pour fournir le lien du canal, et {messageLink} fournit l'icône de lien du message.
+    statusMsgSuccess: ":white_check_mark: **Le message d'état a été défini avec succès dans {channel}. Message :** {messageLink}.",
+  },
+}

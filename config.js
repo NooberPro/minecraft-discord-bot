@@ -1,4 +1,4 @@
-//Config Explaination: https://nooberpro.gitbook.io/minecraft-discord-bot/installation/config
+// Config Explaination: https://nooberpro.gitbook.io/minecraft-discord-bot/installation/config
 // "MC" is referring to Minecraft in the comments for convenience.
 module.exports = {
   bot: {
@@ -20,19 +20,35 @@ module.exports = {
   },
   mcserver: {
     ip: 'demo.mcstatus.io', // IP of  MC server.
-    port: 25565, // Port number of MC server. Default Port - Java: 25565, Bedrock: 19132.
-    type: 'java', // Type of MC server: "java" or "bedrock". Use Query Port in Java for full Player List.
+    port: 25565, // Port number of MC server. Use Query Port in Java for full Player List.
+    type: 'java', // Type of MC server: "java" or "bedrock".
     name: 'Demo Server', // Name of MC server.
     version: 'Requires 1.8 - 1.20', // Version of MC server.
     icon: 'https://i.imgur.com/6Msem8Q.png', // URL of MC server icon. How? https://tinyurl.com/iconurl
-    site: 'https://nooberpro.gitbook.io/', // URL of MC server/vote website like https://nooberpro.gitbook.io/.
-    // To disable site commands leave site field blank. NOT REQUIRED
+    site: 'https://nooberpro.gitbook.io/', // URL of MC server or vote website. NOT REQUIRED
+    // To disable site commands leave site field blank.
   },
 
   // Settings for bot.
   settings: {
+    language: {
+      // Availables languages: en(English), es(Spanish), de(German), fr(French), pt(Portuguese), ru(Russian), uk(Ukrainian)
+      main: 'en', // (files in ./translation/)
+      // These are optional settings for language.
+      // You can set certain language for certain features. Leave then blank if you want main language to be applied.
+      embeds: '', // All the embeds. Slash and Prefix Commands, Auto Changing Status.
+      autoReply: '', // Replies given by the bot in Auto Reply feature.
+      consoleLog: '', // All console log output.
+      slashCmds: '', // All slash commands description and error replies.
+    },
+    embedsColors: {
+      basicCmds: 'Aqua', // It is the commands like version, site, ip.
+      online: 'Green', // It is the commands when it is online like status, players, motd.
+      offline: 'Red', // It is the color of offline embed.
+    },
     // console-logging settings.
     logging: {
+      timezone: '', // Time zone of bot. Use formats like America/New_York or Europe/London. Leave blank to match the bot's location time zone.
       inviteLink: true, // Log invite link at bot's launch.
       debug: false, // Log status message and  bot activity update. (pretty much like spam)
       error: true, // Log any errors that occur.
@@ -46,7 +62,7 @@ module.exports = {
   autoChangeStatus: {
     enabled: false,
     updateInterval: 60, // Time period between auto changing status in seconds, e.g. 60 = 1min. Recommended: above 60.
-    // These settings will be applied in (/) and prefix commands for status.
+    // These settings will be applied in slash (/) and prefix commands for status.
     isOnlineCheck: true, // Useful for servers which uses free hosting providers like Aternos. If the server's max players is 0 then status will set offline.
   },
 
@@ -56,7 +72,7 @@ module.exports = {
     guildID: 'your-guild-id-here', // Server's ID for creating/editing channel stats.
     channelId: '', // The channel ID for editing the player count. If no ID is provided, the bot will create the channel itself. NOT REQUIRED
     // {playeronline} and {playermax} show number of online and max players.
-    onlineText: '🟢 {playeronline}/{playermax} Players playing',
+    onlineText: '🟢 {playeronline}/{playermax} active players',
     offlineText: '🔴 Offline', // The name set when MC server is offline.
   },
 
@@ -66,39 +82,27 @@ module.exports = {
     version: {
       enabled: true,
       triggerWords: ['version of the server?', 'version'],
-      // Use {version} to get the version in the config
-      replyText: "The server's version: **`{version}`**",
     },
     ip: {
       enabled: true,
       triggerWords: ['ip of the server', 'ip'],
-      // Use {ip} for ip and {port} for port.
-      replyText: '**IP: `{ip}`\nPort: `{port}`**',
     },
     site: {
       enabled: true,
-      triggerWords: ['website link', 'website', 'url', 'site', 'vote url'],
-      // Use {site} for site
-      replyText: "The server's website link: **<{site}>**",
+      triggerWords: ['website link', 'website', 'url', 'site', 'vote url', 'link'],
     },
     status: {
       enabled: true,
       triggerWords: ['is server online?', 'is server offline', 'status of the server'],
-      // Use {playerOnline} for players online no. and {playerMax} for players max no. Only work in onlineReply.
-      onlineReply: 'The server is **`🟢ONLINE`** with **`{playerOnline}/{playerMax}`** players playing.',
-      offlineReply: 'The server is **`🔴OFFLINE`**.',
     },
   },
 
   commands: {
     slashCommands: true, // Enables all slash commands
     prefixCommands: {
-      enabled: true,
+      enabled: true, // Enables all prefix commands
       prefix: '!', // Prefix for normal command.
-    }, // Enables all prefix commands
-
-    // en(English), es(Spanish), de(German), fr(French), pt(Portuguese), ru(Russian)
-    language: 'en', // Works only for embeds. (files in ./translation/)
+    },
     ip: {
       enabled: true, // Enables ip command.
       alias: ['ip-address'], // Alias for ip prefix commands.
@@ -117,7 +121,7 @@ module.exports = {
     },
     status: {
       enabled: true, // Enables ip command.
-      alias: ['info'], // Alias for status prefix commands.
+      alias: [], // Alias for status prefix commands.
     },
     motd: {
       enabled: true, // Enables ip command.

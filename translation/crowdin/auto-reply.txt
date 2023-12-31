@@ -1,0 +1,8 @@
+GitHub: https://github.com/NooberPro/minecraft-discord-bot
+Crowdin: https://crowdin.com/project/minecraft-discord-bot
+English Translation (en) by NooberPro
+Translation for the auto-reply function.
+Use {version} to retrieve the version from the config.
+Use {ip} for the IP and {port} for the port.
+Use {site} for website link from the config.
+Use {playerOnline} for the number of online players and {playerMax} for the maximum number of players. This only works in onlineReply.

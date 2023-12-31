@@ -1,7 +1,7 @@
 {
   "name": "minecraft-discord-bot",
-  "version": "1.0.0",
-  "description": "A discord bot that shows info and status of your minecraft server including players, version, and many more features.",
+  "version": "2.0.0",
+  "description": "A feature-rich and highly customizable Discord bot that provides information about your Minecraft server.",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js"
@@ -13,9 +13,10 @@
   "keywords": [
     "minecraft",
     "discord",
+    "minecraft-server",
     "discord-bot",
-    "minecraft-discord-bot",
-    "minecraft-server-status-discord-bot"
+    "discord-js",
+    "minecraft-bot"
   ],
   "author": "Nooberpro",
   "license": "MIT",
@@ -25,8 +26,8 @@
   "homepage": "https://github.com/NooberPro/minecraft-discord-bot#readme",
   "dependencies": {
     "chalk": "^4.1.2",
-    "commandkit": "^0.1.6",
-    "discord.js": "^14.13.0",
+    "commandkit": "^0.1.10",
+    "discord.js": "^14.14.1",
     "json5": "^2.2.3",
     "node-mcstatus": "^1.1.0"
   }

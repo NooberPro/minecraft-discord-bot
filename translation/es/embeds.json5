@@ -1,0 +1,70 @@
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
+// Traducción al español (es) por IA
+
+{
+  // Traducción para el mensaje integrado de comandos.
+  ip: {
+    // Variables: {ip}
+    title: '__**DIRECCIÓN DEL SERVIDOR**__',
+    description: '**{ip}**',
+  },
+  site: {
+    // Variables: {site}
+    title: '__**SITIO WEB**__',
+    description: '**Enlace: {site}**',
+  },
+  version: {
+    // Variables: {version}
+    title: '__**VERSIÓN**__',
+    description: '**{version}**',
+  },
+  offlineEmbed: {
+    // Variables: {ip},{version}, {site}
+    title: ':red_circle: FUERA DE LÍNEA',
+    description: '', // Para desactivar esto, deja en blanco la descripción.
+    footer: 'Comprobado en',
+  },
+  players: {
+    // Variables: {playeronline}, {playermax}
+    title: '__**JUGADORES**__',
+    description: '**{playeronline}/{playermax}**',
+    // La lista de nombres de jugadores se mostrará después de la descripción.
+    // Muestra mensajes integrados sin conexión cuando el servidor de Minecraft está fuera de línea.
+  },
+  motd: {
+    // Variables: {motd}
+    title: '__**MOTD**__',
+    description: '**{motd}**',
+  },
+  onlineEmbed: {
+    // Variables: {ip}, {motd}, {version}, {site}
+    title: ':green_circle: EN LÍNEA',
+    // Aquí, el título y la descripción de la lista de jugadores integrada desde arriba (línea: 28).
+
+    // La descripción se coloca después del campo de lista de jugadores.
+    description_field_one: '__**MOTD**__\n**{motd}**\n\n__**DIRECCIÓN DEL SERVIDOR**__\n**{ip}**',
+    description_field_two: '__**VERSIÓN**__\n**{version}**\n\n__**SITIO WEB**__\n**Enlace: {site}**',
+    footer: 'Comprobado en',
+  },
+  help: {
+    // Variables: {prefix}, {botName}
+    title: '__**LISTA DE COMANDOS**__',
+    description: '**Prefijo: `{prefix}`**',
+    // Solo variables de listFormat: {cmdDescription}, {cmdSlashMention}.
+    listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
+
+    commandInfoFormat: {
+      // Variables: {cmdName}
+      title: '__**Comando {cmdName}**__',
+      // Variables: {cmdSlashMention}, {cmdDescription}, {prefixCmd}, {prefixCmdAlias}
+      description: '**Comando slash: {cmdSlashMention}\nDescripción: `{cmdDescription}`\nComandos de prefijo: `{prefixCmd}`\nAlias de prefijo: {prefixCmdAlias}**',
+    },
+  },
+  info: {
+    title: '**Información y estadísticas del bot**',
+    // Variables: {cpuUsage}, {memoryUsage}, {nodeVersion}, {uptimeDays}, {uptimeHours}, {uptimeMinutes}, {uptimeSeconds}, {ping}, {websocket}
+    description: '**Uso de CPU: `{cpuUsage}%`\nUso de memoria: `{memoryUsage}MB`\nVersión de Node.js: `{nodeVersion}`\nTiempo de actividad del bot: `{uptimeDays}` días, `{uptimeHours}` horas, `{uptimeMinutes}` minutos, `{uptimeSeconds}` segundos\nPing: Cliente `{ping}ms` | Websocket: `{websocket}ms` **',
+  },
+}
+

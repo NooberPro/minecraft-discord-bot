@@ -1,0 +1,63 @@
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
+// Русский перевод (ru) от Zahar1loshara
+
+{
+  // Перевод для слэш команд.
+
+  // Поле имени это название команды. Ты можешь изменить название команды, но она НЕ МОЖЕТ БЫТЬ ПЕРЕВЕДЕНА.
+  // Поле описания это - описание команды.
+  help: {
+    name: 'help',
+    description: 'Отправляет лист доступных команд.',
+    options: {
+      name: 'commands',
+      description: 'Отправляет детали о команде.',
+    },
+  },
+  ip: {
+    name: 'ip',
+    description: 'Отправляет адрес сервера Майнкрафт сервера.',
+  },
+  site: {
+    name: 'site',
+    description: 'Отправляет вебсайт/ссылку голосования Майнкрафт сервера.',
+  },
+  version: {
+    name: 'version',
+    description: 'Отправляет версию сервера Minecraft.',
+  },
+
+  // Поле errorReply используется если тут ошибка когда выполняется команда, и оно отвечает errorReply сообщением.
+  motd: {
+    name: 'motd',
+    description: 'Отправляет сообщение дня Майнкрафт сервера (MOTD).',
+    errorReply: ':warning:  **`Произошла ошибка при получении сообщения дня (MOTD).`**',
+  },
+  players: {
+    name: 'players',
+    description: 'Отправляет лист игроков кто сейчас играют на Майнкрафт сервере.',
+    errorReply: ':warning: **`Произошла ошибка при получении лист онлайн игроков.`**',
+  },
+  status: {
+    name: 'status',
+    description: 'Отправляет текущий статус Майнкрафт сервера.',
+    errorReply: ':warning: **`Не удалось найти статус сервера из-за ошибки.`**',
+  },
+  info: {
+    name: 'info',
+    description: 'Отправляет текущую информацию о боте.',
+    errorReply: ':warning: **`Произошла ошибка во время получения информации.`**',
+  },
+  setstatus: {
+    name: 'setstatus',
+    description: 'Отправляет статус-сообщение Майнкрафт сервера в текущем канале.',
+    // Изпользуйте {error} для получения сообщения ошибки.
+    errorReply: ':warning: **`Не удалось установить сообщения статуса из-за ошибки: {error}.`**',
+    enableFeature: '**Пожалуйста включите `auto Change Status/авто Изменения Статуса` в конфиге для включения функции сообщения статуса.**',
+    checkingStatusMsg: ':gear: Проверка статуса...',
+    checkingStatusCmdMsg: ':arrows_clockwise: Проверка статуса и другой инфы.',
+    // Используйте {channel} чтобы написать ссылку на канал, а {messageLink} предоставляет значок на сообщении.
+    statusMsgSuccess: ':white_check_mark: **Статус сообщения успешно установлен в {channel}. Сообщения:**{messageLink}.',
+  },
+}

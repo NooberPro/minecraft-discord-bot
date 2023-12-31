@@ -1,15 +1,6 @@
-const config = require('../../../config')
-const { commands, settings } = require('../../../config')
-const {
-  ipEmbed,
-  siteEmbed,
-  playerList,
-  versionEmbed,
-  offlineStatus,
-  statusEmbed,
-  motdEmbed,
-  helpEmbed,
-} = require('../../embeds')
+const { commands, mcserver } = require('../../../config')
+const { cmdSlashTranslation } = require('./../../index')
+const { ipEmbed, siteEmbed, playerList, versionEmbed, statusEmbed, motdEmbed, helpEmbed } = require('../../embeds')
 
 module.exports = async (message, client) => {
   if (
@@ -23,7 +14,21 @@ module.exports = async (message, client) => {
   const prefix = commands.prefixCommands.prefix
   const content = message.content.slice(prefix.length)
 
-  if (commands.help.enabled && (content === 'help' || commands.help.alias.includes(content))) {
+  if (commands.help.enabled && (content.startsWith('help') || commands.help.alias.includes(content))) {
+    await message.channel.sendTyping()
+    const arg = content.split(' ')
+    if (arg[1]) {
+      const commandsChoicesArray = []
+      for (const cmds in commands) {
+        if (commands[cmds].enabled && !['slashCommands', 'prefixCommands', 'language'].includes(cmds)) {
+          commandsChoicesArray.push(cmds)
+        }
+      }
+      if (commandsChoicesArray.includes(arg[1])) {
+        message.channel.send({ embeds: [await helpEmbed(client, arg[1])] })
+        return
+      }
+    }
     message.channel.send({ embeds: [await helpEmbed(client)] })
   }
   if (commands.motd.enabled && (content === 'motd' || commands.motd.alias.includes(content))) {
@@ -33,7 +38,7 @@ module.exports = async (message, client) => {
   if (commands.ip.enabled && (content === 'ip' || commands.ip.alias.includes(content))) {
     message.channel.send({ embeds: [ipEmbed] })
   }
-  if (commands.site.enabled && config.mcserver.site && (content === 'site' || commands.site.alias.includes(content))) {
+  if (commands.site.enabled && mcserver.site && (content === 'site' || commands.site.alias.includes(content))) {
     message.channel.send({ embeds: [siteEmbed] })
   }
   if (commands.version.enabled && (content === 'version' || commands.version.alias.includes(content))) {
@@ -49,11 +54,9 @@ module.exports = async (message, client) => {
     try {
       message.channel.send({ embeds: [await statusEmbed()] })
     } catch (error) {
-      message.channel.send({ embeds: [offlineStatus()] })
-      if (settings.logging.error) {
-        const { getError } = require('../../index')
-        console.log(getError(error, 'Prefix status command'))
-      }
+      message.channel.send(cmdSlashTranslation.status.errorReply)
+      const { getError } = require('../../index')
+      getError(error, 'statusPrefix')
     }
   }
 }

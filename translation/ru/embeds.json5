@@ -1,0 +1,69 @@
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
+// Русский перевод (ru) от Zahar1loshara
+
+{
+  // Перевод для команды вставки сообщения.
+  ip: {
+    // Переменная: {ip}
+    title: '__**АДРЕС СЕРВЕРА**__',
+    description: '**{ip}**',
+  },
+  site: {
+    // Переменная: {site}
+    title: '__**САЙТ**__',
+    description: '**Ссылка: {site}**',
+  },
+  version: {
+    // Переменная: {version}
+    title: '__**ВЕРСИЯ**__',
+    description: '**{version}**',
+  },
+  offlineEmbed: {
+    // Переменная: {ip}, {version}, {site}
+    title: ':red_circle: ОФЛАЙН',
+    description: '', // Для отключения этого, оставьте поле описание пустым.
+    footer: 'Проверено в',
+  },
+  players: {
+    // Переменные: {playeronline}, {playermax}.
+    title: '__**ИГРОКИ**__',
+    description: '**{playeronline}/{playermax}**',
+    // Лист игроков будет показан после описания.
+    // Отображать офлайн эмбед когда Майнкрафт сервер офлайн.
+  },
+  motd: {
+    // Переменная: {motd}
+    title: '__**MOTD**__',
+    description: '**{motd}**',
+  },
+  onlineEmbed: {
+    // Переменные: {ip}, {motd}, {version}, {site}
+    title: ':green_circle: ОНЛАЙН',
+    // Здесь название и описание списка игроков встраиваются сверху (строка: 27)
+
+    // Описание помещается в поле списка игроков.
+    description_field_one: '__**MOTD**__\n**{motd}**\n\n__**АДРЕС СЕРВЕРА**__\n**{ip}**',
+    description_field_two: '__**ВЕРСИЯ**__\n**{version}**\n\n__**САЙТ**__\n**Ссылка: {site}**',
+    footer: 'Проверено в',
+  },
+  help: {
+    // Переменные: {prefix}, {botName}
+    title: '__**СПИСОК КОМАНД**__',
+    description: '**Префикс: `{prefix}`**',
+    // Только listFormat переменные: {cmdDescription}, {cmdSlashMention}.
+    listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
+
+    commandInfoFormat: {
+      // Переменная: {cmdName}
+      title: '__**{cmdName} Команда**__',
+      // Переменные: {cmdSlashMention}, {cmdDescription}, {prefixCmd}, {prefixCmdAlias}
+      description: '**Слэш команда: {cmdSlashMention}\nОписание: `{cmdDescription}`\nПрефикс команд: `{prefixCmd}`\nАлиас префикса: {prefixCmdAlias}**',
+    },
+  },
+  info: {
+    title: '**Информация о боте и статистика**',
+    // Переменные: {cpuUsage}, {memoryUsage}, {nodeVersion}, {uptimeDays}, {uptimeHours}, {uptimeMinutes}, {uptimeSeconds}, {ping}, {websocket}.
+    description: '**Использование ЦПУ: `{cpuUsage}%`\nИспользование памяти: `{memoryUsage}MB`\nNode.js Версия: `{nodeVersion}`\nСрок бота: `{uptimeDays}` дней, `{uptimeHours}` часы, `{uptimeMinutes}`, минуты, `{uptimeSeconds}` секунд\nПинг: Клиент `{ping}ms` | Websocket: `{websocket}ms` **',
+  },
+}

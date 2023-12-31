@@ -1,11 +1,12 @@
 const { SlashCommandBuilder } = require('discord.js')
 const { motdEmbed } = require('../embeds')
-const { commands, settings } = require('../../config')
+const { commands } = require('../../config')
+const { cmdSlashTranslation } = require('../index')
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('motd')
-    .setDescription("Sends the Minecraft Server's Message Of The Day (MOTD)."),
+    .setName(cmdSlashTranslation.motd.name)
+    .setDescription(cmdSlashTranslation.motd.description),
 
   run: async ({ interaction }) => {
     interaction.deferReply()
@@ -13,16 +14,13 @@ module.exports = {
       interaction.editReply({ embeds: [await motdEmbed()] })
     } catch (error) {
       interaction.editReply({
-        content: 'Error with getting Message of the Day (MOTD)',
+        content: cmdSlashTranslation.motd.errorReply,
       })
-      if (settings.logging.error) {
-        const { getError } = require('../index')
-        console.log(getError(error, 'Slash command - Botinfo'))
-      }
+      const { getError } = require('../index')
+      getError(error, 'motdCmd')
     }
   },
   options: {
-    guildOnly: true,
     deleted: !commands.motd.enabled || !commands.slashCommands, // Deletes the command from Discord
   },
 }
