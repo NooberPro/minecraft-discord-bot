@@ -12,7 +12,6 @@ module.exports = {
     interaction.reply({ embeds: [siteEmbed] })
   },
   options: {
-    guildOnly: true,
     // Deletes the command from Discord
     deleted: !commands.site.enabled || !commands.slashCommands || !mcserver.site,
   },

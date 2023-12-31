@@ -10,6 +10,10 @@
   help: {
     name: 'help',
     description: 'Sendet die Liste der verfügbaren Befehle.',
+    options: {
+      name: 'command',
+      description: 'Sendet die Details zu einem Befehl.',
+    },
   },
   ip: {
     name: 'ip',
@@ -49,7 +53,7 @@
     name: 'setstatus',
     description: 'Setzt die Statusmeldung des Minecraft-Servers im aktuellen Kanal.',
     // Verwenden Sie {error}, um die Fehlermeldung zu erhalten.
-    errorReply: ':warning:  **`:warning: Die Statusmeldung konnte aufgrund eines Fehlers nicht festgelegt werden: {error}.`**',
+    errorReply: ':warning:  **`Die Statusmeldung konnte aufgrund eines Fehlers nicht festgelegt werden: {error}.`**',
     enableFeature: '**Bitte aktivieren Sie `Automatischer Statuswechsel` in der Konfiguration, um die Funktion der Statusmeldungen zu aktivieren.**',
     checkingStatusMsg: ':gear: Überprüfe den Status...',
     checkingStatusCmdMsg: ':arrows_clockwise: Überprüfe den Status und die notwendigen Informationen.',

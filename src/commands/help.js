@@ -16,8 +16,8 @@ module.exports = {
     .setDescription(cmdSlashTranslation.help.description)
     .addStringOption((option) =>
       option
-        .setName('commands')
-        .setDescription('Show details about a command.')
+        .setName(cmdSlashTranslation.help.options.name)
+        .setDescription(cmdSlashTranslation.help.options.description)
         .addChoices(...commandsChoicesArray)
     ),
   run: async ({ interaction, client }) => {
@@ -26,7 +26,6 @@ module.exports = {
     await interaction.editReply({ embeds: [await helpEmbed(client, commandsChoice)] })
   },
   options: {
-    guildOnly: true,
     deleted: !commands.help.enabled || !commands.slashCommands, // Deletes the command from Discord
   },
 }

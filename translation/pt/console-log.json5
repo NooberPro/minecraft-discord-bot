@@ -49,6 +49,9 @@
     mcVersion: 'A versão do servidor Minecraft não foi especificada.',
     guildID: 'O ID do Servidor/Guilda não foi especificado ou é inválido.',
     timeZone: 'O fuso horário especificado no arquivo de configuração não é válido.',
+    // Use {givenCmdName} para obter o nome fornecido no arquivo de idioma.
+    // Use {cmdName} para obter o nome dos comandos.
+    slashCmdName: 'O nome fornecido "{givenCmdName}" para o comando "{cmdName}" é inválido.\nPor favor, use apenas letras minúsculas, maiúsculas, a primeira letra maiúscula, números, underscores e hífens.',
   },
   playerCountCh: {
     // Use {guildID} representa o ID da guilda fornecido no arquivo de configuração.
@@ -71,20 +74,20 @@
     // Use {motd_line2} para obter a segunda linha do MOTD.
     online: [
       '--------------------------------------------------------',
-      'IP       | {ip}',
-      'VERSÃO  | {version}',
+      'IP         | {ip}',
+      'VERSÃO     | {version}',
       'JOGADORES  | {playersOnline} / {playersMax}',
-      'MOTD     | {motd_line1}',
-      '         | {motd_line2}',
+      'MOTD       | {motd_line1}',
+      '           | {motd_line2}',
       '--------------------------------------------------------',
     ],
     // Variáveis: {ip}, {port}, {mcServerType}
     offline: [
       'Atualmente incapaz de localizar o servidor Minecraft com:',
       '----------------------------------------------',
-      'IP   | {ip}',
-      'PORTA | {port}',
-      'TIPO | {mcServerType}',
+      'IP     | {ip}',
+      'PORTA  | {port}',
+      'TIPO   | {mcServerType}',
       '----------------------------------------------',
     ],
   },

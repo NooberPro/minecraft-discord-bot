@@ -8,8 +8,12 @@
   // The name field is the command name. You can rename the command name, but it CANNOT BE TRANSLATED.
   // The description field provides the description of the command.
   help: {
-    name: 'Створений',
+    name: 'help',
     description: 'Sends the list of available commands.',
+    options: {
+      name: 'command',
+      description: 'Sends the details about a command.',
+    },
   },
   ip: {
     name: 'ip',
@@ -49,7 +53,7 @@
     name: 'setstatus',
     description: 'Sets the status message of the Minecraft server in the current channel.',
     // Use {error} to receive the error message.
-    errorReply: ':warning:  **`:warning: Could not set the status message due to an error: {error}.`**',
+    errorReply: ':warning:  **`Could not set the status message due to an error: {error}.`**',
     enableFeature: '**Please enable `auto Change Status` in the config to enable the status message feature.**',
     checkingStatusMsg: ':gear: Checking the status...',
     checkingStatusCmdMsg: ':arrows_clockwise: Checking the status and necessary info.',

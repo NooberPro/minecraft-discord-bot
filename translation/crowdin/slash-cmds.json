@@ -1,7 +1,11 @@
 {
   "help": {
     "name": "help",
-    "description": "Sends the list of available commands."
+    "description": "Sends the list of available commands.",
+    "options": {
+      "name": "commands",
+      "description": "Sends the details about a command."
+    }
   },
   "ip": {
     "name": "ip",

@@ -14,7 +14,21 @@ module.exports = async (message, client) => {
   const prefix = commands.prefixCommands.prefix
   const content = message.content.slice(prefix.length)
 
-  if (commands.help.enabled && (content === 'help' || commands.help.alias.includes(content))) {
+  if (commands.help.enabled && (content.startsWith('help') || commands.help.alias.includes(content))) {
+    await message.channel.sendTyping()
+    const arg = content.split(' ')
+    if (arg[1]) {
+      const commandsChoicesArray = []
+      for (const cmds in commands) {
+        if (commands[cmds].enabled && !['slashCommands', 'prefixCommands', 'language'].includes(cmds)) {
+          commandsChoicesArray.push(cmds)
+        }
+      }
+      if (commandsChoicesArray.includes(arg[1])) {
+        message.channel.send({ embeds: [await helpEmbed(client, arg[1])] })
+        return
+      }
+    }
     message.channel.send({ embeds: [await helpEmbed(client)] })
   }
   if (commands.motd.enabled && (content === 'motd' || commands.motd.alias.includes(content))) {

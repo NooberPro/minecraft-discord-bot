@@ -9,6 +9,10 @@
   help: {
     name: 'help',
     description: 'Envoie la liste des commandes disponibles.',
+    options: {
+      name: 'command',
+      description: 'Envoie les détails concernant une commande.',
+    },
   },
   ip: {
     name: 'ip',
@@ -48,7 +52,7 @@
     name: 'setstatus',
     description: "Définit le message d'état du serveur Minecraft dans le canal actuel.",
     // Utilisez {error} pour recevoir le message d'erreur.
-    errorReply: ":warning:  **`:warning: Impossible de définir le message d'état en raison d'une erreur : {error}.`**",
+    errorReply: ":warning:  **`Impossible de définir le message d'état en raison d'une erreur : {error}.`**",
     enableFeature: '**Veuillez activer "Changer automatiquement de statut" dans la configuration pour activer la fonction de message d\'état.**',
     checkingStatusMsg: ':gear: Vérification du statut en cours...',
     checkingStatusCmdMsg: ':arrows_clockwise: Vérification du statut et des informations nécessaires.',

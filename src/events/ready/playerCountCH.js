@@ -5,8 +5,8 @@ const fs = require('node:fs')
 
 module.exports = async (client) => {
   const playerCountUpdate = async (channelId) => {
+    const channel = client.channels.cache.get(channelId)
     try {
-      const channel = client.channels.cache.get(channelId)
       const { data, isOnline } = await getServerDataOnly()
       const statusName = isOnline
         ? playerCountCH.onlineText
@@ -23,6 +23,9 @@ module.exports = async (client) => {
         )
       )
     } catch (error) {
+      await channel.edit({
+        name: '🔴 ERROR',
+      })
       getError(error, 'playerCountChNameUpdate')
     }
   }

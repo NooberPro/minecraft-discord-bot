@@ -18,7 +18,6 @@ module.exports = {
     }
   },
   options: {
-    guildOnly: true,
     deleted: !commands.players.enabled || !commands.slashCommands, // Deletes the command from Discord
   },
 }

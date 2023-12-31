@@ -25,7 +25,6 @@ module.exports = {
     }
   },
   options: {
-    guildOnly: true,
     deleted: false, // Deletes the command from Discord
   },
 }

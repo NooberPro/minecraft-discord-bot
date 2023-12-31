@@ -49,6 +49,9 @@
     mcVersion: 'Die Version des Minecraft-Servers wurde nicht angegeben.',
     guildID: 'Die Server-/Guild-ID wurde nicht angegeben oder ist ungültig.',
     timeZone: 'Die in der Konfigurationsdatei angegebene Zeitzone ist ungültig.',
+    // Verwende {givenCmdName}, um den im Sprachdatei angegebenen Namen abzurufen.
+    // Verwende {cmdName}, um den Namen von Befehlen abzurufen.
+    slashCmdName: 'Der angegebene Name "{givenCmdName}" für den Befehl "{cmdName}" ist ungültig.\nBitte verwende nur Kleinbuchstaben, Großbuchstaben, die erste Buchstabe als Großbuchstabe, Zahlen, Unterstriche und Bindestriche.',
   },
   playerCountCh: {
     // Mit {guildID} wird die in der Konfigurationsdatei angegebene Guild-ID repräsentiert.

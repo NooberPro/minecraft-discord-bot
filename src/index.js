@@ -88,12 +88,30 @@ const cmdSlashTranslation = json5.parse(cmdSlashContents)
     playerCountCH.enabled && playerCountCH.guildID === 'your-guild-id-here',
     consoleLogTranslation.checkErrorConfig.guildID
   )
-  for (const { name } of Object.values(cmdSlashTranslation)) {
-    if (!/^[\p{Ll}\p{Lm}\p{Lo}\p{N}\p{sc=Devanagari}\p{sc=Thai}_-]+$/u.test(name)) {
-      console.log('The string does not match the pattern:', name)
-      process.exit(1)
+
+  for (const key in cmdSlashTranslation) {
+    if (cmdSlashTranslation.hasOwnProperty(key)) {
+      const cmdObject = cmdSlashTranslation[key]
+      const cmdName = cmdObject.name
+      if (cmdName === 'help') {
+        if (!/^[\p{Ll}\p{Lm}\p{Lo}\p{N}\p{sc=Devanagari}\p{sc=Thai}_-]+$/u.test(cmdObject.options.name)) {
+          errors.push(
+            consoleLogTranslation.checkErrorConfig.slashCmdName
+              .replace(/\{givenCmdName\}/gi, cmdObject.options.name)
+              .replace(/\{cmdName\}/gi, key + '.options')
+          )
+        }
+      }
+      if (!/^[\p{Ll}\p{Lm}\p{Lo}\p{N}\p{sc=Devanagari}\p{sc=Thai}_-]+$/u.test(cmdName)) {
+        errors.push(
+          consoleLogTranslation.checkErrorConfig.slashCmdName
+            .replace(/\{givenCmdName\}/gi, cmdName)
+            .replace(/\{cmdName\}/gi, key)
+        )
+      }
     }
   }
+
   if (errors.length > 0) {
     console.error(chalk.red(consoleLogTranslation.checkErrorConfig.followingErrors))
     errors.forEach((errors) => console.log(chalk.keyword('orange')(errors)))
@@ -203,12 +221,12 @@ const getServerDataOnly = async () => {
 }
 
 const statusMessageEdit = async () => {
+  let dataRead = fs.readFileSync(`${__dirname}/data.json`, 'utf8')
+  dataRead = await JSON.parse(dataRead)
+  const channel = await client.channels.fetch(dataRead.channelId)
+  const message = await channel.messages.fetch(dataRead.messageId)
   try {
     const { OnlineEmbed, offlineStatus } = require('./embeds')
-    let dataRead = fs.readFileSync(`${__dirname}/data.json`, 'utf8')
-    dataRead = await JSON.parse(dataRead)
-    const channel = await client.channels.fetch(dataRead.channelId)
-    const message = await channel.messages.fetch(dataRead.messageId)
     const { data, playerListArray, isOnline } = await getServerDataAndPlayerList()
     if (isOnline) {
       await message.edit({
@@ -236,6 +254,10 @@ const statusMessageEdit = async () => {
       )
     }
   } catch (error) {
+    await message.edit({
+      content: cmdSlashTranslation.status.errorReply,
+      embeds: [],
+    })
     getError(error, 'messageEdit')
   }
 }

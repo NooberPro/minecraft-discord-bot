@@ -12,7 +12,6 @@ module.exports = {
     interaction.reply({ embeds: [versionEmbed] })
   },
   options: {
-    guildOnly: true,
     deleted: !commands.version.enabled || !commands.slashCommands, // Deletes the command from Discord
   },
 }

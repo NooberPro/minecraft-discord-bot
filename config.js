@@ -100,10 +100,9 @@ module.exports = {
   commands: {
     slashCommands: true, // Enables all slash commands
     prefixCommands: {
-      enabled: true,
+      enabled: true, // Enables all prefix commands
       prefix: '!', // Prefix for normal command.
-    }, // Enables all prefix commands
-
+    },
     ip: {
       enabled: true, // Enables ip command.
       alias: ['ip-address'], // Alias for ip prefix commands.
@@ -122,7 +121,7 @@ module.exports = {
     },
     status: {
       enabled: true, // Enables ip command.
-      alias: ['info'], // Alias for status prefix commands.
+      alias: [], // Alias for status prefix commands.
     },
     motd: {
       enabled: true, // Enables ip command.

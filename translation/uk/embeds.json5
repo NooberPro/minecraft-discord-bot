@@ -1,6 +1,6 @@
 // GitHub: https://github.com/NooberPro/minecraft-discord-bot
 // Crowdin: https://crowdin.com/project/minecraft-discord-bot
-// Український переклад (uk) від Zahar1loshara
+// Український переклад (ua) від Zahar1loshara
 
 {
   // Переклад повідомлень з командними налаштуваннями.
@@ -22,14 +22,14 @@
   offlineEmbed: {
     // Змінні: {ip}, {version}, {site}
     title: ':red_circle: ОФЛАЙН',
-    description: '', // Щоб вимкнути це, залиште опис пустим.
+    description: '', // Для вимкнення цього, залиште поле опису пустим.
     footer: 'Перевірено в',
   },
   players: {
     // Змінні: {playeronline}, {playermax}.
     title: '__**ГРАВЦІ**__',
     description: '**{playeronline}/{playermax}**',
-    // Лист гравців буде показано після опису.
+    // Список гравців буде показано після опису.
     // Виводити офлайн повідомлення коли сервер вимкнутий.
   },
   motd: {
@@ -55,10 +55,10 @@
     listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
 
     commandInfoFormat: {
-      // Variables: {cmdName}
-      title: '__**Команда {cmdName}**__',
-      // Variables: {cmdSlashMention}, {cmdDescription}, {prefixCmd}, {prefixCmdAlias}
-      description: '**Slash-команда: {cmdSlashMention}\nОпис: `{cmdDescription}`\nПрефікс команд: `{prefixCmd}`\nПрефікс-алиас: {prefixCmdAlias}**',
+      // Змінна: {cmdName}
+      title: '__**{cmdName} Команда**__',
+      // Змінні: {cmdSlashMention}, {cmdDescription}, {prefixCmd}, {prefixCmdAlias}
+      description: '**Слэш команда: {cmdSlashMention}\nОпис: `{cmdDescription}`\nПрефікс команд: `{prefixCmd}`\nАліас префікс: {prefixCmdAlias}**',
     },
   },
   info: {

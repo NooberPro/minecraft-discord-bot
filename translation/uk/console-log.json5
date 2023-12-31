@@ -1,78 +1,81 @@
 // GitHub: https://github.com/NooberPro/minecraft-discord-bot
 // Crowdin: https://crowdin.com/project/minecraft-discord-bot
-// Український переклад (uk) від Zahar1loshara
+// Український переклад (ua) від Zahar1loshara
 
 {
-  // Переклад для виходу консолі
+  // Переклад для виходу консолі.
   error: {
-    playerEmbed: 'Помилка в створенні списку гравців эмбед оповіщення',
-    statusEmbed: 'Помилка при створенні повідомлення про Вбудовує статус',
-    playerList: 'Помилка в створенні списку гравців',
-    fetchServerDataAndPlayerList: 'Не вдалося отримати дані та список гравців серверу',
-    fetchServerData: 'Не вдалося отримати дані сервера',
-    messageEdit: 'Помилка редагування повідомлення про стан',
-    botLogin: 'Помилка логіна бота',
-    infoCmd: 'Помилка в слєш команді - Інфа',
-    motdCmd: 'Помилка в слєш команді - MOTD',
-    playerCmd: 'Помилка в слєш команді - Гравець',
-    statusCmd: 'Помилка в слєш команді - Статус',
-    statusPrefix: 'Помилка в префікс команді - Статус',
-    setStatus: 'Не вдалося встановити повідомлення про стан',
-    autoReply: 'Помилка в функції авто-відповідача',
-    botStatusUpdate: 'Помилка в оновленні статуса бота',
-    channelIdCheck: 'Помилка в перевірки та оновлення ID каналу',
-    playerCountCh: 'Помилка в функції рахування гравців в каналі',
-    playerCountChNameUpdate: 'Помилка в оновленні назви каналу рахування гравців',
-    playerCountChDateWrite: 'Помилка в збереженні ID канала рахування гравців у data.json',
+    playerEmbed: 'Коїлась помилка коли створювався embed повідомлення списку гравців.',
+    statusEmbed: 'Коїлась помилка коли створювався embed повідомлення про статус.',
+    playerList: 'Коїлась помилка коли створювався список гравців.',
+    fetchServerDataAndPlayerList: 'Не вдалося отримати дані та список гравців Майнкрафт серверу.',
+    fetchServerData: 'Не вдалося отримати дані Майнкрафт серверу.',
+    messageEdit: 'Помилка при зміні повідомлення статусу.',
+    botLogin: 'Помилка логіна боту.',
+    infoCmd: 'Помилка в слєш команді - Інфо.',
+    motdCmd: 'Помилка в слєш команді - MOTD.',
+    playerCmd: 'Помилка в слєш команді - Гравець.',
+    statusCmd: 'Помилка в слєш команді - Статус.',
+    statusPrefix: 'Помилка в префіксу команди - Статус.',
+    setStatus: 'Не вдалося установити повідомлення статусу.',
+    autoReply: 'Помилка в функції автовідповіді.',
+    botStatusUpdate: 'Помилка в оновленні статусу боту.',
+    channelIdCheck: 'Помилка в перевірці та оновлені ID каналу.',
+    playerCountCh: 'Помилка в функції рахування гравців в каналі.',
+    playerCountChNameUpdate: 'Помилка в оновленні рахування гравців у назві каналу.',
+    playerCountChDateWrite: 'Помилка в збереженні ID каналу рахування гравців у data.json.',
   },
   debug: {
     autoChangeStatus: {
       onlineText: 'Онлайн з {playerOnline} гравцями.',
       offlineText: '❌ Офлайн.',
-      format: 'Статус повідомлення було оновлено до {statusText}',
-      // {channelName} щоб подивитись ім'я статус-повідомлення каналу
-      successLog: 'Успішно встановлено повідомлення про статус в {channelName}',
-      // {cmd} щоб подивитись setstatus команду
-      enableAutoChangeStatus: 'Щоб получити статус сервера, відправте {cmd} команду у потрібному каналі.',
+      format: 'Embed повідомлення статусу було оновлено і тепер {statusText}',
+      // Використовуйте {channelName} для отримання ім'я каналу повідомлення статусу.
+      successLog: 'Успішно установлено повідомлення статусу у {channelName}.',
+      // Використовуйте {cmd} для отримання команди setstatus.
+      enableAutoChangeStatus: 'Для установки статусу серверу, відправте команду {cmd} у потрібний канал.',
     },
-    botStatusFormat: 'Статус повідомлення було оновлено до {botStatusText}',
-    playerCountChUpdate: 'Назва каналу підрахунку гравців було оновлено до {updatedName}',
+    botStatusFormat: 'Embed повідомлення статусу було оновлено і тепер {botStatusText}',
+    playerCountChUpdate: "Ім'я каналу рахування гравців було оновлено і тепер {updatedName}",
   },
   checkErrorConfig: {
-    checkConfigWait: 'Перевірка на помилки у config.js файлі.\nЗачекайте.',
+    checkConfigWait: 'Перевірка на помилки у файлі config.js.\nЗачекай.',
     followingErrors: 'Файл конфігу має наступні помилки:',
-    botToken: 'Токен боту невірний.',
+    botToken: 'Невірний токен боту.',
     botPresenceStatus: "Невірні налаштування статуса бота. Має бути 'online', 'idle', 'dnd' чи 'invisible'.",
     botStatusActivity: "Невірні налаштування активності бота. Має бути 'Playing', 'Listening','Watching' чи 'Competing'",
     mcType: 'Невірний тип серверу. Має бути "java" чи "bedrock".',
     mcName: "Не вказано ім'я сервера.",
     mcVersion: 'Не вказана версія сервера.',
-    guildID: 'Не вказано або невірний ID серверу/гільдії.',
-    timeZone: 'Часовий пояс, вказаний у файлі конфігурації, не є дійсним.',
+    guildID: 'ID серверу не було вказано або невірний.',
+    timeZone: 'Часовий пояс у конфігу файлі був невірний.',
+    // Використовуйте {givenCmdName} для отримання ім'я вказане в файлі мови.
+    // Використовуйте {cmdName} для отримання назви команд.
+    slashCmdName: 'Надана назва "{givenCmdName}" для команди "{cmdName}" недійсна.\nБудь ласка, використовуйте лише малі, великі літери, регістри заголовків, цифри, підкреслення та дефіси.',
   },
   playerCountCh: {
-    // {guildId} для id гільдії данний у конфіг файлі
-    playerCountChGuildIncorrect: 'Гільдія з ID "{guildID}" не було знайдено або бот не в гільдії.',
-    // {channelName} для створеного каналу
-    playerCountChannelFound: 'Успішно знайдено канал: {channelName} для підрахунку гравців.',
-    // {channelId} для id каналу з конфіг файлу
-    playerCountChannelNotFound: 'Канал для підрахунку гравців з ID: "{channelId}" не було знайдено чи бот не має права для каналу.',
-    // {updatedStatus} для ім'я оновленого статусу каналу
-    playerCountChannelCreated: "Створений канал для підрахунку гравців та оновлено його ім'я: {updatedStatus}.",
+    // {guildID} являється ID серверу вказане у файлі конфігу.
+    playerCountChGuildIncorrect: 'Сервер з ID: "{guildID}" не було знайдено, чи бот не в сервері.',
+    // Використовуйте {channelName} для отримання ім'я створеного каналу.
+    playerCountChannelFound: 'Успішно знайдено канал: {channelName} для рахування гравців.',
+    // Використовуйте {channelId} для отримання ID каналу у файлі конфігу.
+    playerCountChannelNotFound: 'Канал для рахування гравців з ID: "{channelId}" не було знайдено, чи бот не має доступу до цього каналу.',
+    // Використовуйте {updatedStatus} для отримання оновленого ім'я каналу статуса.
+    playerCountChannelCreated: "Створено канал для рахування гравців та оновлено його ім'я і тепер:{updatedStatus}",
   },
 
-  // Використовуйте {botUserTag} для тега для бота як Bot#0001
-  // Використовуйте {inviteLink} це посилання щоб запросити бота.
-  inviteLink: '✅ {botUserTag} онлайн.\nЗапрошуйте бота з {inviteLink}',
+  // Використовуйте {botUserTag} для тегу боту, примір Бот#0001.
+  // Використовуйте {inviteLink} для запрошувального сайту бота.
+  inviteLink: '✅ {botUserTag} онлайн.\nЗапрошуйте бота з {inviteLink}.',
 
   serverInfoStart: {
     // Змінні: {ip}, {version}, {playersOnline}, {playersMax}, {motd_line1}, {motd_line2}
-    // {motd_line1} щоб подивитись на першу лінію motd.
-    // {motd_line2} щоб подивитись на іншу лінію motd.
+    // Використовуйте {motd_line1} для отримання першої лінії MOTD.
+    // Використовуйте {motd_line2} для отримання другої лінії MOTD.
     online: [
       '--------------------------------------------------------',
       'IP       | {ip}',
-      'ВЕРСІЯ  | {version}',
+      'ВЕРСІЯ   | {version}',
       'ГРАВЦІВ  | {playersOnline} / {playersMax}',
       'MOTD     | {motd_line1}',
       '         | {motd_line2}',
@@ -80,11 +83,11 @@
     ],
     // Змінні: {ip}, {port}, {mcServerType}
     offline: [
-      'В даний час не вдалося знайти Minecraft з:',
+      'Зараз не вдалося знайти Minecraft з:',
       '----------------------------------------------',
       'IP   | {ip}',
       'ПОРТ | {port}',
-      'ТИП | {mcServerType}',
+      'ТИП  | {mcServerType}',
       '----------------------------------------------',
     ],
   },

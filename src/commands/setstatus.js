@@ -62,7 +62,6 @@ module.exports = {
     }
   },
   options: {
-    guildOnly: true,
     deleted: false,
   },
 }

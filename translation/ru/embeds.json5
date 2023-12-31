@@ -22,14 +22,14 @@
   offlineEmbed: {
     // Переменная: {ip}, {version}, {site}
     title: ':red_circle: ОФЛАЙН',
-    description: '', // Для отключения оставьте описание пустым.
+    description: '', // Для отключения этого, оставьте поле описание пустым.
     footer: 'Проверено в',
   },
   players: {
     // Переменные: {playeronline}, {playermax}.
     title: '__**ИГРОКИ**__',
     description: '**{playeronline}/{playermax}**',
-    // Список ников игроков будет показан под описанием.
+    // Лист игроков будет показан после описания.
     // Отображать офлайн эмбед когда Майнкрафт сервер офлайн.
   },
   motd: {
@@ -41,23 +41,24 @@
     // Переменные: {ip}, {motd}, {version}, {site}
     title: ':green_circle: ОНЛАЙН',
     // Здесь название и описание списка игроков встраиваются сверху (строка: 27)
+
     // Описание помещается в поле списка игроков.
     description_field_one: '__**MOTD**__\n**{motd}**\n\n__**АДРЕС СЕРВЕРА**__\n**{ip}**',
     description_field_two: '__**ВЕРСИЯ**__\n**{version}**\n\n__**САЙТ**__\n**Ссылка: {site}**',
     footer: 'Проверено в',
   },
   help: {
-    title: '__**СПИСОК КОМАНД**__',
     // Переменные: {prefix}, {botName}
+    title: '__**СПИСОК КОМАНД**__',
     description: '**Префикс: `{prefix}`**',
     // Только listFormat переменные: {cmdDescription}, {cmdSlashMention}.
     listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
 
     commandInfoFormat: {
-      // Variables: {cmdName}
-      title: '__**Команда {cmdName}**__',
-      // Variables: {cmdSlashMention}, {cmdDescription}, {prefixCmd}, {prefixCmdAlias}
-      description: '**Slash-команда: {cmdSlashMention}\nОписание: `{cmdDescription}`\nПрефикс команд: `{prefixCmd}`\nПрефикс-алиас: {prefixCmdAlias}**',
+      // Переменная: {cmdName}
+      title: '__**{cmdName} Команда**__',
+      // Переменные: {cmdSlashMention}, {cmdDescription}, {prefixCmd}, {prefixCmdAlias}
+      description: '**Слэш команда: {cmdSlashMention}\nОписание: `{cmdDescription}`\nПрефикс команд: `{prefixCmd}`\nАлиас префикса: {prefixCmdAlias}**',
     },
   },
   info: {

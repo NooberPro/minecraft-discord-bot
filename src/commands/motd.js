@@ -21,7 +21,6 @@ module.exports = {
     }
   },
   options: {
-    guildOnly: true,
     deleted: !commands.motd.enabled || !commands.slashCommands, // Deletes the command from Discord
   },
 }

@@ -1,9 +1,11 @@
 GitHub: https://github.com/NooberPro/minecraft-discord-bot
 Crowdin: https://crowdin.com/project/minecraft-discord-bot
 English Translation (en) by NooberPro
-Translation for the console output
+Translation for the console output.
 Use {channelName} fetches the name of the status message channel.
 Use {cmd} retrieves the setstatus command.
+Use {givenCmdName} retrieves the name given in the language file.
+Use {cmdName} retrieves the name of commands.
 Use {guildID} represents the guild ID given in the config file.
 Use {channelName} retrieves the created channel's name.
 Use {channelId} retrieves the ID of the channel given in the config file.

@@ -12,6 +12,5 @@ module.exports = {
   },
   options: {
     deleted: !commands.ip.enabled || !commands.slashCommands, // Deletes the command from Discord
-    guildOnly: true,
   },
 }

@@ -41,12 +41,13 @@
     "mcName": "The Minecraft server's name has not been specified.",
     "mcVersion": "The Minecraft server's version has not been specified.",
     "guildID": "The Server/Guild ID has not been specified or is invalid.",
-    "timeZone": "The time zone specified in the config file is not valid."
+    "timeZone": "The time zone specified in the config file is not valid.",
+    "slashCmdName": "The provided name \"{givenCmdName}\" for the \"{cmdName}\" command is invalid.\nPlease use only lowercase, uppercase, title case letters, numbers, underscores, and hyphens."
   },
   "playerCountCh": {
-    "playerCountChGuildIncorrect": "The guild with ID: \"{guildID}\" was not found or the bot is not in the guild.",
+    "playerCountChGuildIncorrect": "The guild with ID: \"{guildID}\" was not found, or the bot is not in the guild.",
     "playerCountChannelFound": "Successfully found channel: {channelName} for Player Count.",
-    "playerCountChannelNotFound": "The channel for Player Count with ID: \"{channelId}\" was not found or the bot has no access for channel.",
+    "playerCountChannelNotFound": "The channel for Player Count with ID: \"{channelId}\" was not found, or the bot has no access to the channel.",
     "playerCountChannelCreated": "Created a channel for Player Count and updated its name to: {updatedStatus}."
   },
   "inviteLink": "✅ {botUserTag} is online.\nInvite the bot with {inviteLink}.",

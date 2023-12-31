@@ -3,7 +3,7 @@
 // English Translation (en) by NooberPro
 
 {
-  // Translation for the auto-reply function..
+  // Translation for the auto-reply function.
   version: {
     // Use {version} to retrieve the version from the config.
     replyText: "The server's version: **`{version}`**.",
