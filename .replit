@@ -1,6 +1,6 @@
 modules = ["nodejs-20:v8-20230920-bd784b9"]
-hidden = [".config", "package-lock.json", ".gitignore"]
-run = "npm run start"
+hidden = [".config", "package-lock.json", ".gitignore", '.git/*']
+run = "npm install && npm start"
 onBoot = "npm install"
 language = "nodejs"
 entrypoint= "src/index.js"
