@@ -21,7 +21,6 @@ module.exports = {
       })
       const { getError } = require('../index')
       getError(error, 'infoCmd')
-      console.log(error)
     }
   },
   options: {

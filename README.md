@@ -46,6 +46,7 @@
 ## Installation
 
 ### **[Full Documentation here](https://nooberpro.gitbook.io/)**
+
 1. **Requirements:**
 
    - Install [Node.js](https://nodejs.org/en/download/current)
@@ -62,6 +63,12 @@
 4. **Edit the config file.** _**([Instructions](https://nooberpro.gitbook.io/minecraft-discord-bot/installation/config))**_
 
 5. **Start the bot with `npm start` or `node .`.**
+
+#### Quick Start on Replit
+
+**You can also run the bot directly and easily by clicking the "Run on Replit" button below.**
+
+[![Run on Replit](https://replit.com/badge/github/NooberPro/minecraft-discord-bot)](https://replit.com/new/github/NooberPro/minecraft-discord-bot)
 
 ## Translations
 
