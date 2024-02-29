@@ -69,7 +69,7 @@ const cmdSlashTranslation = json5.parse(cmdSlashContents)
     if (condition) errors.push(errorMessage)
   }
 
-  checkError(!isTimeZoneSupported(), consoleLogTranslation.checkErrorConfig.timezone)
+  checkError(!isTimeZoneSupported(), consoleLogTranslation.checkErrorConfig.timeZone)
   checkError(bot.token.startsWith('your-bot-token-here'), consoleLogTranslation.checkErrorConfig.botToken)
   checkError(
     !['online', 'idle', 'dnd', 'invisible'].includes(bot.presence.status.online && bot.presence.status.offline),
@@ -221,44 +221,49 @@ const getServerDataOnly = async () => {
 }
 
 const statusMessageEdit = async () => {
-  let dataRead = fs.readFileSync(`${__dirname}/data.json`, 'utf8')
-  dataRead = await JSON.parse(dataRead)
-  const channel = await client.channels.fetch(dataRead.channelId)
-  const message = await channel.messages.fetch(dataRead.messageId)
+  let dataRead = JSON.parse(fs.readFileSync(`${__dirname}/data.json`, 'utf8'))
+  let messagesIdArray = []
   try {
-    const { OnlineEmbed, offlineStatus } = require('./embeds')
-    const { data, playerListArray, isOnline } = await getServerDataAndPlayerList()
-    if (isOnline) {
-      await message.edit({
-        content: '',
-        embeds: [await OnlineEmbed(data, playerListArray)],
-      })
-      getDebug(
-        consoleLogTranslation.debug.autoChangeStatus.format.replace(
-          /\{statusText\}/gi,
-          chalk.green(
-            consoleLogTranslation.debug.autoChangeStatus.onlineText.replace(/\{playerOnline\}/gi, data.players.online)
-          )
-        )
-      )
-    } else {
-      await message.edit({
-        content: '',
-        embeds: [offlineStatus()],
-      })
-      getDebug(
-        consoleLogTranslation.debug.autoChangeStatus.format.replace(
-          /\{statusText\}/gi,
-          chalk.red(consoleLogTranslation.debug.autoChangeStatus.offlineText)
-        )
-      )
+    for (const value of dataRead.autoChangeStatus) {
+      const channel = await client.channels.fetch(value.channelId)
+      const message = await channel.messages.fetch(value.messageId)
+      let passedAllCatches = true
+      try {
+        const { OnlineEmbed, offlineStatus } = require('./embeds')
+        const data =
+          value.type === 'java' ? await statusJava(value.ip, value.port) : await statusBedrock(value.ip, value.port)
+        const isOnline = autoChangeStatus.isOnlineCheck ? data.online && data.players.max >= 0 : data.online
+        if (isOnline) {
+          const playerListArray = await getPlayersList(data.players)
+          await message.edit({
+            content: '',
+            embeds: [await OnlineEmbed(data, playerListArray)],
+          })
+        } else {
+          await message.edit({
+            content: '',
+            embeds: [offlineStatus()],
+          })
+        }
+      } catch (error) {
+        passedAllCatches = false
+        await message.edit({
+          content: cmdSlashTranslation.status.errorReply,
+          embeds: [],
+        })
+        if (error.message === 'Bad Request') return
+        getError(error, 'fetchServerDataAndPlayerList')
+      }
+      if (passedAllCatches) {
+        messagesIdArray.push(value)
+      }
     }
   } catch (error) {
-    await message.edit({
-      content: cmdSlashTranslation.status.errorReply,
-      embeds: [],
-    })
+    if (error.rawError.message === 'Unknown Message') return
     getError(error, 'messageEdit')
+  } finally {
+    dataRead.autoChangeStatus = messagesIdArray
+    fs.writeFileSync('./src/data.json', JSON.stringify(dataRead, null, 2), 'utf8')
   }
 }
 
@@ -269,6 +274,7 @@ module.exports = {
   getServerDataOnly,
   getDebug,
   statusMessageEdit,
+  getPlayersList,
   embedTranslation,
   consoleLogTranslation,
   cmdSlashTranslation,
