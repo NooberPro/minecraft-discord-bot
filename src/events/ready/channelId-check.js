@@ -6,7 +6,7 @@ module.exports = (client) => {
   try {
     if (!config.autoChangeStatus.enabled) return
     const data = require('../../data.json')
-    if (data.channelId === null) {
+    if (data.autoChangeStatus.length === 0) {
       console.log(
         consoleLogTranslation.debug.autoChangeStatus.enableAutoChangeStatus.replace(
           /\{cmd\}/gi,

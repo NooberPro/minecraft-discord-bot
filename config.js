@@ -62,6 +62,7 @@ module.exports = {
   autoChangeStatus: {
     enabled: false,
     updateInterval: 60, // Time period between auto changing status in seconds, e.g. 60 = 1min. Recommended: above 60.
+    adminOnly: true, // This means that only admins with the "Manage Channel" permission are able to set the status message.
     // These settings will be applied in slash (/) and prefix commands for status.
     isOnlineCheck: true, // Useful for servers which uses free hosting providers like Aternos. If the server's max players is 0 then status will set offline.
   },

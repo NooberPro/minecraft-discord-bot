@@ -1,5 +1,4 @@
 {
-  "messageId": null,
-  "channelId": null,
-  "playerCountStats": null
+  "playerCountStats": null,
+  "autoChangeStatus": []
 }
