@@ -9,19 +9,23 @@ const autoReplyReplyText = json5.parse(fileContents)
 module.exports = async (msg) => {
   try {
     if (!autoReply.enabled || msg.author.bot || msg.content.startsWith(commands.prefixCommands.prefix)) return
-    const words = msg.content.split(' ')
+    const { content } = msg
     const { ip, site, status, version } = autoReply
+    const isIp = new RegExp(`(?<=^|\\P{L})(${ip.triggerWords.join('|')})(?=\\P{L}|$)`, 'iu')
+    const isSite = new RegExp(`(?<=^|\\P{L})(${site.triggerWords.join('|')})(?=\\P{L}|$)`, 'iu')
+    const isStatus = new RegExp(`(?<=^|\\P{L})(${status.triggerWords.join('|')})(?=\\P{L}|$)`, 'iu')
+    const isVersion = new RegExp(`(?<=^|\\P{L})(${version.triggerWords.join('|')})(?=\\P{L}|$)`, 'iu')
 
-    if (words.some((word) => ip.triggerWords.includes(word)) && autoReply.ip.enabled) {
+    if (isIp.test(content) && autoReply.ip.enabled) {
       msg.reply(autoReplyReplyText.ip.replyText.replace(/{ip}/g, mcserver.ip).replace(/{port}/g, mcserver.port))
     }
-    if (words.some((word) => site.triggerWords.includes(word)) && autoReply.site.enabled && mcserver.site) {
+    if (isSite.test(content) && autoReply.site.enabled && mcserver.site) {
       msg.reply(autoReplyReplyText.site.replyText.replace(/{site}/g, mcserver.site))
     }
-    if (words.some((word) => version.triggerWords.includes(word)) && autoReply.version.enabled) {
+    if (isVersion.test(content) && autoReply.version.enabled) {
       msg.reply(autoReplyReplyText.version.replyText.replace(/{version}/g, mcserver.version))
     }
-    if (words.some((word) => status.triggerWords.includes(word)) && autoReply.status.enabled) {
+    if (isStatus.test(content) && autoReply.status.enabled) {
       await msg.channel.sendTyping()
       const { getServerDataOnly } = require('../../index')
       const { data, isOnline } = await getServerDataOnly()
