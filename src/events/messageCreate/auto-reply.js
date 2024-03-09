@@ -11,10 +11,10 @@ module.exports = async (msg) => {
     if (!autoReply.enabled || msg.author.bot || msg.content.startsWith(commands.prefixCommands.prefix)) return
     const { content } = msg
     const { ip, site, status, version } = autoReply
-    const isIp = new RegExp(`\\b(${ip.triggerWords.join('|')})\\b`)
-    const isSite = new RegExp(`\\b(${site.triggerWords.join('|')})\\b`)
-    const isStatus = new RegExp(`\\b(${status.triggerWords.join('|')})\\b`)
-    const isVersion = new RegExp(`\\b(${version.triggerWords.join('|')})\\b`)
+    const isIp = new RegExp(`(?<=^|\\P{L})(${ip.triggerWords.join('|')})(?=\\P{L}|$)`, 'iu')
+    const isSite = new RegExp(`(?<=^|\\P{L})(${site.triggerWords.join('|')})(?=\\P{L}|$)`, 'iu')
+    const isStatus = new RegExp(`(?<=^|\\P{L})(${status.triggerWords.join('|')})(?=\\P{L}|$)`, 'iu')
+    const isVersion = new RegExp(`(?<=^|\\P{L})(${version.triggerWords.join('|')})(?=\\P{L}|$)`, 'iu')
 
     if (isIp.test(content) && autoReply.ip.enabled) {
       msg.reply(autoReplyReplyText.ip.replyText.replace(/{ip}/g, mcserver.ip).replace(/{port}/g, mcserver.port))
