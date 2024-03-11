@@ -1,14 +1,15 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js')
-const { statusMessageEdit, consoleLogTranslation, cmdSlashTranslation, getError, getPlayersList } = require('../index')
+const { statusMessageEdit, consoleLogTranslation, cmdSlashTranslation, getError } = require('../index')
 const config = require('../../config')
 const chalk = require('chalk')
 const fs = require('fs')
-const { OnlineEmbed, offlineStatus } = require('../embeds')
-const { statusBedrock, statusJava } = require('node-mcstatus')
 
 let data = new SlashCommandBuilder()
   .setName(cmdSlashTranslation.setstatus.name)
   .setDescription(cmdSlashTranslation.setstatus.description)
+  .addStringOption((option) =>
+    option.setName('name').setDescription('Enter the name of your Minecraft server.').setRequired(true)
+  )
   .addStringOption((option) =>
     option.setName('ip').setDescription('Enter the IP address of your Minecraft server.').setRequired(true)
   )
@@ -43,40 +44,26 @@ let run = async ({ interaction, client }) => {
     const ip = interaction.options.getString('ip')
     const port = interaction.options.getInteger('port')
     const type = interaction.options.getString('type')
-    data = await JSON.parse(readData)
-    data.autoChangeStatus.push({
+    const name = interaction.options.getString('name')
+    let dataRead = await JSON.parse(readData)
+
+    if (!ip.includes('.')) {
+      await msg.edit({
+        content: `**The ip \`${ip}\` entered is invaild.**`,
+        embeds: [],
+      })
+      return
+    }
+    dataRead.autoChangeStatus.push({
       ip,
       port,
       type,
+      name,
       channelId: interaction.channelId,
       messageId: msg.id,
     })
-    fs.writeFileSync('./src/data.json', JSON.stringify(data, null, 2), 'utf8')
-    try {
-      const data = type === 'java' ? await statusJava(ip, port) : await statusBedrock(ip, port)
-      const isOnline = config.autoChangeStatus.isOnlineCheck ? data.online && data.players.max >= 0 : data.online
-      if (isOnline) {
-        const playerListArray = await getPlayersList(data.players)
-        await msg.edit({
-          content: '',
-          embeds: [await OnlineEmbed(data, playerListArray)],
-        })
-      } else {
-        await msg.edit({
-          content: '',
-          embeds: [offlineStatus()],
-        })
-      }
-    } catch (error) {
-      if (error.message === 'Bad Request') {
-        await msg.edit({
-          content: `**The ip \`${ip}\` entered is invaild.**`,
-          embeds: [],
-        })
-        return
-      }
-      getError(error, 'fetchServerDataAndPlayerList')
-    }
+    await statusMessageEdit(ip, port, type, name, msg)
+    fs.writeFileSync('./src/data.json', JSON.stringify(dataRead, null, 2), 'utf8')
     interaction.editReply({
       content: cmdSlashTranslation.setstatus.statusMsgSuccess
         .replace(/\{channel\}/gi, `<#${interaction.channelId}>`)
@@ -89,9 +76,6 @@ let run = async ({ interaction, client }) => {
         chalk.cyan(`#${msg.channel.name}`)
       )
     )
-    setInterval(() => {
-      statusMessageEdit()
-    }, config.autoChangeStatus.updateInterval * 1000)
   } catch (error) {
     interaction.editReply({
       content: cmdSlashTranslation.setstatus.errorReply.replace(/\{error\}/gi, error.message),
@@ -100,6 +84,5 @@ let run = async ({ interaction, client }) => {
     getError(error, 'setStatus')
   }
 }
-const options = { deleted: false }
 
-module.exports = { data, run, options }
+module.exports = { data, run }

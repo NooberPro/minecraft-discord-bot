@@ -44,7 +44,8 @@
 
     // Die Beschreibung wird nach dem Spielerlistenfeld platziert.
     description_field_one: '__**MOTD**__\n**{motd}**\n\n__**SERVER ADRESSE**__\n**{ip}**',
-    description_field_two: '__**VERSION**__\n**{version}**\n\n__**WEBSEITE**__\n**Link: {site}**',
+    description_field_two: '__**VERSION**__\n**{version}**{siteText}',
+    siteText: '\n\n__**WEBSEITE**__\n**Link: {site}**',
     footer: 'Überprüft am',
   },
   help: {
@@ -67,4 +68,3 @@
     description: '**CPU-Auslastung: `{cpuUsage}%`\nSpeicherauslastung: `{memoryUsage}MB`\nNode.js-Version: `{nodeVersion}`\nBot-Aktivitätszeit: `{uptimeDays}` Tage, `{uptimeHours}` Stunden, `{uptimeMinutes}` Minuten, `{uptimeSeconds}` Sekunden\nPing: Client `{ping}ms` | Websocket: `{websocket}ms` **',
   },
 }
-
