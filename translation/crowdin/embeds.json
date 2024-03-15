@@ -27,7 +27,8 @@
   "onlineEmbed": {
     "title": ":green_circle: ONLINE",
     "description_field_one": "__**MOTD**__\n**{motd}**\n\n__**SERVER ADDRESS**__\n**{ip}**",
-    "description_field_two": "__**VERSION**__\n**{version}**\n\n__**WEBSITE**__\n**Link: {site}**",
+    "description_field_two": "‎ \n__**VERSION**__\n**{version}**{siteText}",
+    "siteText": "\n\n__**WEBSITE**__\n**Link: {site}**",
     "footer": "Checked at"
   },
   "help": {

@@ -8,18 +8,18 @@ let data = new SlashCommandBuilder()
   .setName(cmdSlashTranslation.setstatus.name)
   .setDescription(cmdSlashTranslation.setstatus.description)
   .addStringOption((option) =>
-    option.setName('name').setDescription('Enter the name of your Minecraft server.').setRequired(true)
+    option.setName('name').setDescription(cmdSlashTranslation.setstatus.serverName).setRequired(true)
   )
   .addStringOption((option) =>
-    option.setName('ip').setDescription('Enter the IP address of your Minecraft server.').setRequired(true)
+    option.setName('ip').setDescription(cmdSlashTranslation.setstatus.serverIp).setRequired(true)
   )
   .addIntegerOption((option) =>
-    option.setName('port').setDescription('Enter the port number of your Minecraft server.').setRequired(true)
+    option.setName('port').setDescription(cmdSlashTranslation.setstatus.serverPort).setRequired(true)
   )
   .addStringOption((option) =>
     option
       .setName('type')
-      .setDescription('Choose your server type: Java or Bedrock')
+      .setDescription(cmdSlashTranslation.setstatus.serverType)
       .setRequired(true)
       .addChoices({ name: 'Java', value: 'java' }, { name: 'Bedrock', value: 'bedrock' })
   )
@@ -48,11 +48,7 @@ let run = async ({ interaction, client }) => {
     let dataRead = await JSON.parse(readData)
 
     if (!ip.includes('.')) {
-      await msg.edit({
-        content: `**The ip \`${ip}\` entered is invaild.**`,
-        embeds: [],
-      })
-      return
+      throw { message: `Invaild IP "${ip}"` }
     }
     dataRead.autoChangeStatus.push({
       ip,
@@ -81,6 +77,7 @@ let run = async ({ interaction, client }) => {
       content: cmdSlashTranslation.setstatus.errorReply.replace(/\{error\}/gi, error.message),
       ephemeral: true,
     })
+    if (error.message.startsWith('Invaild IP')) return
     getError(error, 'setStatus')
   }
 }

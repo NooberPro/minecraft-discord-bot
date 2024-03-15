@@ -1,4 +1,4 @@
-const { bot, settings } = require('../../../config')
+const { bot } = require('../../../config')
 const { consoleLogTranslation } = require('../../index')
 const chalk = require('chalk')
 

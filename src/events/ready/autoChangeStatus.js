@@ -1,5 +1,5 @@
 const fs = require('fs')
-const { statusMessageEdit, getError, consoleLogTranslation } = require('../../index.js')
+const { statusMessageEdit, consoleLogTranslation } = require('../../index.js')
 const chalk = require('chalk')
 const config = require('../../../config.js')
 

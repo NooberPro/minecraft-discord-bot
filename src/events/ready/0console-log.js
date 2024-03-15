@@ -18,7 +18,7 @@ module.exports = async (client) => {
   const { data, isOnline } = await getServerDataOnly()
   let ipBedrock = `${config.mcserver.ip}\n${chalk.reset('Port')}     | ${chalk.cyan.bold(config.mcserver.port)}`
   const port = config.mcserver.port === 25565 ? '' : `:${config.mcserver.port}`
-  const ipJava = `${config.mcserver.ip} ${port}`
+  const ipJava = `${config.mcserver.ip}${port}`
   const ip = config.mcserver.type === 'bedrock' ? ipBedrock : ipJava
   if (isOnline) {
     const serverInfoStartOnline = consoleLogTranslation.serverInfoStart.online.join('\n')

@@ -33,6 +33,8 @@
 
 ## Screenshots
 
+#### [**More Images Here**](http://nooberpro.gitbook.io/)
+
 |                                        **HELP**                                         |                                    **COMMAND HELP**                                    |                                        **STATUS**                                         |                                        **MOTD**                                         |                                        **PLAYERS**                                         |                                        **IP**                                         |                                        **VERSION**                                         |                                        **SITE**                                         |
 | :-------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------: |
 | <img alt="Help commands embed example" src="https://i.imgur.com/sWZqQeV.png" width=200> | <img alt="Command Help embed example" src="https://i.imgur.com/2DG6DZv.png" width=200> | <img alt="Status commands embed example" src="https://i.imgur.com/nl3bTrj.png" width=200> | <img alt="MOTD commands embed example" src="https://i.imgur.com/gAQnZE4.png" width=200> | <img alt="Players commands embed example" src="https://i.imgur.com/bxr0W1T.png" width=200> | <img alt="Ip commands embed example" src="https://i.imgur.com/0fEfRPd.png" width=200> | <img alt="Version commands embed example" src="https://i.imgur.com/IIZ5RgW.png" width=200> | <img alt="Site commands embed example" src="https://i.imgur.com/nsx3HNx.png" width=200> |
@@ -61,6 +63,12 @@
 4. **Edit the config file.** _**([Instructions](https://nooberpro.gitbook.io/minecraft-discord-bot/installation/config))**_
 
 5. **Start the bot with `npm start` or `node .`.**
+
+#### Quick Start on Replit
+
+**You can also run the bot directly and easily by clicking the "Run on Replit" button below.**
+
+[![Run on Replit](https://replit.com/badge/github/NooberPro/minecraft-discord-bot)](https://replit.com/new/github/NooberPro/minecraft-discord-bot)
 
 ## Translations
 
