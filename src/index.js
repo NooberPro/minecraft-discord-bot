@@ -37,12 +37,12 @@ process.on('unhandledRejection', (reason) => {
   console.log(`${getDateNow()} | ${chalk.redBright('ERROR')} | ${chalk.bold('Unhandled Rejection')}:`, reason)
 })
 
-const languageEmbedOuput = settings.language.embeds ? settings.language.embeds : settings.language.main
-const embedFileContent = fs.readFileSync(`./translation/${languageEmbedOuput}/embeds.json5`, 'utf8')
+const languageEmbedOutput = settings.language.embeds ? settings.language.embeds : settings.language.main
+const embedFileContent = fs.readFileSync(`./translation/${languageEmbedOutput}/embeds.json5`, 'utf8')
 const embedTranslation = json5.parse(embedFileContent)
 
-const languageConsoleOuput = settings.language.consoleLog ? settings.language.consoleLog : settings.language.main
-const consoleLogFileContent = fs.readFileSync(`./translation/${languageConsoleOuput}/console-log.json5`, 'utf8')
+const languageConsoleOutput = settings.language.consoleLog ? settings.language.consoleLog : settings.language.main
+const consoleLogFileContent = fs.readFileSync(`./translation/${languageConsoleOutput}/console-log.json5`, 'utf8')
 const consoleLogTranslation = json5.parse(consoleLogFileContent)
 
 const cmdSlashLanguageOutput = settings.language.slashCmds ? settings.language.slashCmds : settings.language.main

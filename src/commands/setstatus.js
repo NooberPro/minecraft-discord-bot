@@ -48,7 +48,7 @@ let run = async ({ interaction, client }) => {
     let dataRead = await JSON.parse(readData)
 
     if (!ip.includes('.')) {
-      throw { message: `Invaild IP "${ip}"` }
+      throw { message: `Invalid IP "${ip}"` }
     }
     dataRead.autoChangeStatus.push({
       ip,
@@ -77,7 +77,7 @@ let run = async ({ interaction, client }) => {
       content: cmdSlashTranslation.setstatus.errorReply.replace(/\{error\}/gi, error.message),
       ephemeral: true,
     })
-    if (error.message.startsWith('Invaild IP')) return
+    if (error.message.startsWith('Invalid IP')) return
     getError(error, 'setStatus')
   }
 }
