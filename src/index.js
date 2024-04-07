@@ -37,12 +37,12 @@ process.on('unhandledRejection', (reason) => {
   console.log(`${getDateNow()} | ${chalk.redBright('ERROR')} | ${chalk.bold('Unhandled Rejection')}:`, reason)
 })
 
-const languageEmbedOuput = settings.language.embeds ? settings.language.embeds : settings.language.main
-const embedFileContent = fs.readFileSync(`./translation/${languageEmbedOuput}/embeds.json5`, 'utf8')
+const languageEmbedOutput = settings.language.embeds ? settings.language.embeds : settings.language.main
+const embedFileContent = fs.readFileSync(`./translation/${languageEmbedOutput}/embeds.json5`, 'utf8')
 const embedTranslation = json5.parse(embedFileContent)
 
-const languageConsoleOuput = settings.language.consoleLog ? settings.language.consoleLog : settings.language.main
-const consoleLogFileContent = fs.readFileSync(`./translation/${languageConsoleOuput}/console-log.json5`, 'utf8')
+const languageConsoleOutput = settings.language.consoleLog ? settings.language.consoleLog : settings.language.main
+const consoleLogFileContent = fs.readFileSync(`./translation/${languageConsoleOutput}/console-log.json5`, 'utf8')
 const consoleLogTranslation = json5.parse(consoleLogFileContent)
 
 const cmdSlashLanguageOutput = settings.language.slashCmds ? settings.language.slashCmds : settings.language.main
@@ -220,50 +220,60 @@ const getServerDataOnly = async () => {
   }
 }
 
-const statusMessageEdit = async () => {
-  let dataRead = JSON.parse(fs.readFileSync(`${__dirname}/data.json`, 'utf8'))
-  let messagesIdArray = []
+const statusMessageEdit = async (ip, port, type, name, message) => {
   try {
-    for (const value of dataRead.autoChangeStatus) {
-      const channel = await client.channels.fetch(value.channelId)
-      const message = await channel.messages.fetch(value.messageId)
-      let passedAllCatches = true
-      try {
-        const { OnlineEmbed, offlineStatus } = require('./embeds')
-        const data =
-          value.type === 'java' ? await statusJava(value.ip, value.port) : await statusBedrock(value.ip, value.port)
-        const isOnline = autoChangeStatus.isOnlineCheck ? data.online && data.players.max >= 0 : data.online
-        if (isOnline) {
-          const playerListArray = await getPlayersList(data.players)
-          await message.edit({
-            content: '',
-            embeds: [await OnlineEmbed(data, playerListArray)],
-          })
-        } else {
-          await message.edit({
-            content: '',
-            embeds: [offlineStatus()],
-          })
-        }
-      } catch (error) {
-        passedAllCatches = false
-        await message.edit({
-          content: cmdSlashTranslation.status.errorReply,
-          embeds: [],
+    const { offlineStatus } = require('./embeds')
+    const { EmbedBuilder } = require('discord.js')
+    const data = type === 'java' ? await statusJava(ip, port) : await statusBedrock(ip, port)
+    const isOnline = autoChangeStatus.isOnlineCheck ? data.online && data.players.max >= 0 : data.online
+
+    const ipBedrock = `IP: \`${ip}\`\nPort: \`${port}\``
+    const portNumber = port === 25565 ? '' : `:\`${port}\``
+    const ipJava = `**IP: \`${ip}\`${portNumber}**`
+    const ipaddress = type === 'bedrock' ? ipBedrock : ipJava
+    const isVersion = type === 'java' ? data.version.name_raw : data.version.name
+
+    if (isOnline) {
+      const playerListArray = await getPlayersList(data.players)
+      function editDescriptionFields(description) {
+        let string = description
+          .trim()
+          .replace(/\{ip\}/gi, ipaddress)
+          .replace(/\{motd\}/gi, data.motd.clean)
+          .replace(/\{version\}/gi, isVersion)
+          .replace(/\{siteText\}/gi, '')
+        return string
+      }
+      let description_field_one = editDescriptionFields(embedTranslation.onlineEmbed.description_field_one)
+      let description_field_two = editDescriptionFields(embedTranslation.onlineEmbed.description_field_two)
+      let title = editDescriptionFields(embedTranslation.onlineEmbed.title)
+
+      const onlineEmbed = new EmbedBuilder()
+        .setColor(settings.embedsColors.online)
+        .setAuthor({
+          name: name,
         })
-        if (error.message === 'Bad Request') return
-        getError(error, 'fetchServerDataAndPlayerList')
-      }
-      if (passedAllCatches) {
-        messagesIdArray.push(value)
-      }
+        .setThumbnail(`https://api.mcstatus.io/v2/icon/${ip}:${port}`)
+        .setTitle(title)
+        .addFields(playerListArray)
+        .addFields({
+          name: description_field_one,
+          value: description_field_two,
+        })
+        .setTimestamp()
+        .setFooter({ text: embedTranslation.onlineEmbed.footer })
+      await message.edit({
+        content: '',
+        embeds: [onlineEmbed],
+      })
+    } else {
+      await message.edit({
+        content: '',
+        embeds: [offlineStatus()],
+      })
     }
   } catch (error) {
-    if (error.rawError.message === 'Unknown Message') return
     getError(error, 'messageEdit')
-  } finally {
-    dataRead.autoChangeStatus = messagesIdArray
-    fs.writeFileSync('./src/data.json', JSON.stringify(dataRead, null, 2), 'utf8')
   }
 }
 

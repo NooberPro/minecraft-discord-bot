@@ -121,32 +121,26 @@ const statusEmbed = async () => {
 // Online Embed Message for status commands
 const OnlineEmbed = async (data, playerlist) => {
   try {
-    let description_field_one = embedTranslation.onlineEmbed.description_field_one
-      .trim()
-      .replace(/\{ip\}/gi, ip)
-      .replace(/\{motd\}/gi, data.motd.clean)
-      .replace(/\{version\}/gi, mcserver.version)
-      .replace(/\{site\}/gi, mcserver.site)
-    let description_field_two = embedTranslation.onlineEmbed.description_field_two
-      .trim()
-      .replace(/\{ip\}/gi, ip)
-      .replace(/\{motd\}/gi, data.motd.clean)
-      .replace(/\{version\}/gi, mcserver.version)
-      .replace(/\{site\}/gi, mcserver.site)
-
+    function editDescriptionFields(description) {
+      let siteText = mcserver.site ? embedTranslation.onlineEmbed.siteText.replace(/\{site\}/gi, mcserver.site) : ''
+      let string = description
+        .trim()
+        .replace(/\{ip\}/gi, ip)
+        .replace(/\{motd\}/gi, data.motd.clean)
+        .replace(/\{version\}/gi, mcserver.version)
+        .replace(/\{siteText\}/gi, siteText)
+      return string
+    }
+    let description_field_one = editDescriptionFields(embedTranslation.onlineEmbed.description_field_one)
+    let description_field_two = editDescriptionFields(embedTranslation.onlineEmbed.description_field_two)
+    let title = editDescriptionFields(embedTranslation.onlineEmbed.title)
     return new EmbedBuilder()
       .setColor(settings.embedsColors.online)
       .setThumbnail(mcserver.icon)
       .setAuthor({
         name: mcserver.name,
       })
-      .setTitle(
-        embedTranslation.onlineEmbed.title
-          .replace(/\{ip\}/gi, ip)
-          .replace(/\{motd\}/gi, data.motd.clean)
-          .replace(/\{version\}/gi, mcserver.version)
-          .replace(/\{site\}/gi, mcserver.site)
-      )
+      .setTitle(title)
       .addFields(playerlist)
       .addFields({
         name: description_field_one,

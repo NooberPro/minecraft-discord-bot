@@ -51,6 +51,10 @@
   setstatus: {
     name: 'setstatus',
     description: "Définit le message d'état du serveur Minecraft dans le canal actuel.",
+    serverName: 'Entrez le nom de votre serveur Minecraft.',
+    serverIp: "Entrez l'adresse IP de votre serveur Minecraft.",
+    serverPort: 'Entrez le numéro de port de votre serveur Minecraft.',
+    serverType: 'Choisissez votre type de serveur : Java ou Bedrock',
     // Utilisez {error} pour recevoir le message d'erreur.
     errorReply: ":warning:  **`Impossible de définir le message d'état en raison d'une erreur : {error}.`**",
     enableFeature: '**Veuillez activer "Changer automatiquement de statut" dans la configuration pour activer la fonction de message d\'état.**',

@@ -1,4 +1,4 @@
-// Config Explaination: https://nooberpro.gitbook.io/minecraft-discord-bot/installation/config
+// Config Explanation: https://nooberpro.gitbook.io/minecraft-discord-bot/installation/config
 // "MC" is referring to Minecraft in the comments for convenience.
 module.exports = {
   bot: {
@@ -32,7 +32,7 @@ module.exports = {
   // Settings for bot.
   settings: {
     language: {
-      // Availables languages: en(English), es(Spanish), de(German), fr(French), pt(Portuguese), ru(Russian), uk(Ukrainian)
+      // Available languages: en(English), es(Spanish), de(German), fr(French), pt(Portuguese), ru(Russian), uk(Ukrainian)
       main: 'en', // (files in ./translation/)
       // These are optional settings for language.
       // You can set certain language for certain features. Leave then blank if you want main language to be applied.

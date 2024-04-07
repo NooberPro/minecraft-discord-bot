@@ -44,7 +44,8 @@
 
     // Описание помещается в поле списка игроков.
     description_field_one: '__**MOTD**__\n**{motd}**\n\n__**АДРЕС СЕРВЕРА**__\n**{ip}**',
-    description_field_two: '__**ВЕРСИЯ**__\n**{version}**\n\n__**САЙТ**__\n**Ссылка: {site}**',
+    description_field_two: '__**ВЕРСИЯ**__\n**{version}**{siteText}',
+    siteText: '\n\n__**САЙТ**__\n**Ссылка: {site}**',
     footer: 'Проверено в',
   },
   help: {
