@@ -63,6 +63,12 @@ module.exports = {
     enabled: false,
     updateInterval: 60, // Time period between auto changing status in seconds, e.g. 60 = 1min. Recommended: above 60.
     adminOnly: true, // This means that only admins with the "Manage Channel" permission are able to set the status message.
+    // Show Player Head Emoji in a player list. Only for Java. Only on adminOnly mode.
+    playerAvatarEmoji: {
+      enabled: false,
+      guildID: '', // Server's ID for creating/deleting emojis.
+      // Consider creating a dedicated emoji discord server and inviting the bot or Same server for status message.
+    },
     // These settings will be applied in slash (/) and prefix commands for status.
     isOnlineCheck: true, // Useful for servers which uses free hosting providers like Aternos. If the server's max players is 0 then status will set offline.
   },

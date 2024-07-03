@@ -66,8 +66,8 @@ const offlineStatus = () => {
 
 // MOTD Embed for motd commands
 const motdEmbed = async () => {
-  const { getServerDataOnly } = require('./index')
-  const { data, isOnline } = await getServerDataOnly()
+  const { getServerDataAndPlayerList } = require('./index')
+  const { data, isOnline } = await getServerDataAndPlayerList(true)
   if (!isOnline) {
     return offlineStatus()
   } else {

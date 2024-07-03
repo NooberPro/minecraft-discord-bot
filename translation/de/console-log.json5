@@ -35,7 +35,7 @@
       // Mit {cmd} wird der gesetzte Befehl abgerufen.
       enableAutoChangeStatus: 'Um den Serverstatus zu setzen, senden Sie einen {cmd}-Befehl im gewünschten Kanal.',
     },
-    botStatusFormat: 'Status-Embed-Nachricht wurde aktualisiert auf {botStatusText}.',
+    botStatusFormat: 'Die Aktivität des Bots wurde auf {botStatusText} aktualisiert.',
     playerCountChUpdate: 'Der Name des Spieleranzahl-Kanals wurde aktualisiert auf {updatedName}.',
   },
   checkErrorConfig: {

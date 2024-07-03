@@ -35,7 +35,7 @@
       // Використовуйте {cmd} для отримання команди setstatus.
       enableAutoChangeStatus: 'Для установки статусу серверу, відправте команду {cmd} у потрібний канал.',
     },
-    botStatusFormat: 'Embed повідомлення статусу було оновлено і тепер {botStatusText}',
+    botStatusFormat: 'Активність бота оновлена до {botStatusText}.',
     playerCountChUpdate: "Ім'я каналу рахування гравців було оновлено і тепер {updatedName}",
   },
   checkErrorConfig: {

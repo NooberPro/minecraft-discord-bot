@@ -4,11 +4,11 @@ const chalk = require('chalk')
 
 module.exports = (client) => {
   const botStatusUpdate = async () => {
-    const { getDebug, getServerDataOnly } = require('../../index')
+    const { getDebug, getServerDataAndPlayerList } = require('../../index')
     const { ActivityType } = require('discord.js')
     if (bot.presence.enabled) {
       try {
-        const { data, isOnline } = await getServerDataOnly()
+        const { data, isOnline } = await getServerDataAndPlayerList(true)
         if (isOnline) {
           let statusText = bot.presence.text.online
             .replace(/{playeronline}/g, data.players.online)

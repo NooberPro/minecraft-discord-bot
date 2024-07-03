@@ -35,7 +35,7 @@
       // Use {cmd} retrieves the setstatus command.
       enableAutoChangeStatus: 'To set the server status, send a {cmd} command in the desired channel.',
     },
-    botStatusFormat: 'Status Embed Message has been updated to {botStatusText}.',
+    botStatusFormat: "Bot's activity has been updated to {botStatusText}.",
     playerCountChUpdate: 'Player Count channel name is updated to {updatedName}.',
   },
   checkErrorConfig: {

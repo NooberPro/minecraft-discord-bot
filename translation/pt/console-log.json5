@@ -35,7 +35,7 @@
       // Use {cmd} para recuperar o comando setstatus.
       enableAutoChangeStatus: 'Para definir o status do servidor, envie um comando {cmd} no canal desejado.',
     },
-    botStatusFormat: 'A Mensagem de Status Incorporada foi atualizada para {botStatusText}.',
+    botStatusFormat: 'A atividade do bot foi atualizada para {botStatusText}.',
     playerCountChUpdate: 'O nome do canal de contagem de jogadores foi atualizado para {updatedName}.',
   },
   checkErrorConfig: {

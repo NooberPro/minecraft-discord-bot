@@ -14,8 +14,8 @@ module.exports = async (client) => {
     )
   }
   if (!config.settings.logging.serverInfo) return
-  const { getServerDataOnly } = require('../../index')
-  const { data, isOnline } = await getServerDataOnly()
+  const { getServerDataAndPlayerList } = require('../../index')
+  const { data, isOnline } = await getServerDataAndPlayerList(true)
   let ipBedrock = `${config.mcserver.ip}\n${chalk.reset('Port')}     | ${chalk.cyan.bold(config.mcserver.port)}`
   const port = config.mcserver.port === 25565 ? '' : `:${config.mcserver.port}`
   const ipJava = `${config.mcserver.ip}${port}`
