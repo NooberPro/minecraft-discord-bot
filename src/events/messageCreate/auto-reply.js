@@ -27,8 +27,8 @@ module.exports = async (msg) => {
     }
     if (isStatus.test(content) && autoReply.status.enabled) {
       await msg.channel.sendTyping()
-      const { getServerDataOnly } = require('../../index')
-      const { data, isOnline } = await getServerDataOnly()
+      const { getServerDataAndPlayerList } = require('../../index')
+      const { data, isOnline } = await getServerDataAndPlayerList(true)
       msg.reply(
         isOnline
           ? autoReplyReplyText.status.onlineReply

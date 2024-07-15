@@ -24,6 +24,8 @@
     playerCountCh: 'Fehler im Feature für die Spieleranzahl im Kanal.',
     playerCountChNameUpdate: 'Fehler beim Aktualisieren des Namens des Spieleranzahl-Kanals.',
     playerCountChDateWrite: 'Fehler beim Speichern der Spieleranzahl-Kanal-ID in data.json.',
+    playerAvatarGuildIdCheck: 'Fehler beim Überprüfen der Player-Avatar-Guild-ID.',
+    playerAvatarEmojiError: 'Fehler beim Verwalten der Spieler-Avatar-Emojis',
   },
   debug: {
     autoChangeStatus: {
@@ -34,8 +36,10 @@
       successLog: 'Statusnachricht erfolgreich in {channelName} festgelegt.',
       // Mit {cmd} wird der gesetzte Befehl abgerufen.
       enableAutoChangeStatus: 'Um den Serverstatus zu setzen, senden Sie einen {cmd}-Befehl im gewünschten Kanal.',
+      playerAvatarGuildSuccessFull: 'Gilde: `{playerAvatarGuildName}` wurde erfolgreich gefunden und als Server für Spieler-Avatar-Emojis festgelegt.',
+      playerAvatarGuildUnSuccessFull: 'Die Gilde des Spieler-Avatar-Emojis mit der ID `{playerAvatarGuildID}` konnte nicht gefunden werden, oder der Bot ist nicht in der Gilde.',
     },
-    botStatusFormat: 'Status-Embed-Nachricht wurde aktualisiert auf {botStatusText}.',
+    botStatusFormat: 'Die Aktivität des Bots wurde auf {botStatusText} aktualisiert.',
     playerCountChUpdate: 'Der Name des Spieleranzahl-Kanals wurde aktualisiert auf {updatedName}.',
   },
   checkErrorConfig: {
@@ -52,6 +56,7 @@
     // Verwende {givenCmdName}, um den im Sprachdatei angegebenen Namen abzurufen.
     // Verwende {cmdName}, um den Namen von Befehlen abzurufen.
     slashCmdName: 'Der angegebene Name "{givenCmdName}" für den Befehl "{cmdName}" ist ungültig.\nBitte verwende nur Kleinbuchstaben, Großbuchstaben, die erste Buchstabe als Großbuchstabe, Zahlen, Unterstriche und Bindestriche.',
+    playerAvatarInvalidGuildId: 'Die Gilden-ID des Spieler-Avatar-Emoji-Servers wurde nicht angegeben.',
   },
   playerCountCh: {
     // Mit {guildID} wird die in der Konfigurationsdatei angegebene Guild-ID repräsentiert.

@@ -18,7 +18,9 @@
     "channelIdCheck": "Error in Channel ID Check and Updating.",
     "playerCountCh": "Error in Player Count Channel Feature.",
     "playerCountChNameUpdate": "Error in Updating Player Count Channel Name.",
-    "playerCountChDateWrite": "Error in Saving Player Count Channel ID in data.json."
+    "playerCountChDateWrite": "Error in Saving Player Count Channel ID in data.json.",
+    "playerAvatarGuildIdCheck": "Error while checking Player Avatar Guild ID.",
+    "playerAvatarEmojiError": "Error while managing player avatar emojis"
   },
   "debug": {
     "autoChangeStatus": {
@@ -26,9 +28,11 @@
       "offlineText": "❌ Offline.",
       "format": "Status Embed Message has been updated to {statusText}.",
       "successLog": "Successfully set the status message in {channelName}.",
-      "enableAutoChangeStatus": "To set the server status, send a {cmd} command in the desired channel."
+      "enableAutoChangeStatus": "To set the server status, send a {cmd} command in the desired channel.",
+      "playerAvatarGuildSuccessFull": "Guild: `{playerAvatarGuildName}` was successfully found and set as the server for Player Avatar emojis.",
+      "playerAvatarGuildUnSuccessFull": "The Player Avatar Emoji's guild with ID `{playerAvatarGuildID}` could not be found, or the bot is not in the guild."
     },
-    "botStatusFormat": "Status Embed Message has been updated to {botStatusText}.",
+    "botStatusFormat": "Bot's activity has been updated to {botStatusText}.",
     "playerCountChUpdate": "Player Count channel name is updated to {updatedName}."
   },
   "checkErrorConfig": {
@@ -42,7 +46,8 @@
     "mcVersion": "The Minecraft server's version has not been specified.",
     "guildID": "The Server/Guild ID has not been specified or is invalid.",
     "timeZone": "The time zone specified in the config file is not valid.",
-    "slashCmdName": "The provided name \"{givenCmdName}\" for the \"{cmdName}\" command is invalid.\nPlease use only lowercase, uppercase, title case letters, numbers, underscores, and hyphens."
+    "slashCmdName": "The provided name \"{givenCmdName}\" for the \"{cmdName}\" command is invalid.\nPlease use only lowercase, uppercase, title case letters, numbers, underscores, and hyphens.",
+    "playerAvatarInvalidGuildId": "The Guild Id of the Player Avatar Emoji Server has not been specified."
   },
   "playerCountCh": {
     "playerCountChGuildIncorrect": "The guild with ID: \"{guildID}\" was not found, or the bot is not in the guild.",

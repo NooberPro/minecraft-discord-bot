@@ -1,85 +1,89 @@
-// Config Explanation: https://nooberpro.gitbook.io/minecraft-discord-bot/installation/config
-// "MC" is referring to Minecraft in the comments for convenience.
+// Config Documentation: https://nooberpro.gitbook.io/minecraft-discord-bot/installation/config
+// "MC" refers to Minecraft in the comments for convenience.
 module.exports = {
   bot: {
     token: 'your-bot-token-here',
-    // Auto changing status and activity of bot.
+    // Automatically updates the bot's status and activity.
     presence: {
       enabled: true,
       activity: 'Playing', // Options: Playing, Listening, Watching, Competing.
       text: {
-        online: 'with {playeronline}/{playermax} players', // {playeronline} and {playermax} show number of online and max players.
+        online: 'with {playeronline}/{playermax} players', // {playeronline} and {playermax} display the current and maximum number of players.
         offline: 'Server Offline', // Status text when the server is offline.
       },
       status: {
         // Options: online, idle, dnd, invisible.
-        online: 'online', // Status when MC server is online.
-        offline: 'idle', // Status when MC server is offline.
+        online: 'online', // Bot status when the MC server is online.
+        offline: 'idle', // Bot status when the MC server is offline.
       },
     },
   },
   mcserver: {
-    ip: 'demo.mcstatus.io', // IP of  MC server.
-    port: 25565, // Port number of MC server. Use Query Port in Java for full Player List.
+    ip: 'demo.mcstatus.io', // IP address of the MC server.
+    port: 25565, // Port number of the MC server. Use Query Port in Java for the full player list.
     type: 'java', // Type of MC server: "java" or "bedrock".
-    name: 'Demo Server', // Name of MC server.
-    version: 'Requires 1.8 - 1.20', // Version of MC server.
-    icon: 'https://i.imgur.com/6Msem8Q.png', // URL of MC server icon. How? https://tinyurl.com/iconurl
-    site: 'https://nooberpro.gitbook.io/', // URL of MC server or vote website. NOT REQUIRED
-    // To disable site commands leave site field blank.
+    name: 'Demo Server', // Name of the MC server.
+    version: 'Requires 1.8 - 1.20', // Version of the MC server.
+    icon: 'https://i.imgur.com/6Msem8Q.png', // URL of the MC server icon. How to set it: https://tinyurl.com/iconurl
+    site: 'https://nooberpro.gitbook.io/', // URL of the MC server or vote website. Leave blank to disable site commands.
   },
 
-  // Settings for bot.
+  // Bot settings.
   settings: {
     language: {
-      // Available languages: en(English), es(Spanish), de(German), fr(French), pt(Portuguese), ru(Russian), uk(Ukrainian)
-      main: 'en', // (files in ./translation/)
-      // These are optional settings for language.
-      // You can set certain language for certain features. Leave then blank if you want main language to be applied.
-      embeds: '', // All the embeds. Slash and Prefix Commands, Auto Changing Status.
-      autoReply: '', // Replies given by the bot in Auto Reply feature.
-      consoleLog: '', // All console log output.
-      slashCmds: '', // All slash commands description and error replies.
+      // Available languages: en (English), es (Spanish), de (German), fr (French), pt (Portuguese), ru (Russian), uk (Ukrainian)
+      main: 'en', // Main language (files in ./translation/)
+      // Optional language settings for specific features. Leave blank to use the main language.
+      embeds: '', // Language for embeds, Slash and Prefix Commands, Auto Changing Status.
+      autoReply: '', // Language for auto-reply feature responses.
+      consoleLog: '', // Language for console log output.
+      slashCmds: '', // Language for slash commands descriptions and error messages.
     },
     embedsColors: {
-      basicCmds: 'Aqua', // It is the commands like version, site, ip.
-      online: 'Green', // It is the commands when it is online like status, players, motd.
-      offline: 'Red', // It is the color of offline embed.
+      basicCmds: 'Aqua', // Color for basic commands like version, site, ip.
+      online: 'Green', // Color for commands when the server is online (e.g., status, players, motd).
+      offline: 'Red', // Color for offline status embeds.
     },
-    // console-logging settings.
+    // Console logging settings.
     logging: {
-      timezone: '', // Time zone of bot. Use formats like America/New_York or Europe/London. Leave blank to match the bot's location time zone.
-      inviteLink: true, // Log invite link at bot's launch.
-      debug: false, // Log status message and  bot activity update. (pretty much like spam)
+      timezone: '', // Time zone for the bot. Use formats like America/New_York or Europe/London. Leave blank to use the bot's local time zone.
+      inviteLink: true, // Log the invite link at the bot's launch.
+      debug: false, // Log status messages and bot activity updates (may result in spam).
       error: true, // Log any errors that occur.
-      serverInfo: true, // Log basic info about server and check if it is online at startup.
+      serverInfo: true, // Log basic server info and check if it's online at startup.
     },
   },
 
-  // Features settings
+  // Feature settings
 
-  // Automatically Updates the current status of a Mc server in a channel, in real time.
+  // Automatically updates the MC server status in a channel in real-time.
   autoChangeStatus: {
     enabled: false,
-    updateInterval: 60, // Time period between auto changing status in seconds, e.g. 60 = 1min. Recommended: above 60.
-    adminOnly: true, // This means that only admins with the "Manage Channel" permission are able to set the status message.
-    // These settings will be applied in slash (/) and prefix commands for status.
-    isOnlineCheck: true, // Useful for servers which uses free hosting providers like Aternos. If the server's max players is 0 then status will set offline.
+    updateInterval: 60, // Interval between status updates in seconds. Recommended: above 60.
+    adminOnly: true, // Only admins with the "Manage Channel" permission can set the status message.
+    // Show player head emoji in the player list. Only for Java and in adminOnly mode.
+    playerAvatarEmoji: {
+      enabled: false,
+      guildID: '', // Server ID for creating/deleting emojis.
+      // Consider creating a dedicated emoji Discord server and inviting the bot, or using the same server for status messages.
+    },
+    // These settings apply to slash (/) and prefix commands for status.
+    isOnlineCheck: true, // Useful for servers using free hosting providers like Aternos. If the server's max players is 0, the status will be set to offline.
   },
 
-  // Shows the Player Count of MC server in channel's name
+  // Shows the player count of the MC server in the channel name.
   playerCountCH: {
     enabled: false,
-    guildID: 'your-guild-id-here', // Server's ID for creating/editing channel stats.
-    channelId: '', // The channel ID for editing the player count. If no ID is provided, the bot will create the channel itself. NOT REQUIRED
-    // {playeronline} and {playermax} show number of online and max players.
+    guildID: 'your-guild-id-here', // Server ID for creating/editing channel stats.
+    channelId: '', // Channel ID for editing the player count. If no ID is provided, the bot will create the channel itself.
+    // {playeronline} and {playermax} display the current and maximum number of players.
     onlineText: '🟢 {playeronline}/{playermax} active players',
-    offlineText: '🔴 Offline', // The name set when MC server is offline.
+    offlineText: '🔴 Offline', // Name set when the MC server is offline.
   },
 
   autoReply: {
-    // If a message contains triggerWords, reply with appropriate server information.
-    enabled: false, // Disable the entire autoReply feature.
+    // If a message contains trigger words, reply with appropriate server information.
+    enabled: false, // Disable the entire auto-reply feature.
     version: {
       enabled: true,
       triggerWords: ['version of the server?', 'version'],
@@ -99,38 +103,38 @@ module.exports = {
   },
 
   commands: {
-    slashCommands: true, // Enables all slash commands
+    slashCommands: true, // Enables all slash commands.
     prefixCommands: {
-      enabled: true, // Enables all prefix commands
-      prefix: '!', // Prefix for normal command.
+      enabled: true, // Enables all prefix commands.
+      prefix: '!', // Prefix for normal commands.
     },
     ip: {
-      enabled: true, // Enables ip command.
-      alias: ['ip-address'], // Alias for ip prefix commands.
+      enabled: true, // Enables the IP command.
+      alias: ['ip-address'], // Aliases for IP prefix commands.
     },
     site: {
-      enabled: true, // Enables ip command.
-      alias: ['vote', 'link'], // Alias for site prefix commands.
+      enabled: true, // Enables the site command.
+      alias: ['vote', 'link'], // Aliases for site prefix commands.
     },
     version: {
-      enabled: true, // Enables ip command.
-      alias: [], // Alias for version prefix commands.
+      enabled: true, // Enables the version command.
+      alias: [], // Aliases for version prefix commands.
     },
     players: {
-      enabled: true, // Enables ip command.
-      alias: ['plist'], // Alias for players prefix commands.
+      enabled: true, // Enables the players command.
+      alias: ['plist'], // Aliases for players prefix commands.
     },
     status: {
-      enabled: true, // Enables ip command.
-      alias: [], // Alias for status prefix commands.
+      enabled: true, // Enables the status command.
+      alias: [], // Aliases for status prefix commands.
     },
     motd: {
-      enabled: true, // Enables ip command.
-      alias: [], // Alias for motd prefix commands.
+      enabled: true, // Enables the motd command.
+      alias: [], // Aliases for motd prefix commands.
     },
     help: {
-      enabled: true, // Enables ip command.
-      alias: ['commands'], // Alias for help prefix commands.
+      enabled: true, // Enables the help command.
+      alias: ['commands'], // Aliases for help prefix commands.
     },
   },
 }

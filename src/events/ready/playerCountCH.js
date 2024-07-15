@@ -1,13 +1,13 @@
 const chalk = require('chalk')
 const { playerCountCH } = require('../../../config')
-const { getServerDataOnly, getDebug, getError, consoleLogTranslation } = require('../../index')
+const { getServerDataAndPlayerList, getDebug, getError, consoleLogTranslation } = require('../../index')
 const fs = require('node:fs')
 
 module.exports = async (client) => {
   const playerCountUpdate = async (channelId) => {
     const channel = client.channels.cache.get(channelId)
     try {
-      const { data, isOnline } = await getServerDataOnly()
+      const { data, isOnline } = await getServerDataAndPlayerList(true)
       const statusName = isOnline
         ? playerCountCH.onlineText
             .replace(/\{playeronline}/g, data.players.online)
@@ -72,7 +72,7 @@ module.exports = async (client) => {
       } else {
         const guild = client.guilds.cache.get(playerCountCH.guildID)
         const { ChannelType } = require('discord.js')
-        const { data, isOnline } = await getServerDataOnly()
+        const { data, isOnline } = await getServerDataAndPlayerList(true)
         const statusName = isOnline
           ? playerCountCH.onlineText
               .replace(/\{playeronline}/g, data.players.online)

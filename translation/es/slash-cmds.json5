@@ -56,6 +56,7 @@
     serverIp: 'Ingresa la dirección IP de tu servidor de Minecraft.',
     serverPort: 'Ingresa el número de puerto de tu servidor de Minecraft.',
     serverType: 'Elige el tipo de servidor: Java o Bedrock',
+    playerAvatar: 'Opción para que los ADMINISTRADORES muestren los avatares de los jugadores junto a la lista de jugadores.',
     // Usa {error} para recibir el mensaje de error.
     errorReply: 'warning:  **`No se pudo establecer el mensaje de estado debido a un error: {error}.`**',
     enableFeature: '**Por favor, habilita `Cambio automático de estado` en la configuración para activar la función de mensajes de estado.**',

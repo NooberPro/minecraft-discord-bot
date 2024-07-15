@@ -24,6 +24,8 @@
     playerCountCh: 'Erro na Funcionalidade do Canal de Contagem de Jogadores.',
     playerCountChNameUpdate: 'Erro na Atualização do Nome do Canal de Contagem de Jogadores.',
     playerCountChDateWrite: 'Erro ao Salvar a ID do Canal de Contagem de Jogadores no data.json.',
+    playerAvatarGuildIdCheck: 'Erro ao verificar o ID da Guilda do Avatar do Jogador.',
+    playerAvatarEmojiError: 'Erro ao gerenciar os emojis do avatar do jogador',
   },
   debug: {
     autoChangeStatus: {
@@ -34,8 +36,10 @@
       successLog: 'A mensagem de status foi definida com sucesso em {channelName}.',
       // Use {cmd} para recuperar o comando setstatus.
       enableAutoChangeStatus: 'Para definir o status do servidor, envie um comando {cmd} no canal desejado.',
+      playerAvatarGuildSuccessFull: 'Guilda: `{playerAvatarGuildName}` foi encontrada e configurada com sucesso como o servidor para os emojis do Avatar do Jogador.',
+      playerAvatarGuildUnSuccessFull: 'A guilda dos emojis do Avatar do Jogador com ID `{playerAvatarGuildID}` não pôde ser encontrada, ou o bot não está na guilda.',
     },
-    botStatusFormat: 'A Mensagem de Status Incorporada foi atualizada para {botStatusText}.',
+    botStatusFormat: 'A atividade do bot foi atualizada para {botStatusText}.',
     playerCountChUpdate: 'O nome do canal de contagem de jogadores foi atualizado para {updatedName}.',
   },
   checkErrorConfig: {
@@ -52,6 +56,7 @@
     // Use {givenCmdName} para obter o nome fornecido no arquivo de idioma.
     // Use {cmdName} para obter o nome dos comandos.
     slashCmdName: 'O nome fornecido "{givenCmdName}" para o comando "{cmdName}" é inválido.\nPor favor, use apenas letras minúsculas, maiúsculas, a primeira letra maiúscula, números, underscores e hífens.',
+    playerAvatarInvalidGuildId: 'O ID da Guilda do Servidor de Emojis do Avatar do Jogador não foi especificado.',
   },
   playerCountCh: {
     // Use {guildID} representa o ID da guilda fornecido no arquivo de configuração.
