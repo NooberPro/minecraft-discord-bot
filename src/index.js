@@ -93,7 +93,7 @@ const cmdSlashTranslation = json5.parse(cmdSlashContents)
     autoChangeStatus.enabled &&
       autoChangeStatus.playerAvatarEmoji.enabled &&
       !autoChangeStatus.playerAvatarEmoji.guildID,
-    'The Guild Id of the Player Avatar Emoji Server has not been specified.'
+    consoleLogTranslation.checkErrorConfig.playerAvatarInvalidGuildId
   )
 
   for (const key in cmdSlashTranslation) {
@@ -254,7 +254,7 @@ const getPlayersListWithEmoji = async (playerListRaw) => {
     })
   } catch (error) {
     if (!settings.logging.errorLog) return
-    console.error(chalk.red(`Error with Player Head:`), chalk.keyword('orange')(error.message))
+    getErrorMessage(error, 'playerAvatarEmojiError')
   }
 }
 

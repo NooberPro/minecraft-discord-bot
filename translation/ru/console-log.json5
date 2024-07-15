@@ -24,6 +24,8 @@
     playerCountCh: 'Ошибка в функции счётчика игроков в канале.',
     playerCountChNameUpdate: 'Ошибка в обновлении имя канал счётчика игроков.',
     playerCountChDateWrite: 'Ошибка в сохранении ID канал счётчика игроков в data.json.',
+    playerAvatarGuildIdCheck: 'Ошибка при проверке ID гильдии аватара игрока.',
+    playerAvatarEmojiError: 'Ошибка при управлении эмодзи аватара игрока',
   },
   debug: {
     autoChangeStatus: {
@@ -34,6 +36,8 @@
       successLog: 'Успешно установлено сообщения статуса в {channelName}.',
       // Использование {cmd} для получения команду setstatus команды.
       enableAutoChangeStatus: 'Для установки статуса сервера отправьте команду {cmd} в нужный канал.',
+      playerAvatarGuildSuccessFull: 'Гильдия: `{playerAvatarGuildName}` была успешно найдена и установлена как сервер для эмодзи аватара игрока.',
+      playerAvatarGuildUnSuccessFull: 'Гильдия эмодзи аватара игрока с ID `{playerAvatarGuildID}` не была найдена или бот не находится в гильдии.',
     },
     botStatusFormat: 'Активность бота обновлена до {botStatusText}.',
     playerCountChUpdate: 'Имя канала счётчика игроков был обновлен и теперь {updatedName}.',
@@ -52,6 +56,7 @@
     // Изпользуйте {givenCmdName} для получения имени дано в файле языка.
     // Изпользуйте {cmdName} для получения названий команд.
     slashCmdName: 'Введенное имя "{givenCmdName}" для "{cmdName}" команды неверное.\nИзпользуйте пожалуйста только строчные, прописные, заглавные буквы, цифры, подчеркивания и дефисы.',
+    playerAvatarInvalidGuildId: 'ID гильдии сервера эмодзи аватара игрока не указан.',
   },
   playerCountCh: {
     // Использование {guildID} представляет собой идентификатор гильдии, указанный в файле конфигурации.

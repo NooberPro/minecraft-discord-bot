@@ -31,10 +31,7 @@ let data = new SlashCommandBuilder()
 
 if (autoChangeStatus.playerAvatarEmoji.enabled) {
   data.addBooleanOption((option) =>
-    option
-      .setName('player_avatar')
-      .setDescription('Option for ADMINS to display player avatars alongside the player list.')
-      .setRequired(true)
+    option.setName('player_avatar').setDescription(cmdSlashTranslation.setstatus.playerAvatar).setRequired(true)
   )
 }
 if (autoChangeStatus.adminOnly) {
@@ -62,7 +59,8 @@ let run = async ({ interaction, client }) => {
     const playerAvatarEmoji = interaction.options.getBoolean('player_avatar')
     const member = await interaction.guild.members.fetch(interaction.user.id)
     const hasManageChannels = member.permissions.has(PermissionFlagsBits.ManageChannels)
-    const isPlayerAvatarEmoji = playerAvatarEmoji && hasManageChannels && autoChangeStatus.playerAvatarEmoji.enabled
+    const isPlayerAvatarEmoji =
+      playerAvatarEmoji && hasManageChannels && autoChangeStatus.playerAvatarEmoji.enabled && type === 'java'
 
     let dataRead = await JSON.parse(readData)
 

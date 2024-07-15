@@ -56,6 +56,7 @@
     serverIp: 'Enter the IP address of your Minecraft server.',
     serverPort: 'Enter the port number of your Minecraft server.',
     serverType: 'Choose your server type: Java or Bedrock',
+    playerAvatar: 'Option for ADMINS to display player avatars alongside the player list.',
     // Use {error} to receive the error message.
     errorReply: ':warning:  **`Could not set the status message due to an error: {error}.`**',
     enableFeature: '**Please enable `auto Change Status` in the config to enable the status message feature.**',

@@ -24,6 +24,8 @@
     playerCountCh: 'Error en la función de recuento de jugadores del canal.',
     playerCountChNameUpdate: 'Error al actualizar el nombre del canal de recuento de jugadores.',
     playerCountChDateWrite: 'Error al guardar la ID del canal de recuento de jugadores en data.json.',
+    playerAvatarGuildIdCheck: 'Error al verificar el ID de Guild del Avatar del Jugador.',
+    playerAvatarEmojiError: 'Error al gestionar los emojis del avatar del jugador',
   },
   debug: {
     autoChangeStatus: {
@@ -34,6 +36,8 @@
       successLog: 'Se estableció correctamente el mensaje de estado en {channelName}.',
       // Usa {cmd} para recuperar el comando setstatus.
       enableAutoChangeStatus: 'Para establecer el estado del servidor, envía un comando {cmd} en el canal deseado.',
+      playerAvatarGuildSuccessFull: 'Gremio: `{playerAvatarGuildName}` fue encontrado y configurado correctamente como el servidor para los emojis del Avatar del Jugador.',
+      playerAvatarGuildUnSuccessFull: 'El gremio del Emoji del Avatar del Jugador con ID `{playerAvatarGuildID}` no se pudo encontrar, o el bot no está en el gremio.',
     },
     botStatusFormat: 'La actividad del bot se ha actualizado a {botStatusText}.',
     playerCountChUpdate: 'Se actualizó el nombre del canal de recuento de jugadores a {updatedName}.',
@@ -52,6 +56,7 @@
     // Usa {givenCmdName} para obtener el nombre proporcionado en el archivo de idioma.
     // Usa {cmdName} para obtener el nombre de los comandos.
     slashCmdName: 'El nombre proporcionado "{givenCmdName}" para el comando "{cmdName}" no es válido.\nPor favor, utiliza solo letras minúsculas, mayúsculas, la primera letra en mayúscula, números, guiones bajos y guiones.',
+    playerAvatarInvalidGuildId: 'No se ha especificado el ID de la Guilda del Servidor de Emojis del Avatar del Jugador.',
   },
   playerCountCh: {
     // Usa {guildID} para representar la ID del gremio dada en el archivo de configuración.

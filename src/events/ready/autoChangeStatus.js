@@ -1,5 +1,5 @@
 const fs = require('fs')
-const { statusMessageEdit, consoleLogTranslation, getError } = require('../../index.js')
+const { statusMessageEdit, consoleLogTranslation, getError, getDebug } = require('../../index.js')
 const chalk = require('chalk')
 const config = require('../../../config.js')
 
@@ -11,19 +11,23 @@ module.exports = async (client) => {
       const guild = client.guilds.cache.get(config.autoChangeStatus.playerAvatarEmoji.guildID)
       if (guild) {
         console.log(
-          `Guild: \`${chalk.cyan(guild.name)}\` was successfully found and set as the server for Player Avatar emojis.`
+          consoleLogTranslation.debug.autoChangeStatus.playerAvatarGuildSuccessFull.replace(
+            /\{playerAvatarGuildName\}/gi,
+            chalk.cyan(guild.name)
+          )
         )
       } else {
         console.log(
-          `The player Avatar Emoji's guild with ID \`${chalk.keyword('orange')(
-            config.autoChangeStatus.playerAvatarEmoji.guildID
-          )}\` could not be found, or the bot is not in the guild.`
+          consoleLogTranslation.debug.autoChangeStatus.playerAvatarGuildUnSuccessFull.replace(
+            /\{playerAvatarGuildID\}/gi,
+            chalk.keyword('orange')(config.autoChangeStatus.playerAvatarEmoji.guildID)
+          )
         )
         process.exit(1)
       }
     }
   } catch (error) {
-    console.log(getError(error, 'Guild ID check'))
+    getError(error, 'playerAvatarGuildIdCheck')
   }
 
   try {
