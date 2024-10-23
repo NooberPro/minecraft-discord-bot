@@ -201,7 +201,7 @@ const getServerDataAndPlayerList = async (dataOnly) => {
       mcserver.type === 'java'
         ? await statusJava(mcserver.ip, mcserver.port)
         : await statusBedrock(mcserver.ip, mcserver.port)
-    const isOnline = autoChangeStatus.isOnlineCheck ? data.online && data.players.max >= 0 : data.online
+    const isOnline = autoChangeStatus.isOnlineCheck ? data.online && data.players.max > 0 : data.online
     if (isOnline) {
       if (dataOnly) return { data, isOnline }
       const playerListArray = await getPlayersList(data.players)
@@ -262,7 +262,7 @@ const statusMessageEdit = async (ip, port, type, name, message, isPlayerAvatarEm
   try {
     const { EmbedBuilder } = require('discord.js')
     const data = type === 'java' ? await statusJava(ip, port) : await statusBedrock(ip, port)
-    const isOnline = autoChangeStatus.isOnlineCheck ? data.online && data.players.max >= 0 : data.online
+    const isOnline = autoChangeStatus.isOnlineCheck ? data.online && data.players.max > 0 : data.online
 
     const ipBedrock = `IP: \`${ip}\`\nPort: \`${port}\``
     const portNumber = port === 25565 ? '' : `:\`${port}\``
