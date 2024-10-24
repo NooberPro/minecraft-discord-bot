@@ -1,0 +1,24 @@
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin (δικτυακός τόπος μετάφρασης): https://crowdin.com/project/minecraft-discord-bot
+// Ελληνική μετάφραση (el) από XINBOSHIN
+
+{
+  // Μετάφραση για τη λειτουργία αυτόματης απάντησης.
+  version: {
+    // Χρήση {version} για να λάβετε την έκδοση από τη διαμόρφωση.
+    replyText: 'Έκδοση διακομιστή: **`{version}`**.',
+  },
+  ip: {
+    // Χρήση {ip} για IP και {port} για λιμάνι.
+    replyText: '**IP: `{ip}`\nПорт: `{port}`**',
+  },
+  site: {
+    // Χρήση {site} для сайта с конфигурации.
+    replyText: 'Ιστότοπος διακομιστή: **<{site}>**.',
+  },
+  status: {
+    // Χρήση {playerOnline} για online αριθμό και {playerMax} για μέγιστους παίκτες. Αυτό λειτουργεί μόνο σε onlineReply.
+    onlineReply: 'Διακομιστής τώρα **`🟢ONLINE`** Με **`{playerOnline}/{playerMax}`** ενεργούς παίκτες.',
+    offlineReply: 'Διακομιστής τώρα **`🔴OFFLINE`**.',
+  },
+}

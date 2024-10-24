@@ -1,0 +1,66 @@
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin (δικτυακός τόπος μετάφρασης): https://crowdin.com/project/minecraft-discord-bot
+// Ελληνική μετάφραση (el) από XINBOSHIN
+
+{
+  // Μετάφραση για την εντολή εισαγωγής μηνύματος.
+  ip: {
+    // Μεταβλητός: {ip}
+    title: '__**ADRESS SERVER**__',
+    description: '**{ip}**',
+  },
+  site: {
+    // Μεταβλητός: {site}
+    title: '__**SITE**__',
+    description: '**Ссылка: {site}**',
+  },
+  version: {
+    // Μεταβλητός: {version}
+    title: '__**VERSION**__',
+    description: '**{version}**',
+  },
+  offlineEmbed: {
+    // Μεταβλητός: {ip}, {version}, {site}
+    title: ':red_circle: OFFLINE',
+    description: '', // Για να το απενεργοποιήσετε, αφήστε κενό το πεδίο Περιγραφή.
+    footer: 'Δοκιμασμένο σε',
+  },
+  players: {
+    // Μεταβλητές: {playeronline}, {playermax}.
+    title: '**Οι παίκτες στον διακομιστή**',
+    description: '**{playeronline}/{playermax}**',
+// Η λίστα των παικτών θα εμφανίζεται μετά την περιγραφή.
+ // Εμφάνιση της ενσωμάτωσης εκτός σύνδεσης όταν ο διακομιστής Minecraft είναι εκτός σύνδεσης.
+  },
+
+  onlineEmbed: {
+    // Μεταβλητές: {ip}, {version}, {site}
+    title: ':green_circle: ONLINE',
+    // Εδώ το όνομα και η περιγραφή της λίστας παικτών είναι χαραγμένα στην κορυφή (γραμμή: 27)
+
+    // Η περιγραφή τοποθετείται στο πεδίο λίστας παικτών..
+    description_field_one: '\n__**ADRESS SERVER**__\n**{ip}**',
+    description_field_two: '__**ВЕРСИЯ**__\n**{version}**{siteText}',
+    siteText: '\n\n__**SITE**__\n**LINK: {site}**',
+    footer: 'Δοκιμασμένο σε',
+  },
+  help: {
+    // Μεταβλητές: {prefix}, {botName}
+    title: '__**ΛΙΣΤΑ ΟΜΑΔΩΝ**__',
+    description: '**Πρόθεμα: `{prefix}`**',
+    // Μόνο listFormat Μεταβλητές: {cmdDescription}, {cmdSlashMention}.
+    listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
+
+    commandInfoFormat: {
+      // Μεταβλητός: {cmdName}
+      title: '__**{cmdName} Ομάδα**__',
+      // Μεταβλητές: {cmdSlashMention}, {cmdDescription}, {prefixCmd}, {prefixCmdAlias}
+      description: '**Slash ομάδα: {cmdSlashMention}\nΠεριγραφή: `{cmdDescription}`\nΠρόθεμα εντολής: `{prefixCmd}`\nΨευδώνυμο προθέματος: {prefixCmdAlias}**',
+    },
+  },
+  info: {
+    title: '**Πληροφορίες και στατιστικά bot**',
+    // Μεταβλητές: {cpuUsage}, {memoryUsage}, {nodeVersion}, {uptimeDays}, {uptimeHours}, {uptimeMinutes}, {uptimeSeconds}, {ping}, {websocket}.
+    description: '**Χρήση CPU: `{cpuUsage}%`\nΧρήση μνήμης: `{memoryUsage}MB`\nNode.js Version: `{nodeVersion}`\nΌρος bot: `{uptimeDays}` ημέρες, `{uptimeHours}` ρολόι, `{uptimeMinutes}`, πρακτικά, `{uptimeSeconds}` δευτερόλεπτα\nPing: Πελάτης `{ping}ms` | Websocket: `{websocket}ms` **',
+  },
+}
