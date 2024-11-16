@@ -29,7 +29,7 @@ let data = new SlashCommandBuilder()
       .addChoices({ name: 'Java', value: 'java' }, { name: 'Bedrock', value: 'bedrock' })
   )
 
-if (autoChangeStatus.playerAvatarEmoji.enabled) {
+if (autoChangeStatus.playerAvatarEmoji) {
   data.addBooleanOption((option) =>
     option.setName('player_avatar').setDescription(cmdSlashTranslation.setstatus.playerAvatar).setRequired(true)
   )
@@ -60,7 +60,7 @@ let run = async ({ interaction, client }) => {
     const member = await interaction.guild.members.fetch(interaction.user.id)
     const hasManageChannels = member.permissions.has(PermissionFlagsBits.ManageChannels)
     const isPlayerAvatarEmoji =
-      playerAvatarEmoji && hasManageChannels && autoChangeStatus.playerAvatarEmoji.enabled && type === 'java'
+      playerAvatarEmoji && hasManageChannels && autoChangeStatus.playerAvatarEmoji && type === 'java'
 
     let dataRead = await JSON.parse(readData)
 
