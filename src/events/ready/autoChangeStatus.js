@@ -6,7 +6,7 @@ const config = require('../../../config.js')
 module.exports = async (client) => {
   if (!config.autoChangeStatus.enabled) return
   try {
-    if (config.autoChangeStatus.playerAvatarEmoji.enabled) {
+    if (config.autoChangeStatus.playerAvatarEmoji) {
       if (!config.autoChangeStatus.playerAvatarEmoji.guildID) return
       const guild = client.guilds.cache.get(config.autoChangeStatus.playerAvatarEmoji.guildID)
       if (guild) {

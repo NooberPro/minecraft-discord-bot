@@ -56,7 +56,6 @@
     // Use {givenCmdName} retrieves the name given in the language file.
     // Use {cmdName} retrieves the name of commands.
     slashCmdName: 'The provided name "{givenCmdName}" for the "{cmdName}" command is invalid.\nPlease use only lowercase, uppercase, title case letters, numbers, underscores, and hyphens.',
-    playerAvatarInvalidGuildId: 'The Guild Id of the Player Avatar Emoji Server has not been specified.',
   },
   playerCountCh: {
     // Use {guildID} represents the guild ID given in the config file.

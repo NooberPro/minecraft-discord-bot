@@ -89,13 +89,6 @@ const cmdSlashTranslation = json5.parse(cmdSlashContents)
     consoleLogTranslation.checkErrorConfig.guildID
   )
 
-  checkError(
-    autoChangeStatus.enabled &&
-      autoChangeStatus.playerAvatarEmoji.enabled &&
-      !autoChangeStatus.playerAvatarEmoji.guildID,
-    consoleLogTranslation.checkErrorConfig.playerAvatarInvalidGuildId
-  )
-
   for (const key in cmdSlashTranslation) {
     if (cmdSlashTranslation.hasOwnProperty(key)) {
       const cmdObject = cmdSlashTranslation[key]
@@ -221,37 +214,44 @@ const getServerDataAndPlayerList = async (dataOnly) => {
 
 const getPlayersListWithEmoji = async (playerListRaw) => {
   try {
-    const guild = client.guilds.cache.get(autoChangeStatus.playerAvatarEmoji.guildID)
-    const emojisList = guild.emojis.cache.filter((emoji) => emoji.name.endsWith('_byBot'))
+    const emojisList = await client.application.emojis.fetch()
     const playerList = []
 
-    // If the player avatar is in the guild emoji list, add it to the player list; otherwise, remove it from the guild.
+    // If the player avatar is in the emoji list, add it to the player list
     for (const emojis of emojisList) {
-      if (!playerListRaw.list.some((player) => `${player.name_clean}_byBot` === emojis[1].name)) {
-        await emojis[1].delete()
-      } else {
-        playerList.push({ name_clean: `<:${emojis[1].name}:${emojis[1].id}> ${emojis[1].name.replace('_byBot', '')}` })
+      if (playerListRaw.list.some((player) => player.name_clean === emojis[1].name)) {
+        playerList.push({ name_clean: `<:${emojis[1].name}:${emojis[1].id}> ${emojis[1].name}` })
       }
     }
 
-    // CHECKING IF PLAYER LIST IN EMOJIS LIST , IF NOT THEN CREATE It.
+    // CHECKING IF PLAYER LIST IN EMOJIS LIST , IF NOT THEN CREATE IT.
     for (const { name_clean, uuid } of playerListRaw.list) {
-      if (emojisList.some((emoji) => emoji.name === `${name_clean}_byBot`)) continue
-
-      const createEmoji = await guild.emojis.create({
-        attachment: `https://api.mineatar.io/head/${uuid}?scale=16&overlay=true`,
-        name: `${name_clean}_byBot`,
+      if (emojisList.some((emoji) => emoji.name === name_clean)) continue
+      const createEmoji = await client.application.emojis.create({
+        attachment: `https://api.mineatar.io/head/${uuid}?scale=8&overlay=true`,
+        name: name_clean,
       })
       playerList.push({
-        name_clean: `<:${createEmoji.name}:${createEmoji.id}> ${createEmoji.name.replace('_byBot', '')}`,
+        name_clean: `<:${createEmoji.name}:${createEmoji.id}> ${createEmoji.name}`,
       })
     }
 
-    return groupPlayerList({
+    const result = groupPlayerList({
       online: playerListRaw.online,
       max: playerListRaw.max,
       list: playerList,
     })
+
+    // Remove emojis that are not in the player list
+    await Promise.all(
+      emojisList.map(async (emojis) => {
+        if (!playerListRaw.list.some((player) => player.name_clean === emojis[1].name)) {
+          await emojis[1].delete()
+        }
+      })
+    )
+
+    return result
   } catch (error) {
     if (!settings.logging.errorLog) return
     getErrorMessage(error, 'playerAvatarEmojiError')
@@ -271,7 +271,7 @@ const statusMessageEdit = async (ip, port, type, name, message, isPlayerAvatarEm
 
     if (isOnline) {
       const playerList =
-        isPlayerAvatarEmoji && autoChangeStatus.playerAvatarEmoji.enabled
+        isPlayerAvatarEmoji && autoChangeStatus.playerAvatarEmoji
           ? await getPlayersListWithEmoji(data.players)
           : await getPlayersList(data.players)
 

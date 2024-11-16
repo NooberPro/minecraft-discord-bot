@@ -56,7 +56,6 @@
     // Use {givenCmdName} para obter o nome fornecido no arquivo de idioma.
     // Use {cmdName} para obter o nome dos comandos.
     slashCmdName: 'O nome fornecido "{givenCmdName}" para o comando "{cmdName}" é inválido.\nPor favor, use apenas letras minúsculas, maiúsculas, a primeira letra maiúscula, números, underscores e hífens.',
-    playerAvatarInvalidGuildId: 'O ID da Guilda do Servidor de Emojis do Avatar do Jogador não foi especificado.',
   },
   playerCountCh: {
     // Use {guildID} representa o ID da guilda fornecido no arquivo de configuração.

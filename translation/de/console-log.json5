@@ -56,7 +56,6 @@
     // Verwende {givenCmdName}, um den im Sprachdatei angegebenen Namen abzurufen.
     // Verwende {cmdName}, um den Namen von Befehlen abzurufen.
     slashCmdName: 'Der angegebene Name "{givenCmdName}" für den Befehl "{cmdName}" ist ungültig.\nBitte verwende nur Kleinbuchstaben, Großbuchstaben, die erste Buchstabe als Großbuchstabe, Zahlen, Unterstriche und Bindestriche.',
-    playerAvatarInvalidGuildId: 'Die Gilden-ID des Spieler-Avatar-Emoji-Servers wurde nicht angegeben.',
   },
   playerCountCh: {
     // Mit {guildID} wird die in der Konfigurationsdatei angegebene Guild-ID repräsentiert.
