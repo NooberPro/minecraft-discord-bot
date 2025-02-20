@@ -1,24 +1,25 @@
 // GitHub: https://github.com/NooberPro/minecraft-discord-bot
 // Crowdin: https://crowdin.com/project/minecraft-discord-bot
-// Traduction française (fr) par IA
+// Nederlandse vertaling (nl) door beertje-dev
 
 {
-  // Traduction pour la fonction de réponse automatique.
-  version: {
-    // Utilisez {version} pour récupérer la version à partir de la configuration.
-    replyText: "La version du serveur : **`{version}`**.",
+  // Vertaling voor de functie voor automatische reacties.
+  "version": {
+    // Gebruik {version} om de versie uit de configuratie op te halen.
+    "replyText": "De serverversie: **`{version}`**."
   },
-  ip: {
-    // Utilisez {ip} pour l'adresse IP et {port} pour le port.
-    replyText: '**IP : `{ip}`\nPort : `{port}`**',
+  "ip": {
+    // Gebruik {ip} voor het IP-adres en {port} voor de poort.
+    "replyText": "**IP: `{ip}`\nPoort: `{port}`**"
   },
-  site: {
-    // Utilisez {site} pour le lien du site web à partir de la configuration.
-    replyText: "Le lien du site web du serveur : **<{site}>**.",
+  "site": {
+    // Gebruik {site} voor de link naar de website vanuit de configuratie.
+    "replyText": "De website van de server: **<{site}>**."
   },
-  status: {
-    // Utilisez {playerOnline} pour le nombre de joueurs en ligne et {playerMax} pour le nombre maximum de joueurs. Cela ne fonctionne que dans onlineReply.
-    onlineReply: 'Le serveur est actuellement **`🟢EN LIGNE`** avec **`{playerOnline}/{playerMax}`** joueurs actifs.',
-    offlineReply: 'Le serveur est actuellement **`🔴HORS LIGNE`**.',
-  },
+  "status": {
+    // Gebruik {playerOnline} voor het aantal online spelers en {playerMax} voor het maximum aantal spelers. Dit werkt alleen in onlineReply.
+    "onlineReply": "De server is momenteel **`🟢ONLINE`** met **`{playerOnline}/{playerMax}`** actieve spelers.",
+    "offlineReply": "De server is momenteel **`🔴OFFLINE`**."
+  }
 }
+
