@@ -1,0 +1,68 @@
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
+// Nederlandse vertaling (nl) door beertje-dev
+
+{
+  // Vertaling voor de slash-commando's.
+
+  // Het "name"-veld is de naam van het commando. Je kunt de naam wijzigen, maar deze MAG NIET WORDEN VERTAALD.
+  // Het "description"-veld geeft de beschrijving van het commando.
+  help: {
+    name: 'help',
+    description: 'Stuurt de lijst met beschikbare commando\'s.',
+    options: {
+      name: 'command',
+      description: 'Stuurt de details over een commando.',
+    },
+  },
+  ip: {
+    name: 'ip',
+    description: 'Stuurt het serveradres van de Minecraft-server.',
+  },
+  site: {
+    name: 'site',
+    description: 'Stuurt de website-/stemlink van de Minecraft-server.',
+  },
+  version: {
+    name: 'version',
+    description: 'Stuurt de versie van de Minecraft-server.',
+  },
+
+  // Het "errorReply"-veld wordt gebruikt als er een fout optreedt bij het uitvoeren van het commando en stuurt een foutmelding terug.
+  motd: {
+    name: 'motd',
+    description: 'Stuurt het "Message of the Day" (MOTD) van de Minecraft-server.',
+    errorReply: ':warning:  **`Er is een fout opgetreden bij het ophalen van het Message of the Day (MOTD).`**',
+  },
+  players: {
+    name: 'players',
+    description: 'Stuurt de lijst met spelers die momenteel online zijn op de Minecraft-server.',
+    errorReply: ':warning:  **`Er is een fout opgetreden bij het ophalen van de online spelerslijst.`**',
+  },
+  status: {
+    name: 'status',
+    description: 'Stuurt de huidige status van de Minecraft-server.',
+    errorReply: ':warning:  **`Kan de status van de server niet vinden vanwege een fout.`**',
+  },
+  info: {
+    name: 'info',
+    description: 'Stuurt de huidige informatie over de bot.',
+    errorReply: ':warning:  **`Er is een fout opgetreden bij het ophalen van de info.`**',
+  },
+  setstatus: {
+    name: 'setstatus',
+    description: 'Stelt het statusbericht van de Minecraft-server in op het huidige kanaal.',
+    serverName: 'Voer de naam van je Minecraft-server in.',
+    serverIp: 'Voer het IP-adres van je Minecraft-server in.',
+    serverPort: 'Voer het poortnummer van je Minecraft-server in.',
+    serverType: 'Kies je servertype: Java of Bedrock',
+    playerAvatar: 'Optie voor BEHEERDERS om spelersavatars weer te geven naast de spelerslijst.',
+    // Gebruik {error} om het foutbericht weer te geven.
+    errorReply: ':warning:  **`Kon het statusbericht niet instellen vanwege een fout: {error}.`**',
+    enableFeature: '**Schakel `auto Change Status` in de configuratie in om de statusberichtfunctie te activeren.**',
+    checkingStatusMsg: ':gear: Status controleren...',
+    checkingStatusCmdMsg: ':arrows_clockwise: Status en benodigde informatie controleren.',
+    // Gebruik {channel} om de kanaallink weer te geven en {messageLink} voor het berichtlink-icoon.
+    statusMsgSuccess: ':white_check_mark: **Statusbericht is succesvol ingesteld in {channel}. Bericht:** {messageLink}.',
+  },
+}

@@ -1,0 +1,70 @@
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
+// Nederlandse vertaling (nl) door beertje-dev
+
+{
+  // Vertaling voor command embeds-berichten.
+  ip: {
+    // Variabelen: {ip}
+    title: '__**SERVERADRES**__',
+    description: '**{ip}**',
+  },
+  site: {
+    // Variabelen: {site}
+    title: '__**WEBSITE**__',
+    description: '**Link: {site}**',
+  },
+  version: {
+    // Variabelen: {version}
+    title: '__**VERSIE**__',
+    description: '**{version}**',
+  },
+  offlineEmbed: {
+    // Variabelen: {ip}, {version}, {site}
+    title: ':red_circle: OFFLINE',
+    description: '', // Laat de beschrijving leeg om dit uit te schakelen.
+    footer: 'Gecontroleerd op',
+  },
+  players: {
+    // Variabelen: {playeronline}, {playermax}
+    title: '__**SPELERS**__',
+    description: '**{playeronline}/{playermax}**',
+    // De lijst met spelers wordt weergegeven na de beschrijving.
+    // Toont offline embeds wanneer de Minecraft-server offline is.
+  },
+  motd: {
+    // Variabelen: {motd}
+    title: '__**MOTD**__',
+    description: '**{motd}**',
+  },
+  onlineEmbed: {
+    // Variabelen: {ip}, {motd}, {version}, {site}
+    title: ':green_circle: ONLINE',
+    // Hier worden de titel en beschrijving van de spelerslijst-embed hergebruikt (regel: 28).
+
+    // De beschrijving wordt geplaatst na het spelerslijstveld.
+    description_field_one: '__**MOTD**__\n**{motd}**\n\n__**SERVERADRES**__\n**{ip}**',
+    description_field_two: '‎ \n__**VERSIE**__\n**{version}**{siteText}',
+    siteText: '\n\n__**WEBSITE**__\n**Link: {site}**',
+    footer: 'Gecontroleerd op',
+  },
+  help: {
+    // Variabelen: {prefix}, {botName}
+    title: '__**Lijst met commando\'s**__',
+    description: '**Prefix: `{prefix}`**',
+    // Alleen listFormat-variabelen: {cmdDescription}, {cmdSlashMention}.
+    listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
+
+    commandInfoFormat: {
+      // Variabelen: {cmdName}
+      title: '__**{cmdName} Commando**__',
+      // Variabelen: {cmdSlashMention}, {cmdDescription}, {prefixCmd}, {prefixCmdAlias}
+      description: '**Slash commando: {cmdSlashMention}\nBeschrijving: `{cmdDescription}`\nPrefix commando\'s: `{prefixCmd}`\nPrefix alias: {prefixCmdAlias}**',
+    },
+  },
+  info: {
+    title: '**Bot Info en Statistieken**',
+    // Variabelen: {cpuUsage}, {memoryUsage}, {nodeVersion}, {uptimeDays}, {uptimeHours}, {uptimeMinutes}, {uptimeSeconds}, {ping}, {websocket}
+    description: '**CPU-gebruik: `{cpuUsage}%`\nGeheugengebruik: `{memoryUsage}MB`\nNode.js-versie: `{nodeVersion}`\nBot uptime: `{uptimeDays}` dagen, `{uptimeHours}` uur, `{uptimeMinutes}` minuten, `{uptimeSeconds}` seconden\nPing: Client `{ping}ms` | Websocket: `{websocket}ms` **',
+  },
+}

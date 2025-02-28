@@ -1,0 +1,25 @@
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
+// Nederlandse vertaling (nl) door beertje-dev
+
+{
+  // Vertaling voor de functie voor automatische reacties.
+  "version": {
+    // Gebruik {version} om de versie uit de configuratie op te halen.
+    "replyText": "De serverversie: **`{version}`**."
+  },
+  "ip": {
+    // Gebruik {ip} voor het IP-adres en {port} voor de poort.
+    "replyText": "**IP: `{ip}`\nPoort: `{port}`**"
+  },
+  "site": {
+    // Gebruik {site} voor de link naar de website vanuit de configuratie.
+    "replyText": "De website van de server: **<{site}>**."
+  },
+  "status": {
+    // Gebruik {playerOnline} voor het aantal online spelers en {playerMax} voor het maximum aantal spelers. Dit werkt alleen in onlineReply.
+    "onlineReply": "De server is momenteel **`🟢ONLINE`** met **`{playerOnline}/{playerMax}`** actieve spelers.",
+    "offlineReply": "De server is momenteel **`🔴OFFLINE`**."
+  }
+}
+
