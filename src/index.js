@@ -153,11 +153,8 @@ const groupPlayerList = (playerListArrayRaw) => {
 
 const getError = (error, errorMsg) => {
   if (settings.logging.error) {
-    console.log(
-      `${getDateNow()} | ${chalk.red('ERROR')} | ${chalk.bold(consoleLogTranslation.error[errorMsg])}: ${chalk.keyword(
-        'orange'
-      )(error.message)}`
-    )
+    console.log(`${getDateNow()} | ${chalk.red('ERROR')} | ${chalk.bold(consoleLogTranslation.error[errorMsg])}:`)
+    console.log(error)
   }
 }
 
@@ -212,6 +209,15 @@ const getServerDataAndPlayerList = async (dataOnly) => {
   }
 }
 
+const removeUnusedEmojis = async (playerListRaw, emojisList) => {
+  // Remove emojis that are not in the player list.
+  for (const emojis of emojisList) {
+    if (!playerListRaw.list.some((player) => player.name_clean === emojis[1].name)) {
+      await emojis[1].delete()
+    }
+  }
+}
+
 const getPlayersListWithEmoji = async (playerListRaw) => {
   try {
     const emojisList = await client.application.emojis.fetch()
@@ -242,14 +248,7 @@ const getPlayersListWithEmoji = async (playerListRaw) => {
       list: playerList,
     })
 
-    // Remove emojis that are not in the player list
-    await Promise.all(
-      emojisList.map(async (emojis) => {
-        if (!playerListRaw.list.some((player) => player.name_clean === emojis[1].name)) {
-          await emojis[1].delete()
-        }
-      })
-    )
+    removeUnusedEmojis(playerListRaw, emojisList)
 
     return result
   } catch (error) {

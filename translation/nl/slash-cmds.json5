@@ -9,7 +9,7 @@
   // Het "description"-veld geeft de beschrijving van het commando.
   help: {
     name: 'help',
-    description: 'Stuurt de lijst met beschikbare commando\'s.',
+    description: "Stuurt de lijst met beschikbare commando's.",
     options: {
       name: 'command',
       description: 'Stuurt de details over een commando.',

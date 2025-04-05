@@ -1,6 +1,6 @@
 {
   "name": "minecraft-discord-bot",
-  "version": "1.8.0",
+  "version": "1.8.3",
   "description": "A feature-rich and highly customizable Discord bot that provides information about your Minecraft server.",
   "main": "src/index.js",
   "scripts": {
@@ -27,7 +27,7 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "commandkit": "^0.1.10",
-    "discord.js": "^14.16.3",
+    "discord.js": "^14.18.0",
     "json5": "^2.2.3",
     "node-mcstatus": "^1.2.1"
   }

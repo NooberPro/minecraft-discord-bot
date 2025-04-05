@@ -24,7 +24,6 @@
     playerCountCh: 'Erro na Funcionalidade do Canal de Contagem de Jogadores.',
     playerCountChNameUpdate: 'Erro na Atualização do Nome do Canal de Contagem de Jogadores.',
     playerCountChDateWrite: 'Erro ao Salvar a ID do Canal de Contagem de Jogadores no data.json.',
-    playerAvatarGuildIdCheck: 'Erro ao verificar o ID da Guilda do Avatar do Jogador.',
     playerAvatarEmojiError: 'Erro ao gerenciar os emojis do avatar do jogador',
   },
   debug: {

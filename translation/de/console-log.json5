@@ -24,7 +24,6 @@
     playerCountCh: 'Fehler im Feature für die Spieleranzahl im Kanal.',
     playerCountChNameUpdate: 'Fehler beim Aktualisieren des Namens des Spieleranzahl-Kanals.',
     playerCountChDateWrite: 'Fehler beim Speichern der Spieleranzahl-Kanal-ID in data.json.',
-    playerAvatarGuildIdCheck: 'Fehler beim Überprüfen der Player-Avatar-Guild-ID.',
     playerAvatarEmojiError: 'Fehler beim Verwalten der Spieler-Avatar-Emojis',
   },
   debug: {

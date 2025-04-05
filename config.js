@@ -31,7 +31,8 @@ module.exports = {
   // Bot settings.
   settings: {
     language: {
-      // Available languages: en (English), es (Spanish), de (German), fr (French), pt (Portuguese), ru (Russian), uk (Ukrainian)
+      // Available languages:
+      // en (English), es (Spanish), de (German), fr (French), pt (Portuguese), ru (Russian), uk (Ukrainian), nl(Dutch)
       main: 'en', // Main language (files in ./translation/)
       // Optional language settings for specific features. Leave blank to use the main language.
       embeds: '', // Language for embeds, Slash and Prefix Commands, Auto Changing Status.
@@ -61,7 +62,7 @@ module.exports = {
     enabled: false,
     updateInterval: 60, // Interval between status updates in seconds. Recommended: above 60.
     adminOnly: true, // It makes admins who with the "Manage Channel" permission can only set the status message.
-    playerAvatarEmoji: true, // Show player avatar in the player list. Only for Java and in adminOnly mode.
+    playerAvatarEmoji: false, // Show player avatar in the player list. Only for Java and in adminOnly mode.(beta)
     // These settings apply to slash (/) and prefix commands for status.
     isOnlineCheck: true, // Useful for servers using free hosting providers like Aternos. If the server's max players is 0, the status will be set to offline.
   },

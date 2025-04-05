@@ -24,7 +24,6 @@
     playerCountCh: 'Erreur dans la fonction de canal de décompte des joueurs.',
     playerCountChNameUpdate: 'Erreur lors de la mise à jour du nom du canal de décompte des joueurs.',
     playerCountChDateWrite: "Erreur lors de l'enregistrement de l'ID du canal de décompte des joueurs dans data.json.",
-    playerAvatarGuildIdCheck: "Erreur lors de la vérification de l'ID de Guilde de l'Avatar du Joueur.",
     playerAvatarEmojiError: "Erreur lors de la gestion des emojis de l'avatar du joueur",
   },
   debug: {
