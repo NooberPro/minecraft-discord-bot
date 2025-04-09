@@ -80,6 +80,7 @@ module.exports = {
   autoReply: {
     // If a message contains trigger words, reply with appropriate server information.
     enabled: false, // Disable the entire auto-reply feature.
+    deleteMsg: true, // This will delete the trigger message sent by user and response of the bot after 10 sec. (Avoids clutter in chat)
     version: {
       enabled: true,
       triggerWords: ['version of the server?', 'version'],

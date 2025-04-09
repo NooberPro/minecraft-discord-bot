@@ -209,13 +209,17 @@ const getServerDataAndPlayerList = async (dataOnly) => {
   }
 }
 
-const removeUnusedEmojis = async (playerListRaw, emojisList) => {
-  // Remove emojis that are not in the player list.
-  for (const emojis of emojisList) {
-    if (!playerListRaw.list.some((player) => player.name_clean === emojis[1].name)) {
-      await emojis[1].delete()
+let UsedPlayerEmojis = []
+
+const removeUnusedEmojis = async () => {
+  // Remove all unwanted player avatar emojis
+  const emojisList = await client.application.emojis.fetch()
+  for (const emoji of emojisList) {
+    if (!UsedPlayerEmojis.includes(emoji[1].name)) {
+      await emoji[1].delete()
     }
   }
+  UsedPlayerEmojis = []
 }
 
 const getPlayersListWithEmoji = async (playerListRaw) => {
@@ -227,6 +231,7 @@ const getPlayersListWithEmoji = async (playerListRaw) => {
     for (const emojis of emojisList) {
       if (playerListRaw.list.some((player) => player.name_clean === emojis[1].name)) {
         playerList.push({ name_clean: `<:${emojis[1].name}:${emojis[1].id}> ${emojis[1].name}` })
+        UsedPlayerEmojis.push(emojis[1].name)
       }
     }
 
@@ -240,6 +245,7 @@ const getPlayersListWithEmoji = async (playerListRaw) => {
       playerList.push({
         name_clean: `<:${createEmoji.name}:${createEmoji.id}> ${createEmoji.name}`,
       })
+      UsedPlayerEmojis.push(createEmoji.name)
     }
 
     const result = groupPlayerList({
@@ -247,9 +253,6 @@ const getPlayersListWithEmoji = async (playerListRaw) => {
       max: playerListRaw.max,
       list: playerList,
     })
-
-    removeUnusedEmojis(playerListRaw, emojisList)
-
     return result
   } catch (error) {
     if (!settings.logging.errorLog) return
@@ -325,6 +328,7 @@ module.exports = {
   getDebug,
   statusMessageEdit,
   getPlayersList,
+  removeUnusedEmojis,
   embedTranslation,
   consoleLogTranslation,
   cmdSlashTranslation,
