@@ -65,4 +65,5 @@
     // Use {channel} para fornecer o link do canal, e {messageLink} fornece o ícone do link da mensagem.
     statusMsgSuccess: ':white_check_mark: **Mensagem de status definida com sucesso em {channel}. Mensagem:** {messageLink}.',
   },
+  disabledChannelMsg: ':no_entry: Os comandos estão desativados neste canal.',
 }

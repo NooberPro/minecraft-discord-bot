@@ -62,7 +62,7 @@ module.exports = {
     enabled: false,
     updateInterval: 60, // Interval between status updates in seconds. Recommended: above 60.
     adminOnly: true, // It makes admins who with the "Manage Channel" permission can only set the status message.
-    playerAvatarEmoji: false, // Show player avatar in the player list. Only for Java and in adminOnly mode.(beta)
+    playerAvatarEmoji: true, // Show player avatar in the player list. Only for Java and in adminOnly mode.
     // These settings apply to slash (/) and prefix commands for status.
     isOnlineCheck: true, // Useful for servers using free hosting providers like Aternos. If the server's max players is 0, the status will be set to offline.
   },
@@ -80,7 +80,11 @@ module.exports = {
   autoReply: {
     // If a message contains trigger words, reply with appropriate server information.
     enabled: false, // Disable the entire auto-reply feature.
-    deleteMsg: true, // This will delete the trigger message sent by user and response of the bot after 10 sec. (Avoids clutter in chat)
+    deleteMsg: false, // This will delete the trigger message sent by user and response of the bot after 10 sec. (Avoids clutter in chat)
+    // Channels where auto-reply are enabled. eg: ['1234567','8909876',].  The number given here is channel's id.
+    enabledChannels: [],
+    // Channels where auto-reply are disabled. eg: ['1234567','8909876',]. The number given here is channel's id.
+    disabledChannels: [],
     version: {
       enabled: true,
       triggerWords: ['version of the server?', 'version'],
@@ -101,6 +105,10 @@ module.exports = {
 
   commands: {
     slashCommands: true, // Enables all slash commands.
+    // Channels where slash and prefix commands are enabled. eg: ['1234567','8909876',].  The number given here is channel's id.
+    enabledChannels: [],
+    // Channels where slash and prefix commands are disabled. eg: ['1234567','8909876',]. The number given here is channel's id.
+    disabledChannels: [],
     prefixCommands: {
       enabled: true, // Enables all prefix commands.
       prefix: '!', // Prefix for normal commands.

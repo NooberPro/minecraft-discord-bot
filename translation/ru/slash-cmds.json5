@@ -65,4 +65,5 @@
     // Используйте {channel} чтобы написать ссылку на канал, а {messageLink} предоставляет значок на сообщении.
     statusMsgSuccess: ':white_check_mark: **Статус сообщения успешно установлен в {channel}. Сообщения:**{messageLink}.',
   },
+  disabledChannelMsg: ':no_entry: Команды отключены в этом канале.',
 }

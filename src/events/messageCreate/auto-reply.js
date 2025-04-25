@@ -1,4 +1,5 @@
 const { autoReply, mcserver, commands, settings } = require('../../../config')
+const { isChannelAllowed, getError } = require('../../index')
 const fs = require('fs')
 const json5 = require('json5')
 
@@ -14,7 +15,7 @@ const deleteMsg = (message, reply) => {
       await message.delete()
     } catch (error) {
       if (error.message === 'Unknown Message') return
-      console.log('Error while deleting message:', error.message)
+      getError(error, 'autoReplyMsgDelete')
     }
   }, 10000)
 }
@@ -22,6 +23,7 @@ const deleteMsg = (message, reply) => {
 module.exports = async (msg) => {
   try {
     if (!autoReply.enabled || msg.author.bot || msg.content.startsWith(commands.prefixCommands.prefix)) return
+    if (!isChannelAllowed(msg.channelId, true)) return
     const { content } = msg
     const { ip, site, status, version } = autoReply
     const isIp = new RegExp(`(?<=^|\\P{L})(${ip.triggerWords.join('|')})(?=\\P{L}|$)`, 'iu')

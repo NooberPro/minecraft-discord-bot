@@ -1,11 +1,14 @@
 const { SlashCommandBuilder } = require('discord.js')
 const { helpEmbed } = require('../embeds')
 const { commands } = require('../../config')
-const { cmdSlashTranslation } = require('../index')
+const { cmdSlashTranslation, isChannelAllowed } = require('../index')
 
 const commandsChoicesArray = []
 for (const cmds in commands) {
-  if (commands[cmds].enabled && !['slashCommands', 'prefixCommands', 'language'].includes(cmds)) {
+  if (
+    commands[cmds].enabled &&
+    !['disabledChannels', 'enabledChannels', 'slashCommands', 'prefixCommands', 'language'].includes(cmds)
+  ) {
     commandsChoicesArray.push({ name: cmds, value: cmds })
   }
 }
@@ -21,8 +24,15 @@ module.exports = {
         .addChoices(...commandsChoicesArray)
     ),
   run: async ({ interaction, client }) => {
+    if (!isChannelAllowed(interaction.channelId, false)) {
+      interaction.reply({
+        content: cmdSlashTranslation.disabledChannelMsg,
+        flags: MessageFlags.Ephemeral,
+      })
+      return
+    }
     await interaction.deferReply()
-    const commandsChoice = interaction.options.getString('commands')
+    const commandsChoice = await interaction.options.getString(cmdSlashTranslation.help.options.name)
     await interaction.editReply({ embeds: [await helpEmbed(client, commandsChoice)] })
   },
   options: {

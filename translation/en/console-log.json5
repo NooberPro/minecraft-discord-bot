@@ -25,6 +25,7 @@
     playerCountChNameUpdate: 'Error in Updating Player Count Channel Name.',
     playerCountChDateWrite: 'Error in Saving Player Count Channel ID in data.json.',
     playerAvatarEmojiError: 'Error while managing player avatar emojis',
+    autoReplyMsgDelete: 'Error while deleting auto reply message',
   },
   debug: {
     autoChangeStatus: {

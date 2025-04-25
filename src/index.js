@@ -1,6 +1,6 @@
 const { Client, IntentsBitField } = require('discord.js')
 const { statusBedrock, statusJava } = require('node-mcstatus')
-const { settings, bot, mcserver, autoChangeStatus, playerCountCH } = require('../config')
+const { settings, bot, mcserver, autoChangeStatus, playerCountCH, commands, autoReply } = require('../config')
 const chalk = require('chalk')
 const fs = require('fs')
 const { CommandKit } = require('commandkit')
@@ -321,6 +321,18 @@ const statusMessageEdit = async (ip, port, type, name, message, isPlayerAvatarEm
   }
 }
 
+const isChannelAllowed = (channelId, isAutoReply) => {
+  if (!isAutoReply) {
+    if (commands.enabledChannels.length && !commands.enabledChannels.includes(channelId)) return false
+    if (commands.disabledChannels.includes(channelId)) return false
+    return true
+  } else {
+    if (autoReply.enabledChannels.length && !autoReply.enabledChannels.includes(channelId)) return false
+    if (autoReply.disabledChannels.includes(channelId)) return false
+    return true
+  }
+}
+
 module.exports = {
   getServerDataAndPlayerList,
   getError,
@@ -329,6 +341,7 @@ module.exports = {
   statusMessageEdit,
   getPlayersList,
   removeUnusedEmojis,
+  isChannelAllowed,
   embedTranslation,
   consoleLogTranslation,
   cmdSlashTranslation,

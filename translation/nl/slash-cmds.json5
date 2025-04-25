@@ -65,4 +65,5 @@
     // Gebruik {channel} om de kanaallink weer te geven en {messageLink} voor het berichtlink-icoon.
     statusMsgSuccess: ':white_check_mark: **Statusbericht is succesvol ingesteld in {channel}. Bericht:** {messageLink}.',
   },
+  disabledChannelMsg: ':no_entry: Opdrachten zijn uitgeschakeld in dit kanaal.',
 }

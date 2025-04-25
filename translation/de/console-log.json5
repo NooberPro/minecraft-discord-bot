@@ -25,6 +25,7 @@
     playerCountChNameUpdate: 'Fehler beim Aktualisieren des Namens des Spieleranzahl-Kanals.',
     playerCountChDateWrite: 'Fehler beim Speichern der Spieleranzahl-Kanal-ID in data.json.',
     playerAvatarEmojiError: 'Fehler beim Verwalten der Spieler-Avatar-Emojis',
+    autoReplyMsgDelete: 'Fehler beim Löschen der automatischen Antwortnachricht',
   },
   debug: {
     autoChangeStatus: {

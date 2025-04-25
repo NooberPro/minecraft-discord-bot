@@ -25,6 +25,7 @@
     playerCountChNameUpdate: 'Ошибка в обновлении имя канал счётчика игроков.',
     playerCountChDateWrite: 'Ошибка в сохранении ID канал счётчика игроков в data.json.',
     playerAvatarEmojiError: 'Ошибка при управлении эмодзи аватара игрока',
+    autoReplyMsgDelete: 'Ошибка при удалении автоматического ответа',
   },
   debug: {
     autoChangeStatus: {

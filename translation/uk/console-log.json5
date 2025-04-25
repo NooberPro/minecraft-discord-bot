@@ -25,6 +25,7 @@
     playerCountChNameUpdate: 'Помилка в оновленні рахування гравців у назві каналу.',
     playerCountChDateWrite: 'Помилка в збереженні ID каналу рахування гравців у data.json.',
     playerAvatarEmojiError: 'Помилка під час керування емодзі аватара гравця',
+    autoReplyMsgDelete: 'Помилка під час видалення автоматичного повідомлення',
   },
   debug: {
     autoChangeStatus: {

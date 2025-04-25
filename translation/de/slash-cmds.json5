@@ -65,4 +65,5 @@
     // Verwenden Sie {channel}, um den Kanallink bereitzustellen, und {messageLink} bietet das Nachrichtenlink-Symbol.
     statusMsgSuccess: ':white_check_mark: **Die Statusmeldung wurde erfolgreich in {channel} festgelegt. Nachricht:** {messageLink}.',
   },
+  disabledChannelMsg: ':no_entry: Befehle sind in diesem Kanal deaktiviert.',
 }

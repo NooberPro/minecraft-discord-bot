@@ -25,6 +25,7 @@
     playerCountChNameUpdate: 'Erro na Atualização do Nome do Canal de Contagem de Jogadores.',
     playerCountChDateWrite: 'Erro ao Salvar a ID do Canal de Contagem de Jogadores no data.json.',
     playerAvatarEmojiError: 'Erro ao gerenciar os emojis do avatar do jogador',
+    autoReplyMsgDelete: 'Erro ao excluir a mensagem de resposta automática',
   },
   debug: {
     autoChangeStatus: {

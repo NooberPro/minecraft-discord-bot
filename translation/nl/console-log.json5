@@ -26,6 +26,7 @@
     playerCountChDateWrite: 'Fout bij het opslaan van het spelersteltaantal-kanaal-ID in data.json.',
     playerAvatarGuildIdCheck: 'Fout bij het controleren van de gilde-ID voor speleravatars.',
     playerAvatarEmojiError: "Fout bij het beheren van speleravatar-emoji's.",
+    autoReplyMsgDelete: 'Fout bij het verwijderen van het automatische antwoordbericht',
   },
   debug: {
     autoChangeStatus: {
