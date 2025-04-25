@@ -52,5 +52,6 @@
     "checkingStatusMsg": ":gear: Checking the status...",
     "checkingStatusCmdMsg": ":arrows_clockwise: Checking the status and necessary info.",
     "statusMsgSuccess": ":white_check_mark: **Status message is set successfully in {channel}. Message:** {messageLink}."
-  }
+  },
+  "disabledChannelMsg": ":no_entry: Commands are disabled in this channel."
 }

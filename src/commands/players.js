@@ -1,12 +1,19 @@
-const { SlashCommandBuilder } = require('discord.js')
+const { SlashCommandBuilder, MessageFlags } = require('discord.js')
 const { commands } = require('../../config')
-const { cmdSlashTranslation } = require('../index')
+const { cmdSlashTranslation, isChannelAllowed } = require('../index')
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName(cmdSlashTranslation.players.name)
     .setDescription(cmdSlashTranslation.players.description),
   run: async ({ interaction }) => {
+    if (!isChannelAllowed(interaction.channelId, false)) {
+      interaction.reply({
+        content: cmdSlashTranslation.disabledChannelMsg,
+        flags: MessageFlags.Ephemeral,
+      })
+      return
+    }
     await interaction.deferReply()
     const { playerList } = require('../embeds')
     try {

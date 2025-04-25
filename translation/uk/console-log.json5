@@ -24,8 +24,8 @@
     playerCountCh: 'Помилка в функції рахування гравців в каналі.',
     playerCountChNameUpdate: 'Помилка в оновленні рахування гравців у назві каналу.',
     playerCountChDateWrite: 'Помилка в збереженні ID каналу рахування гравців у data.json.',
-    playerAvatarGuildIdCheck: 'Помилка при перевірці ID гільдії аватара гравця.',
     playerAvatarEmojiError: 'Помилка під час керування емодзі аватара гравця',
+    autoReplyMsgDelete: 'Помилка під час видалення автоматичного повідомлення',
   },
   debug: {
     autoChangeStatus: {

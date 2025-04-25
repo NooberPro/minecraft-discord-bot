@@ -19,8 +19,8 @@
     "playerCountCh": "Error in Player Count Channel Feature.",
     "playerCountChNameUpdate": "Error in Updating Player Count Channel Name.",
     "playerCountChDateWrite": "Error in Saving Player Count Channel ID in data.json.",
-    "playerAvatarGuildIdCheck": "Error while checking Player Avatar Guild ID.",
-    "playerAvatarEmojiError": "Error while managing player avatar emojis"
+    "playerAvatarEmojiError": "Error while managing player avatar emojis",
+    "autoReplyMsgDelete": "Error while deleting auto reply message"
   },
   "debug": {
     "autoChangeStatus": {

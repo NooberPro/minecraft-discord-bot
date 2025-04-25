@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js')
+const { SlashCommandBuilder, PermissionFlagsBits, MessageFlags } = require('discord.js')
 const { statusMessageEdit, consoleLogTranslation, cmdSlashTranslation, getError } = require('../index')
 const { autoChangeStatus, mcserver } = require('../../config')
 const chalk = require('chalk')
@@ -39,12 +39,12 @@ if (autoChangeStatus.adminOnly) {
 }
 
 let run = async ({ interaction, client }) => {
-  await interaction.deferReply({ ephemeral: true })
+  await interaction.deferReply({ flags: MessageFlags.Ephemeral })
   try {
     if (!autoChangeStatus.enabled) {
       interaction.editReply({
         content: cmdSlashTranslation.setstatus.enableFeature,
-        ephemeral: true,
+        flags: MessageFlags.Ephemeral,
       })
       return
     }
@@ -77,14 +77,13 @@ let run = async ({ interaction, client }) => {
       messageId: msg.id,
       isPlayerAvatarEmoji,
     })
-
     await statusMessageEdit(ip, port, type, name, msg, isPlayerAvatarEmoji)
     fs.writeFileSync('./src/data.json', JSON.stringify(dataRead, null, 2), 'utf8')
     interaction.editReply({
       content: cmdSlashTranslation.setstatus.statusMsgSuccess
         .replace(/\{channel\}/gi, `<#${interaction.channelId}>`)
         .replace(/\{messageLink\}/gi, `https://discord.com/channels/${msg.guildId}/${interaction.channelId}/${msg.id}`),
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     })
     console.log(
       consoleLogTranslation.debug.autoChangeStatus.successLog.replace(
@@ -95,7 +94,7 @@ let run = async ({ interaction, client }) => {
   } catch (error) {
     interaction.editReply({
       content: cmdSlashTranslation.setstatus.errorReply.replace(/\{error\}/gi, error.message),
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     })
     if (error.message.startsWith('Invalid IP')) return
     getError(error, 'setStatus')

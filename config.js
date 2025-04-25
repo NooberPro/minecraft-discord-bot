@@ -31,7 +31,8 @@ module.exports = {
   // Bot settings.
   settings: {
     language: {
-      // Available languages: en (English), es (Spanish), de (German), fr (French), pt (Portuguese), ru (Russian), uk (Ukrainian)
+      // Available languages:
+      // en (English), es (Spanish), de (German), fr (French), pt (Portuguese), ru (Russian), uk (Ukrainian), nl(Dutch)
       main: 'en', // Main language (files in ./translation/)
       // Optional language settings for specific features. Leave blank to use the main language.
       embeds: '', // Language for embeds, Slash and Prefix Commands, Auto Changing Status.
@@ -79,6 +80,11 @@ module.exports = {
   autoReply: {
     // If a message contains trigger words, reply with appropriate server information.
     enabled: false, // Disable the entire auto-reply feature.
+    deleteMsg: false, // This will delete the trigger message sent by user and response of the bot after 10 sec. (Avoids clutter in chat)
+    // Channels where auto-reply are enabled. eg: ['1234567','8909876',].  The number given here is channel's id.
+    enabledChannels: [],
+    // Channels where auto-reply are disabled. eg: ['1234567','8909876',]. The number given here is channel's id.
+    disabledChannels: [],
     version: {
       enabled: true,
       triggerWords: ['version of the server?', 'version'],
@@ -99,6 +105,10 @@ module.exports = {
 
   commands: {
     slashCommands: true, // Enables all slash commands.
+    // Channels where slash and prefix commands are enabled. eg: ['1234567','8909876',].  The number given here is channel's id.
+    enabledChannels: [],
+    // Channels where slash and prefix commands are disabled. eg: ['1234567','8909876',]. The number given here is channel's id.
+    disabledChannels: [],
     prefixCommands: {
       enabled: true, // Enables all prefix commands.
       prefix: '!', // Prefix for normal commands.

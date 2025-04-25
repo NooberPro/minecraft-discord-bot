@@ -24,8 +24,8 @@
     playerCountCh: 'Ошибка в функции счётчика игроков в канале.',
     playerCountChNameUpdate: 'Ошибка в обновлении имя канал счётчика игроков.',
     playerCountChDateWrite: 'Ошибка в сохранении ID канал счётчика игроков в data.json.',
-    playerAvatarGuildIdCheck: 'Ошибка при проверке ID гильдии аватара игрока.',
     playerAvatarEmojiError: 'Ошибка при управлении эмодзи аватара игрока',
+    autoReplyMsgDelete: 'Ошибка при удалении автоматического ответа',
   },
   debug: {
     autoChangeStatus: {

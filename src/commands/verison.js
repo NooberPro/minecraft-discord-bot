@@ -1,7 +1,7 @@
-const { SlashCommandBuilder } = require('discord.js')
+const { SlashCommandBuilder, MessageFlags } = require('discord.js')
 const { versionEmbed } = require('../embeds')
 const { commands } = require('../../config')
-const { cmdSlashTranslation } = require('../index')
+const { cmdSlashTranslation, isChannelAllowed } = require('../index')
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -9,6 +9,13 @@ module.exports = {
     .setDescription(cmdSlashTranslation.version.description),
 
   run: ({ interaction }) => {
+    if (!isChannelAllowed(interaction.channelId, false)) {
+      interaction.reply({
+        content: cmdSlashTranslation.disabledChannelMsg,
+        flags: MessageFlags.Ephemeral,
+      })
+      return
+    }
     interaction.reply({ embeds: [versionEmbed] })
   },
   options: {

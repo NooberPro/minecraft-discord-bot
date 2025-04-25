@@ -64,4 +64,5 @@
     // Використовуйте {channel} для надання посилання каналу та {messageLink} надання посилання на іконку у повідомленні.
     statusMsgSuccess: ':white_check_mark: **Повідомлення статусу установлено у {channel}. Повідомлення:**{messageLink}',
   },
+  disabledChannelMsg: ':no_entry: Команди вимкнено в цьому каналі.',
 }

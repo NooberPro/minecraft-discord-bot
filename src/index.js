@@ -1,6 +1,6 @@
 const { Client, IntentsBitField } = require('discord.js')
 const { statusBedrock, statusJava } = require('node-mcstatus')
-const { settings, bot, mcserver, autoChangeStatus, playerCountCH } = require('../config')
+const { settings, bot, mcserver, autoChangeStatus, playerCountCH, commands, autoReply } = require('../config')
 const chalk = require('chalk')
 const fs = require('fs')
 const { CommandKit } = require('commandkit')
@@ -153,11 +153,8 @@ const groupPlayerList = (playerListArrayRaw) => {
 
 const getError = (error, errorMsg) => {
   if (settings.logging.error) {
-    console.log(
-      `${getDateNow()} | ${chalk.red('ERROR')} | ${chalk.bold(consoleLogTranslation.error[errorMsg])}: ${chalk.keyword(
-        'orange'
-      )(error.message)}`
-    )
+    console.log(`${getDateNow()} | ${chalk.red('ERROR')} | ${chalk.bold(consoleLogTranslation.error[errorMsg])}:`)
+    console.log(error)
   }
 }
 
@@ -212,6 +209,19 @@ const getServerDataAndPlayerList = async (dataOnly) => {
   }
 }
 
+let UsedPlayerEmojis = []
+
+const removeUnusedEmojis = async () => {
+  // Remove all unwanted player avatar emojis
+  const emojisList = await client.application.emojis.fetch()
+  for (const emoji of emojisList) {
+    if (!UsedPlayerEmojis.includes(emoji[1].name)) {
+      await emoji[1].delete()
+    }
+  }
+  UsedPlayerEmojis = []
+}
+
 const getPlayersListWithEmoji = async (playerListRaw) => {
   try {
     const emojisList = await client.application.emojis.fetch()
@@ -221,6 +231,7 @@ const getPlayersListWithEmoji = async (playerListRaw) => {
     for (const emojis of emojisList) {
       if (playerListRaw.list.some((player) => player.name_clean === emojis[1].name)) {
         playerList.push({ name_clean: `<:${emojis[1].name}:${emojis[1].id}> ${emojis[1].name}` })
+        UsedPlayerEmojis.push(emojis[1].name)
       }
     }
 
@@ -234,6 +245,7 @@ const getPlayersListWithEmoji = async (playerListRaw) => {
       playerList.push({
         name_clean: `<:${createEmoji.name}:${createEmoji.id}> ${createEmoji.name}`,
       })
+      UsedPlayerEmojis.push(createEmoji.name)
     }
 
     const result = groupPlayerList({
@@ -241,16 +253,6 @@ const getPlayersListWithEmoji = async (playerListRaw) => {
       max: playerListRaw.max,
       list: playerList,
     })
-
-    // Remove emojis that are not in the player list
-    await Promise.all(
-      emojisList.map(async (emojis) => {
-        if (!playerListRaw.list.some((player) => player.name_clean === emojis[1].name)) {
-          await emojis[1].delete()
-        }
-      })
-    )
-
     return result
   } catch (error) {
     if (!settings.logging.errorLog) return
@@ -319,6 +321,18 @@ const statusMessageEdit = async (ip, port, type, name, message, isPlayerAvatarEm
   }
 }
 
+const isChannelAllowed = (channelId, isAutoReply) => {
+  if (!isAutoReply) {
+    if (commands.enabledChannels.length && !commands.enabledChannels.includes(channelId)) return false
+    if (commands.disabledChannels.includes(channelId)) return false
+    return true
+  } else {
+    if (autoReply.enabledChannels.length && !autoReply.enabledChannels.includes(channelId)) return false
+    if (autoReply.disabledChannels.includes(channelId)) return false
+    return true
+  }
+}
+
 module.exports = {
   getServerDataAndPlayerList,
   getError,
@@ -326,6 +340,8 @@ module.exports = {
   getDebug,
   statusMessageEdit,
   getPlayersList,
+  removeUnusedEmojis,
+  isChannelAllowed,
   embedTranslation,
   consoleLogTranslation,
   cmdSlashTranslation,

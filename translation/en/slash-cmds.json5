@@ -65,4 +65,5 @@
     // Use {channel} to provide the channel link, and {messageLink} provides the message link icon.
     statusMsgSuccess: ':white_check_mark: **Status message is set successfully in {channel}. Message:** {messageLink}.',
   },
+  disabledChannelMsg: ':no_entry: Commands are disabled in this channel.',
 }

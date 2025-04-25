@@ -1,5 +1,5 @@
 const { commands, mcserver } = require('../../../config')
-const { cmdSlashTranslation } = require('./../../index')
+const { cmdSlashTranslation, isChannelAllowed } = require('./../../index')
 const { ipEmbed, siteEmbed, playerList, versionEmbed, statusEmbed, motdEmbed, helpEmbed } = require('../../embeds')
 
 module.exports = async (message, client) => {
@@ -10,7 +10,19 @@ module.exports = async (message, client) => {
     !message.content.startsWith(commands.prefixCommands.prefix)
   )
     return
-
+  if (!isChannelAllowed(message.channelId, false)) {
+    const msgReply = await message.reply(cmdSlashTranslation.disabledChannelMsg)
+    setTimeout(async () => {
+      try {
+        await msgReply.delete()
+        await message.delete()
+      } catch (error) {
+        if (error.message === 'Unknown Message') return
+        getError(error, 'autoReplyMsgDelete')
+      }
+    }, 5000)
+    return
+  }
   const prefix = commands.prefixCommands.prefix
   const content = message.content.slice(prefix.length)
 

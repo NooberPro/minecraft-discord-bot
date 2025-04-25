@@ -50,7 +50,7 @@
   },
   help: {
     // Variabelen: {prefix}, {botName}
-    title: '__**Lijst met commando\'s**__',
+    title: "__**Lijst met commando's**__",
     description: '**Prefix: `{prefix}`**',
     // Alleen listFormat-variabelen: {cmdDescription}, {cmdSlashMention}.
     listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
@@ -59,7 +59,7 @@
       // Variabelen: {cmdName}
       title: '__**{cmdName} Commando**__',
       // Variabelen: {cmdSlashMention}, {cmdDescription}, {prefixCmd}, {prefixCmdAlias}
-      description: '**Slash commando: {cmdSlashMention}\nBeschrijving: `{cmdDescription}`\nPrefix commando\'s: `{prefixCmd}`\nPrefix alias: {prefixCmdAlias}**',
+      description: "**Slash commando: {cmdSlashMention}\nBeschrijving: `{cmdDescription}`\nPrefix commando's: `{prefixCmd}`\nPrefix alias: {prefixCmdAlias}**",
     },
   },
   info: {

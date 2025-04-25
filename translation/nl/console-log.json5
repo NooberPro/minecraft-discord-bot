@@ -4,79 +4,80 @@
 
 {
   // Vertaling voor de console-uitvoer
-  "error": {
-    "playerEmbed": "Er is een fout opgetreden bij het maken van de Player List Embeds-bericht.",
-    "statusEmbed": "Er is een fout opgetreden bij het maken van de Status Embeds-bericht.",
-    "playerList": "Er is een fout opgetreden bij het maken van de spelerslijst.",
-    "fetchServerDataAndPlayerList": "Kan de Minecraft-servergegevens en spelerslijst niet ophalen.",
-    "fetchServerData": "Kan de Minecraft-servergegevens niet ophalen.",
-    "messageEdit": "Fout bij het bewerken van het statusbericht.",
-    "botLogin": "Fout bij het inloggen van de bot.",
-    "infoCmd": "Fout in Slash-commando - Info.",
-    "motdCmd": "Fout in Slash-commando - MOTD.",
-    "playerCmd": "Fout in Slash-commando - Speler.",
-    "statusCmd": "Fout in Slash-commando - Status.",
-    "statusPrefix": "Fout in Prefix-commando - Status.",
-    "setStatus": "Kan het statusbericht niet instellen.",
-    "autoReply": "Fout in de Auto-Reply-functionaliteit.",
-    "botStatusUpdate": "Fout bij het bijwerken van de botstatus.",
-    "channelIdCheck": "Fout bij controle en bijwerken van het kanaal-ID.",
-    "playerCountCh": "Fout in de spelersteltaantal-kanaalfunctie.",
-    "playerCountChNameUpdate": "Fout bij het bijwerken van de naam van het spelersteltaantal-kanaal.",
-    "playerCountChDateWrite": "Fout bij het opslaan van het spelersteltaantal-kanaal-ID in data.json.",
-    "playerAvatarGuildIdCheck": "Fout bij het controleren van de gilde-ID voor speleravatars.",
-    "playerAvatarEmojiError": "Fout bij het beheren van speleravatar-emoji's."
+  error: {
+    playerEmbed: 'Er is een fout opgetreden bij het maken van de Player List Embeds-bericht.',
+    statusEmbed: 'Er is een fout opgetreden bij het maken van de Status Embeds-bericht.',
+    playerList: 'Er is een fout opgetreden bij het maken van de spelerslijst.',
+    fetchServerDataAndPlayerList: 'Kan de Minecraft-servergegevens en spelerslijst niet ophalen.',
+    fetchServerData: 'Kan de Minecraft-servergegevens niet ophalen.',
+    messageEdit: 'Fout bij het bewerken van het statusbericht.',
+    botLogin: 'Fout bij het inloggen van de bot.',
+    infoCmd: 'Fout in Slash-commando - Info.',
+    motdCmd: 'Fout in Slash-commando - MOTD.',
+    playerCmd: 'Fout in Slash-commando - Speler.',
+    statusCmd: 'Fout in Slash-commando - Status.',
+    statusPrefix: 'Fout in Prefix-commando - Status.',
+    setStatus: 'Kan het statusbericht niet instellen.',
+    autoReply: 'Fout in de Auto-Reply-functionaliteit.',
+    botStatusUpdate: 'Fout bij het bijwerken van de botstatus.',
+    channelIdCheck: 'Fout bij controle en bijwerken van het kanaal-ID.',
+    playerCountCh: 'Fout in de spelersteltaantal-kanaalfunctie.',
+    playerCountChNameUpdate: 'Fout bij het bijwerken van de naam van het spelersteltaantal-kanaal.',
+    playerCountChDateWrite: 'Fout bij het opslaan van het spelersteltaantal-kanaal-ID in data.json.',
+    playerAvatarGuildIdCheck: 'Fout bij het controleren van de gilde-ID voor speleravatars.',
+    playerAvatarEmojiError: "Fout bij het beheren van speleravatar-emoji's.",
+    autoReplyMsgDelete: 'Fout bij het verwijderen van het automatische antwoordbericht',
   },
-  "debug": {
-    "autoChangeStatus": {
-      "onlineText": "Online met {playerOnline} spelers.",
-      "offlineText": "❌ Offline.",
-      "format": "Status Embed-bericht is bijgewerkt naar {statusText}.",
-      "successLog": "Statusbericht succesvol ingesteld in {channelName}.",
-      "enableAutoChangeStatus": "Om de serverstatus in te stellen, stuur een {cmd}-commando in het gewenste kanaal.",
-      "playerAvatarGuildSuccessFull": "Gilde: `{playerAvatarGuildName}` is succesvol gevonden en ingesteld als de server voor speleravatar-emoji's.",
-      "playerAvatarGuildUnSuccessFull": "De gilde voor speleravatar-emoji's met ID `{playerAvatarGuildID}` kon niet worden gevonden, of de bot zit niet in de gilde."
+  debug: {
+    autoChangeStatus: {
+      onlineText: 'Online met {playerOnline} spelers.',
+      offlineText: '❌ Offline.',
+      format: 'Status Embed-bericht is bijgewerkt naar {statusText}.',
+      successLog: 'Statusbericht succesvol ingesteld in {channelName}.',
+      enableAutoChangeStatus: 'Om de serverstatus in te stellen, stuur een {cmd}-commando in het gewenste kanaal.',
+      playerAvatarGuildSuccessFull: "Gilde: `{playerAvatarGuildName}` is succesvol gevonden en ingesteld als de server voor speleravatar-emoji's.",
+      playerAvatarGuildUnSuccessFull: "De gilde voor speleravatar-emoji's met ID `{playerAvatarGuildID}` kon niet worden gevonden, of de bot zit niet in de gilde.",
     },
-    "botStatusFormat": "De activiteit van de bot is bijgewerkt naar {botStatusText}.",
-    "playerCountChUpdate": "Naam van spelersteltaantal-kanaal bijgewerkt naar {updatedName}."
+    botStatusFormat: 'De activiteit van de bot is bijgewerkt naar {botStatusText}.',
+    playerCountChUpdate: 'Naam van spelersteltaantal-kanaal bijgewerkt naar {updatedName}.',
   },
-  "checkErrorConfig": {
-    "checkConfigWait": "Controleren op fouten in het config.js-bestand. Even geduld.",
-    "followingErrors": "Het configuratiebestand bevat de volgende fouten:",
-    "botToken": "Ongeldige bot-token.",
-    "botPresenceStatus": "Ongeldige botstatusopties. Moet 'online', 'idle', 'dnd' of 'invisible' zijn.",
-    "botStatusActivity": "Ongeldige botactiviteitsopties. Moet 'Playing', 'Listening', 'Watching' of 'Competing' zijn.",
-    "mcType": "Ongeldig Minecraft-servertype. Moet 'java' of 'bedrock' zijn.",
-    "mcName": "De naam van de Minecraft-server is niet opgegeven.",
-    "mcVersion": "De versie van de Minecraft-server is niet opgegeven.",
-    "guildID": "De server/gilde-ID is niet opgegeven of ongeldig.",
-    "timeZone": "De in het configuratiebestand opgegeven tijdzone is niet geldig.",
-    "slashCmdName": "De opgegeven naam \"{givenCmdName}\" voor het \"{cmdName}\"-commando is ongeldig.\nGebruik alleen kleine letters, hoofdletters, titelletters, cijfers, underscores en koppeltekens."
+  checkErrorConfig: {
+    checkConfigWait: 'Controleren op fouten in het config.js-bestand. Even geduld.',
+    followingErrors: 'Het configuratiebestand bevat de volgende fouten:',
+    botToken: 'Ongeldige bot-token.',
+    botPresenceStatus: "Ongeldige botstatusopties. Moet 'online', 'idle', 'dnd' of 'invisible' zijn.",
+    botStatusActivity: "Ongeldige botactiviteitsopties. Moet 'Playing', 'Listening', 'Watching' of 'Competing' zijn.",
+    mcType: "Ongeldig Minecraft-servertype. Moet 'java' of 'bedrock' zijn.",
+    mcName: 'De naam van de Minecraft-server is niet opgegeven.',
+    mcVersion: 'De versie van de Minecraft-server is niet opgegeven.',
+    guildID: 'De server/gilde-ID is niet opgegeven of ongeldig.',
+    timeZone: 'De in het configuratiebestand opgegeven tijdzone is niet geldig.',
+    slashCmdName: 'De opgegeven naam "{givenCmdName}" voor het "{cmdName}"-commando is ongeldig.\nGebruik alleen kleine letters, hoofdletters, titelletters, cijfers, underscores en koppeltekens.',
   },
-  "playerCountCh": {
-    "playerCountChGuildIncorrect": "De gilde met ID: \"{guildID}\" is niet gevonden of de bot zit niet in de gilde.",
-    "playerCountChannelFound": "Kanaal succesvol gevonden: {channelName} voor spelersteltaantal.",
-    "playerCountChannelNotFound": "Het spelersteltaantal-kanaal met ID: \"{channelId}\" is niet gevonden of de bot heeft geen toegang tot het kanaal.",
-    "playerCountChannelCreated": "Spelersteltaantal-kanaal aangemaakt en naam bijgewerkt naar: {updatedStatus}."
+  playerCountCh: {
+    playerCountChGuildIncorrect: 'De gilde met ID: "{guildID}" is niet gevonden of de bot zit niet in de gilde.',
+    playerCountChannelFound: 'Kanaal succesvol gevonden: {channelName} voor spelersteltaantal.',
+    playerCountChannelNotFound: 'Het spelersteltaantal-kanaal met ID: "{channelId}" is niet gevonden of de bot heeft geen toegang tot het kanaal.',
+    playerCountChannelCreated: 'Spelersteltaantal-kanaal aangemaakt en naam bijgewerkt naar: {updatedStatus}.',
   },
-  "inviteLink": "✅ {botUserTag} is online.\nNodig de bot uit met {inviteLink}.",
-  "serverInfoStart": {
-    "online": [
-      "--------------------------------------------------------",
-      "IP       | {ip}",
-      "VERSIE   | {version}",
-      "SPELERS  | {playersOnline} / {playersMax}",
-      "MOTD     | {motd_line1}",
-      "         | {motd_line2}",
-      "--------------------------------------------------------"
+  inviteLink: '✅ {botUserTag} is online.\nNodig de bot uit met {inviteLink}.',
+  serverInfoStart: {
+    online: [
+      '--------------------------------------------------------',
+      'IP       | {ip}',
+      'VERSIE   | {version}',
+      'SPELERS  | {playersOnline} / {playersMax}',
+      'MOTD     | {motd_line1}',
+      '         | {motd_line2}',
+      '--------------------------------------------------------',
     ],
-    "offline": [
-      "Momenteel niet in staat om de Minecraft-server te vinden met:",
-      "----------------------------------------------",
-      "IP   | {ip}",
-      "PORT | {port}",
-      "TYPE | {mcServerType}",
-      "----------------------------------------------"
-    ]
-  }
+    offline: [
+      'Momenteel niet in staat om de Minecraft-server te vinden met:',
+      '----------------------------------------------',
+      'IP   | {ip}',
+      'PORT | {port}',
+      'TYPE | {mcServerType}',
+      '----------------------------------------------',
+    ],
+  },
 }
