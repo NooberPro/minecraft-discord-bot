@@ -1,0 +1,98 @@
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
+// Polish Translation (pl) by MizPablito
+
+{
+  // Translation for the console output
+  error: {
+    playerEmbed: 'Wystąpił błąd podczas tworzenia wiadomości osadzonej z listą graczy.',
+    statusEmbed: 'Wystąpił błąd podczas tworzenia wiadomości osadzonej z statusem.',
+    playerList: 'Wystąpił błąd podczas tworzenia listy graczy.',
+    fetchServerDataAndPlayerList: 'Nie udało się pobrać danych serwera Minecraft ani listy graczy.',
+    fetchServerData: 'Nie udało się pobrać danych serwera Minecraft.',
+    messageEdit: 'Wystąpił błąd podczas edycji komunikatu o statusie.',
+    botLogin: 'Błąd logowania bota.',
+    infoCmd: 'Błąd w poleceniu ukośnika - Info.',
+    motdCmd: 'Błąd w poleceniu ukośnika - MOTD.',
+    playerCmd: 'Błąd w poleceniu ukośnika - Player.',
+    statusCmd: 'Błąd w poleceniu ukośnika - Status.',
+    statusPrefix: 'Błąd w poleceniu z prefiksem - Status.',
+    setStatus: 'Nie udało się ustawić komunikatu o statusie.',
+    autoReply: 'Błąd funkcji auto-odpowiedzi.',
+    botStatusUpdate: "Błąd podczas aktualizacji statusu bota.",
+    channelIdCheck: 'Błąd podczas sprawdzania i aktualizowania ID kanału.',
+    playerCountCh: 'Błąd w funkcji kanału Licznika Graczy.',
+    playerCountChNameUpdate: 'Błąd podczas aktualizowania nazwy kanału Licznika Graczy.',
+    playerCountChDateWrite: 'Błąd podczas zapisywania identyfikatora kanału i liczby graczy w pliku data.json.',
+    playerAvatarEmojiError: 'Błąd podczas zarządzania emotkami awatara gracza',
+    autoReplyMsgDelete: 'Błąd podczas usuwania auto-odpowiedzi',
+  },
+  debug: {
+    autoChangeStatus: {
+      onlineText: 'Online z {playerOnline} graczami.',
+      offlineText: '❌ Offline.',
+      format: 'Zaktualizowano osadzoną wiadomość o statusie na {statusText}.',
+      // Use {channelName} fetches the name of the status message channel.
+      successLog: 'Pomyślnie ustawiono komunikat o statusie w {channelName}.',
+      // Use {cmd} retrieves the setstatus command.
+      enableAutoChangeStatus: 'Aby ustawić status serwera, należy wysłać polecenie {cmd} na wybranym kanale.',
+      playerAvatarGuildSuccessFull: 'Gildia: `{playerAvatarGuildName}` została pomyślnie znaleziona i ustawiona jako serwer dla emoji awatarów graczy.',
+      playerAvatarGuildUnSuccessFull: "Gildia emotek awatartów graczy o ID: `{playerAvatarGuildID}` nie została znaleziona lub bot nie został zaproszony na serwer.",
+    },
+    botStatusFormat: "Aktywność bota została zaktualizowana na {botStatusText}.",
+    playerCountChUpdate: 'Nazwa kanału liczby graczy została zaktualizowana na {updatedName}.',
+  },
+  checkErrorConfig: {
+    checkConfigWait: 'Sprawdzanie błędów w pliku config.js. Proszę czekać.',
+    followingErrors: 'Plik konfiguracyjny zawiera następujące błędy:',
+    botToken: 'Błędny token bota.',
+    botPresenceStatus: "Nieprawidłowa opcja statusu bota. Powinno być 'online', 'idle', 'dnd' lub 'invisible'.",
+    botStatusActivity: "Nieprawidłowa opcja aktywności bota. Powinno być 'Playing', 'Listening','Watching' lub 'Competing'",
+    mcType: 'Błędny typ serwera Minecraft. Powinno być "java" lub "bedrock".',
+    mcName: "Nazwa serwera Minecraft nie została określona.",
+    mcVersion: "Nie określono wersji serwera Minecraft.",
+    guildID: 'Identyfikator serwera/gildii nie został określony lub jest nieprawidłowy.',
+    timeZone: 'Strefa czasowa określona w pliku konfiguracyjnym jest nieprawidłowa.',
+    // Use {givenCmdName} retrieves the name given in the language file.
+    // Use {cmdName} retrieves the name of commands.
+    slashCmdName: 'Podana nazwa "{givenCmdName}" dla polecenia "{cmdName}" jest nieprawidłowa.\nUżywaj wyłącznie małych i wielkich liter, liter typowych dla nazw własnych, cyfr, podkreśleń i łączników.',
+  },
+  playerCountCh: {
+    // Use {guildID} represents the guild ID given in the config file.
+    playerCountChGuildIncorrect: 'Gildia o ID: "{guildID}" nie została znaleziona lub bot nie należy do gildii.',
+    // Use {channelName} retrieves the created channel's name.
+    playerCountChannelFound: 'Znaleziono kanał: {channelName} dla liczby graczy.',
+    // Use {channelId} retrieves the ID of the channel given in the config file.
+    playerCountChannelNotFound: 'Kanał dla liczby graczy o ID: "{channelId}" nie został znaleziony lub bot nie ma dostępu do kanału.',
+    // Use {updatedStatus} to retrieve the updated status name of the channel.
+    playerCountChannelCreated: 'Utworzono kanał dla Liczby Graczy i zaktualizowano jego nazwę na: {updatedStatus}.',
+  },
+
+  // Use {botUserTag} for the bot's user tag, such as Bot#0001.
+  // Use {inviteLink} for the bot's invite link.
+  inviteLink: '✅ {botUserTag} jest online.\nZaproś bota za pomocą {inviteLink}.',
+
+  serverInfoStart: {
+    // Variables: {ip}, {version}, {playersOnline}, {playersMax}, {motd_line1}, {motd_line2}
+    // Use {motd_line1} to get the first line of the MOTD.
+    // Use {motd_line2} to get the second line of the MOTD.
+    online: [
+      '--------------------------------------------------------',
+      'IP       | {ip}',
+      'WERSJA   | {version}',
+      'GRACZY   | {playersOnline} / {playersMax}',
+      'MOTD     | {motd_line1}',
+      '         | {motd_line2}',
+      '--------------------------------------------------------',
+    ],
+    // Variables: {ip}, {port}, {mcServerType}
+    offline: [
+      'Obecnie nie można zlokalizować serwera Minecraft za pomocą:',
+      '----------------------------------------------',
+      'IP   | {ip}',
+      'PORT | {port}',
+      'TYP  | {mcServerType}',
+      '----------------------------------------------',
+    ],
+  },
+}
