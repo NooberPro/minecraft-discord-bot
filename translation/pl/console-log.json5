@@ -87,7 +87,7 @@
     ],
     // Variables: {ip}, {port}, {mcServerType}
     offline: [
-      'Obecnie nie można zlokalizować serwera Minecraft za pomocą:',
+      'Obecnie nie można zlokalizować serwera Minecraft za pomocą wskazanych danych:',
       '----------------------------------------------',
       'IP   | {ip}',
       'PORT | {port}',
