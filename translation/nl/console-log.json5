@@ -35,8 +35,6 @@
       format: 'Status Embed-bericht is bijgewerkt naar {statusText}.',
       successLog: 'Statusbericht succesvol ingesteld in {channelName}.',
       enableAutoChangeStatus: 'Om de serverstatus in te stellen, stuur een {cmd}-commando in het gewenste kanaal.',
-      playerAvatarGuildSuccessFull: "Gilde: `{playerAvatarGuildName}` is succesvol gevonden en ingesteld als de server voor speleravatar-emoji's.",
-      playerAvatarGuildUnSuccessFull: "De gilde voor speleravatar-emoji's met ID `{playerAvatarGuildID}` kon niet worden gevonden, of de bot zit niet in de gilde.",
     },
     botStatusFormat: 'De activiteit van de bot is bijgewerkt naar {botStatusText}.',
     playerCountChUpdate: 'Naam van spelersteltaantal-kanaal bijgewerkt naar {updatedName}.',

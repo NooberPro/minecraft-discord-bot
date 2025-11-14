@@ -32,7 +32,7 @@ module.exports = {
   settings: {
     language: {
       // Available languages:
-      // en (English), es (Spanish), de (German), fr (French), pt (Portuguese), ru (Russian), uk (Ukrainian), nl(Dutch)
+      // en (English), es (Spanish), de (German), fr (French), pt (Portuguese), ru (Russian), uk (Ukrainian), nl(Dutch), pl(Polish)
       main: 'en', // Main language (files in ./translation/)
       // Optional language settings for specific features. Leave blank to use the main language.
       embeds: '', // Language for embeds, Slash and Prefix Commands, Auto Changing Status.

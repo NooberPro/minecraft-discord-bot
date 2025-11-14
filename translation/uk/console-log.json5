@@ -36,8 +36,6 @@
       successLog: 'Успішно установлено повідомлення статусу у {channelName}.',
       // Використовуйте {cmd} для отримання команди setstatus.
       enableAutoChangeStatus: 'Для установки статусу серверу, відправте команду {cmd} у потрібний канал.',
-      playerAvatarGuildSuccessFull: 'Гільдія: `{playerAvatarGuildName}` була успішно знайдена та встановлена як сервер для емодзі аватара гравця.',
-      playerAvatarGuildUnSuccessFull: 'Гільдію емодзі аватара гравця з ID `{playerAvatarGuildID}` не вдалося знайти, або бот не знаходиться в гільдії.',
     },
     botStatusFormat: 'Активність бота оновлена до {botStatusText}.',
     playerCountChUpdate: "Ім'я каналу рахування гравців було оновлено і тепер {updatedName}",

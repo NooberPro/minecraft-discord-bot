@@ -226,13 +226,17 @@ const botInfoEmbed = async (interaction, client) => {
   const reply = await interaction.fetchReply()
   const ping = reply.createdTimestamp - interaction.createdTimestamp
   const os = require('os')
-  const cpuUsage = (os.loadavg()[0] / os.cpus().length).toFixed(2)
+  const cpuUsage = ((os.loadavg()[0] / os.cpus().length) * 100).toFixed(2)
   const memoryUsage = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)
   const nodeVersion = process.version
-  const uptimeSeconds = Math.floor(process.uptime())
-  const uptimeMinutes = Math.floor(uptimeSeconds / 60) % 60
-  const uptimeHours = Math.floor(uptimeMinutes / 60) % 24
-  const uptimeDays = Math.floor(uptimeHours / 24)
+  let totalSeconds = Math.floor(process.uptime())
+  const uptimeDays = Math.floor(totalSeconds / 86400)
+  totalSeconds %= 86400
+  const uptimeHours = Math.floor(totalSeconds / 3600)
+  totalSeconds %= 3600
+  const uptimeMinutes = Math.floor(totalSeconds / 60)
+  const uptimeSeconds = totalSeconds % 60
+
   return new EmbedBuilder()
     .setAuthor({
       name: client.user.tag,

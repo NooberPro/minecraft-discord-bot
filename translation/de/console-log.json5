@@ -36,8 +36,6 @@
       successLog: 'Statusnachricht erfolgreich in {channelName} festgelegt.',
       // Mit {cmd} wird der gesetzte Befehl abgerufen.
       enableAutoChangeStatus: 'Um den Serverstatus zu setzen, senden Sie einen {cmd}-Befehl im gewünschten Kanal.',
-      playerAvatarGuildSuccessFull: 'Gilde: `{playerAvatarGuildName}` wurde erfolgreich gefunden und als Server für Spieler-Avatar-Emojis festgelegt.',
-      playerAvatarGuildUnSuccessFull: 'Die Gilde des Spieler-Avatar-Emojis mit der ID `{playerAvatarGuildID}` konnte nicht gefunden werden, oder der Bot ist nicht in der Gilde.',
     },
     botStatusFormat: 'Die Aktivität des Bots wurde auf {botStatusText} aktualisiert.',
     playerCountChUpdate: 'Der Name des Spieleranzahl-Kanals wurde aktualisiert auf {updatedName}.',

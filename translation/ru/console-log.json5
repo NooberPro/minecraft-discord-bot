@@ -3,7 +3,7 @@
 // Русский перевод (ru) от Zahar1loshara
 
 {
-  // Перевод вывода консоли
+  // Перевод для вывода консоли.
   error: {
     playerEmbed: 'Произошла ошибка во время создания embed сообщения лист игроков.',
     statusEmbed: 'Произошла ошибка во время создания embed сообщения статуса.',
@@ -24,8 +24,8 @@
     playerCountCh: 'Ошибка в функции счётчика игроков в канале.',
     playerCountChNameUpdate: 'Ошибка в обновлении имя канал счётчика игроков.',
     playerCountChDateWrite: 'Ошибка в сохранении ID канал счётчика игроков в data.json.',
-    playerAvatarEmojiError: 'Ошибка при управлении эмодзи аватара игрока',
-    autoReplyMsgDelete: 'Ошибка при удалении автоматического ответа',
+    playerAvatarEmojiError: 'Ошибка при настройке эмодзи игроков',
+    autoReplyMsgDelete: 'Ошибка при удалении сообщение автоответа',
   },
   debug: {
     autoChangeStatus: {
@@ -36,10 +36,8 @@
       successLog: 'Успешно установлено сообщения статуса в {channelName}.',
       // Использование {cmd} для получения команду setstatus команды.
       enableAutoChangeStatus: 'Для установки статуса сервера отправьте команду {cmd} в нужный канал.',
-      playerAvatarGuildSuccessFull: 'Гильдия: `{playerAvatarGuildName}` была успешно найдена и установлена как сервер для эмодзи аватара игрока.',
-      playerAvatarGuildUnSuccessFull: 'Гильдия эмодзи аватара игрока с ID `{playerAvatarGuildID}` не была найдена или бот не находится в гильдии.',
     },
-    botStatusFormat: 'Активность бота обновлена до {botStatusText}.',
+    botStatusFormat: 'Embed сообщения статуса был обновлен и теперь {botStatusText}.',
     playerCountChUpdate: 'Имя канала счётчика игроков был обновлен и теперь {updatedName}.',
   },
   checkErrorConfig: {

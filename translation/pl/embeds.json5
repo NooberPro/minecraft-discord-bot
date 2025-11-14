@@ -1,0 +1,70 @@
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
+// Tłumaczenie polskie (pl) przez MizPablito
+
+{
+  // Tłumaczenie dla komendy zarządzającej wiadomościami osadzonymi.
+  ip: {
+    // Zmienna: {ip}
+    title: '__**ADRES SERWERA**__',
+    description: '**{ip}**',
+  },
+  site: {
+    // Zmienna: {site}
+    title: '__**STRONA WWW**__',
+    description: '**Link: {site}**',
+  },
+  version: {
+    // Zmienna: {version}
+    title: '__**WERSJA**__',
+    description: '**{version}**',
+  },
+  offlineEmbed: {
+    // Zmienne: {ip}, {version}, {site}
+    title: ':red_circle: OFFLINE',
+    description: '', // Aby to wyłączyć, pozostaw pusty opis.
+    footer: 'Sprawdzono o',
+  },
+  players: {
+    // Zmienne: {playeronline}, {playermax}.
+    title: '__**GRACZE**__',
+    description: '**{playeronline}/{playermax}**',
+    // Lista nazw graczy zostanie wyświetlona po opisie.
+    // Wyświetlaj wiadomość osadzoną w trybie offline, gdy serwer Minecraft jest offline.
+  },
+  motd: {
+    // Zmienna: {motd}
+    title: '__**MOTD**__',
+    description: '**{motd}**',
+  },
+  onlineEmbed: {
+    // Zmienne: {ip}, {motd}, {version}, {site}
+    title: ':green_circle: ONLINE',
+    // Tutaj, osadź tytuł listy graczy oraz opis podany wyżej (linia: 27)
+
+    // Opis jest umieszczony po polu listy graczy.
+    description_field_one: '__**MOTD**__\n**{motd}**\n\n__**ADRES SERWERA**__\n**{ip}**',
+    description_field_two: '__**WERSJA**__\n**{version}**\n\n__**STRONA WWW**__\n**Link: {site}**',
+    siteText: '\n\n__**WEBSITE**__\n**Link: {site}**',
+    footer: 'Sprawdzono o',
+  },
+  help: {
+    // Zmienne: {prefix}, {botName}
+    title: '__**LISTA KOMEND**__',
+    description: '**Prefiks: `{prefix}`**',
+    // Tylko zmienne (listFormat): {cmdDescription}, {cmdSlashMention}.
+    listFormat: '{slashCmdMention} **`-` {cmdDescription}**',
+
+    commandInfoFormat: {
+      // Zmienna: {cmdName}
+      title: '__**Komenda {cmdName}**__',
+      // Zmienne: {cmdSlashMention}, {cmdDescription}, {prefixCmd}, {prefixCmdAlias}
+      description: '**Komenda ukośnikowa: {cmdSlashMention}\nOpis: `{cmdDescription}`\nKomenda prefiksowa: `{prefixCmd}`\nAliasy komendy prefiksowej: {prefixCmdAlias}**',
+    },
+  },
+  info: {
+    title: '**Informacje o bocie i statystyki**',
+    // Zmienne: {cpuUsage}, {memoryUsage}, {nodeVersion}, {uptimeDays}, {uptimeHours}, {uptimeMinutes}, {uptimeSeconds}, {ping}, {websocket}.
+    description: '**Użycie CPU: `{cpuUsage}%`\nUżycie RAM: `{memoryUsage}MB`\nWersja Node.js: `{nodeVersion}`\nUptime bota: `{uptimeDays}` dni, `{uptimeHours}` godz., `{uptimeMinutes}`, min., `{uptimeSeconds}` sek.\nPing: Client `{ping}ms` | Websocket: `{websocket}ms`**',
+  },
+}

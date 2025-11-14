@@ -36,8 +36,6 @@
       successLog: 'Successfully set the status message in {channelName}.',
       // Use {cmd} retrieves the setstatus command.
       enableAutoChangeStatus: 'To set the server status, send a {cmd} command in the desired channel.',
-      playerAvatarGuildSuccessFull: 'Guild: `{playerAvatarGuildName}` was successfully found and set as the server for Player Avatar emojis.',
-      playerAvatarGuildUnSuccessFull: "The Player Avatar Emoji's guild with ID `{playerAvatarGuildID}` could not be found, or the bot is not in the guild.",
     },
     botStatusFormat: "Bot's activity has been updated to {botStatusText}.",
     playerCountChUpdate: 'Player Count channel name is updated to {updatedName}.',

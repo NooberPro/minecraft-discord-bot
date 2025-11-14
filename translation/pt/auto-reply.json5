@@ -6,7 +6,7 @@
   // Tradução para a função de resposta automática.
   version: {
     // Use {version} para recuperar a versão.
-    replyText: "A versão do servidor: **`{version}`**.",
+    replyText: 'A versão do servidor: **`{version}`**.',
   },
   ip: {
     // Use {ip} para o IP e {port} para a porta.
@@ -14,7 +14,7 @@
   },
   site: {
     // Use {site} para o link do site a partir da configuração.
-    replyText: "O link do site do servidor: **<{site}>**.",
+    replyText: 'O link do site do servidor: **<{site}>**.',
   },
   status: {
     // Use {playerOnline} para o número de jogadores online e {playerMax} para o número máximo de jogadores. Isso só funciona em onlineReply.

@@ -1,0 +1,69 @@
+// GitHub: https://github.com/NooberPro/minecraft-discord-bot
+// Crowdin: https://crowdin.com/project/minecraft-discord-bot
+// Tłumaczenie polskie (pl) przez MizPablito
+
+{
+  // Tłumaczenie dla komend ukośnych.
+
+  // Pole "name" zawiera nazwę komendy. Możesz zmienić nazwę polecenia, ale NIE MOŻNA TŁUMACZYĆ klucza JSON (name: ...).
+  // Pole "description" zawiera opis polecenia.
+  help: {
+    name: 'help',
+    description: 'Wysyła listę dostępnych poleceń.',
+    options: {
+      name: 'commands',
+      description: 'Wysyła szczegóły dotyczące polecenia.',
+    },
+  },
+  ip: {
+    name: 'ip',
+    description: 'Wysyła adres serwera Minecraft.',
+  },
+  site: {
+    name: 'site',
+    description: 'Wysyła link do strony internetowej/głosowania na serwer Minecraft.',
+  },
+  version: {
+    name: 'version',
+    description: 'Wysyła wersję serwera Minecraft.',
+  },
+
+  // Pole "errorReply" jest używane, jeśli wystąpił błąd podczas wykonywania polecenia i wraca wskazany komunikat o błędzie.
+  motd: {
+    name: 'motd',
+    description: 'Wysyła wiadomość dnia (MOTD) serwera Minecraft.',
+    errorReply: ':warning: **`Wystąpił błąd podczas pobierania Wiadomości Dnia (MOTD).`**',
+  },
+  players: {
+    name: 'players',
+    description: 'Wysyła listę graczy aktualnie online na serwerze Minecraft.',
+    errorReply: ':warning: **`Wystąpił błąd podczas pobierania listy graczy online.`**',
+  },
+  status: {
+    name: 'status',
+    description: 'Wysyła aktualny status serwera Minecraft.',
+    errorReply: ':warning: **`Nie można sprawdzić statusu serwera z powodu błędu.`**',
+  },
+  info: {
+    name: 'info',
+    description: 'Wysyła aktualne informacje o bocie.',
+    errorReply: ':warning: **`Wystąpił błąd podczas pobierania informacji.`**',
+  },
+  setstatus: {
+    name: 'setstatus',
+    description: 'Ustawia komunikat o stanie serwera Minecraft na bieżącym kanale.',
+    serverName: 'Wprowadź nazwę swojego serwera Minecraft.',
+    serverIp: 'Wprowadź adres IP serwera Minecraft.',
+    serverPort: 'Wprowadź numer portu serwera Minecraft.',
+    serverType: 'Wybierz typ swojego serwera: Java lub Bedrock',
+    playerAvatar: 'Opcja wyświetlania awatarów gracza obok listy graczy.',
+    // Użyj {error} aby zwrócić komunikat o błędzie.
+    errorReply: ':warning: **`Nie można ustawić komunikatu o stanie z powodu błędu: {error}.`**',
+    enableFeature: '**Aby włączyć funkcję wiadomości o stanie, w konfiguracji należy włączyć opcję `auto Change Status`.**',
+    checkingStatusMsg: ':gear: Sprawdzanie statusu...',
+    checkingStatusCmdMsg: ':arrows_clockwise: Sprawdzanie statusu i niezbędnych informacji.',
+    // Użyj {channel} aby podać link do kanału, a {messageLink} udostępnia ikonę linku do wiadomości.
+    statusMsgSuccess: ':white_check_mark: **Komunikat o stanie został pomyślnie ustawiony w kanale {channel}. Komunikat:** {messageLink}.',
+  },
+  disabledChannelMsg: 'Komendy :no_entry: są wyłączone na tym kanale.',
+}

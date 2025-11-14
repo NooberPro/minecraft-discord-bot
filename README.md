@@ -10,7 +10,7 @@
 ## Features
 
 - **Highly Customizable**: Take full control of the bot and tailor its configuration to meet your unique requirements.
-- **Multilingual Support**: `English`, `Spanish`, `German`, `French`, `Portuguese`, `Russian` and `Ukrainian` translations with customizable language settings for each features.
+- **Multilingual Support**: `English`, `Spanish`, `German`, `French`, `Portuguese`, `Russian`, `Ukrainian`, `Dutch` and `Polish` translations with customizable language settings for each features.
 - **Free Hosting Compatibility**: Support for free server hosting providers like Aternos, Falixnodes etc.
 - **Anti-Crash System:** This feature safeguards the bot, ensuring its stability and uninterrupted operation by preventing crashes and unexpected halts.
 - **Dynamic Status Message**: Auto-updating status messages with integrated player list .
@@ -82,6 +82,7 @@
 A big thanks to the following contributors who have helped with translations:
 
 - **[Zahar1loshara](https://crowdin.com/profile/Zahar1loshara)** - Russian, Ukrainian
+- **[Mizpablito](https://github.com/mizpablito)** - Polish
 
 ## Built with
 

@@ -36,8 +36,6 @@
       successLog: 'Se estableció correctamente el mensaje de estado en {channelName}.',
       // Usa {cmd} para recuperar el comando setstatus.
       enableAutoChangeStatus: 'Para establecer el estado del servidor, envía un comando {cmd} en el canal deseado.',
-      playerAvatarGuildSuccessFull: 'Gremio: `{playerAvatarGuildName}` fue encontrado y configurado correctamente como el servidor para los emojis del Avatar del Jugador.',
-      playerAvatarGuildUnSuccessFull: 'El gremio del Emoji del Avatar del Jugador con ID `{playerAvatarGuildID}` no se pudo encontrar, o el bot no está en el gremio.',
     },
     botStatusFormat: 'La actividad del bot se ha actualizado a {botStatusText}.',
     playerCountChUpdate: 'Se actualizó el nombre del canal de recuento de jugadores a {updatedName}.',

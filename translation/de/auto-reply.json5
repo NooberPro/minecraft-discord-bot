@@ -6,7 +6,7 @@
   // Übersetzung für die Auto-Antwort-Funktion.
   version: {
     // Verwende {version}, um die Version aus der Konfiguration abzurufen.
-    replyText: "Die Version des Servers: **`{version}`**.",
+    replyText: 'Die Version des Servers: **`{version}`**.',
   },
   ip: {
     // Verwende {ip} für die IP und {port} für den Port.
@@ -14,7 +14,7 @@
   },
   site: {
     // Verwende {site} für den Website-Link aus der Konfiguration.
-    replyText: "Der Website-Link des Servers: **<{site}>**.",
+    replyText: 'Der Website-Link des Servers: **<{site}>**.',
   },
   status: {
     // Verwende {playerOnline} für die Anzahl der online-Spieler und {playerMax} für die maximale Anzahl der Spieler. Dies funktioniert nur in onlineReply.
@@ -22,4 +22,3 @@
     offlineReply: 'Der Server ist derzeit **`🔴OFFLINE`**.',
   },
 }
-

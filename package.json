@@ -27,7 +27,7 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "commandkit": "^0.1.10",
-    "discord.js": "^14.18.0",
+    "discord.js": "^14.21.0",
     "json5": "^2.2.3",
     "node-mcstatus": "^1.2.1"
   }
