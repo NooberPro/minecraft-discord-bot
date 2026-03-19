@@ -2,7 +2,7 @@
 // "MC" refers to Minecraft in the comments for convenience.
 module.exports = {
   bot: {
-    token: 'your-bot-token-here',
+    token: '1484026160630206524',
     // Automatically updates the bot's status and activity.
     presence: {
       enabled: true,
@@ -19,12 +19,12 @@ module.exports = {
     },
   },
   mcserver: {
-    ip: 'demo.mcstatus.io', // IP address of the MC server.
-    port: 25565, // Port number of the MC server. Use Query Port in Java for the full player list.
-    type: 'java', // Type of MC server: "java" or "bedrock".
-    name: 'Demo Server', // Name of the MC server.
-    version: 'Requires 1.8 - 1.20', // Version of the MC server.
-    icon: 'https://i.imgur.com/6Msem8Q.png', // URL of the MC server icon. How to set it: https://tinyurl.com/iconurl
+    ip: 'NewState2.aternos.me', // IP address of the MC server.
+    port: 52810, // Port number of the MC server. Use Query Port in Java for the full player list.
+    type: 'BEDROCK', // Type of MC server: "java" or "bedrock".
+    name: '𝐍𝐄𝐖 𝐒𝐓𝐀𝐓𝐄', // Name of the MC server.
+    version: '1.26', // Version of the MC server.
+    icon: 'https://cdn.discordapp.com/attachments/1392237621991968970/1484027096010330172/file_000000006500724684d13da38a285f82.png?ex=69bcbb6f&is=69bb69ef&hm=8227a7bc5f325c32170fbfb08c55532d9be2e6426aee20a33f520c329cbf027d', // URL of the MC server icon. How to set it: https://tinyurl.com/iconurl
     site: 'https://nooberpro.gitbook.io/', // URL of the MC server or vote website. Leave blank to disable site commands.
   },
 
@@ -87,11 +87,11 @@ module.exports = {
     disabledChannels: [],
     version: {
       enabled: true,
-      triggerWords: ['version of the server?', 'version'],
+      triggerWords: ['1.26', 'version'],
     },
     ip: {
       enabled: true,
-      triggerWords: ['ip of the server', 'ip'],
+      triggerWords: ['NewState2.aternos.me', 'ip'],
     },
     site: {
       enabled: true,
@@ -99,7 +99,7 @@ module.exports = {
     },
     status: {
       enabled: true,
-      triggerWords: ['is server online?', 'is server offline', 'status of the server'],
+      triggerWords: ['مفتوح', 'مغلق', 'احصائيات'],
     },
   },
 
